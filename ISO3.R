@@ -1,0 +1,1 @@
+mydata <- read.csv("Country List with ISO3.csv", header=TRUE, sep=",")
