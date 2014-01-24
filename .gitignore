@@ -1,6 +1,6 @@
 # History files
 .Rhistory
-.RProj
+*.RProj
 
 # Example code in package build process
 *-Ex.R
