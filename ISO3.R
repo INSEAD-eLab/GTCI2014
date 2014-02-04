@@ -1,6 +1,7 @@
 install.packages("XLConnect")
-
 library (XLConnect)
+
+################# Master ISO3 and country names sheet
 ISO3<-loadWorkbook("Country List with ISO3.xlsx")
 ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C450", header=T)
 
