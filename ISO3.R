@@ -28,10 +28,14 @@ colnames(Political.Stability.Country) <- c("Country.Name")
 Political.Stability.Country[,1] <- tolower(Political.Stability.Country[,1])
 
 ## get the ISO3 for country names
-Political.Stability.Country <- merge(Political.Stability.Country, ISO3, by="Country.Name")
+Political.Stability.Country <- merge(Political.Stability.Country, ISO3, by="Country.Name", all.x=T)
+
+## check if there is any country without ISO3
+subset(Political.Stability.Country, is.na(Political.Stability.Country[,2]))
 
 ## merging
 Political.Stability.Complete <- cbind(Political.Stability.Country, Political.Stability.Data)
 
 ## get only the latest data
 Political.Stability.Latest <- Political.Stability.Complete[,c("Country.Name", "ISO3", "2012 Estimate")]
+
