@@ -39,3 +39,30 @@ Political.Stability.Complete <- cbind(Political.Stability.Country, Political.Sta
 ## get only the latest data
 Political.Stability.Latest <- Political.Stability.Complete[,c("Country.Name", "ISO3", "2012 Estimate")]
 
+
+################# Technicians and associate professionals
+Technicians.Associates.WS <- loadWorkbook("[R] [ILO] [ISCO-68] Technicians and associate professionals.xls")
+
+## Get the data
+Technicians.Associates <- readWorksheet(Technicians.Associates.WS, sheet="KILM 5c", region="A3:AN1976", header=T)
+
+## Remove the CountryCode and get the country lowercase
+Technicians.Associates <- Technicians.Associates[,-1]
+Technicians.Associates[,1] <- tolower(Technicians.Associates[,1])
+
+## Get the ISO3 for country names
+Technicians.Associates <- merge(ISO3, Technicians.Associates, by.x="Country.Name", by.y="Country", all.y=T)
+
+## check if there is any country without ISO3
+NoISO3 <- subset(Technicians.Associates, is.na(Technicians.Associates[,2]))
+NoISO3[,1:5]
+
+## Since the country without ISO3 is Germany, federal republic of western and year is from 1982 to 1989, we can just remove them.
+Technicians.Associates.ISO3 <- subset(Technicians.Associates, !is.na(Technicians.Associates[,2]))
+
+## Get the name of unique Countries
+unique(Technicians.Associates.ISO3[,1])
+
+## TODO
+## to get the latest year in each country group
+## to change the column names
