@@ -83,7 +83,7 @@ tech.asso.86.MF.latest <- function(){
   Technicians.Associates.68.ISO3.MF.latest <- Technicians.Associates.68.ISO3.MF.sorted[!duplicated(Technicians.Associates.68.ISO3.MF.sorted$Country.Name),]
   
   ## Get the columns
-  Technicians.Associates.ISO3.MF.68.latest <- Technicians.Associates.ISO3.MF.latest[, c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
+  Technicians.Associates.ISO3.MF.68.latest <- Technicians.Associates.68.ISO3.MF.latest[, c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
                                                                                        "X0.1...000.", "X0.1....", "X2...000.", "X2....")]
   
   ## Change the column names
