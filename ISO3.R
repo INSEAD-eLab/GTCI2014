@@ -70,6 +70,10 @@ Technicians.Associates.ISO3.MF <- Technicians.Associates.ISO3[Technicians.Associ
 Technicians.Associates.ISO3.MF.sorted <- Technicians.Associates.ISO3.MF[order(Technicians.Associates.ISO3.MF$Country.Name, Technicians.Associates.ISO3.MF$Year, decreasing=T),]
 Technicians.Associates.ISO3.MF.latest <- Technicians.Associates.ISO3.MF.sorted[!duplicated(Technicians.Associates.ISO3.MF.sorted$Country.Name),]
 
+## Get the columns
+Technicians.Associates.ISO3.MF.68.latest <- Technicians.Associates.ISO3.MF.latest[,c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
+                                                                                     "X0.1...000.", "X0.1....", "X2...000.", "X2....")]
 
-## TODO
-## to change the column names
+## Change the column names
+colnames(Technicians.Associates.ISO3.MF.68.latest) <- c("Country.Name", "ISO3", "Year", "Sex", "Total.employment.000",
+                                                        "01.000", "01.percent", "2.000", "2.percent")
