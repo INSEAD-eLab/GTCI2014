@@ -63,6 +63,13 @@ Technicians.Associates.ISO3 <- subset(Technicians.Associates, !is.na(Technicians
 ## Get the name of unique Countries
 unique(Technicians.Associates.ISO3[,1])
 
+## Get the gender total total
+Technicians.Associates.ISO3.MF <- Technicians.Associates.ISO3[Technicians.Associates.ISO3$Sex..code.=="MF",]
+
+## Sort by the name and year. Then get the maximum
+Technicians.Associates.ISO3.MF.sorted <- Technicians.Associates.ISO3.MF[order(Technicians.Associates.ISO3.MF$Country.Name, Technicians.Associates.ISO3.MF$Year, decreasing=T),]
+Technicians.Associates.ISO3.MF.latest <- Technicians.Associates.ISO3.MF.sorted[!duplicated(Technicians.Associates.ISO3.MF.sorted$Country.Name),]
+
+
 ## TODO
-## to get the latest year in each country group
 ## to change the column names
