@@ -65,32 +65,28 @@ get.tech.asso.latest <- function(source.file, source.sheet, source.region,
   
   ISO3 <- get.ISO3()
   
-  Technicians.Associates.88.WS <- loadWorkbook(source.file)
+  Technicians.Associates.WS <- loadWorkbook(source.file)
   
   ## Get the data 
   ## This is in Panel data
-  Technicians.Associates.88 <- readWorksheet(Technicians.Associates.88.WS, sheet=source.sheet, region=source.region, header=T)
+  Technicians.Associates <- readWorksheet(Technicians.Associates.WS, sheet=source.sheet, region=source.region, header=T)
   
   ## Remove the CountryCode and get the country lowercase
-  Technicians.Associates.88 <- Technicians.Associates.88[,-1]
-  Technicians.Associates.88[,1] <- tolower(Technicians.Associates.88[,1])
+  Technicians.Associates <- Technicians.Associates[,-1]
+  Technicians.Associates[,1] <- tolower(Technicians.Associates[,1])
   
-  original.countries <- unique(Technicians.Associates.88[,1])
-  print(paste("Total number of rows in original datasheet : ", nrow(Technicians.Associates.88), sep=""))
+  original.countries <- unique(Technicians.Associates[,1])
+  print(paste("Total number of rows in original datasheet : ", nrow(Technicians.Associates), sep=""))
   print(paste("Total number of unique countries before cleaning : ", length(original.countries), sep=""))
   
   ## Get the ISO3 for country names
-  Technicians.Associates.88 <- merge(ISO3, Technicians.Associates.88, by.x="Country.Name", by.y="Country", all.y=T)
-  
-  ## check if there is any country without ISO3
-  NoISO3 <- subset(Technicians.Associates.88, is.na(Technicians.Associates.88[,2]))
-  NoISO3[,1:5]
+  Technicians.Associates <- merge(ISO3, Technicians.Associates, by.x="Country.Name", by.y="Country", all.y=T)
   
   ## Since the country without ISO3 is Germany, federal republic of western and year is from 1982 to 1989, we can just remove them.
-  Technicians.Associates.88.ISO3 <- subset(Technicians.Associates.88, !is.na(Technicians.Associates.88[,2]))
+  Technicians.Associates.ISO3 <- subset(Technicians.Associates, !is.na(Technicians.Associates[,2]))
   
   ## Get the name of unique Countries
-  cleaned.countries <- unique(Technicians.Associates.88.ISO3[,1])
+  cleaned.countries <- unique(Technicians.Associates.ISO3[,1])
   print(paste("Total number of unique countries after cleaning : ",length(cleaned.countries), sep=""))
   
   if(length(cleaned.countries) != length(original.countries)){
@@ -99,26 +95,26 @@ get.tech.asso.latest <- function(source.file, source.sheet, source.region,
   }
   
   ## Get the gender total total
-  Technicians.Associates.88.ISO3.MF <- Technicians.Associates.88.ISO3[Technicians.Associates.88.ISO3$Sex..code. == source.gender,]
+  Technicians.Associates.ISO3.MF <- Technicians.Associates.ISO3[Technicians.Associates.ISO3$Sex..code. == source.gender,]
   
   ## Sort by the name and year. Then get the maximum
-  Technicians.Associates.88.ISO3.MF.sorted <- Technicians.Associates.88.ISO3.MF[order(Technicians.Associates.88.ISO3.MF$Country.Name, Technicians.Associates.88.ISO3.MF$Year, decreasing=T),]
-  Technicians.Associates.88.ISO3.MF.latest <- Technicians.Associates.88.ISO3.MF.sorted[!duplicated(Technicians.Associates.88.ISO3.MF.sorted$Country.Name),]
+  Technicians.Associates.ISO3.MF.sorted <- Technicians.Associates.ISO3.MF[order(Technicians.Associates.ISO3.MF$Country.Name, Technicians.Associates.ISO3.MF$Year, decreasing=T),]
+  Technicians.Associates.ISO3.MF.latest <- Technicians.Associates.ISO3.MF.sorted[!duplicated(Technicians.Associates.ISO3.MF.sorted$Country.Name),]
   
   ## Get the columns
-  Technicians.Associates.ISO3.MF.88.latest <- Technicians.Associates.88.ISO3.MF.latest[, source.colnames]
+  Technicians.Associates.ISO3.MF.latest <- Technicians.Associates.ISO3.MF.latest[, source.colnames]
   
   ## Change the column names
-  colnames(Technicians.Associates.ISO3.MF.88.latest) <- result.colnames
+  colnames(Technicians.Associates.ISO3.MF.latest) <- result.colnames
   
   ## Order by the ISO3
-  Technicians.Associates.ISO3.MF.88.latest <- Technicians.Associates.ISO3.MF.88.latest[order(Technicians.Associates.ISO3.MF.88.latest$ISO3, decreasing=F),]
+  Technicians.Associates.ISO3.MF.latest <- Technicians.Associates.ISO3.MF.latest[order(Technicians.Associates.ISO3.MF.latest$ISO3, decreasing=F),]
   
   ## Remove the data which is lower than 2003
-  Technicians.Associates.ISO3.MF.88.latest.cut <- Technicians.Associates.ISO3.MF.88.latest[Technicians.Associates.ISO3.MF.88.latest$Year >= result.cut.year,]
+  Technicians.Associates.ISO3.MF.latest.cut <- Technicians.Associates.ISO3.MF.latest[Technicians.Associates.ISO3.MF.latest$Year >= result.cut.year,]
   
   ## Get the name of unique Countries
-  final.countries <- unique(Technicians.Associates.ISO3.MF.88.latest.cut[,1])
+  final.countries <- unique(Technicians.Associates.ISO3.MF.latest.cut[,1])
   print(paste("Total number of unique countries after cutting at ", result.cut.year, " : ", length(final.countries), sep=""))
   
   if(length(final.countries) != length(cleaned.countries)){
@@ -129,5 +125,5 @@ get.tech.asso.latest <- function(source.file, source.sheet, source.region,
   print("###### end #######")
   
   ## return the final result
-  return(Technicians.Associates.ISO3.MF.88.latest.cut)
+  return(Technicians.Associates.ISO3.MF.latest.cut)
 }
