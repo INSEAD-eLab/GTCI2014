@@ -54,3 +54,6 @@ tech.asso.08.MF.latest <- get.tech.asso.latest(source.file="[R] [ILO] [ISCO-08] 
 
 ## to find out which country is only available in 68 but not in 88 and 08
 setdiff(tech.asso.68.MF.latest$Country.Name, union(tech.asso.88.MF.latest$Country.Name, tech.asso.08.MF.latest$Country.Name))
+
+################# Gross expenditure on R&D
+R.D.expenditure <- get.R.D.expenditure()
