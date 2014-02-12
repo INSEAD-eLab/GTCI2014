@@ -4,7 +4,7 @@ library (XLConnect)
 ################# Master ISO3 and country names sheet
 get.ISO3 <- function(){
   
-  ISO3<-loadWorkbook("Country List with ISO3.xlsx")
+  ISO3<-loadWorkbook(paste("data/", "Country List with ISO3.xlsx", sep=""))
   ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C450", header=T)
   ISO3[,1] <- tolower(ISO3[,1])
   
@@ -12,13 +12,14 @@ get.ISO3 <- function(){
 }
 
 ################# Political stability
+## Data format : WGI
 get.Political.Stability <- function(){
   print("########")
   print("Running get.Political.Stability function to get the data from [R] [WGI] Political stability.xlsx")
   
   ISO3 <- get.ISO3()
   
-  Political.Stability <- loadWorkbook("[R] [WGI] Political stability.xlsx")
+  Political.Stability <- loadWorkbook(paste("data/", "[R] [WGI] Political stability.xlsx", sep=""))
   
   ## get the data only without the column names and the country names
   Political.Stability.Data <- readWorksheet(Political.Stability, sheet="Political StabilityNoViolence", region="C16:CH230", header=F)
@@ -57,6 +58,7 @@ get.Political.Stability <- function(){
 
 ################# Technicians and associate professionals from 88
 ## the source data structure must be the same as [R] [ILO] [ISCO-68] Technicians and associate professionals.xls
+## Data format : ILO
 get.tech.asso.latest <- function(source.file, source.sheet, source.region, 
                                        source.gender, source.colnames, result.colnames, result.cut.year){
   
@@ -65,7 +67,7 @@ get.tech.asso.latest <- function(source.file, source.sheet, source.region,
   
   ISO3 <- get.ISO3()
   
-  Technicians.Associates.WS <- loadWorkbook(source.file)
+  Technicians.Associates.WS <- loadWorkbook(paste("data/", source.file, sep=""))
   
   ## Get the data 
   ## This is in Panel data
@@ -129,13 +131,14 @@ get.tech.asso.latest <- function(source.file, source.sheet, source.region,
 }
 
 ################# Gross expenditure on R&D
+## Data format : UNESCO
 get.R.D.expenditure <- function(){
   print("########")
   print("Running get.R.D.expenditure function to get the data from [R] [UNESCO] Gross expenditure on R&D (% of GDP).xls")
   
   ISO3 <- get.ISO3()
   
-  R.D.expenditure.ws <- loadWorkbook("[R] [UNESCO] Gross expenditure on R&D (% of GDP).xls")
+  R.D.expenditure.ws <- loadWorkbook(paste("data/", "[R] [UNESCO] Gross expenditure on R&D (% of GDP).xls", sep=""))
   
   ## get the data only without the column names and the country names
   R.D.expenditure.data <- readWorksheet(R.D.expenditure.ws, sheet="download-8", region="A6:R220", header=F, 
