@@ -56,4 +56,17 @@ tech.asso.08.MF.latest <- get.tech.asso.latest(source.file="[R] [ILO] [ISCO-08] 
 setdiff(tech.asso.68.MF.latest$Country.Name, union(tech.asso.88.MF.latest$Country.Name, tech.asso.08.MF.latest$Country.Name))
 
 ################# Gross expenditure on R&D
-R.D.expenditure <- get.R.D.expenditure()
+R.D.expenditure <- get.R.D.expenditure(source.file="[R] [UNESCO] Gross expenditure on R&D (% of GDP).xls",
+                                       source.sheet="download-8", 
+                                       source.data.region="A6:R220",
+                                       source.colnames="A4:R4", 
+                                       result.colnames="RnD.expenditure",
+                                       result.cut.year=2003)
+
+################# Female tertiary students
+Female.tertiary.students <- get.R.D.expenditure(source.file="[R] [UNESCO] Female tertiary students.xlsx",
+                                       source.sheet="download-10", 
+                                       source.data.region="A6:P222",
+                                       source.colnames="A4:P4", 
+                                       result.colnames="female.tertiary.students",
+                                       result.cut.year=2003)

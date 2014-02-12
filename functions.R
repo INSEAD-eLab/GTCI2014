@@ -132,22 +132,23 @@ get.tech.asso.latest <- function(source.file, source.sheet, source.region,
 
 ################# Gross expenditure on R&D
 ## Data format : UNESCO
-get.R.D.expenditure <- function(){
+get.R.D.expenditure <- function(source.file, source.sheet, source.data.region,
+                                source.colnames, result.colnames, result.cut.year){
   print("########")
-  print("Running get.R.D.expenditure function to get the data from [R] [UNESCO] Gross expenditure on R&D (% of GDP).xls")
+  print(paste("Running get.R.D.expenditure function to get the data from ", source.file, sep=""))
   
   ISO3 <- get.ISO3()
   
-  R.D.expenditure.ws <- loadWorkbook(paste("data/", "[R] [UNESCO] Gross expenditure on R&D (% of GDP).xls", sep=""))
+  R.D.expenditure.ws <- loadWorkbook(paste("data/", source.file, sep=""))
+  
+  ## get the column names without the country names
+  R.D.expenditure.data.Header <- readWorksheet(R.D.expenditure.ws, sheet=source.sheet, region=source.colnames, header=F)
+  
+  R.D.expenditure.data.Header[1, 1] <- "Country.Name"
   
   ## get the data only without the column names and the country names
-  R.D.expenditure.data <- readWorksheet(R.D.expenditure.ws, sheet="download-8", region="A6:R220", header=F, 
-                                        colTypes = c(XLC$DATA_TYPE.STRING, XLC$DATA_TYPE.NUMERIC, XLC$DATA_TYPE.NUMERIC,
-                                                     XLC$DATA_TYPE.NUMERIC, XLC$DATA_TYPE.NUMERIC, XLC$DATA_TYPE.NUMERIC,
-                                                     XLC$DATA_TYPE.NUMERIC, XLC$DATA_TYPE.NUMERIC, XLC$DATA_TYPE.NUMERIC,
-                                                     XLC$DATA_TYPE.NUMERIC, XLC$DATA_TYPE.NUMERIC, XLC$DATA_TYPE.NUMERIC,
-                                                     XLC$DATA_TYPE.NUMERIC, XLC$DATA_TYPE.NUMERIC, XLC$DATA_TYPE.NUMERIC,
-                                                     XLC$DATA_TYPE.NUMERIC, XLC$DATA_TYPE.NUMERIC, XLC$DATA_TYPE.NUMERIC), 
+  R.D.expenditure.data <- readWorksheet(R.D.expenditure.ws, sheet=source.sheet, region=source.data.region, header=F, 
+                                        colTypes = rep(c(XLC$DATA_TYPE.STRING, XLC$DATA_TYPE.NUMERIC), times=c(1,ncol(R.D.expenditure.data.Header)-1)), 
                                         forceConversion=T)
   
   R.D.expenditure.data[, 1] <- tolower(R.D.expenditure.data[, 1])
@@ -156,16 +157,11 @@ get.R.D.expenditure <- function(){
   print(paste("Total number of rows in original datasheet : ", nrow(R.D.expenditure.data), sep=""))
   print(paste("Total number of unique countries before cleaning : ", length(original.countries), sep=""))
   
-  ## get the column names without the country names
-  R.D.expenditure.data.Header <- readWorksheet(R.D.expenditure.ws, sheet="download-8", region="A4:R4", header=F)
-  
-  R.D.expenditure.data.Header[1, 1] <- "Country.Name"
-  
   ## assign the column names into Data object
   colnames(R.D.expenditure.data) <- R.D.expenditure.data.Header
   
   ## reshaping to long data
-  R.D.expenditure.long.data <- reshape(R.D.expenditure.data, idvar="Country.Name", varying=list(2:18), v.names="RnD.expenditure", direction="long", times=c(1996:2012))
+  R.D.expenditure.long.data <- reshape(R.D.expenditure.data, idvar="Country.Name", varying=list(2:ncol(R.D.expenditure.data.Header)), v.names=result.colnames, direction="long", times=c(min(as.numeric(R.D.expenditure.data.Header[,-1])):max(as.numeric(R.D.expenditure.data.Header[,-1]))))
   
   R.D.expenditure.long.c.data <- R.D.expenditure.long.data[complete.cases(R.D.expenditure.long.data),]
   
@@ -180,13 +176,13 @@ get.R.D.expenditure <- function(){
   R.D.expenditure.long.c.data <- R.D.expenditure.long.c.data[order(R.D.expenditure.long.c.data$Country.Name, R.D.expenditure.long.c.data$Year, decreasing=F),]
   
   ## Remove the data which is lower than 2003
-  R.D.expenditure.long.c.data <- R.D.expenditure.long.c.data[R.D.expenditure.long.c.data$Year >= 2003, ]  
+  R.D.expenditure.long.c.data <- R.D.expenditure.long.c.data[R.D.expenditure.long.c.data$Year >= result.cut.year, ]  
   
   ## Get the ISO3 for country names
   R.D.expenditure.long.c.data <- merge(R.D.expenditure.long.c.data, ISO3, by="Country.Name", all.x=T)
   
   final.countries <- unique(R.D.expenditure.long.c.data[,1])
-  print(paste("Total number of unique countries after cleaning ",length(final.countries), sep=""))
+  print(paste("Total number of unique countries after cutting and cleaning at ", result.cut.year, " : ",length(final.countries), sep=""))
   
   if(length(final.countries) != length(original.countries)){
     print("Countries removed are :")
