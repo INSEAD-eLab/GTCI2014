@@ -57,6 +57,7 @@ setdiff(tech.asso.68.MF.latest$Country.Name, union(tech.asso.88.MF.latest$Countr
 
 ################### Female professional and technical workers
 
+## read the data for Female
 Female.pro.tech.88.latest <- get.tech.asso.latest(source.file="[R] [ILO] [ISCO-88] Technicians and associate professionals.xls",
                                                   source.sheet="KILM 5b",
                                                   source.region="A3:AR3888", 
@@ -64,9 +65,26 @@ Female.pro.tech.88.latest <- get.tech.asso.latest(source.file="[R] [ILO] [ISCO-8
                                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "X2...000.", "X3...000."),
                                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "2.000.88","3.000.88"), 
                                                   result.cut.year=2003)
-
+## add variable 2 and 3
 Female.pro.tech.88.latest[,"total.2.3"] <- apply(Female.pro.tech.88.latest, 1, function(row) sum(as.numeric(row[5]), as.numeric(row[6]), na.rm=T) )
 
+## add comment
+### if variable 2 is missing *
+### if variable 3 is missing **
+### if both is missing *** (this will be removed later)
+Female.pro.tech.88.latest[,"comment"] <- apply(Female.pro.tech.88.latest, 1, function(row) {
+  if(is.na(row[5]) & is.na(row[6])){
+    "***"
+  }else if(is.na(row[5])){
+    "*"
+  }else if(is.na(row[6])){
+    "**"
+  }else{
+    ""
+  }
+} )
+
+## read the data for male
 Male.pro.tech.88.latest <- get.tech.asso.latest(source.file="[R] [ILO] [ISCO-88] Technicians and associate professionals.xls",
                                                   source.sheet="KILM 5b",
                                                   source.region="A3:AR3888", 
@@ -75,13 +93,33 @@ Male.pro.tech.88.latest <- get.tech.asso.latest(source.file="[R] [ILO] [ISCO-88]
                                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "2.000.88","3.000.88"), 
                                                   result.cut.year=2003)
 
+## add variable 2 and 3
 Male.pro.tech.88.latest[,"total.2.3"] <- apply(Male.pro.tech.88.latest, 1, function(row) sum(as.numeric(row[5]), as.numeric(row[6]), na.rm=T) )
 
+## add comment
+Male.pro.tech.88.latest[,"comment"] <- apply(Male.pro.tech.88.latest, 1, function(row) {
+  if(is.na(row[5]) & is.na(row[6])){
+    "***"
+  }else if(is.na(row[5])){
+    "*"
+  }else if(is.na(row[6])){
+    "**"
+  }else{
+    ""
+  }
+} )
+
+## combine female and male
 combined <- merge(Female.pro.tech.88.latest, Male.pro.tech.88.latest, by=c("ISO3", "Country.Name", "Year"))
 
+## find the ratio
 Female.pro.tech.ratio.88.latest <- cbind(combined[,c("ISO3", "Country.Name", "Year")], combined[,"total.2.3.x"]/combined[,"total.2.3.y"])
 
-colnames(Female.pro.tech.ratio.88.latest)[4] <- "Female.pro.tech.ratio.08.latest"
+## remove combined object
+rm(combined)
+
+## rename the variable
+colnames(Female.pro.tech.ratio.88.latest)[4] <- "Female.pro.tech.ratio.88.latest"
 
 ################# Gross expenditure on R&D
 R.D.expenditure <- get.UNESCO.format(source.file="[R] [UNESCO] Gross expenditure on R&D (% of GDP).xls",
