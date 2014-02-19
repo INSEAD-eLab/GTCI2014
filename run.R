@@ -47,13 +47,41 @@ tech.asso.08.MF.latest <- get.tech.asso.latest(source.file="[R] [ILO] [ISCO-08] 
                                                source.gender="MF",
                                                source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
                                                                  "X3...000.", "X3...."),
-                                               result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment.000.88",
-                                                                 "3.000.88", "3.percent.88"), 
+                                               result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment.000.08",
+                                                                 "3.000.08", "3.percent.08"), 
                                                result.cut.year=2003)
-
 
 ## to find out which country is only available in 68 but not in 88 and 08
 setdiff(tech.asso.68.MF.latest$Country.Name, union(tech.asso.88.MF.latest$Country.Name, tech.asso.08.MF.latest$Country.Name))
+
+
+################### Female professional and technical workers
+
+Female.pro.tech.88.latest <- get.tech.asso.latest(source.file="[R] [ILO] [ISCO-88] Technicians and associate professionals.xls",
+                                                  source.sheet="KILM 5b",
+                                                  source.region="A3:AR3888", 
+                                                  source.gender="F",
+                                                  source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "X2...000.", "X3...000."),
+                                                  result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "2.000.88","3.000.88"), 
+                                                  result.cut.year=2003)
+
+Female.pro.tech.88.latest[,"total.2.3"] <- apply(Female.pro.tech.88.latest, 1, function(row) sum(as.numeric(row[5]), as.numeric(row[6]), na.rm=T) )
+
+Male.pro.tech.88.latest <- get.tech.asso.latest(source.file="[R] [ILO] [ISCO-88] Technicians and associate professionals.xls",
+                                                  source.sheet="KILM 5b",
+                                                  source.region="A3:AR3888", 
+                                                  source.gender="M",
+                                                  source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "X2...000.", "X3...000."),
+                                                  result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "2.000.88","3.000.88"), 
+                                                  result.cut.year=2003)
+
+Male.pro.tech.88.latest[,"total.2.3"] <- apply(Male.pro.tech.88.latest, 1, function(row) sum(as.numeric(row[5]), as.numeric(row[6]), na.rm=T) )
+
+combined <- merge(Female.pro.tech.88.latest, Male.pro.tech.88.latest, by=c("ISO3", "Country.Name", "Year"))
+
+Female.pro.tech.ratio.88.latest <- cbind(combined[,c("ISO3", "Country.Name", "Year")], combined[,"total.2.3.x"]/combined[,"total.2.3.y"])
+
+colnames(Female.pro.tech.ratio.88.latest)[4] <- "Female.pro.tech.ratio.08.latest"
 
 ################# Gross expenditure on R&D
 R.D.expenditure <- get.UNESCO.format(source.file="[R] [UNESCO] Gross expenditure on R&D (% of GDP).xls",
