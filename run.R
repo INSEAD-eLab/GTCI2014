@@ -199,9 +199,47 @@ famale.tertiary.graduates <- get.UNESCO.format(source.file="[R] [UNESCO] Female 
                                      result.cut.year=2003)
 
 
+################# science graduates
+graduates.science <- get.UNESCO.format(source.file="[R] [UNESCO] Graduates in science and engineering.xlsx",
+                                               source.sheet="download-19", 
+                                               source.data.region="Q6:AE222",
+                                               source.colnames="A4:P4", 
+                                               result.colnames="graduates.science",
+                                               result.cut.year=2003,
+                                               names.separated=TRUE, 
+                                               country.names="A6:A222")
+
+
+################# engineering graduates
+graduates.engineering <- get.UNESCO.format(source.file="[R] [UNESCO] Graduates in science and engineering.xlsx",
+                                       source.sheet="download-19", 
+                                       source.data.region="AF6:AT222",
+                                       source.colnames="A4:P4", 
+                                       result.colnames="graduates.engineering",
+                                       result.cut.year=2003,
+                                       names.separated=TRUE, 
+                                       country.names="A6:A222")
+
+
+################# engineering graduates
+graduates.total <- get.UNESCO.format(source.file="[R] [UNESCO] Graduates in science and engineering.xlsx",
+                                           source.sheet="download-19", 
+                                           source.data.region="A6:P222",
+                                           source.colnames="A4:P4", 
+                                           result.colnames="graduates.engineering",
+                                           result.cut.year=2003)
+
+
 #### data checking for year
 
 x <- famale.tertiary.graduates
 
 table(x$Year)
 hist(x$Year, xlim=c(min(x$Year)-1, max(x$Year)))
+
+
+## TODO
+# 2.2.4 Solution 7
+# 3.1.3 graduates in science and engineering needs to be discussed
+# 3.2.2 firms offering formal training (WB)
+# 3.3.4 part time employment rate (file missing)

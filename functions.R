@@ -133,7 +133,7 @@ get.tech.asso.latest <- function(source.file, source.sheet, source.region,
 ################# Gross expenditure on R&D
 ## Data format : UNESCO
 get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
-                                source.colnames, result.colnames, result.cut.year){
+                                source.colnames, result.colnames, result.cut.year, names.separated=FALSE, country.names=""){
   print("########")
   print(paste("Running get.UNESCO.format function to get the data from ", source.file, sep=""))
   
@@ -146,11 +146,20 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
   
   data.Header[1, 1] <- "Country.Name"
   
-  ## get the data only without the column names and the country names
-  UNESCO.data <- readWorksheet(data.ws, sheet=source.sheet, region=source.data.region, header=F, 
+  ## get the data only without the column names but with the country names
+  if(names.separated){
+    countries <- readWorksheet(data.ws, sheet=source.sheet, region=country.names, header=F)
+    
+    data <- readWorksheet(data.ws, sheet=source.sheet, region=source.data.region, header=F, 
+                          colTypes = rep(c(XLC$DATA_TYPE.STRING, XLC$DATA_TYPE.NUMERIC), times=c(1,ncol(data.Header)-1)), 
+                          forceConversion=T)
+    
+    UNESCO.data <- cbind(countries, data)
+  }else{
+    UNESCO.data <- readWorksheet(data.ws, sheet=source.sheet, region=source.data.region, header=F, 
                                         colTypes = rep(c(XLC$DATA_TYPE.STRING, XLC$DATA_TYPE.NUMERIC), times=c(1,ncol(data.Header)-1)), 
                                         forceConversion=T)
-  
+  }
   ## Change the names into lower case for merging
   UNESCO.data[, 1] <- tolower(UNESCO.data[, 1])
   
