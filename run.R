@@ -199,3 +199,9 @@ famale.tertiary.graduates <- get.UNESCO.format(source.file="[R] [UNESCO] Female 
                                      result.cut.year=2003)
 
 
+#### data checking for year
+
+x <- famale.tertiary.graduates
+
+table(x$Year)
+hist(x$Year, xlim=c(min(x$Year)-1, max(x$Year)))
