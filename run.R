@@ -230,9 +230,17 @@ graduates.total <- get.UNESCO.format(source.file="[R] [UNESCO] Graduates in scie
                                            result.cut.year=2003)
 
 
+combined1 <- merge(graduates.science, graduates.engineering, by=c("ISO3", "Country.Name", "Year"), all=T)
+key <- combined1$ISO3
+combined2 <- do.call(rbind, by(combined1[, 3:5], key, colSums, na.rm=T))
+combined2 <- data.frame(combined2, stringsAsFactors=F)
+cc <- combined1[combined1$ISO3 == unique(key), 1:3]
+
+combined2[combined2$Year>2015,]
+
 #### data checking for year
 
-x <- famale.tertiary.graduates
+x <- combined1
 
 table(x$Year)
 hist(x$Year, xlim=c(min(x$Year)-1, max(x$Year)))
@@ -243,3 +251,10 @@ hist(x$Year, xlim=c(min(x$Year)-1, max(x$Year)))
 # 3.1.3 graduates in science and engineering needs to be discussed
 # 3.2.2 firms offering formal training (WB)
 # 3.3.4 part time employment rate (file missing)
+
+
+
+te <- head(combined1)
+key <- te$ISO3
+
+do.call(rbind, by(te[, 4:5], key, colSums, na.rm=T))

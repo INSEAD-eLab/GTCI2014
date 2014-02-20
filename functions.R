@@ -150,16 +150,25 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
   if(names.separated){
     countries <- readWorksheet(data.ws, sheet=source.sheet, region=country.names, header=F)
     
-    data <- readWorksheet(data.ws, sheet=source.sheet, region=source.data.region, header=F, 
-                          colTypes = rep(c(XLC$DATA_TYPE.STRING, XLC$DATA_TYPE.NUMERIC), times=c(1,ncol(data.Header)-1)), 
-                          forceConversion=T)
+    data <- readWorksheet(data.ws, sheet=source.sheet, region=source.data.region, header=F)
+    
+    data <- apply(data, 1:2, function(x) ifelse(x == ".", NA, ifelse(x == "...", NA, ifelse(x == "-", 0, as.numeric(x)))))
+    
+    data <- data.frame(data, stringsAsFactors=F)
     
     UNESCO.data <- cbind(countries, data)
   }else{
-    UNESCO.data <- readWorksheet(data.ws, sheet=source.sheet, region=source.data.region, header=F, 
-                                        colTypes = rep(c(XLC$DATA_TYPE.STRING, XLC$DATA_TYPE.NUMERIC), times=c(1,ncol(data.Header)-1)), 
-                                        forceConversion=T)
+    UNESCO.data <- readWorksheet(data.ws, sheet=source.sheet, region=source.data.region, header=F)
+    
+    data <- UNESCO.data[, -1]
+    
+    data <- apply(data, 1:2, function(x) ifelse(x == ".", NA, ifelse(x == "...", NA, ifelse(x == "-", 0, as.numeric(x)))))
+    
+    data <- data.frame(data, stringsAsFactors=F)
+    
+    UNESCO.data <- cbind(UNESCO.data[, 1], data)
   }
+  
   ## Change the names into lower case for merging
   UNESCO.data[, 1] <- tolower(UNESCO.data[, 1])
   
