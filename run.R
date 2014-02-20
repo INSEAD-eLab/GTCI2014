@@ -55,7 +55,7 @@ tech.asso.08.MF.latest <- get.tech.asso.latest(source.file="[R] [ILO] [ISCO-08] 
 setdiff(tech.asso.68.MF.latest$Country.Name, union(tech.asso.88.MF.latest$Country.Name, tech.asso.08.MF.latest$Country.Name))
 
 
-################### Female professional and technical workers
+################### Female professional and technical workers (2.2.4 Solution 1)
 
 ## read the data for Female
 Female.pro.tech.88.latest <- get.tech.asso.latest(source.file="[R] [ILO] [ISCO-88] Technicians and associate professionals.xls",
@@ -113,13 +113,57 @@ Male.pro.tech.88.latest[,"comment"] <- apply(Male.pro.tech.88.latest, 1, functio
 combined <- merge(Female.pro.tech.88.latest, Male.pro.tech.88.latest, by=c("ISO3", "Country.Name", "Year"))
 
 ## find the ratio
-Female.pro.tech.ratio.88.latest <- cbind(combined[,c("ISO3", "Country.Name", "Year")], combined[,"total.2.3.x"]/combined[,"total.2.3.y"])
+Female.pro.tech.ratio.88.latest.s1 <- cbind(combined[,c("ISO3", "Country.Name", "Year")], combined[,"total.2.3.x"]/combined[,"total.2.3.y"])
 
 ## remove combined object
 rm(combined)
 
 ## rename the variable
-colnames(Female.pro.tech.ratio.88.latest)[4] <- "Female.pro.tech.ratio.88.latest"
+colnames(Female.pro.tech.ratio.88.latest.s1)[4] <- "Female.pro.tech.ratio.88.latest.s1"
+
+
+
+################### Female professional and technical workers (2.2.4 Solution 2)
+
+## read the data for male
+total.pro.tech.88.latest <- get.tech.asso.latest(source.file="[R] [ILO] [ISCO-88] Technicians and associate professionals.xls",
+                                                source.sheet="KILM 5b",
+                                                source.region="A3:AR3888", 
+                                                source.gender="MF",
+                                                source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "X2...000.", "X3...000."),
+                                                result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "2.000.88","3.000.88"), 
+                                                result.cut.year=2003)
+
+## add variable 2 and 3
+total.pro.tech.88.latest[,"total.2.3"] <- apply(total.pro.tech.88.latest, 1, function(row) sum(as.numeric(row[5]), as.numeric(row[6]), na.rm=T) )
+
+## add comment
+total.pro.tech.88.latest[,"comment"] <- apply(total.pro.tech.88.latest, 1, function(row) {
+  if(is.na(row[5]) & is.na(row[6])){
+    "***"
+  }else if(is.na(row[5])){
+    "*"
+  }else if(is.na(row[6])){
+    "**"
+  }else{
+    ""
+  }
+} )
+
+## combine female and male
+combined <- merge(Female.pro.tech.88.latest, total.pro.tech.88.latest, by=c("ISO3", "Country.Name", "Year"))
+
+## find the ratio
+Female.pro.tech.ratio.88.latest.s2 <- cbind(combined[,c("ISO3", "Country.Name", "Year")], combined[,"total.2.3.x"]/combined[,"total.2.3.y"])
+
+## remove combined object
+rm(combined)
+
+## rename the variable
+colnames(Female.pro.tech.ratio.88.latest.s2)[4] <- "Female.pro.tech.ratio.88.latest.s2"
+
+
+
 
 ################# Gross expenditure on R&D
 R.D.expenditure <- get.UNESCO.format(source.file="[R] [UNESCO] Gross expenditure on R&D (% of GDP).xls",
