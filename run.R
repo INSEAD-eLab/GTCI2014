@@ -189,3 +189,13 @@ gender.parity.index.gross.graduation.ratio <- get.UNESCO.format(source.file="[R]
                                                                 result.colnames="gender.parity.index",
                                                                 result.cut.year=2003)
 
+
+################# female tertiary graduates
+famale.tertiary.graduates <- get.UNESCO.format(source.file="[R] [UNESCO] Female tertiary graduates.xlsx",
+                                     source.sheet="download-9", 
+                                     source.data.region="A6:P222",
+                                     source.colnames="A4:P4", 
+                                     result.colnames="famale.tertiary.graduates",
+                                     result.cut.year=2003)
+
+
