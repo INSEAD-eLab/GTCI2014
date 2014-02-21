@@ -226,17 +226,27 @@ graduates.total <- get.UNESCO.format(source.file="[R] [UNESCO] Graduates in scie
                                            source.sheet="download-19", 
                                            source.data.region="A6:P222",
                                            source.colnames="A4:P4", 
-                                           result.colnames="graduates.engineering",
+                                           result.colnames="graduates.total",
                                            result.cut.year=2003)
 
 
+## combine science and engineering graduates
 combined1 <- merge(graduates.science, graduates.engineering, by=c("ISO3", "Country.Name", "Year"), all=T)
 key <- combined1$ISO3
 combined2 <- do.call(rbind, by(combined1[, 3:5], key, colSums, na.rm=T))
 combined2 <- data.frame(combined2, stringsAsFactors=F)
-cc <- combined1[combined1$ISO3 == unique(key), 1:3]
 
 combined2[combined2$Year>2015,]
+combined2[,"ISO3"] <- rownames(combined2)
+
+## combine with graduates.total
+combined3 <- merge(combined2, graduates.total, by=c("ISO3", "Year"), all=T)
+key <- combined3$ISO3
+combined4 <- do.call(rbind, by(combined3[, c(2,3,4,6)], key, colSums, na.rm=T))
+combined4 <- data.frame(combined4, stringsAsFactors=F)
+
+## check Country coverage
+combined4[combined4$Year>2015,]
 
 #### data checking for year
 
