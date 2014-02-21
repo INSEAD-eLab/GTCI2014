@@ -261,10 +261,3 @@ hist(x$Year, xlim=c(min(x$Year)-1, max(x$Year)))
 # 3.1.3 graduates in science and engineering needs to be discussed
 # 3.2.2 firms offering formal training (WB)
 # 3.3.4 part time employment rate (file missing)
-
-
-
-te <- head(combined1)
-key <- te$ISO3
-
-do.call(rbind, by(te[, 4:5], key, colSums, na.rm=T))
