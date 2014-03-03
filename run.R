@@ -248,6 +248,9 @@ combined4 <- data.frame(combined4, stringsAsFactors=F)
 ## check Country coverage
 combined4[combined4$Year>2015,]
 
+## get the ratio
+combined4[,"raios"] <- (combined4[,"graduates.science"] + combined4[,"graduates.engineering"]) / combined4[,"graduates.total"]
+
 #### data checking for year
 
 x <- combined1
