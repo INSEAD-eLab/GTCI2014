@@ -212,3 +212,66 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
   
   return(UNESCO.long.c.data)
 }
+
+
+## Number of firms offering formal training
+## WB data format
+get.WB.format <- function(source.file, source.sheet, source.data.region,
+                              source.colnames, source.result.col, result.cut.year){
+  
+  print("########")
+  print(paste("Running get.WB.format function to get the data from ", source.file, sep=""))
+  
+  ISO3 <- get.ISO3()
+  
+  data.ws <- loadWorkbook(paste("data/", source.file, sep=""))
+  
+  ## get the column names without the country names
+  data.Header <- readWorksheet(data.ws, sheet=source.sheet, region=source.colnames, header=F)
+  
+  data.Header[1, 1] <- "Country.Name"
+  
+  WB.data <- readWorksheet(data.ws, sheet=source.sheet, region=source.data.region, header=F)
+  
+  print(paste("Total number of rows in original datasheet : ", nrow(WB.data), sep=""))
+  
+  WB.data <- WB.data[WB.data[,3] == "Average",]
+  
+  original.countries <- unique(WB.data[,1])
+  print(paste("Total number of unique countries before cleaning : ", length(original.countries), sep=""))
+  
+  data <- WB.data[, -1]
+  
+  data <- apply(data, 1:2, function(x) ifelse(x == "n.c.", NA, ifelse(x == "...", NA, ifelse(x == "n.a.", NA, as.numeric(x)))))
+  
+  data <- data.frame(data, stringsAsFactors=F)
+  
+  WB.data <- cbind(WB.data[, 1], data)
+  
+  ## Change the names into lower case for merging
+  WB.data[, 1] <- tolower(WB.data[, 1])
+  
+  colnames(WB.data) <- data.Header
+  
+  WB.data <- WB.data[WB.data$Year >= result.cut.year, c("Country.Name", "Year", source.result.col)]
+  
+  ## Get the ISO3 for country names
+  WB.data <- merge(WB.data, ISO3, by="Country.Name", all.x=T)
+  
+  WB.data <- WB.data[order(WB.data$Country.Name, WB.data$Year, decreasing=T), ]
+  WB.data <- WB.data[!duplicated(WB.data$Country.Name), ]
+  
+  WB.data <- WB.data[order(WB.data$ISO3, decreasing=F), ]
+  
+  final.countries <- unique(WB.data[,1])
+  print(paste("Total number of unique countries after cutting and cleaning at ", result.cut.year, " : ",length(final.countries), sep=""))
+  
+  if(length(final.countries) != length(original.countries)){
+    print("Countries removed are :")
+    print(setdiff(original.countries, final.countries))
+  }
+  
+  print("###### end #######")
+  
+  return(WB.data)
+}

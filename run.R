@@ -251,8 +251,16 @@ combined4[combined4$Year>2015,]
 ## get the ratio
 combined4[,"raios"] <- (combined4[,"graduates.science"] + combined4[,"graduates.engineering"]) / combined4[,"graduates.total"]
 
-#### data checking for year
+################################ Firms offering formal training
+firms.offering.training <- get.WB.format(source.file="[R] [WB ES] Firms offering formal training.xlsx",
+                                     source.sheet="Workforce", 
+                                     source.data.region="A9:J707",
+                                     source.colnames="A1:J1", 
+                                     source.result.col="Percent of firms offering formal training",
+                                     result.cut.year=2003)
 
+
+#### data checking for year
 x <- combined1
 
 table(x$Year)
@@ -262,5 +270,4 @@ hist(x$Year, xlim=c(min(x$Year)-1, max(x$Year)))
 ## TODO
 # 2.2.4 Solution 7
 # 3.1.3 graduates in science and engineering needs to be discussed
-# 3.2.2 firms offering formal training (WB)
 # 3.3.4 part time employment rate (file missing)
