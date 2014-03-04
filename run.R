@@ -281,6 +281,28 @@ Part.time.employment.rate.25 <- get.ILO.latest( source.file="[R] [ILO] Part-time
                                                       source.age="25+",
                                                       result.cut.year=2003)
 
+## WDI data has same format as UNESCO and used that function
+################################# Improved water source
+improved.sanitation.facilities <- get.UNESCO.format(source.file="[R] [WDI] Improved sanitation facilities.xls",
+                                           source.sheet="Data", 
+                                           source.data.region="AH4:BC255",
+                                           source.colnames="AG3:BC3", 
+                                           result.colnames="improved.sanitation.facilities",
+                                           result.cut.year=2003,
+                                           names.separated=TRUE, 
+                                           country.names="A4:A255")
+
+
+## WDI data has same format as UNESCO and used that function
+################################# Improved water source
+improved.water.source <- get.UNESCO.format(source.file="[R] [WDI] Improved water source.xls",
+                                                    source.sheet="Data", 
+                                                    source.data.region="AH4:BC255",
+                                                    source.colnames="AG3:BC3", 
+                                                    result.colnames="improved.water.source",
+                                                    result.cut.year=2003,
+                                                    names.separated=TRUE, 
+                                                    country.names="A4:A255")
 
 #### data checking for year
 x <- Part.time.employment.rate.25
@@ -290,3 +312,5 @@ hist(x$Year, xlim=c(min(x$Year)-1, max(x$Year)))
 
 ## TODO
 # 2.2.4 Solution 7
+# 4.1.1 Solution 1 "CP-2b OA - Old age to economically active protection ratio (contributors) (preferred by definition)"
+# 4.2.4 Maternity and paternity leave 
