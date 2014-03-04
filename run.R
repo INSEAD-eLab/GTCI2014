@@ -283,7 +283,7 @@ Part.time.employment.rate.25 <- get.ILO.latest( source.file="[R] [ILO] Part-time
 
 
 #### data checking for year
-x <- combined1
+x <- Part.time.employment.rate.25
 
 table(x$Year)
 hist(x$Year, xlim=c(min(x$Year)-1, max(x$Year)))
