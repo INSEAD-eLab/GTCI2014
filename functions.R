@@ -59,8 +59,8 @@ get.Political.Stability <- function(){
 ################# Technicians and associate professionals from 88
 ## the source data structure must be the same as [R] [ILO] [ISCO-68] Technicians and associate professionals.xls
 ## Data format : ILO
-get.tech.asso.latest <- function(source.file, source.sheet, source.region, 
-                                       source.gender, source.colnames, result.colnames, result.cut.year){
+get.ILO.latest <- function(source.file, source.sheet, source.region, 
+                                       source.gender, source.colnames, result.colnames, result.cut.year, source.age=""){
   
   print("########")
   print(paste("Running get.tech.asso.88.MF.latest function to get the data from ", source.file, sep=""))
@@ -96,8 +96,13 @@ get.tech.asso.latest <- function(source.file, source.sheet, source.region,
     print(setdiff(original.countries, cleaned.countries))
   }
   
-  ## Get the gender total total
+  ## Get the correct gender
   Technicians.Associates.ISO3.MF <- Technicians.Associates.ISO3[Technicians.Associates.ISO3$Sex..code. == source.gender,]
+  
+  ## Get the correct age
+  if(nchar(source.age) > 0){
+    Technicians.Associates.ISO3.MF <- Technicians.Associates.ISO3.MF[Technicians.Associates.ISO3.MF$Age.group == source.age,]  
+  }
   
   ## Sort by the name and year. Then get the maximum
   Technicians.Associates.ISO3.MF.sorted <- Technicians.Associates.ISO3.MF[order(Technicians.Associates.ISO3.MF$Country.Name, Technicians.Associates.ISO3.MF$Year, decreasing=T),]

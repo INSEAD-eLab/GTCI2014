@@ -19,7 +19,7 @@ Political.Stability <- get.Political.Stability()
 ##[41] "Coverage.limitation"          "Survey.limitation"            "Classification.remark"        "Notes"     
 
 
-tech.asso.68.MF.latest <- get.tech.asso.latest( source.file="[R] [ILO] [ISCO-68] Technicians and associate professionals.xls",
+tech.asso.68.MF.latest <- get.ILO.latest( source.file="[R] [ILO] [ISCO-68] Technicians and associate professionals.xls",
                                                 source.sheet="KILM 5c",
                                                 source.region="A3:AN1976", 
                                                 source.gender="MF",
@@ -30,7 +30,7 @@ tech.asso.68.MF.latest <- get.tech.asso.latest( source.file="[R] [ILO] [ISCO-68]
                                                 result.cut.year=2003)
 
 
-tech.asso.88.MF.latest <- get.tech.asso.latest(source.file="[R] [ILO] [ISCO-88] Technicians and associate professionals.xls",
+tech.asso.88.MF.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-88] Technicians and associate professionals.xls",
                                                source.sheet="KILM 5b", 
                                                source.region="A3:AR3888", 
                                                source.gender="MF",
@@ -41,7 +41,7 @@ tech.asso.88.MF.latest <- get.tech.asso.latest(source.file="[R] [ILO] [ISCO-88] 
                                                result.cut.year=2003)
 
 
-tech.asso.08.MF.latest <- get.tech.asso.latest(source.file="[R] [ILO] [ISCO-08] Technicians and associate professionals.xls",
+tech.asso.08.MF.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-08] Technicians and associate professionals.xls",
                                                source.sheet="KILM 5a",
                                                source.region="A3:AR217", 
                                                source.gender="MF",
@@ -58,7 +58,7 @@ setdiff(tech.asso.68.MF.latest$Country.Name, union(tech.asso.88.MF.latest$Countr
 ################### Female professional and technical workers (2.2.4 Solution 1)
 
 ## read the data for Female
-Female.pro.tech.88.latest <- get.tech.asso.latest(source.file="[R] [ILO] [ISCO-88] Technicians and associate professionals.xls",
+Female.pro.tech.88.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-88] Technicians and associate professionals.xls",
                                                   source.sheet="KILM 5b",
                                                   source.region="A3:AR3888", 
                                                   source.gender="F",
@@ -85,7 +85,7 @@ Female.pro.tech.88.latest[,"comment"] <- apply(Female.pro.tech.88.latest, 1, fun
 } )
 
 ## read the data for male
-Male.pro.tech.88.latest <- get.tech.asso.latest(source.file="[R] [ILO] [ISCO-88] Technicians and associate professionals.xls",
+Male.pro.tech.88.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-88] Technicians and associate professionals.xls",
                                                   source.sheet="KILM 5b",
                                                   source.region="A3:AR3888", 
                                                   source.gender="M",
@@ -126,7 +126,7 @@ colnames(Female.pro.tech.ratio.88.latest.s1)[4] <- "Female.pro.tech.ratio.88.lat
 ################### Female professional and technical workers (2.2.4 Solution 2)
 
 ## read the data for male
-total.pro.tech.88.latest <- get.tech.asso.latest(source.file="[R] [ILO] [ISCO-88] Technicians and associate professionals.xls",
+total.pro.tech.88.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-88] Technicians and associate professionals.xls",
                                                 source.sheet="KILM 5b",
                                                 source.region="A3:AR3888", 
                                                 source.gender="MF",
@@ -260,14 +260,33 @@ firms.offering.training <- get.WB.format(source.file="[R] [WB ES] Firms offering
                                      result.cut.year=2003)
 
 
+################################# Part time employment rate (15+)
+Part.time.employment.rate.15 <- get.ILO.latest( source.file="[R] [ILO] Part-time employment rate.xls",
+                                                source.sheet="KILM 6",
+                                                source.region="A3:AC9936", 
+                                                source.gender="MF",
+                                                source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Part.time.employment.rate...."),
+                                                result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Part.time.employment.rate.precent"),
+                                                source.age="15+",
+                                                result.cut.year=2003)
+
+
+################################# Part time employment rate (25+)
+Part.time.employment.rate.25 <- get.ILO.latest( source.file="[R] [ILO] Part-time employment rate.xls",
+                                                      source.sheet="KILM 6",
+                                                      source.region="A3:AC9936", 
+                                                      source.gender="MF",
+                                                      source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Part.time.employment.rate...."),
+                                                      result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Part.time.employment.rate.precent"),
+                                                      source.age="25+",
+                                                      result.cut.year=2003)
+
+
 #### data checking for year
 x <- combined1
 
 table(x$Year)
 hist(x$Year, xlim=c(min(x$Year)-1, max(x$Year)))
 
-
 ## TODO
 # 2.2.4 Solution 7
-# 3.1.3 graduates in science and engineering needs to be discussed
-# 3.3.4 part time employment rate (file missing)
