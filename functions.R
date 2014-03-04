@@ -154,23 +154,15 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
   ## get the data only without the column names but with the country names
   if(names.separated){
     countries <- readWorksheet(data.ws, sheet=source.sheet, region=country.names, header=F)
-    
     data <- readWorksheet(data.ws, sheet=source.sheet, region=source.data.region, header=F)
-    
     data <- apply(data, 1:2, function(x) ifelse(x == ".", NA, ifelse(x == "...", NA, ifelse(x == "-", 0, as.numeric(x)))))
-    
     data <- data.frame(data, stringsAsFactors=F)
-    
     UNESCO.data <- cbind(countries, data)
   }else{
     UNESCO.data <- readWorksheet(data.ws, sheet=source.sheet, region=source.data.region, header=F)
-    
     data <- UNESCO.data[, -1]
-    
     data <- apply(data, 1:2, function(x) ifelse(x == ".", NA, ifelse(x == "...", NA, ifelse(x == "-", 0, as.numeric(x)))))
-    
     data <- data.frame(data, stringsAsFactors=F)
-    
     UNESCO.data <- cbind(UNESCO.data[, 1], data)
   }
   
@@ -222,13 +214,14 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
 ########################################### Number of firms offering formal training
 ## WB data format
 get.WB.format <- function(source.file, source.sheet, source.data.region,
-                              source.colnames, source.result.col, result.cut.year){
+                              source.colnames, source.result.col, result.cut.year, result.row){
   
   print("########")
   print(paste("Running get.WB.format function to get the data from ", source.file, sep=""))
   
   ISO3 <- get.ISO3()
   
+  ## load the excel sheet
   data.ws <- loadWorkbook(paste("data/", source.file, sep=""))
   
   ## get the column names without the country names
@@ -240,7 +233,7 @@ get.WB.format <- function(source.file, source.sheet, source.data.region,
   
   print(paste("Total number of rows in original datasheet : ", nrow(WB.data), sep=""))
   
-  WB.data <- WB.data[WB.data[,3] == "Average",]
+  WB.data <- WB.data[WB.data[,3] == result.row,]
   
   original.countries <- unique(WB.data[,1])
   print(paste("Total number of unique countries before cleaning : ", length(original.countries), sep=""))
@@ -256,16 +249,20 @@ get.WB.format <- function(source.file, source.sheet, source.data.region,
   ## Change the names into lower case for merging
   WB.data[, 1] <- tolower(WB.data[, 1])
   
+  ## Set the column names
   colnames(WB.data) <- data.Header
   
+  ## Get the data which has at least cut off year and the required column
   WB.data <- WB.data[WB.data$Year >= result.cut.year, c("Country.Name", "Year", source.result.col)]
   
   ## Get the ISO3 for country names
   WB.data <- merge(WB.data, ISO3, by="Country.Name", all.x=T)
   
+  ## Order the data with country, year in decreasing order and get the latest data
   WB.data <- WB.data[order(WB.data$Country.Name, WB.data$Year, decreasing=T), ]
   WB.data <- WB.data[!duplicated(WB.data$Country.Name), ]
   
+  ## order the data with ISO3
   WB.data <- WB.data[order(WB.data$ISO3, decreasing=F), ]
   
   final.countries <- unique(WB.data[,1])
