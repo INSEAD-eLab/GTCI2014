@@ -218,34 +218,6 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
   return(UNESCO.long.c.data)
 }
 
-########################################### Improved water resources
-## WDI data format
-
-#source.file
-#source.sheet
-#source.data.region
-#source.colnames
-#result.colnames, 
-#result.cut.year
-#names.separated=FALSE, country.names=""
-
-get.WDI.latest <- function(source.file, source.sheet, source.data.region,
-                           source.colnames, result.colnames, result.cut.year, names.separated=FALSE){
-  
-  print("########")
-  print(paste("Running get.UNESCO.format function to get the data from ", source.file, sep=""))
-  
-  ISO3 <- get.ISO3()
-  
-  data.ws <- loadWorkbook(paste("data/", source.file, sep=""))
-  
-  ## get the column names without the country names
-  data.Header <- readWorksheet(data.ws, sheet=source.sheet, region=source.colnames, header=F)
-  
-  data.Header[1, 1] <- "Country.Name"
-  
-}
-
 
 ########################################### Number of firms offering formal training
 ## WB data format
