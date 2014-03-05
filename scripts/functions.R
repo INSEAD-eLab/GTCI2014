@@ -304,6 +304,9 @@ get.WEF <- function(source.file, source.sheet, source.data.region,
   colnames(Country) <- c("Country.Name")
   Country[, 1] <- tolower(Country[, 1])
   
+  original.countries <- unique(Country[,1])
+  print(paste("Total number of unique countries before cleaning : ",length(original.countries), sep=""))
+  
   Country <- merge(Country, ISO3, by="Country.Name", all.x=T)
   
   ## get the data
@@ -313,6 +316,14 @@ get.WEF <- function(source.file, source.sheet, source.data.region,
   WEF <- cbind(Country, data)
   
   WEF <- subset(WEF, !is.na(WEF[,2]))
+  
+  final.countries <- unique(WEF[,1])
+  print(paste("Total number of unique countries after cleaning : ",length(final.countries), sep=""))
+  
+  if(length(final.countries) != length(original.countries)){
+    print("Countries removed are :")
+    print(setdiff(original.countries, final.countries))
+  }
   
   WEF[, "Year"] <- data.date[1, 1]
   
