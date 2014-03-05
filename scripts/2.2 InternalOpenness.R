@@ -153,3 +153,29 @@ rm(combined)
 
 ## rename the variable
 colnames(Female.pro.tech.ratio.88.latest.s2)[4] <- "Female.pro.tech.ratio.88.latest.s2"
+
+
+################# Female tertiary students
+Female.tertiary.students <- get.UNESCO.format(source.file="[R] [UNESCO] Female tertiary students.xlsx",
+                                              source.sheet="download-10", 
+                                              source.data.region="A6:P222",
+                                              source.colnames="A4:P4", 
+                                              result.colnames="female.tertiary.students",
+                                              result.cut.year=2003)
+
+################# Gender parity index of gross graduation ratio (ISCED 5A)
+gender.parity.index.gross.graduation.ratio <- get.UNESCO.format(source.file="[R] [UNESCO] Gender parity index of gross graduation ratio (ISCED 5A).xlsx",
+                                                                source.sheet="download-12", 
+                                                                source.data.region="A6:P222",
+                                                                source.colnames="A4:P4", 
+                                                                result.colnames="gender.parity.index",
+                                                                result.cut.year=2003)
+
+
+################# female tertiary graduates
+famale.tertiary.graduates <- get.UNESCO.format(source.file="[R] [UNESCO] Female tertiary graduates.xlsx",
+                                               source.sheet="download-9", 
+                                               source.data.region="A6:P222",
+                                               source.colnames="A4:P4", 
+                                               result.colnames="famale.tertiary.graduates",
+                                               result.cut.year=2003)
