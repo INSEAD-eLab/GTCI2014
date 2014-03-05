@@ -13,26 +13,27 @@ get.ISO3 <- function(){
 
 ################# Political stability
 ## Data format : WGI
-get.Political.Stability <- function(){
+get.WGI <- function(source.file, source.sheet, source.data.region,
+                                    source.colnames, source.countries, result.colnames){
   print("########")
-  print("Running get.Political.Stability function to get the data from [R] [WGI] Political stability.xlsx")
+  print(paste("Running get.Political.Stability function to get the data from", source.file, sep=" "))
   
   ISO3 <- get.ISO3()
   
-  Political.Stability <- loadWorkbook(paste("data/", "[R] [WGI] Political stability.xlsx", sep=""))
+  Political.Stability <- loadWorkbook(paste("data/", source.file, sep=""))
   
   ## get the data only without the column names and the country names
-  Political.Stability.Data <- readWorksheet(Political.Stability, sheet="Political StabilityNoViolence", region="C16:CH230", header=F)
+  Political.Stability.Data <- readWorksheet(Political.Stability, sheet=source.sheet, region=source.data.region, header=F)
   
   ## get the column names without the country names
-  Political.Stability.Data.Header <- readWorksheet(Political.Stability, sheet="Political StabilityNoViolence", region="C14:CH15", header=F)
+  Political.Stability.Data.Header <- readWorksheet(Political.Stability, sheet=source.sheet, region=source.colnames, header=F)
   Political.Stability.Data.Header[3,] <- paste(Political.Stability.Data.Header[1,], Political.Stability.Data.Header[2,], sep=" ")
   
   ## assign the column names into Data object
   colnames(Political.Stability.Data) <- Political.Stability.Data.Header[3,]
   
   ## get the country names
-  Political.Stability.Country <- readWorksheet(Political.Stability, sheet="Political StabilityNoViolence", region="A16:A230", header=F)
+  Political.Stability.Country <- readWorksheet(Political.Stability, sheet=source.sheet, region=source.countries, header=F)
   colnames(Political.Stability.Country) <- c("Country.Name")
   Political.Stability.Country[,1] <- tolower(Political.Stability.Country[,1])
   
@@ -46,7 +47,7 @@ get.Political.Stability <- function(){
   Political.Stability.Complete <- cbind(Political.Stability.Country, Political.Stability.Data)
   
   ## get only the latest data
-  Political.Stability.Latest <- Political.Stability.Complete[,c("Country.Name", "ISO3", "2012 Estimate")]
+  Political.Stability.Latest <- Political.Stability.Complete[, result.colnames]
   
   final.countries <- unique(Political.Stability.Latest[,1])
   print(paste("Total number of unique countries after cleaning ",length(final.countries), sep=""))
@@ -276,4 +277,45 @@ get.WB.format <- function(source.file, source.sheet, source.data.region,
   print("###### end #######")
   
   return(WB.data)
+}
+
+
+
+## WEF data format
+get.WEF <- function(source.file, source.sheet, source.data.region,
+                    source.colname, source.date, source.countries){
+  
+  print("########")
+  print(paste("Running get.WEF.format function to get the data from ", source.file, sep=""))
+  
+  ISO3 <- get.ISO3()
+  
+  ## load the excel sheet
+  data.ws <- loadWorkbook(paste("data/", source.file, sep=""))
+  
+  ## get the column names without the country names
+  data.Header <- readWorksheet(data.ws, sheet=source.sheet, region=source.colname, header=F)
+  
+  ## get the column names without the country names
+  data.date <- readWorksheet(data.ws, sheet=source.sheet, region=source.date, header=F)
+  
+  ## get the country names
+  Country <- readWorksheet(data.ws, sheet=source.sheet, region=source.countries, header=F)
+  colnames(Country) <- c("Country.Name")
+  Country[, 1] <- tolower(Country[, 1])
+  
+  Country <- merge(Country, ISO3, by="Country.Name", all.x=T)
+  
+  ## get the data
+  data <- readWorksheet(data.ws, sheet=source.sheet, region=source.data.region, header=F)
+  colnames(data) <- data.Header[1, 1]
+  
+  WEF <- cbind(Country, data)
+  
+  WEF <- subset(WEF, !is.na(WEF[,2]))
+  
+  WEF[, "Year"] <- data.date[1, 1]
+  
+  return(WEF)
+  
 }
