@@ -16,7 +16,7 @@ Political.Stability <- get.WGI(source.file="[R] [WGI] Political stability.xlsx",
                                                result.colnames=c("Country.Name", "ISO3", "2012 Estimate"))
 
 ################# Business Government relation
-busienss.gov.relations <- get.WEF(source.file="Business-government relations.xlsx", 
+busienss.gov.relations <- get.WEF(source.file="WEF.xlsx", 
                                   source.sheet="Sheet1", 
                                   source.data.region="K8:K155",
                                   source.colname="K6", 
