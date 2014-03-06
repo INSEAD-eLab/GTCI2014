@@ -179,3 +179,22 @@ famale.tertiary.graduates <- get.UNESCO.format(source.file="[R] [UNESCO] Female 
                                                source.colnames="A4:P4", 
                                                result.colnames="famale.tertiary.graduates",
                                                result.cut.year=2003)
+
+
+
+################# Social mobility 
+Social.mobility  <- get.WEF(source.file="WEF.xlsx", 
+                                        source.sheet="Sheet1", 
+                                        source.data.region="EA8:EA155",
+                                        source.colname="EA6", 
+                                        source.date="C7", 
+                                        source.countries="C8:C155")
+
+
+################# Wage equality between men and women
+Wage.equality.men.women  <- get.WEF(source.file="WEF.xlsx", 
+                            source.sheet="Sheet1", 
+                            source.data.region="DO8:DO155",
+                            source.colname="DO6", 
+                            source.date="C7", 
+                            source.countries="C8:C155")

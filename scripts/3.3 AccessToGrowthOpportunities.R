@@ -18,3 +18,30 @@ Part.time.employment.rate.25 <- get.ILO.latest( source.file="[R] [ILO] Part-time
                                                 result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Part.time.employment.rate.precent"),
                                                 source.age="25+",
                                                 result.cut.year=2003)
+
+
+################# Use of virtual social networks
+Use.virtual.social.networks  <- get.WEF(source.file="WEF.xlsx", 
+                                  source.sheet="Sheet1", 
+                                  source.data.region="AR8:AR155",
+                                  source.colname="AR6", 
+                                  source.date="C7", 
+                                  source.countries="C8:C155")
+
+
+################# State of cluster development
+State.cluster.development  <- get.WEF(source.file="WEF.xlsx", 
+                                        source.sheet="Sheet1", 
+                                        source.data.region="BQ8:BQ155",
+                                        source.colname="BQ6", 
+                                        source.date="C7", 
+                                        source.countries="C8:C155")
+
+
+################# Quality of scientific research institutions
+Quality.scientific.research.institutions <- get.WEF(source.file="WEF.xlsx", 
+                                      source.sheet="Sheet1", 
+                                      source.data.region="Z8:Z155",
+                                      source.colname="Z6", 
+                                      source.date="C7", 
+                                      source.countries="C8:C155")

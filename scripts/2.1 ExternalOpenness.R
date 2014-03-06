@@ -23,3 +23,11 @@ Country.capacity.retain.talent <- get.WEF(source.file="WEF.xlsx",
                                            source.colname="DF6", 
                                            source.date="C7", 
                                            source.countries="C8:C155")
+
+################# Prevalence of foreign ownership
+Prevalence.foreign.ownership <- get.WEF(source.file="WEF.xlsx", 
+                                          source.sheet="Sheet1", 
+                                          source.data.region="BI8:BI155",
+                                          source.colname="BI6", 
+                                          source.date="C7", 
+                                          source.countries="C8:C155")
