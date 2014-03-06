@@ -7,6 +7,7 @@ R.D.expenditure <- get.UNESCO.format(source.file="[R] [UNESCO] Gross expenditure
                                      result.colnames="RnD.expenditure",
                                      result.cut.year=2003)
 
+
 ################# Business Government relation
 intensity.local.competition <- get.WEF(source.file="WEF.xlsx", 
                                   source.sheet="Sheet1", 
@@ -15,10 +16,20 @@ intensity.local.competition <- get.WEF(source.file="WEF.xlsx",
                                   source.date="C7", 
                                   source.countries="C8:C155")
 
+
 ################# Venture capital availability
 Venture.capital.availability <- get.WEF(source.file="WEF.xlsx", 
                                         source.sheet="Sheet1", 
                                         source.data.region="AX8:AX155",
                                         source.colname="AX6", 
+                                        source.date="C7", 
+                                        source.countries="C8:C155")
+
+
+################# firm level tech absorption
+firm.level.tech.absorption <- get.WEF(source.file="WEF.xlsx", 
+                                        source.sheet="Sheet1", 
+                                        source.data.region="X8:X155",
+                                        source.colname="X6", 
                                         source.date="C7", 
                                         source.countries="C8:C155")
