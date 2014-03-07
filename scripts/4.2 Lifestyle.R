@@ -33,3 +33,16 @@ Physicians.density <- get.UNESCO.format(source.file="[R] [WDI] Physicians densit
                                            result.cut.year=2003,
                                            names.separated=TRUE, 
                                            country.names="A4:A255")
+
+
+## UNODC data has same format as UNESCO and used that function
+################################# Labour tax and contributions
+Intentional.homicide <- get.UNESCO.format(source.file="[R] [UNODC] Intentional homicide.xls",
+                                          source.sheet="UNODC Homicide Statistics", 
+                                          source.data.region="O8:W424",
+                                          source.colnames="N7:W7", 
+                                          result.colnames="Intentional.homicide",
+                                          result.cut.year=2003,
+                                          names.separated=TRUE, 
+                                          country.names="C8:C424")
+

@@ -177,6 +177,9 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
   ## assign the column names into Data object
   colnames(UNESCO.data) <- data.Header
   
+  ## remove the data rows without country names
+  UNESCO.data <- subset(UNESCO.data, !is.na(UNESCO.data[, 1]))
+  
   ## reshaping to long data
   UNESCO.long.data <- reshape(UNESCO.data, idvar="Country.Name", varying=list(2:ncol(data.Header)), v.names=result.colnames, direction="long", times=c(min(as.numeric(data.Header[,-1])):max(as.numeric(data.Header[,-1]))))
   
@@ -344,3 +347,11 @@ get.WEF <- function(source.file, source.sheet, source.data.region,
   return(WEF)
   
 }
+
+
+
+#data.ws <- loadWorkbook("data/[R] [UNODC] Intentional homicide.xls")
+
+## get the column names without the country names
+#data.Header <- readWorksheet(data.ws, sheet="UNODC Homicide Statistics", region="O8:W425", header=F)
+#countries <- readWorksheet(data.ws, sheet="UNODC Homicide Statistics", region="C8:C425", header=F)
