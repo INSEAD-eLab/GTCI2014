@@ -46,3 +46,11 @@ Intentional.homicide <- get.UNESCO.format(source.file="[R] [UNODC] Intentional h
                                           names.separated=TRUE, 
                                           country.names="C8:C424")
 
+################# Percentage of trained teachers (primary)
+Percentage.trained.teachers.primary <- get.UNESCO.format(source.file="[R] [UNESCO] Percentage of trained teachers (primary).xlsx",
+                                                         source.sheet="download-14", 
+                                                         source.data.region="A6:P222",
+                                                         source.colnames="A4:P4", 
+                                                         result.colnames="Percentage.trained.teachers.primary",
+                                                         result.cut.year=2003)
+
