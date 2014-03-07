@@ -180,7 +180,13 @@ famale.tertiary.graduates <- get.UNESCO.format(source.file="[R] [UNESCO] Female 
                                                result.colnames="famale.tertiary.graduates",
                                                result.cut.year=2003)
 
-
+################# Female gross enrolment ratio in tertiary level
+female.gross.enrolment.ratio.tertiary <- get.UNESCO.format(source.file="[R] [UNESCO] Female gross enrolment ratio in tertiary level.xlsx",
+                                               source.sheet="download-11", 
+                                               source.data.region="A6:P222",
+                                               source.colnames="A4:P4", 
+                                               result.colnames="Female gross enrolment ratio in tertiary level",
+                                               result.cut.year=2003)
 
 ################# Social mobility 
 Social.mobility  <- get.WEF(source.file="WEF.xlsx", 

@@ -18,6 +18,16 @@ table(x$Year)
 ## to get the histogram
 hist(x$Year, xlim=c(min(x$Year)-1, max(x$Year)))
 
+## to download to excel, give the relevant names and run 4 lines
+filename <- "myWorkbook.xlsx"
+sheetname <- "data"
+data.to.write <- female.gross.enrolment.ratio.tertiary
+
+wb <- loadWorkbook(filename, create = TRUE)
+createSheet(wb, name = sheetname)
+writeWorksheet(wb, data.to.write, sheet = sheetname)
+saveWorkbook(wb)
+
 ## TODO
 # 2.2.4 Solution 7
 # 4.2.4 Maternity and paternity leave 

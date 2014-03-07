@@ -196,7 +196,10 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
   UNESCO.long.c.data <- UNESCO.long.c.data[UNESCO.long.c.data$Year >= result.cut.year, ]  
   
   ## Get the ISO3 for country names
-  UNESCO.long.c.data <- merge(UNESCO.long.c.data, ISO3, by="Country.Name", all.x=T)
+  UNESCO.long.c.data <- merge(UNESCO.long.c.data, ISO3, by="Country.Name", all.x=T, sort=FALSE)
+  
+  ## get complete cases only
+  UNESCO.long.c.data <- subset(UNESCO.long.c.data, !is.na(UNESCO.long.c.data[, ncol(UNESCO.long.c.data)]))
   
   final.countries <- unique(UNESCO.long.c.data[,1])
   print(paste("Total number of unique countries after cutting and cleaning at ", result.cut.year, " : ",length(final.countries), sep=""))
