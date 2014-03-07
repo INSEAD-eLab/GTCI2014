@@ -43,3 +43,34 @@ net.migration <- get.UNESCO.format(source.file="[R] [WDI] Net migration (stock) 
                                            result.cut.year=2003,
                                            names.separated=TRUE, 
                                            country.names="A4:A255")
+
+# UN data format can be used with WEF function
+################# International migrant stock
+International.migrant.stock.table12Total <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                                        source.sheet="Table 12", 
+                                        source.data.region="T25:T265",
+                                        source.colname="T16", 
+                                        source.date="E12", 
+                                        source.countries="B25:B265")
+
+
+# UN data format can be used with WEF function
+################# International migrant stock
+International.migrant.stock.table4 <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                                              source.sheet="Table 4", 
+                                              source.data.region="F25:T265",
+                                              source.colname="F16:T16", 
+                                              source.date="E12", 
+                                              source.countries="B25:B265",
+                                              multi.col=TRUE)
+
+# UN data format can be used with WEF function
+################# International migrant stock
+International.migrant.stock.table8 <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                                              source.sheet="Table 8", 
+                                              source.data.region="F25:T265",
+                                              source.colname="F16:T16", 
+                                              source.date="E12", 
+                                              source.countries="B25:B265",
+                                              multi.col=TRUE)
+

@@ -280,9 +280,9 @@ get.WB.format <- function(source.file, source.sheet, source.data.region,
 }
 
 
-## WEF data format
+## WEF data format & UN data format
 get.WEF <- function(source.file, source.sheet, source.data.region,
-                    source.colname, source.date, source.countries){
+                    source.colname, source.date, source.countries, multi.col=FALSE){
   
   print("########")
   print(paste("Running get.WEF.format function to get the data from ", source.file, sep=""))
@@ -303,17 +303,29 @@ get.WEF <- function(source.file, source.sheet, source.data.region,
   colnames(Country) <- c("Country.Name")
   Country[, 1] <- tolower(Country[, 1])
   
+  ## get ISO3
+  Country <- merge(Country, ISO3, by="Country.Name", all.x=T, sort=FALSE)
+  
   original.countries <- unique(Country[,1])
   print(paste("Total number of unique countries before cleaning : ",length(original.countries), sep=""))
   
-  Country <- merge(Country, ISO3, by="Country.Name", all.x=T)
-  
   ## get the data
   data <- readWorksheet(data.ws, sheet=source.sheet, region=source.data.region, header=F)
-  colnames(data) <- data.Header[1, 1]
   
+  ## for UN data
+  if(multi.col){
+    colnames(data) <- data.Header
+  }else{
+    colnames(data) <- data.Header[1, 1]
+  }
+  
+  ## remove the missing data
+  data <- apply(data, 1:2, function(x) ifelse(x == "n.c.", NA, ifelse(x == "...", NA, ifelse(x == "n.a.", NA, as.numeric(x)))))
+  
+  ## merge with country and data
   WEF <- cbind(Country, data)
   
+  ## get complete cases only
   WEF <- subset(WEF, !is.na(WEF[,2]))
   
   final.countries <- unique(WEF[,1])
