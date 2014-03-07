@@ -1,4 +1,48 @@
 
+################# Pupil-teacher ratio (secondary)
+pupil.teacher.ratio.secondary <- get.UNESCO.format(source.file="[R] [UNESCO] Pupil-teacher ratio (secondary).xlsx",
+                                       source.sheet="download-13", 
+                                       source.data.region="A6:P222",
+                                       source.colnames="A4:P4", 
+                                       result.colnames="Pupil-teacher ratio (secondary)",
+                                       result.cut.year=2003)
+
+
+################# Technical vocational enrolment
+Technical.vocational.enrolment <- get.UNESCO.format(source.file="[R] [UNESCO] Technical vocational enrolment.xlsx",
+                                                    source.sheet="download-16", 
+                                                    source.data.region="A6:P222",
+                                                    source.colnames="A4:P4", 
+                                                    result.colnames="Technical vocational enrolment",
+                                                    result.cut.year=2003)
+
+
+################# Tertiary enrolment
+Tertiary.enrolment <- get.UNESCO.format(source.file="[R] [UNESCO] Tertiary enrolment.xlsx",
+                                        source.sheet="download-17", 
+                                        source.data.region="A6:P222",
+                                        source.colnames="A4:P4", 
+                                        result.colnames="Tertiary enrolment",
+                                        result.cut.year=2003)
+
+
+################# Gross graduation ratio
+gross.graduation.ratio <- get.UNESCO.format(source.file="[R] [UNESCO] Gross graduation ratio (ISCED 5A).xlsx",
+                                            source.sheet="download-18", 
+                                            source.data.region="A6:P222",
+                                            source.colnames="A4:P4", 
+                                            result.colnames="Gross graduation ratio",
+                                            result.cut.year=2003)
+
+################# Lower secondary gross graduation ratio
+Lower.secondary.gross.graduation.ratio <- get.UNESCO.format(source.file="[R] [UNESCO] Lower secondary gross graduation ratio.xls",
+                                            source.sheet="download-21", 
+                                            source.data.region="A6:P222",
+                                            source.colnames="A4:P4", 
+                                            result.colnames="Lower secondary gross graduation ratio",
+                                            result.cut.year=2003)
+
+
 ################# science graduates
 graduates.science <- get.UNESCO.format(source.file="[R] [UNESCO] Graduates in science and engineering.xlsx",
                                        source.sheet="download-19", 
