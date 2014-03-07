@@ -42,6 +42,22 @@ Lower.secondary.gross.graduation.ratio <- get.UNESCO.format(source.file="[R] [UN
                                             result.colnames="Lower secondary gross graduation ratio",
                                             result.cut.year=2003)
 
+################# Tertiary inbound mobility rate
+Tertiary.inbound.mobility.rate <- get.UNESCO.format(source.file="[R] [UNESCO] Tertiary inbound mobility rate.xlsx",
+                                                    source.sheet="download-23", 
+                                                    source.data.region="A6:P222",
+                                                    source.colnames="A4:P4", 
+                                                    result.colnames="Tertiary inbound mobility rate",
+                                                    result.cut.year=2003)
+
+################# Tertiary outbound mobility rate
+Tertiary.outbound.mobility.rate <- get.UNESCO.format(source.file="[R] [UNESCO] Tertiary outbound mobility rate.xlsx",
+                                                    source.sheet="download-24", 
+                                                    source.data.region="A6:P222",
+                                                    source.colnames="A4:P4", 
+                                                    result.colnames="Tertiary outbound mobility rate",
+                                                    result.cut.year=2003)
+
 
 ################# science graduates
 graduates.science <- get.UNESCO.format(source.file="[R] [UNESCO] Graduates in science and engineering.xlsx",
