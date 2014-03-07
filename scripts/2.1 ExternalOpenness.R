@@ -31,3 +31,15 @@ Prevalence.foreign.ownership <- get.WEF(source.file="WEF.xlsx",
                                           source.colname="BI6", 
                                           source.date="C7", 
                                           source.countries="C8:C155")
+
+
+## WDI data has same format as UNESCO and used that function
+################################# Net migration
+net.migration <- get.UNESCO.format(source.file="[R] [WDI] Net migration (stock) five-year estimates.xls",
+                                           source.sheet="Data", 
+                                           source.data.region="BD4:BD255",
+                                           source.colnames="BC3:BD3", 
+                                           result.colnames="net.migration",
+                                           result.cut.year=2003,
+                                           names.separated=TRUE, 
+                                           country.names="A4:A255")

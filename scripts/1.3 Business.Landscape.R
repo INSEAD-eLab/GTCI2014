@@ -49,3 +49,13 @@ Willingness.to.delegate.authority <- get.WEF(source.file="WEF.xlsx",
                                      source.colname="CB6", 
                                      source.date="C7", 
                                      source.countries="C8:C155")
+
+
+################################ Top manager's experience
+top.manager.experience <- get.WB.format(source.file="[R] [WB ES] Top manager's experience.xlsx",
+                                         source.sheet="Workforce", 
+                                         source.data.region="A9:J707",
+                                         source.colnames="A1:J1", 
+                                         source.result.col="Years of the top manager's experience working in the firm's sector",
+                                         result.row="Average",
+                                         result.cut.year=2003)

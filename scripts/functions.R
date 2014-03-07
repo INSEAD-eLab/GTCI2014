@@ -137,7 +137,7 @@ get.ILO.latest <- function(source.file, source.sheet, source.region,
 }
 
 ################# Gross expenditure on R&D
-## Data format : UNESCO
+## Data format : UNESCO & WDI
 get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
                                 source.colnames, result.colnames, result.cut.year, names.separated=FALSE, country.names=""){
   print("########")
@@ -278,7 +278,6 @@ get.WB.format <- function(source.file, source.sheet, source.data.region,
   
   return(WB.data)
 }
-
 
 
 ## WEF data format
