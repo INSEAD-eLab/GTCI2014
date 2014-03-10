@@ -139,7 +139,7 @@ get.ILO.latest <- function(source.file, source.sheet, source.region,
 ################# Gross expenditure on R&D
 ## Data format : UNESCO & WDI
 get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
-                                source.colnames, result.colnames, result.cut.year, names.separated=FALSE, country.names=""){
+                                source.colnames, result.colnames, result.cut.year, names.separated=FALSE, country.names="", format="UNESCO"){
   print("########")
   print(paste("Running get.UNESCO.format function to get the data from ", source.file, sep=""))
   
@@ -156,13 +156,26 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
   if(names.separated){
     countries <- readWorksheet(data.ws, sheet=source.sheet, region=country.names, header=F)
     data <- readWorksheet(data.ws, sheet=source.sheet, region=source.data.region, header=F)
-    data <- apply(data, 1:2, function(x) ifelse(x == ".", NA, ifelse(x == "...", NA, ifelse(x == "-", 0, as.numeric(x)))))
+    
+    if(format=="UNESCO"){
+      data <- apply(data, 1:2, function(x) ifelse(x == ".", NA, ifelse(x == "...", NA, ifelse(x == "-", 0, as.numeric(x)))))
+    }else if(format=="GEM"){
+      data <- apply(data, 1:2, function(x) ifelse(x == "-", NA, as.numeric(x)))
+    }
+    
     data <- data.frame(data, stringsAsFactors=F)
     UNESCO.data <- cbind(countries, data)
   }else{
     UNESCO.data <- readWorksheet(data.ws, sheet=source.sheet, region=source.data.region, header=F)
     data <- UNESCO.data[, -1]
-    data <- apply(data, 1:2, function(x) ifelse(x == ".", NA, ifelse(x == "...", NA, ifelse(x == "-", 0, as.numeric(x)))))
+    
+    if(format=="UNESCO"){
+      data <- apply(data, 1:2, function(x) ifelse(x == ".", NA, ifelse(x == "...", NA, ifelse(x == "-", 0, as.numeric(x)))))  
+    }else if(format=="GEM"){
+      data <- apply(data, 1:2, function(x) ifelse(x == "-", NA, as.numeric(x)))
+    }
+    
+
     data <- data.frame(data, stringsAsFactors=F)
     UNESCO.data <- cbind(UNESCO.data[, 1], data)
   }
@@ -351,10 +364,3 @@ get.WEF <- function(source.file, source.sheet, source.data.region,
   return(WEF)
 }
 
-
-
-#data.ws <- loadWorkbook("data/[R] [UNODC] Intentional homicide.xls")
-
-## get the column names without the country names
-#data.Header <- readWorksheet(data.ws, sheet="UNODC Homicide Statistics", region="O8:W425", header=F)
-#countries <- readWorksheet(data.ws, sheet="UNODC Homicide Statistics", region="C8:C425", header=F)
