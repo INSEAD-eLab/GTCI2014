@@ -204,3 +204,33 @@ Wage.equality.men.women  <- get.WEF(source.file="WEF.xlsx",
                             source.colname="DO6", 
                             source.date="C7", 
                             source.countries="C8:C155")
+
+## GEM data and can be used UNESCO function
+################# High status successful entrepreneurship
+High.status.successful.entrepreneurship <- get.UNESCO.format(source.file="[R] [GEM] High status successful entrepreneurship.xlsx",
+                                                             source.sheet="GEM_Dataset_20140122083651", 
+                                                             source.data.region="A6:K100",
+                                                             source.colnames="A5:K5", 
+                                                             result.colnames="High.status.successful.entrepreneurship",
+                                                             result.cut.year=2003,
+                                                             format="GEM")
+
+## GEM data and can be used UNESCO function
+################# Fear of failure rate
+Fear.of.failure.rate <- get.UNESCO.format(source.file="[R] [GEM] Fear of failure rate.xlsx",
+                                          source.sheet="GEM_Dataset_20140122083615", 
+                                          source.data.region="A6:M102",
+                                          source.colnames="A5:M5", 
+                                          result.colnames="Fear.of.failure.rate",
+                                          result.cut.year=2003,
+                                          format="GEM")
+
+## GEM data and can be used UNESCO function
+################# Entrepreneurship as desirable career choice
+Entrepreneurship.as.desirable.career.choice <- get.UNESCO.format(source.file="[R] [GEM] Entrepreneurship as desirable career choice.xlsx",
+                                                             source.sheet="GEM_Dataset_20140122083524", 
+                                                             source.data.region="A6:K100",
+                                                             source.colnames="A5:K5", 
+                                                             result.colnames="Entrepreneurship.as.desirable.career.choice",
+                                                             result.cut.year=2003,
+                                                             format="GEM")
