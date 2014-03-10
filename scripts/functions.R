@@ -262,6 +262,9 @@ get.WB.format <- function(source.file, source.sheet, source.data.region,
   ## Get the data which has at least cut off year and the required column
   WB.data <- WB.data[WB.data$Year >= result.cut.year, c("Country.Name", "Year", source.result.col)]
   
+  ## remove the NA before sorting and seleting
+  WB.data <- subset(WB.data, !is.na(WB.data[,3]))
+  
   ## Get the ISO3 for country names
   WB.data <- merge(WB.data, ISO3, by="Country.Name", all.x=T)
   
