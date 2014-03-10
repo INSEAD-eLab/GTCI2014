@@ -73,4 +73,3 @@ International.migrant.stock.table8 <- get.WEF(source.file="[R] [UN] Internationa
                                               source.date="E12", 
                                               source.countries="B25:B265",
                                               multi.col=TRUE)
-
