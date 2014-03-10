@@ -1,4 +1,13 @@
 
+################################ New business density 
+New.business.density  <- get.WB.format(source.file="[R] [WB ES] New business density.xlsx",
+                                         source.sheet="EntrepreneurshipData", 
+                                         source.data.region="A2:E133",
+                                         source.colnames="A1:E1", 
+                                         source.result.col="New business density",                                         
+                                         result.cut.year=2003)
+
+
 ## GEM data and can be used UNESCO function
 ################# New product entrepreneurial act
 New.product.entrepreneurial.act <- get.UNESCO.format(source.file="[R] [GEM] New product entrepreneurial activity.xlsx",

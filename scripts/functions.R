@@ -57,6 +57,7 @@ get.WGI <- function(source.file, source.sheet, source.data.region,
 }
 
 
+################# original data : long format
 ################# Technicians and associate professionals from 88
 ## the source data structure must be the same as [R] [ILO] [ISCO-68] Technicians and associate professionals.xls
 ## Data format : ILO
@@ -136,7 +137,7 @@ get.ILO.latest <- function(source.file, source.sheet, source.region,
   return(Technicians.Associates.ISO3.MF.latest.cut)
 }
 
-################# Gross expenditure on R&D
+################# Original data : wide format
 ## Data format : UNESCO & WDI
 get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
                                 source.colnames, result.colnames, result.cut.year, names.separated=FALSE, country.names="", format="UNESCO"){
@@ -231,10 +232,11 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
 }
 
 
-########################################### Number of firms offering formal training
+########################## original data : long format (can be used with cleaned data as well. check 6.2 new business density)
+########################## Number of firms offering formal training
 ## WB data format
 get.WB.format <- function(source.file, source.sheet, source.data.region,
-                              source.colnames, source.result.col, result.cut.year, result.row){
+                              source.colnames, source.result.col, result.cut.year, result.row=""){
   
   print("########")
   print(paste("Running get.WB.format function to get the data from ", source.file, sep=""))
@@ -253,10 +255,9 @@ get.WB.format <- function(source.file, source.sheet, source.data.region,
   
   print(paste("Total number of rows in original datasheet : ", nrow(WB.data), sep=""))
   
-  WB.data <- WB.data[WB.data[,3] == result.row,]
-  
-  original.countries <- unique(WB.data[,1])
-  print(paste("Total number of unique countries before cleaning : ", length(original.countries), sep=""))
+  if(nchar(result.row) > 0){
+    WB.data <- WB.data[WB.data[,3] == result.row,]  
+  }
   
   data <- WB.data[, -1]
   
@@ -269,17 +270,23 @@ get.WB.format <- function(source.file, source.sheet, source.data.region,
   ## Change the names into lower case for merging
   WB.data[, 1] <- tolower(WB.data[, 1])
   
+  original.countries <- unique(WB.data[,1])
+  print(paste("Total number of unique countries before cleaning : ", length(original.countries), sep=""))
+  
   ## Set the column names
   colnames(WB.data) <- data.Header
   
   ## Get the data which has at least cut off year and the required column
   WB.data <- WB.data[WB.data$Year >= result.cut.year, c("Country.Name", "Year", source.result.col)]
   
-  ## remove the NA before sorting and seleting
+  ## remove the NA from data points before sorting and seleting
   WB.data <- subset(WB.data, !is.na(WB.data[,3]))
   
   ## Get the ISO3 for country names
   WB.data <- merge(WB.data, ISO3, by="Country.Name", all.x=T)
+  
+  ## remove the NA from ISO3 before sorting and seleting
+  WB.data <- subset(WB.data, !is.na(WB.data[,4]))
   
   ## Order the data with country, year in decreasing order and get the latest data
   WB.data <- WB.data[order(WB.data$Country.Name, WB.data$Year, decreasing=T), ]
