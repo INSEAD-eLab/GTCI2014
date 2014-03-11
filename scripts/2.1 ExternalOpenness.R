@@ -47,21 +47,40 @@ net.migration <- get.UNESCO.format(source.file="[R] [WDI] Net migration (stock) 
 # UN data format can be used with WEF function
 ################# International migrant stock
 International.migrant.stock.table12Total <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
-                                        source.sheet="Table 12", 
-                                        source.data.region="T25:T265",
-                                        source.colname="T16", 
-                                        source.date="E12", 
-                                        source.countries="B25:B265")
+                                                    source.sheet="Table 12", 
+                                                    source.data.region="T25:T281",
+                                                    source.colname="T16", 
+                                                    source.date="E10", 
+                                                    source.countries="B25:B281")
+
+# UN data format can be used with WEF function
+################# International migrant stock
+International.migrant.stock.table11Total <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                                                    source.sheet="Table 11", 
+                                                    source.data.region="T25:T281",
+                                                    source.colname="T16", 
+                                                    source.date="E10", 
+                                                    source.countries="B25:B281")
 
 
 # UN data format can be used with WEF function
 ################# International migrant stock
 International.migrant.stock.table4 <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
                                               source.sheet="Table 4", 
-                                              source.data.region="F25:T265",
+                                              source.data.region="F25:T281",
                                               source.colname="F16:T16", 
-                                              source.date="E12", 
-                                              source.countries="B25:B265",
+                                              source.date="E10", 
+                                              source.countries="B25:B281",
+                                              multi.col=TRUE)
+
+# UN data format can be used with WEF function
+################# International migrant stock
+International.migrant.stock.table3 <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                                              source.sheet="Table 3", 
+                                              source.data.region="F25:T281",
+                                              source.colname="F16:T16", 
+                                              source.date="E10", 
+                                              source.countries="B25:B281",
                                               multi.col=TRUE)
 
 # UN data format can be used with WEF function
@@ -70,6 +89,16 @@ International.migrant.stock.table8 <- get.WEF(source.file="[R] [UN] Internationa
                                               source.sheet="Table 8", 
                                               source.data.region="F25:T265",
                                               source.colname="F16:T16", 
-                                              source.date="E12", 
+                                              source.date="E10", 
+                                              source.countries="B25:B265",
+                                              multi.col=TRUE)
+
+# UN data format can be used with WEF function
+################# International migrant stock
+International.migrant.stock.table7 <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                                              source.sheet="Table 7", 
+                                              source.data.region="F25:T265",
+                                              source.colname="F16:T16", 
+                                              source.date="E10", 
                                               source.countries="B25:B265",
                                               multi.col=TRUE)
