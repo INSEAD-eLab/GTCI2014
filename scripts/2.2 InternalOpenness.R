@@ -234,3 +234,13 @@ Entrepreneurship.as.desirable.career.choice <- get.UNESCO.format(source.file="[R
                                                              result.colnames="Entrepreneurship.as.desirable.career.choice",
                                                              result.cut.year=2003,
                                                              format="GEM")
+
+## GEM data and can be used UNESCO function
+################# Entrepreneurial intention
+Entrepreneurial.intention <- get.UNESCO.format(source.file="[R] [GEM] Entrepreneurial intention.xlsx",
+                                               source.sheet="Entrepreneurial intention", 
+                                               source.data.region="A5:L101",
+                                               source.colnames="A4:L4", 
+                                               result.colnames="Entrepreneurial.intention",
+                                               result.cut.year=2003,
+                                               format="GEM")
