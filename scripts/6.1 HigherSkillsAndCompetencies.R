@@ -1,3 +1,26 @@
+# UNESCO data format but this is weird and will use WEF function
+################# Tertiary educated workforce
+tertiary.educated.population.above25 <- get.WEF(source.file="[R] [UNESCO] Tertiary educated population.xls", 
+                                                source.sheet="Educational Attainment_by Level", 
+                                                source.data.region="C7:C230",
+                                                source.colname="C2", 
+                                                source.date="B7:B230", 
+                                                source.countries="A7:A230",
+                                                cut.off.year=2003,
+                                                different.source=TRUE)
+
+
+# UNESCO data format but this is weird and will use WEF function
+################# Tertiary educated workforce
+tertiary.educated.population.tertiary <- get.WEF(source.file="[R] [UNESCO] Tertiary educated population.xls", 
+                                                source.sheet="Educational Attainment_by Level", 
+                                                source.data.region="X7:X230",
+                                                source.colname="X2", 
+                                                source.date="B7:B230", 
+                                                source.countries="A7:A230",
+                                                cut.off.year=2003,
+                                                different.source=TRUE)
+
 ## Possible colnames ILO data
 ##[1] "Country..code."               "Country"                      "B"                            "Year"                         "Sex..code."                  
 ##[6] "Sex"                          "Total.employment...000."      "X0...000."                    "X0...."                       "X1...000."                   

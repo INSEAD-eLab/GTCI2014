@@ -333,7 +333,8 @@ get.WB.format <- function(source.file, source.sheet, source.data.region,
 
 ## WEF data format & UN data format
 get.WEF <- function(source.file, source.sheet, source.data.region,
-                    source.colname, source.date, source.countries, multi.col=FALSE){
+                    source.colname, source.date, source.countries, 
+                    multi.col=FALSE, different.source=FALSE, cut.off.year=""){
   
   print("########")
   print(paste("Running get.WEF.format function to get the data from ", source.file, sep=""))
@@ -353,6 +354,7 @@ get.WEF <- function(source.file, source.sheet, source.data.region,
   Country <- readWorksheet(data.ws, sheet=source.sheet, region=source.countries, header=F)
   colnames(Country) <- c("Country.Name")
   Country[, 1] <- tolower(Country[, 1])
+  Country[, 1] <- lapply(Country[1], function(x) trimSpace(x))
   
   original.countries <- unique(Country[,1])
   print(paste("Total number of unique countries before cleaning : ",length(original.countries), sep=""))
@@ -367,17 +369,31 @@ get.WEF <- function(source.file, source.sheet, source.data.region,
     colnames(data) <- data.Header[1, 1]
   }
   
-  ## remove the missing data
-  data <- apply(data, 1:2, function(x) ifelse(x == "n.c.", NA, ifelse(x == "...", NA, ifelse(x == "n.a.", NA, as.numeric(x)))))
+  if(different.source == TRUE){
+    data <- apply(data, 1:2, function(x) gsub(",", "", x))
+    data <- apply(data, 1:2, function(x) ifelse(x == ".", NA, ifelse(x == "...", NA, ifelse(x == "-", 0, as.numeric(x)))))
+  }else{
+    data <- apply(data, 1:2, function(x) ifelse(x == "n.c.", NA, ifelse(x == "...", NA, ifelse(x == "n.a.", NA, as.numeric(x)))))  
+  }
   
   ## merge with country and data
   WEF <- cbind(Country, data)
+  
+  if(different.source == TRUE){
+    ## assign the year for record
+    WEF <- cbind(WEF, data.date)
+    colnames(WEF)[ncol(WEF)] <- "Year"
+    WEF <- WEF[WEF$Year >= 2003,]
+  }else{
+    ## assign the year for record
+    WEF[, "Year"] <- data.date[1, 1]
+  }
   
   ## get ISO3
   WEF <- merge(WEF, ISO3, by="Country.Name", all.x=T, sort=FALSE)
   
   ## get complete cases only
-  WEF <- subset(WEF, !is.na(WEF[,3]))
+  WEF <- WEF[complete.cases(WEF),]
   
   final.countries <- unique(WEF[,1])
   print(paste("Total number of unique countries after cleaning : ",length(final.countries), sep=""))
@@ -386,9 +402,6 @@ get.WEF <- function(source.file, source.sheet, source.data.region,
     print("Countries removed are :")
     print(setdiff(original.countries, final.countries))
   }
-  
-  ## assign the year for record
-  WEF[, "Year"] <- data.date[1, 1]
   
   return(WEF)
 }
