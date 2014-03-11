@@ -1,6 +1,6 @@
 # UNESCO data format but this is weird and will use WEF function
 ################# Tertiary educated workforce
-tertiary.educated.population.above25 <- get.WEF(source.file="[R] [UNESCO] Tertiary educated population.xls", 
+tertiary.educated.population.above25.UNESCO <- get.WEF(source.file="[R] [UNESCO] Tertiary educated population.xls", 
                                                 source.sheet="Educational Attainment_by Level", 
                                                 source.data.region="C7:C230",
                                                 source.colname="C2", 
@@ -12,7 +12,7 @@ tertiary.educated.population.above25 <- get.WEF(source.file="[R] [UNESCO] Tertia
 
 # UNESCO data format but this is weird and will use WEF function
 ################# Tertiary educated workforce
-tertiary.educated.population.tertiary <- get.WEF(source.file="[R] [UNESCO] Tertiary educated population.xls", 
+tertiary.educated.population.tertiary.UNESCO <- get.WEF(source.file="[R] [UNESCO] Tertiary educated population.xls", 
                                                 source.sheet="Educational Attainment_by Level", 
                                                 source.data.region="X7:X230",
                                                 source.colname="X2", 
@@ -20,6 +20,51 @@ tertiary.educated.population.tertiary <- get.WEF(source.file="[R] [UNESCO] Terti
                                                 source.countries="A7:A230",
                                                 cut.off.year=2003,
                                                 different.source=TRUE)
+
+################################# Tertiary educated workforce 25+
+gc()
+tertiary.educated.population.above25.ILO.total <- get.ILO.latest( source.file="[R] [ILO] Tertiary educated workforce.xls",
+                                                                  source.sheet="KILM 14a",
+                                                                  source.region="A3:T15210", 
+                                                                  source.gender="MF",
+                                                                  source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Tertiary...."),
+                                                                  result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Tertiary (percent)"),
+                                                                  source.age="25+",
+                                                                  result.cut.year=2003)
+
+################################# Tertiary educated workforce 15+
+gc()
+tertiary.educated.population.above15.ILO.total <- get.ILO.latest( source.file="[R] [ILO] Tertiary educated workforce.xls",
+                                                                  source.sheet="KILM 14a",
+                                                                  source.region="A3:T15210", 
+                                                                  source.gender="MF",
+                                                                  source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Tertiary...."),
+                                                                  result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Tertiary (percent)"),
+                                                                  source.age="15+",
+                                                                  result.cut.year=2003)
+
+
+################################# Tertiary educated workforce 25+ (female)
+gc()
+tertiary.educated.population.above25.ILO.female <- get.ILO.latest( source.file="[R] [ILO] Tertiary educated workforce.xls",
+                                                                  source.sheet="KILM 14a",
+                                                                  source.region="A3:T15210", 
+                                                                  source.gender="F",
+                                                                  source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Tertiary...."),
+                                                                  result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Tertiary (percent)"),
+                                                                  source.age="25+",
+                                                                  result.cut.year=2003)
+
+################################# Tertiary educated workforce 15+ (female)
+gc()
+tertiary.educated.population.above15.ILO.female <- get.ILO.latest( source.file="[R] [ILO] Tertiary educated workforce.xls",
+                                                                  source.sheet="KILM 14a",
+                                                                  source.region="A3:T15210", 
+                                                                  source.gender="F",
+                                                                  source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Tertiary...."),
+                                                                  result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Tertiary (percent)"),
+                                                                  source.age="15+",
+                                                                  result.cut.year=2003)
 
 ## Possible colnames ILO data
 ##[1] "Country..code."               "Country"                      "B"                            "Year"                         "Sex..code."                  
