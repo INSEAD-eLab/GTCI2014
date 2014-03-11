@@ -7,6 +7,8 @@ source("scripts/functions.R")
 ## to load a particular sub-pillar
 source("scripts/1.1 RegulatoryLandscape.R")
 
+## to find out which country is only available in 68 but not in 88 and 08
+setdiff(tech.asso.68.MF.latest$Country.Name, union(tech.asso.88.MF.latest$Country.Name, tech.asso.08.MF.latest$Country.Name))
 
 #### data checking for year
 ## replace the variable name to check
