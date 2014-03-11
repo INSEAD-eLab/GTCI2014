@@ -1,3 +1,47 @@
+################################# secondary educated workforce 25+
+gc()
+secondary.educated.population.above25.ILO.total <- get.ILO.latest( source.file="[R] [ILO] Secondary educated workforce.xls",
+                                                                  source.sheet="KILM 14a",
+                                                                  source.region="A3:R15210", 
+                                                                  source.gender="MF",
+                                                                  source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Secondary...."),
+                                                                  result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Secondary (percent)"),
+                                                                  source.age="25+",
+                                                                  result.cut.year=2003)
+
+################################# secondary educated workforce 15+
+gc()
+secondary.educated.population.above15.ILO.total <- get.ILO.latest( source.file="[R] [ILO] Secondary educated workforce.xls",
+                                                                  source.sheet="KILM 14a",
+                                                                  source.region="A3:R15210", 
+                                                                  source.gender="MF",
+                                                                  source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Secondary...."),
+                                                                  result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Secondary (percent)"),
+                                                                  source.age="15+",
+                                                                  result.cut.year=2003)
+
+################################# secondary educated workforce 25+ (female)
+gc()
+secondary.educated.population.above25.ILO.female <- get.ILO.latest( source.file="[R] [ILO] Secondary educated workforce.xls",
+                                                                   source.sheet="KILM 14a",
+                                                                   source.region="A3:R15210", 
+                                                                   source.gender="F",
+                                                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Secondary...."),
+                                                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Secondary (percent)"),
+                                                                   source.age="25+",
+                                                                   result.cut.year=2003)
+
+################################# secondary educated workforce 15+ (female)
+gc()
+secondary.educated.population.above15.ILO.female <- get.ILO.latest( source.file="[R] [ILO] Secondary educated workforce.xls",
+                                                                   source.sheet="KILM 14a",
+                                                                   source.region="A3:R15210", 
+                                                                   source.gender="F",
+                                                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Secondary...."),
+                                                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Secondary (percent)"),
+                                                                   source.age="15+",
+                                                                   result.cut.year=2003)
+
 ################# Technicians and associate professionals
 ##
 ## Possible colnames for tech and associates (68, 88, 08)
