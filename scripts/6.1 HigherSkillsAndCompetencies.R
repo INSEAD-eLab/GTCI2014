@@ -1,3 +1,58 @@
+## Possible colnames ILO data
+##[1] "Country..code."               "Country"                      "B"                            "Year"                         "Sex..code."                  
+##[6] "Sex"                          "Total.employment...000."      "X0...000."                    "X0...."                       "X1...000."                   
+##[11] "X1...."                       "X2...000."                    "X2...."                       "X3...000."                    "X3...."                      
+##[16] "X4...000."                    "X4...."                       "X5...000."                    "X5...."                       "X6...000."                   
+##[21] "X6...."                       "X7...000."                    "X7...."                       "X8...000."                    "X8...."                      
+##[26] "X9...000."                    "X9...."                       "X...000."                     "X...."                        "Repository..code."           
+##[31] "Repository"                   "Type.of.source..code."        "Type.of.source"               "Coverage..code."              "Coverage"                    
+##[36] "Coverage..employment...code." "Coverage..employment."        "Age"                          "Reference.period"             "Geographic.limitation"       
+##[41] "Coverage.limitation"          "Survey.limitation"            "Classification.remark"        "Notes"   
+
+################# Professionals 88
+Professional.88 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-88] Professional.xls",
+                                   source.sheet="KILM 5b",
+                                   source.region="A3:AN3888", 
+                                   source.gender="MF",
+                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
+                                                     "X2...000.", "X2...."),
+                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment.000.88",
+                                                     "2.000.88", "2.percent.88"),
+                                   result.cut.year=2003)
+
+################# Professionals 08
+Professional.08 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-08] Professional.xls",
+                                   source.sheet="KILM 5a",
+                                   source.region="A3:AN217", 
+                                   source.gender="MF",
+                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
+                                                     "X2...000.", "X2...."),
+                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment.000.08",
+                                                     "2.000.08", "2.percent.08"),
+                                   result.cut.year=2003)
+
+################# Female professionals 88
+female.professional.88 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-88] Female professional.xls",
+                                          source.sheet="KILM 5b",
+                                          source.region="A3:AN3888", 
+                                          source.gender="F",
+                                          source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
+                                                            "X2...000.", "X2...."),
+                                          result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment.000.88",
+                                                            "2.000.88", "2.percent.88"),
+                                          result.cut.year=2003)
+
+
+################# Female professionals 08
+female.professional.08 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-08] Female professional.xls",
+                                          source.sheet="KILM 5a",
+                                          source.region="A3:AN217", 
+                                          source.gender="F",
+                                          source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
+                                                            "X2...000.", "X2...."),
+                                          result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment.000.08",
+                                                            "2.000.08", "2.percent.08"),
+                                          result.cut.year=2003)
 
 ################# Researchers per million inhabitants (HC)
 researchers.HC <- get.UNESCO.format(source.file="[R] [UNESCO] Researchers per million inhabitants (HC).xlsx",

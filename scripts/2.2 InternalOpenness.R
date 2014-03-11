@@ -18,7 +18,7 @@ tech.asso.68.MF.latest <- get.ILO.latest( source.file="[R] [ILO] [ISCO-68] Techn
                                           source.gender="MF",
                                           source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
                                                             "X0.1...000.", "X0.1....", "X2...000.", "X2...."),
-                                          result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment.000.88",
+                                          result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment.000.68",
                                                             "01.000.68", "01.percent.68", "2.000.68", "2.percent.68"),
                                           result.cut.year=2003)
 
