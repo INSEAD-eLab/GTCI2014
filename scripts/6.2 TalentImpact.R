@@ -1,3 +1,29 @@
+## WIPO data format can be used
+################# Total patent resident applications
+Total.patent.resident.applications  <- get.UNESCO.format(source.file="[R] [WIPO] Total patent resident applications (numerator).xlsx",
+                                             source.sheet="search", 
+                                             source.data.region="C7:AI358",
+                                             source.colnames="C5:AI5", 
+                                             result.colnames="Total.patent.resident.applications",
+                                             result.cut.year=2003,
+                                             names.separated=TRUE, 
+                                             country.names="A7:B358",
+                                             format="WIPO",
+                                             result.row="Resident")
+
+## WIPO data format can be used
+################# Total patent resident granted (direct and PCT national phase entries)
+patent.resident.granted <- get.UNESCO.format(source.file="[R] [WIPO] Total patent resident grants (numerator).xlsx",
+                                             source.sheet="search-1", 
+                                             source.data.region="C7:AI342",
+                                             source.colnames="C5:AI5", 
+                                             result.colnames="patent.resident.granted",
+                                             result.cut.year=2003,
+                                             names.separated=TRUE, 
+                                             country.names="A7:B342",
+                                             format="WIPO",
+                                             result.row="Resident")
+
 
 ################################ New business density 
 New.business.density  <- get.WB.format(source.file="[R] [WB ES] New business density.xlsx",

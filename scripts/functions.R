@@ -1,5 +1,7 @@
 #nstall.packages("XLConnect")
-library (XLConnect)
+#install.packages("seqinr")
+library(XLConnect)
+library(seqinr)
 
 ################# Master ISO3 and country names sheet
 get.ISO3 <- function(){
@@ -140,7 +142,7 @@ get.ILO.latest <- function(source.file, source.sheet, source.region,
 ################# Original data : wide format
 ## Data format : UNESCO & WDI
 get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
-                                source.colnames, result.colnames, result.cut.year, names.separated=FALSE, country.names="", format="UNESCO"){
+                                source.colnames, result.colnames, result.cut.year, names.separated=FALSE, country.names="", format="UNESCO", result.row=""){
   print("########")
   print(paste("Running get.UNESCO.format function to get the data from ", source.file, sep=""))
   
@@ -151,7 +153,11 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
   ## get the column names without the country names
   data.Header <- readWorksheet(data.ws, sheet=source.sheet, region=source.colnames, header=F)
   
-  data.Header[1, 1] <- "Country.Name"
+  if(format == "WIPO"){
+    data.Header <- cbind("Country.Name", data.Header)
+  }else{
+    data.Header[1, 1] <- "Country.Name"  
+  }
   
   ## get the data only without the column names but with the country names
   if(names.separated){
@@ -166,6 +172,18 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
     
     data <- data.frame(data, stringsAsFactors=F)
     UNESCO.data <- cbind(countries, data)
+    
+    if(format=="WIPO"){
+      ## get the desired result row
+      UNESCO.data <- UNESCO.data[UNESCO.data[,2] == result.row,]
+      
+      ## remove the undesired column
+      UNESCO.data <- UNESCO.data[, -2]
+      
+      ## remove tailing spaces from countries
+      UNESCO.data[, 1] <- lapply(UNESCO.data[1], function(x) trimSpace(x))
+    }
+    
   }else{
     UNESCO.data <- readWorksheet(data.ws, sheet=source.sheet, region=source.data.region, header=F)
     data <- UNESCO.data[, -1]
@@ -175,7 +193,6 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
     }else if(format=="GEM"){
       data <- apply(data, 1:2, function(x) ifelse(x == "-", NA, as.numeric(x)))
     }
-    
 
     data <- data.frame(data, stringsAsFactors=F)
     UNESCO.data <- cbind(UNESCO.data[, 1], data)
@@ -190,6 +207,11 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
   
   ## assign the column names into Data object
   colnames(UNESCO.data) <- data.Header
+  
+  if(format=="WIPO"){
+    ## colnames correction
+    colnames(UNESCO.data)[1] <- "Country.Name"
+  }
   
   ## remove the data rows without country names
   UNESCO.data <- subset(UNESCO.data, !is.na(UNESCO.data[, 1]))
