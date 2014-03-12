@@ -7,7 +7,7 @@ library(seqinr)
 get.ISO3 <- function(){
   
   ISO3<-loadWorkbook(paste("data/", "Country List with ISO3.xlsx", sep=""))
-  ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C455", header=T)
+  ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C457", header=T)
   ISO3[,1] <- tolower(ISO3[,1])
   
   return(ISO3)
@@ -411,3 +411,48 @@ get.WEF <- function(source.file, source.sheet, source.data.region,
   return(WEF)
 }
 
+## simple data format with countries and data are in row. and only one date
+get.conferenceboard <- function(source.file, source.sheet, source.data.region,
+                                source.countries, source.date.field, result.colname){
+  print("########")
+  print(paste("Running get.conferenceboard function to get the data from ", source.file, sep=""))
+  
+  ISO3 <- get.ISO3()
+  
+  WS <- loadWorkbook(paste("data/", source.file, sep=""))
+  
+  countries <- readWorksheet(WS, sheet=source.sheet, region=source.countries, header=F)
+  data      <- readWorksheet(WS, sheet=source.sheet, region=source.data.region, header=F)
+  date      <- readWorksheet(WS, sheet=source.sheet, region=source.date.field, header=F)
+  
+  countries[1,] <- tolower(countries[1,])
+  
+  original.countries <- as.character(unique(countries[1,]))
+  print(paste("Total number of unique countries before cleaning : ",length(original.countries), sep=""))
+  
+  if(length(data) != length(countries)){
+    countries <- countries[1:length(data)]
+  }
+  
+  merged <- rbind(countries, data)
+  
+  merged <- data.frame(t(merged))
+  
+  merged <- merged[complete.cases(merged),]
+  
+  colnames(merged) <- c("Country.Name", result.colname)
+  
+  merged[,"Year"] <- date[1,1]
+  
+  merged <- merge(merged, ISO3, by="Country.Name", all.x=TRUE, sort=FALSE)
+  
+  final.countries <- unique(merged$Country.Name)
+  print(paste("Total number of unique countries after cleaning : ",length(final.countries), sep=""))
+  
+  if(length(final.countries) != length(original.countries)){
+    print("Countries removed are :")
+    print(setdiff(original.countries, final.countries))
+  }
+  
+  return(merged)
+}
