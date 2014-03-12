@@ -222,16 +222,14 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
   UNESCO.data <- subset(UNESCO.data, !is.na(UNESCO.data[, 1]))
   
   ## reshaping to long data
-  UNESCO.long.data <- reshape(UNESCO.data, idvar="Country.Name", varying=list(2:ncol(data.Header)), v.names=result.colnames, direction="long", times=c(min(as.numeric(data.Header[,-1])):max(as.numeric(data.Header[,-1]))))
+  UNESCO.long.data <- reshape(UNESCO.data, idvar="Country.Name", varying=list(2:ncol(data.Header)), v.names=result.colnames, 
+                              direction="long", times=c(min(as.numeric(data.Header[,-1])):max(as.numeric(data.Header[,-1]))), timevar="Year")
   
   UNESCO.long.c.data <- UNESCO.long.data[complete.cases(UNESCO.long.data),]
   
   ## Sort by the name and year. Then get the maximum
-  UNESCO.long.c.data <- UNESCO.long.c.data[order(UNESCO.long.c.data$Country.Name, UNESCO.long.c.data$time, decreasing=T), ]
+  UNESCO.long.c.data <- UNESCO.long.c.data[order(UNESCO.long.c.data$Country.Name, UNESCO.long.c.data$Year, decreasing=T), ]
   UNESCO.long.c.data <- UNESCO.long.c.data[!duplicated(UNESCO.long.c.data$Country.Name), ]
-  
-  ## rename the colnames
-  colnames(UNESCO.long.c.data) <- c("Country.Name", "Year", result.colnames)
   
   ## Order the data by Name, then time
   UNESCO.long.c.data <- UNESCO.long.c.data[order(UNESCO.long.c.data$Country.Name, UNESCO.long.c.data$Year, decreasing=F),]
@@ -411,9 +409,10 @@ get.WEF <- function(source.file, source.sheet, source.data.region,
   return(WEF)
 }
 
+
 ## simple data format with countries and data are in row. and only one date
 get.conferenceboard <- function(source.file, source.sheet, source.data.region,
-                                source.countries, source.date.field, result.colname){
+                                source.countries, source.date.field, result.colname, single.year){
   print("########")
   print(paste("Running get.conferenceboard function to get the data from ", source.file, sep=""))
   
@@ -430,7 +429,7 @@ get.conferenceboard <- function(source.file, source.sheet, source.data.region,
   original.countries <- as.character(unique(countries[1,]))
   print(paste("Total number of unique countries before cleaning : ",length(original.countries), sep=""))
   
-  if(length(data) != length(countries)){
+  if(ncol(data) != ncol(countries)){
     countries <- countries[1:length(data)]
   }
   
@@ -438,11 +437,24 @@ get.conferenceboard <- function(source.file, source.sheet, source.data.region,
   
   merged <- data.frame(t(merged))
   
-  merged <- merged[complete.cases(merged),]
-  
-  colnames(merged) <- c("Country.Name", result.colname)
-  
-  merged[,"Year"] <- date[1,1]
+  if(single.year==TRUE){
+    merged <- merged[complete.cases(merged),]
+    colnames(merged) <- c("Country.Name", result.colname) 
+    merged[,"Year"] <- date[1,1]
+  }else{
+    colnames(merged) <- c("Country.Name", date[,1])
+    
+    merged12 <- reshape(merged, idvar="Country.Name", varying=list(2:ncol(merged)), v.names=result.colname, 
+                        direction="long", times=c(min(as.numeric(date[,1])):max(as.numeric(date[,1]))), 
+                        new.row.name=1:((ncol(merged)-1)*nrow(merged)), timevar="Year")
+    
+    merged12 <- merged12[complete.cases(merged12),]
+    ## Sort by the name and year. Then get the maximum
+    merged12 <- merged12[order(merged12$Country.Name, merged12$Year, decreasing=T), ]
+    merged12 <- merged12[!duplicated(merged12$Country.Name), ]
+    
+    merged <- merged12
+  }
   
   merged <- merge(merged, ISO3, by="Country.Name", all.x=TRUE, sort=FALSE)
   
