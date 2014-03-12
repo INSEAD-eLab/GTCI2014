@@ -104,6 +104,19 @@ secondary.educated.population.above15.ILO.female <- get.ILO.latest( source.file=
 ##[41] "Coverage.limitation"          "Survey.limitation"            "Classification.remark"        "Notes"     
 
 
+lower.skilled.88.MF.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-88] Technicians and associate professionals.xls",
+                                         source.sheet="KILM 5b", 
+                                         source.region="A3:AR3888", 
+                                         source.gender="MF",
+                                         source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "X1...000.", "X2...000.", "X3...000.", "X4...000.",
+                                                           "X5...000.", "X6...000.", "X7...000.", "X8...000.", "X9...000."),
+                                         result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "1.000.88", "2.000.88", "3.000.88", "4.000.88",
+                                                           "5.000.88", "6.000.88", "7.000.88", "8.000.88", "9.000.88"),
+                                         result.cut.year=2003)
+lower.skilled.88.MF.latest[, "ratio"] <- rowSums(lower.skilled.88.MF.latest[,8:13], na.rm=TRUE)/rowSums(lower.skilled.88.MF.latest[, 5:13], na.rm=TRUE)
+
+
+
 tech.asso.68.MF.latest <- get.ILO.latest( source.file="[R] [ILO] [ISCO-68] Technicians and associate professionals.xls",
                                           source.sheet="KILM 5c",
                                           source.region="A3:AN1976", 
