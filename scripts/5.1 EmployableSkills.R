@@ -23,6 +23,16 @@ youth.unemployment.all <- get.ILO.latest( source.file="[R] [ILO] Youth unemploym
                                                       "Share.of.youth.unemployed.in.youth.population.percent"),
                                     result.cut.year=2003)
 
+################################# NEET 15-24
+gc()
+NEET <- get.ILO.latest( source.file="[R] [ILO] NEET.xls",
+                        source.sheet="KILM 10c",
+                        source.region="A3:H2197", 
+                        source.gender="MF",
+                        source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age", "NEET.rate...."),
+                        result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age", "NEET.rate.percent"),
+                        result.cut.year=2003)
+
 ################################# secondary educated workforce 25+
 gc()
 secondary.educated.population.above25.ILO.total <- get.ILO.latest( source.file="[R] [ILO] Secondary educated workforce.xls",
