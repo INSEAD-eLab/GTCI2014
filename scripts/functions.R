@@ -64,18 +64,23 @@ get.WGI <- function(source.file, source.sheet, source.data.region,
 ## the source data structure must be the same as [R] [ILO] [ISCO-68] Technicians and associate professionals.xls
 ## Data format : ILO
 get.ILO.latest <- function(source.file, source.sheet, source.region, 
-                                       source.gender, source.colnames, result.colnames, result.cut.year, source.age=""){
+                                       source.gender, source.colnames, result.colnames, result.cut.year, source.age="", data.format=""){
   
   print("########")
   print(paste("Running ILO latest function to get the data from ", source.file, sep=""))
   
   ISO3 <- get.ISO3()
   
-  Technicians.Associates.WS <- loadWorkbook(paste("data/", source.file, sep=""))
+  if(data.format=="csv"){
+    Technicians.Associates <- read.csv(paste("data/", source.file, sep=""), header=TRUE, sep=",")
+  }else{
+    Technicians.Associates.WS <- loadWorkbook(paste("data/", source.file, sep=""))
+    
+    ## Get the data 
+    ## This is in Panel data
+    Technicians.Associates <- readWorksheet(Technicians.Associates.WS, sheet=source.sheet, region=source.region, header=T)
+  }
   
-  ## Get the data 
-  ## This is in Panel data
-  Technicians.Associates <- readWorksheet(Technicians.Associates.WS, sheet=source.sheet, region=source.region, header=T)
   
   ## Remove the CountryCode and get the country lowercase
   Technicians.Associates <- Technicians.Associates[,-1]

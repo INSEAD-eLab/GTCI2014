@@ -36,14 +36,15 @@ NEET <- get.ILO.latest( source.file="[R] [ILO] NEET.xls",
 
 ################################# youth inactivity rate 15-24
 gc()
-youth.inactivity.rate <- get.ILO.latest( source.file="[R] [ILO] Inactivity rates.xls",
-                                    source.sheet="KILM 13",
-                                    source.region="A3:I104331", 
-                                    source.gender="MF",
-                                    source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "inactivity.rate...."),
-                                    result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "inactivity.rate.percent"),
-                                    source.age="15-24",
-                                    result.cut.year=2003)
+youth.inactivity.rate <- get.ILO.latest( source.file="inactivity rate.csv",
+                                         source.sheet="KILM 13",
+                                         source.region="A3:I104331", 
+                                         source.gender="MF",
+                                         source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Inactivity.rate...."),
+                                         result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "inactivity.rate.percent"),
+                                         source.age="15-24",
+                                         result.cut.year=2003,
+                                         data.format="csv")
 
 ################################# secondary educated workforce 25+
 gc()
