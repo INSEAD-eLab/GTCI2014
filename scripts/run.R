@@ -1,5 +1,6 @@
 ## to remove all the variables and functions
 rm(list=ls())
+gc()
 
 ## to load the functions
 source("scripts/functions.R")

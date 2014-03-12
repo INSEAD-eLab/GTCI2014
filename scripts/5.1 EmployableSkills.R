@@ -1,3 +1,28 @@
+################################# youth employment 15-24
+gc()
+youth.employment <- get.ILO.latest( source.file="[R] [ILO] Youth employment.xls",
+                                    source.sheet="KILM 2a",
+                                    source.region="A3:L35247", 
+                                    source.gender="MF",
+                                    source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Employment..to.population.ratio"),
+                                    result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Employment.to.population.ratio"),
+                                    source.age="15-24",
+                                    result.cut.year=2003)
+
+################################# youth unemployment 15-24
+gc()
+youth.unemployment.all <- get.ILO.latest( source.file="[R] [ILO] Youth unemployment (ALL indicators).xls",
+                                    source.sheet="KILM 10a",
+                                    source.region="A3:P11751", 
+                                    source.gender="MF",
+                                    source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Youth.unemployment.rate....", 
+                                                      "Ratio.of.youth.unemployment.rate.to.adult.unemployment.rate", "Share.of.youth.unemployed.in.total.unemployed....",
+                                                      "Share.of.youth.unemployed.in.youth.population...."),
+                                    result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Youth.unemployment.rate.percent",
+                                                      "Ratio.of.youth.unemployment.rate.to.adult.unemployment.rate", "Share.of.youth.unemployed.in.total.unemployed.percent",
+                                                      "Share.of.youth.unemployed.in.youth.population.percent"),
+                                    result.cut.year=2003)
+
 ################################# secondary educated workforce 25+
 gc()
 secondary.educated.population.above25.ILO.total <- get.ILO.latest( source.file="[R] [ILO] Secondary educated workforce.xls",

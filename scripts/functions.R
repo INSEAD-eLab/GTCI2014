@@ -67,7 +67,7 @@ get.ILO.latest <- function(source.file, source.sheet, source.region,
                                        source.gender, source.colnames, result.colnames, result.cut.year, source.age=""){
   
   print("########")
-  print(paste("Running get.tech.asso.88.MF.latest function to get the data from ", source.file, sep=""))
+  print(paste("Running ILO latest function to get the data from ", source.file, sep=""))
   
   ISO3 <- get.ISO3()
   
