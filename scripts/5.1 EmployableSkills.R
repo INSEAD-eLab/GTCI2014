@@ -1,3 +1,27 @@
+# UNESCO data format but this is weird and will use WEF function
+################# Secondary educated workforce
+secondary.educated.population.above25.UNESCO <- get.WEF(source.file="[R] [UNESCO] Secondary educated population.xls", 
+                                                        source.sheet="Educational Attainment_by Level", 
+                                                        source.data.region="C7:C230",
+                                                        source.colname="C2", 
+                                                        source.date="B7:B230", 
+                                                        source.countries="A7:A230",
+                                                        cut.off.year=2003,
+                                                        different.source=TRUE)
+
+
+# UNESCO data format but this is weird and will use WEF function
+################# Secondary educated workforce
+## Note : 3 country data are copied from other categories. Please check original sheet.
+secondary.educated.population.upperSec.UNESCO <- get.WEF(source.file="[R] [UNESCO] Secondary educated population.xls", 
+                                                        source.sheet="Educational Attainment_by Level", 
+                                                        source.data.region="R7:R230",
+                                                        source.colname="R2", 
+                                                        source.date="B7:B230", 
+                                                        source.countries="A7:A230",
+                                                        cut.off.year=2003,
+                                                        different.source=TRUE)
+
 ################################# youth employment 15-24
 gc()
 youth.employment <- get.ILO.latest( source.file="[R] [ILO] Youth employment.xls",

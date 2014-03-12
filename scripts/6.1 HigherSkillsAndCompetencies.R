@@ -12,6 +12,7 @@ tertiary.educated.population.above25.UNESCO <- get.WEF(source.file="[R] [UNESCO]
 
 # UNESCO data format but this is weird and will use WEF function
 ################# Tertiary educated workforce
+## Note : 2 country data are copied from other categories. Cambodia and Alergia
 tertiary.educated.population.tertiary.UNESCO <- get.WEF(source.file="[R] [UNESCO] Tertiary educated population.xls", 
                                                 source.sheet="Educational Attainment_by Level", 
                                                 source.data.region="X7:X230",

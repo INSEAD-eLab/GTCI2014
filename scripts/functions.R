@@ -7,7 +7,7 @@ library(seqinr)
 get.ISO3 <- function(){
   
   ISO3<-loadWorkbook(paste("data/", "Country List with ISO3.xlsx", sep=""))
-  ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C450", header=T)
+  ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C455", header=T)
   ISO3[,1] <- tolower(ISO3[,1])
   
   return(ISO3)
