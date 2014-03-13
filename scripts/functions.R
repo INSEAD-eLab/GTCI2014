@@ -7,7 +7,7 @@ library(seqinr)
 get.ISO3 <- function(){
   
   ISO3<-loadWorkbook(paste("data/", "Country List with ISO3.xlsx", sep=""))
-  ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C457", header=T)
+  ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C459", header=T)
   ISO3[,1] <- tolower(ISO3[,1])
   
   return(ISO3)
@@ -146,8 +146,8 @@ get.ILO.latest <- function(source.file, source.sheet, source.region,
 
 ################# Original data : wide format
 ## Data format : UNESCO & WDI
-get.UNESCO.format <- function(source.file, source.sheet, source.data.region,
-                                source.colnames, result.colnames, result.cut.year, names.separated=FALSE, country.names="", format="UNESCO", result.row=""){
+get.UNESCO.format <- function(source.file, source.sheet, source.data.region, source.colnames, result.colnames, 
+                              result.cut.year, names.separated=FALSE, country.names="", format="UNESCO", result.row=""){
   print("########")
   print(paste("Running get.UNESCO.format function to get the data from ", source.file, sep=""))
   
@@ -467,4 +467,45 @@ get.conferenceboard <- function(source.file, source.sheet, source.data.region,
   }
   
   return(merged)
+}
+
+
+scaling <- function(numertor, numerator.colname, denominator.file, denominator.sheet, denominator.countries, 
+                    denominator.data.region, denominator.years, result.colname){
+  print("########")
+  print(paste("Running scaling function to get the data from ", denominator.file, sep=""))
+  
+  ISO3 <- get.ISO3()
+  
+  WS <- loadWorkbook(paste("data/", denominator.file, sep=""))
+  
+  countries <- readWorksheet(WS, sheet=denominator.sheet, region=denominator.countries, header=F)
+  data      <- readWorksheet(WS, sheet=denominator.sheet, region=denominator.data.region, header=F)
+  date      <- readWorksheet(WS, sheet=denominator.sheet, region=denominator.years, header=F)
+  
+  countries[, 1] <- tolower(countries[, 1])
+  data <- apply(data, 1:2, function(x) gsub(",", "", x))
+  data <- apply(data, 1:2, function(x) ifelse(x == "n/a", NA, as.numeric(x)))
+  
+  merged <- cbind(countries, data)
+
+  colnames(merged) <- c("Country.Name", date[1,])
+  
+  merged12 <- reshape(merged, idvar="Country.Name", varying=list(2:ncol(merged)), v.names=result.colname, 
+                      direction="long", times=c(min(as.numeric(date[1,])):max(as.numeric(date[1,]))), 
+                      timevar="Year")
+  
+  merged12 <- merged12[complete.cases(merged12),]
+  ## Sort by the name and year. Then get the maximum
+  merged12 <- merged12[order(merged12$Country.Name, merged12$Year, decreasing=T), ]
+  
+  merged <- merged12
+  
+  merged <- merge(merged, ISO3, by="Country.Name", all.x=TRUE, sort=FALSE)
+  
+  merged.with.numerator <- merge(numertor, merged, by=c("ISO3", "Year"), all.x=T, sort=FALSE)
+  
+  merged.with.numerator[, "ratio"] <- 1000*(merged.with.numerator[, numerator.colname]/merged.with.numerator[, result.colname])
+  
+  return(merged.with.numerator)
 }
