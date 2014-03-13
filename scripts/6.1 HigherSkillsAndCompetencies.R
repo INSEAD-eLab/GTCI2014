@@ -236,3 +236,11 @@ female.researchers.HC <- get.UNESCO.format(source.file="[R] [UNESCO] Female rese
                                             result.colnames="percent of female researchers (HC)",
                                             result.cut.year=2003)
 
+################# Percentage distribution of a country's total unemployed who holds tertiary education
+percent.dist.tertiary.unemployment <- get.ILO.latest( source.file="[R] [ILO] Percentage distribution of tertiary educated unemployment.xls",
+                                          source.sheet="KILM 14b",
+                                          source.region="A3:S4960", 
+                                          source.gender="MF",
+                                          source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Tertiary...."),
+                                          result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Tertiary.educated.employment.percent"),
+                                          result.cut.year=2003)
