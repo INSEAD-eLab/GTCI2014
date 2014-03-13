@@ -44,6 +44,12 @@ tertiary.educated.population.above15.ILO.total <- get.ILO.latest( source.file="[
                                                                   source.age="15+",
                                                                   result.cut.year=2003)
 
+## countries in 25 but not in 15
+setdiff(tertiary.educated.population.above25.ILO.total$Country.Name, tertiary.educated.population.above15.ILO.total$Country.Name)
+
+## countries in 15 but not in 25
+setdiff(tertiary.educated.population.above15.ILO.total$Country.Name, tertiary.educated.population.above25.ILO.total$Country.Name)
+
 
 ################################# Tertiary educated workforce 25+ (female)
 gc()
@@ -66,6 +72,13 @@ tertiary.educated.population.above15.ILO.female <- get.ILO.latest( source.file="
                                                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Tertiary (percent)"),
                                                                   source.age="15+",
                                                                   result.cut.year=2003)
+
+## countries in 25 but not in 15
+setdiff(tertiary.educated.population.above25.ILO.female$Country.Name, tertiary.educated.population.above15.ILO.female$Country.Name)
+
+## countries in 15 but not in 25
+setdiff(tertiary.educated.population.above15.ILO.female$Country.Name, tertiary.educated.population.above25.ILO.female$Country.Name)
+
 
 ## Possible colnames ILO data
 ##[1] "Country..code."               "Country"                      "B"                            "Year"                         "Sex..code."                  

@@ -92,6 +92,12 @@ secondary.educated.population.above15.ILO.total <- get.ILO.latest( source.file="
                                                                   source.age="15+",
                                                                   result.cut.year=2003)
 
+## countries in above 15 but not in 25
+setdiff(secondary.educated.population.above15.ILO.total$Country.Name, secondary.educated.population.above25.ILO.total$Country.Name)
+
+## countries in above 25 but not in 15
+setdiff(secondary.educated.population.above25.ILO.total$Country.Name, secondary.educated.population.above15.ILO.total$Country.Name)
+
 ################################# secondary educated workforce 25+ (female)
 gc()
 secondary.educated.population.above25.ILO.female <- get.ILO.latest( source.file="[R] [ILO] Secondary educated workforce.xls",
@@ -114,6 +120,12 @@ secondary.educated.population.above15.ILO.female <- get.ILO.latest( source.file=
                                                                    source.age="15+",
                                                                    result.cut.year=2003)
 
+## countries in above 15 but not in 25
+setdiff(secondary.educated.population.above15.ILO.female$Country.Name, secondary.educated.population.above25.ILO.female$Country.Name)
+
+## countries in above 25 but not in 15
+setdiff(secondary.educated.population.above25.ILO.female$Country.Name, secondary.educated.population.above15.ILO.female$Country.Name)
+
 ################# Technicians and associate professionals
 ##
 ## Possible colnames for tech and associates (68, 88, 08)
@@ -132,12 +144,12 @@ lower.skilled.88.MF.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-88] Te
                                          source.sheet="KILM 5b", 
                                          source.region="A3:AR3888", 
                                          source.gender="MF",
-                                         source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "X1...000.", "X2...000.", "X3...000.", "X4...000.",
+                                         source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.", "X1...000.", "X2...000.", "X3...000.", "X4...000.",
                                                            "X5...000.", "X6...000.", "X7...000.", "X8...000.", "X9...000."),
-                                         result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "1.000.88", "2.000.88", "3.000.88", "4.000.88",
+                                         result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment.000.88", "1.000.88", "2.000.88", "3.000.88", "4.000.88",
                                                            "5.000.88", "6.000.88", "7.000.88", "8.000.88", "9.000.88"),
                                          result.cut.year=2003)
-lower.skilled.88.MF.latest[, "ratio"] <- rowSums(lower.skilled.88.MF.latest[,8:13], na.rm=TRUE)/rowSums(lower.skilled.88.MF.latest[, 5:13], na.rm=TRUE)
+lower.skilled.88.MF.latest[, "lower.skilled.88.MF.ratio"] <- rowSums(lower.skilled.88.MF.latest[,9:14], na.rm=TRUE)/lower.skilled.88.MF.latest[, 5]
 
 
 

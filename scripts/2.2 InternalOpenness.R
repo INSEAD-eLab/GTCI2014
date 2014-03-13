@@ -113,6 +113,8 @@ rm(combined)
 ## rename the variable
 colnames(Female.pro.tech.ratio.88.latest.s1)[4] <- "Female.pro.tech.ratio.88.latest.s1"
 
+## remove NaN and NA
+Female.pro.tech.ratio.88.latest.s1 <- Female.pro.tech.ratio.88.latest.s1[complete.cases(Female.pro.tech.ratio.88.latest.s1),]
 
 
 ################### Female professional and technical workers (2.2.4 Solution 2)
@@ -153,6 +155,11 @@ rm(combined)
 
 ## rename the variable
 colnames(Female.pro.tech.ratio.88.latest.s2)[4] <- "Female.pro.tech.ratio.88.latest.s2"
+
+## remove NaN and NA
+Female.pro.tech.ratio.88.latest.s2 <- Female.pro.tech.ratio.88.latest.s2[complete.cases(Female.pro.tech.ratio.88.latest.s2),]
+
+##################################################
 
 
 ################# Female tertiary students
