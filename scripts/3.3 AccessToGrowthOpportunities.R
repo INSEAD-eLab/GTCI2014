@@ -19,6 +19,13 @@ Part.time.employment.rate.25 <- get.ILO.latest( source.file="[R] [ILO] Part-time
                                                 source.age="25+",
                                                 result.cut.year=2003)
 
+## countries which are in 15 but not in 25
+setdiff(Part.time.employment.rate.15$Country.Name, Part.time.employment.rate.25$Country.Name)
+
+## countries which are in 25 but not in 15
+setdiff(Part.time.employment.rate.25$Country.Name, Part.time.employment.rate.15$Country.Name)
+
+
 
 ################# Use of virtual social networks
 Use.virtual.social.networks  <- get.WEF(source.file="WEF.xlsx", 
