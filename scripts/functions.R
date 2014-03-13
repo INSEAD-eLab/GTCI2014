@@ -7,7 +7,7 @@ library(seqinr)
 get.ISO3 <- function(){
   
   ISO3<-loadWorkbook(paste("data/", "Country List with ISO3.xlsx", sep=""))
-  ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C459", header=T)
+  ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C458", header=T)
   ISO3[,1] <- tolower(ISO3[,1])
   
   return(ISO3)
@@ -471,7 +471,7 @@ get.conferenceboard <- function(source.file, source.sheet, source.data.region,
 
 
 scaling <- function(numertor, numerator.colname, denominator.file, denominator.sheet, denominator.countries, 
-                    denominator.data.region, denominator.years, result.colname){
+                    denominator.data.region, denominator.years, result.colname, multiplier=1000){
   print("########")
   print(paste("Running scaling function to get the data from ", denominator.file, sep=""))
   
@@ -505,7 +505,7 @@ scaling <- function(numertor, numerator.colname, denominator.file, denominator.s
   
   merged.with.numerator <- merge(numertor, merged, by=c("ISO3", "Year"), all.x=T, sort=FALSE)
   
-  merged.with.numerator[, "ratio"] <- 1000*(merged.with.numerator[, numerator.colname]/merged.with.numerator[, result.colname])
+  merged.with.numerator[, "ratio"] <- multiplier*(merged.with.numerator[, numerator.colname]/merged.with.numerator[, result.colname])
   
   return(merged.with.numerator)
 }

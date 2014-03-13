@@ -32,9 +32,9 @@ Prevalence.foreign.ownership <- get.WEF(source.file="WEF.xlsx",
                                           source.date="C7", 
                                           source.countries="C8:C155")
 
+################################# Net migration
 
 ## WDI data has same format as UNESCO and used that function
-################################# Net migration
 net.migration <- get.UNESCO.format(source.file="[R] [WDI] Net migration (stock) five-year estimates.xls",
                                            source.sheet="Data", 
                                            source.data.region="BD4:BD255",
@@ -43,6 +43,21 @@ net.migration <- get.UNESCO.format(source.file="[R] [WDI] Net migration (stock) 
                                            result.cut.year=2003,
                                            names.separated=TRUE, 
                                            country.names="A4:A255")
+## scaled with population data
+net.migration.scaled <- scaling(numertor=net.migration, 
+                                numerator.colname="net.migration",
+                                denominator.file="[R] [UN] Population.xls", 
+                                denominator.sheet="CONSTANT FERTILITY",
+                                denominator.countries="C27:C285", 
+                                denominator.data.region="F27:I285", 
+                                denominator.years="F17:I17", 
+                                result.colname="Total population, both sexes combined, as of 1 July (thousands)",
+                                multiplier=0.001)
+
+## remove the country group and income group 
+net.migration.scaled <- net.migration.scaled[complete.cases(net.migration.scaled),]
+
+################# end of net migration
 
 # UN data format can be used with WEF function
 ################# International migrant stock
