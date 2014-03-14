@@ -35,3 +35,14 @@ personal.income.tax.rate <- get.WEF(source.file="[R] [KPMG] Personal income tax 
                                     source.date="J1", 
                                     source.countries="A2:A115",
                                     result.colname="personal.income.tax.rate.in.percent")
+
+################# pension system
+pension.system <- get.WEF(source.file="[R] [WB] Pension system.xlsx", 
+                          source.sheet="Active Coverage", 
+                          source.data.region="K6:K201",
+                          source.colname="K4", 
+                          source.date="C6:C201", 
+                          source.countries="B6:B201",
+                          cut.off.year=2003,
+                          different.source=TRUE,
+                          source.name="WB")

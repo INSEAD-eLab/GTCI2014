@@ -15,8 +15,8 @@ get.ISO3 <- function(){
 
 ################# Political stability
 ## Data format : WGI
-get.WGI <- function(source.file, source.sheet, source.data.region,
-                                    source.colnames, source.countries, result.colnames){
+get.WGI <- function(source.file, source.sheet, source.data.region, 
+                    source.colnames, source.countries, result.colnames){
   print("########")
   print(paste("Running get.Political.Stability function to get the data from", source.file, sep=" "))
   
@@ -63,8 +63,8 @@ get.WGI <- function(source.file, source.sheet, source.data.region,
 ################# Technicians and associate professionals from 88
 ## the source data structure must be the same as [R] [ILO] [ISCO-68] Technicians and associate professionals.xls
 ## Data format : ILO
-get.ILO.latest <- function(source.file, source.sheet, source.region, 
-                                       source.gender, source.colnames, result.colnames, result.cut.year, source.age="", data.format=""){
+get.ILO.latest <- function(source.file, source.sheet, source.region, source.gender, 
+                           source.colnames, result.colnames, result.cut.year, source.age="", data.format=""){
   
   print("########")
   print(paste("Running ILO latest function to get the data from ", source.file, sep=""))
@@ -262,8 +262,8 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region, sou
 ########################## original data : long format (can be used with cleaned data as well. check 6.2 new business density)
 ########################## Number of firms offering formal training
 ## WB data format
-get.WB.format <- function(source.file, source.sheet, source.data.region,
-                              source.colnames, source.result.col, result.cut.year, result.row=""){
+get.WB.format <- function(source.file, source.sheet, source.data.region, 
+                          source.colnames, source.result.col, result.cut.year, result.row=""){
   
   print("########")
   print(paste("Running get.WB.format function to get the data from ", source.file, sep=""))
@@ -337,9 +337,10 @@ get.WB.format <- function(source.file, source.sheet, source.data.region,
 
 
 ## WEF data format & UN data format & KPMG data & Yale data
+## mainly if the countries, year and data columns are separated in 3 columns but need to be in long format.
 get.WEF <- function(source.file, source.sheet, source.data.region,
                     source.colname, source.date, source.countries,
-                    multi.col=FALSE, different.source=FALSE, cut.off.year="", date.on.diff.sheet=FALSE, source.date.sheet="", result.colname=""){
+                    multi.col=FALSE, different.source=FALSE, cut.off.year="", date.on.diff.sheet=FALSE, source.date.sheet="", result.colname="", source.name=""){
   
   print("########")
   print(paste("Running get.WEF.format function to get the data from ", source.file, sep=""))
@@ -383,8 +384,13 @@ get.WEF <- function(source.file, source.sheet, source.data.region,
   }
   
   if(different.source == TRUE){
-    data <- apply(data, 1:2, function(x) gsub(",", "", x))
-    data <- apply(data, 1:2, function(x) ifelse(x == ".", NA, ifelse(x == "...", NA, ifelse(x == "-", 0, as.numeric(x)))))
+    if(source.name == "WB"){
+      data <- apply(data, 1:2, function(x) gsub("%", "", x))
+      data <- apply(data, 1:2, function(x) ifelse(x == "..", NA, ifelse(x == "-", NA, as.numeric(x))))
+    }else{
+      data <- apply(data, 1:2, function(x) gsub(",", "", x))
+      data <- apply(data, 1:2, function(x) ifelse(x == ".", NA, ifelse(x == "...", NA, ifelse(x == "-", 0, as.numeric(x)))))  
+    }    
   }else{
     data <- apply(data, 1:2, function(x) ifelse(x == "n.c.", NA, ifelse(x == "...", NA, ifelse(x == "n.a.", NA, as.numeric(x)))))  
   }
