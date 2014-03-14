@@ -26,14 +26,6 @@ total.factor.productivity.growth <- get.conferenceboard(source.file="[R] [TCB] T
                                                         result.colname="total.factor.productivity.growth",
                                                         single.year=FALSE)
 
-source.file="[R] [TCB] Total factor productivity growth.xls"
-source.sheet="TFP %"
-source.countries="B3:EM3"
-source.data.region="B6:EM29"
-source.date.field="A6:A29"
-result.colname="total.factor.productivity.growth"
-single.year=FALSE
-
 ############### Labour productivity per person employed, growth 
 labour.productivity.per.person.employed.2013 <- get.conferenceboard(source.file="[R] [TCB] Labour productivity per person employed.xls",
                                                                source.sheet="LP-person EKS",
@@ -63,12 +55,3 @@ pay.and.productivity <- get.WEF(source.file="WEF.xlsx",
                                   source.colname="DL6", 
                                   source.date="C7", 
                                   source.countries="C8:C155")
-
-
-source.file="[R] [TCB] Total factor productivity growth.xls"
-source.sheet="TFP %"
-source.countries="B3:EM3"
-source.data.region="B6:EM29"
-source.date.field="A6:A29"
-result.colname="total.factor.productivity.growth"
-single.year=FALSE

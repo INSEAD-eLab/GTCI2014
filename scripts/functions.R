@@ -7,7 +7,7 @@ library(seqinr)
 get.ISO3 <- function(){
   
   ISO3<-loadWorkbook(paste("data/", "Country List with ISO3.xlsx", sep=""))
-  ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C458", header=T)
+  ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C459", header=T)
   ISO3[,1] <- tolower(ISO3[,1])
   
   return(ISO3)
@@ -337,7 +337,7 @@ get.WB.format <- function(source.file, source.sheet, source.data.region,
 ## WEF data format & UN data format
 get.WEF <- function(source.file, source.sheet, source.data.region,
                     source.colname, source.date, source.countries, 
-                    multi.col=FALSE, different.source=FALSE, cut.off.year=""){
+                    multi.col=FALSE, different.source=FALSE, cut.off.year="", date.on.diff.sheet=FALSE, source.date.sheet=""){
   
   print("########")
   print(paste("Running get.WEF.format function to get the data from ", source.file, sep=""))
@@ -351,7 +351,12 @@ get.WEF <- function(source.file, source.sheet, source.data.region,
   data.Header <- readWorksheet(data.ws, sheet=source.sheet, region=source.colname, header=F)
   
   ## get the column names without the country names
-  data.date <- readWorksheet(data.ws, sheet=source.sheet, region=source.date, header=F)
+  if(date.on.diff.sheet){
+    data.date <- readWorksheet(data.ws, sheet=source.date.sheet, region=source.date, header=F)  
+  }else{
+    data.date <- readWorksheet(data.ws, sheet=source.sheet, region=source.date, header=F)  
+  }
+  
   
   ## get the country names
   Country <- readWorksheet(data.ws, sheet=source.sheet, region=source.countries, header=F)

@@ -1,4 +1,15 @@
 
+################# Environmental performance
+environmental.performance <- get.WEF(source.file="[R] [Yale] Environmental performance.xls", 
+                                  source.sheet="Indicator Scores", 
+                                  source.data.region="C2:C179",
+                                  source.colname="C1", 
+                                  source.date="A3", 
+                                  source.date.sheet="Title Page",
+                                  source.countries="B2:B179",
+                                  date.on.diff.sheet=TRUE)
+
+
 ## WDI data has same format as UNESCO and used that function
 ################################# Improved water source
 improved.sanitation.facilities <- get.UNESCO.format(source.file="[R] [WDI] Improved sanitation facilities.xls",
