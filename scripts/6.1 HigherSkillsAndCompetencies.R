@@ -218,6 +218,11 @@ researchers.FTE <- get.UNESCO.format(source.file="[R] [UNESCO] Researchers per m
                                     result.colnames="Researchers per million inhabitants (FTE)",
                                     result.cut.year=2003)
 
+## countries in HC but not in FTE
+setdiff(researchers.HC$Country.Name, researchers.FTE$Country.Name)
+
+## countries in FTE but not in HC
+setdiff(researchers.FTE$Country.Name, researchers.HC$Country.Name)
 
 ################# Female researchers (FTE)
 female.researchers.FTE <- get.UNESCO.format(source.file="[R] [UNESCO] Female researchers (FTE).xlsx",
@@ -236,6 +241,12 @@ female.researchers.HC <- get.UNESCO.format(source.file="[R] [UNESCO] Female rese
                                             result.colnames="percent of female researchers (HC)",
                                             result.cut.year=2003)
 
+## countries in HC but not in FTE
+setdiff(female.researchers.HC$Country.Name, female.researchers.FTE$Country.Name)
+
+## countries in FTE but not in HC
+setdiff(female.researchers.FTE$Country.Name, female.researchers.HC$Country.Name)
+
 ################# Percentage distribution of a country's total unemployed who holds tertiary education
 percent.dist.tertiary.unemployment <- get.ILO.latest( source.file="[R] [ILO] Percentage distribution of tertiary educated unemployment.xls",
                                                       source.sheet="KILM 14b",
@@ -243,6 +254,7 @@ percent.dist.tertiary.unemployment <- get.ILO.latest( source.file="[R] [ILO] Per
                                                       source.gender="MF",
                                                       source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Tertiary...."),
                                                       result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Tertiary.educated.employment.percent"),
+                                                      result.cut.year=2003)
 
 ################# Unemployment rate of tertiary-educated
 Unemployment.rate.tertiary.educated <- get.ILO.latest( source.file="[R] [ILO] Unemployment rate of persons with tertiary level education.xls",

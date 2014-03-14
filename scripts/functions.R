@@ -483,7 +483,7 @@ get.conferenceboard <- function(source.file, source.sheet, source.data.region,
 
 
 scaling <- function(numertor, numerator.colname, denominator.file, denominator.sheet, denominator.countries, 
-                    denominator.data.region, denominator.years, result.colname, multiplier=1000){
+                    denominator.data.region, denominator.years, result.colname, multiplier=1){
   print("########")
   print(paste("Running scaling function to get the data from ", denominator.file, sep=""))
   
