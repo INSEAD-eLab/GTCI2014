@@ -113,15 +113,17 @@ get.ILO.latest <- function(source.file, source.sheet, source.region,
     Technicians.Associates.ISO3.MF <- Technicians.Associates.ISO3.MF[Technicians.Associates.ISO3.MF$Age.group == source.age,]  
   }
   
+  ## Get the columns
+  Technicians.Associates.ISO3.MF <- Technicians.Associates.ISO3.MF[, source.colnames]
+  
+  ## Change the column names
+  colnames(Technicians.Associates.ISO3.MF) <- result.colnames
+  
+  Technicians.Associates.ISO3.MF <- Technicians.Associates.ISO3.MF[complete.cases(Technicians.Associates.ISO3.MF),]
+  
   ## Sort by the name and year. Then get the maximum
   Technicians.Associates.ISO3.MF.sorted <- Technicians.Associates.ISO3.MF[order(Technicians.Associates.ISO3.MF$Country.Name, Technicians.Associates.ISO3.MF$Year, decreasing=T),]
   Technicians.Associates.ISO3.MF.latest <- Technicians.Associates.ISO3.MF.sorted[!duplicated(Technicians.Associates.ISO3.MF.sorted$Country.Name),]
-  
-  ## Get the columns
-  Technicians.Associates.ISO3.MF.latest <- Technicians.Associates.ISO3.MF.latest[, source.colnames]
-  
-  ## Change the column names
-  colnames(Technicians.Associates.ISO3.MF.latest) <- result.colnames
   
   ## Order by the ISO3
   Technicians.Associates.ISO3.MF.latest <- Technicians.Associates.ISO3.MF.latest[order(Technicians.Associates.ISO3.MF.latest$ISO3, decreasing=F),]
