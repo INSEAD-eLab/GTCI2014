@@ -334,10 +334,10 @@ get.WB.format <- function(source.file, source.sheet, source.data.region,
 }
 
 
-## WEF data format & UN data format
+## WEF data format & UN data format & KPMG data & Yale data
 get.WEF <- function(source.file, source.sheet, source.data.region,
-                    source.colname, source.date, source.countries, 
-                    multi.col=FALSE, different.source=FALSE, cut.off.year="", date.on.diff.sheet=FALSE, source.date.sheet=""){
+                    source.colname, source.date, source.countries,
+                    multi.col=FALSE, different.source=FALSE, cut.off.year="", date.on.diff.sheet=FALSE, source.date.sheet="", result.colname=""){
   
   print("########")
   print(paste("Running get.WEF.format function to get the data from ", source.file, sep=""))
@@ -357,7 +357,6 @@ get.WEF <- function(source.file, source.sheet, source.data.region,
     data.date <- readWorksheet(data.ws, sheet=source.sheet, region=source.date, header=F)  
   }
   
-  
   ## get the country names
   Country <- readWorksheet(data.ws, sheet=source.sheet, region=source.countries, header=F)
   colnames(Country) <- c("Country.Name")
@@ -374,7 +373,11 @@ get.WEF <- function(source.file, source.sheet, source.data.region,
   if(multi.col){
     colnames(data) <- data.Header
   }else{
-    colnames(data) <- data.Header[1, 1]
+    if(nchar(result.colname) > 0){
+      colnames(data) <- result.colname
+    }else{
+      colnames(data) <- data.Header[1, 1]
+    }
   }
   
   if(different.source == TRUE){

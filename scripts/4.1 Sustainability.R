@@ -26,3 +26,12 @@ Labour.tax.and.contributions <- get.UNESCO.format(source.file="[R] [WDI] Labour 
                                            result.cut.year=2003,
                                            names.separated=TRUE, 
                                            country.names="A4:A255")
+
+################# Personal Income Tax Rate
+personal.income.tax.rate <- get.WEF(source.file="[R] [KPMG] Personal income tax rates.xlsx", 
+                                    source.sheet="Sheet1", 
+                                    source.data.region="J2:J115",
+                                    source.colname="A1", 
+                                    source.date="J1", 
+                                    source.countries="A2:A115",
+                                    result.colname="personal.income.tax.rate.in.percent")
