@@ -1,3 +1,12 @@
+
+################################ Innovation Output
+innovation.output <- get.WB.format(source.file="GII innovation output.xlsx",
+                                       source.sheet="Sheet1", 
+                                       source.data.region="A2:C143",
+                                       source.colnames="A1:C1", 
+                                       source.result.col="GII innovation output",                                         
+                                       result.cut.year=2003)
+
 ## WIPO data format can be used
 ################# Total patent resident applications
 Total.patent.resident.applications  <- get.UNESCO.format(source.file="[R] [WIPO] Total patent resident applications (numerator).xlsx",

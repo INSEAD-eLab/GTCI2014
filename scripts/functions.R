@@ -453,10 +453,14 @@ get.conferenceboard <- function(source.file, source.sheet, source.data.region,
     merged12 <- merged12[order(merged12$Country.Name, merged12$Year, decreasing=T), ]
     merged12 <- merged12[!duplicated(merged12$Country.Name), ]
     
-    merged <- merged12
+    ## changing the order of the column
+    merged <- merged12[, c(1,3,2)]
   }
   
   merged <- merge(merged, ISO3, by="Country.Name", all.x=TRUE, sort=FALSE)
+  merged <- merged[complete.cases(merged),]
+  
+  merged[,2] <- lapply(merged[2], function(x) as.numeric(as.character(x)))
   
   final.countries <- unique(merged$Country.Name)
   print(paste("Total number of unique countries after cleaning : ",length(final.countries), sep=""))
