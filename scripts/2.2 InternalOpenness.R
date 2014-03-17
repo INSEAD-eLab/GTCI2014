@@ -260,3 +260,53 @@ Language.diversity.index  <- get.WEF(source.file="[R] [Ethnologue] Language dive
                                     source.colname="B1", 
                                     source.date="L1", 
                                     source.countries="A2:A226")
+
+
+################# Estimated earned income : female
+Estimated.earned.income.female  <- get.WEF(source.file="[R] [WEF] Estimated earned income.xlsx", 
+                                     source.sheet="Sheet1", 
+                                     source.data.region="B2:B135",
+                                     source.colname="B1", 
+                                     source.date="H2", 
+                                     source.countries="A2:A135")
+
+################# Estimated earned income : male
+Estimated.earned.income.male  <- get.WEF(source.file="[R] [WEF] Estimated earned income.xlsx", 
+                                           source.sheet="Sheet1", 
+                                           source.data.region="C2:C135",
+                                           source.colname="C1", 
+                                           source.date="H2", 
+                                           source.countries="A2:A135")
+
+################# Estimated earned income : Female (with 40,000 cut-off)
+Estimated.earned.income.female.40000 <- get.WEF(source.file="[R] [WEF] Estimated earned income.xlsx", 
+                                           source.sheet="Sheet1", 
+                                           source.data.region="D2:D135",
+                                           source.colname="D1", 
+                                           source.date="H2", 
+                                           source.countries="A2:A135")
+
+################# Estimated earned income : male (with 40,000 cut-off)
+Estimated.earned.income.male.40000 <- get.WEF(source.file="[R] [WEF] Estimated earned income.xlsx", 
+                                                source.sheet="Sheet1", 
+                                                source.data.region="E2:E135",
+                                                source.colname="E1", 
+                                                source.date="H2", 
+                                                source.countries="A2:A135")
+
+################# Estimated earned income : female to male ratio
+Estimated.earned.female.male.ratio <- get.WEF(source.file="[R] [WEF] Estimated earned income.xlsx", 
+                                              source.sheet="Sheet1", 
+                                              source.data.region="F2:F135",
+                                              source.colname="F1", 
+                                              source.date="H2", 
+                                              source.countries="A2:A135")
+
+
+################# Estimated earned income : rank
+Estimated.earned.rank <- get.WEF(source.file="[R] [WEF] Estimated earned income.xlsx", 
+                                 source.sheet="Sheet1", 
+                                 source.data.region="G2:G135",
+                                 source.colname="G1", 
+                                 source.date="H2", 
+                                 source.countries="A2:A135")
