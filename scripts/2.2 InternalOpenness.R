@@ -251,3 +251,12 @@ Entrepreneurial.intention <- get.UNESCO.format(source.file="[R] [GEM] Entreprene
                                                result.colnames="Entrepreneurial.intention",
                                                result.cut.year=2003,
                                                format="GEM")
+
+
+################# Language diversity index
+Language.diversity.index  <- get.WEF(source.file="[R] [Ethnologue] Language diversity index.xlsx", 
+                                    source.sheet="Sheet1", 
+                                    source.data.region="B2:B226",
+                                    source.colname="B1", 
+                                    source.date="L1", 
+                                    source.countries="A2:A226")
