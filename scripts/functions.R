@@ -498,6 +498,7 @@ get.conferenceboard <- function(source.file, source.sheet, source.data.region,
 }
 
 
+## scaling with wide format denominator or single year long format.
 scaling <- function(numertor, numerator.colname, denominator.file, denominator.sheet, denominator.countries, 
                     denominator.data.region, denominator.years, result.colname, multiplier=1){
   print("########")
