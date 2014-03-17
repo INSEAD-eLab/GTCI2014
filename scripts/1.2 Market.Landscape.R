@@ -33,3 +33,23 @@ firm.level.tech.absorption <- get.WEF(source.file="WEF.xlsx",
                                         source.colname="X6", 
                                         source.date="C7", 
                                         source.countries="C8:C155")
+
+
+################# Venture capital deals
+Venture.capital.deals <- get.WEF(source.file="[R] [Thomson] Venture capital deals (numerator).xls", 
+                                 source.sheet="Quick Search", 
+                                 source.data.region="B8:B84",
+                                 source.colname="B7", 
+                                 source.date="C1", 
+                                 source.countries="A8:A84")
+
+Venture.capital.deals.scaled <- scaling(numertor=Venture.capital.deals, 
+                                numerator.colname="No. of Deals",
+                                denominator.file="[R] [IMF WEO] Venture capital deals (denominator).xls", 
+                                denominator.sheet="weoreptc(1)",
+                                denominator.countries="B2:B189", 
+                                denominator.data.region="G2:I189", 
+                                denominator.years="G1:I1", 
+                                result.colname="GDPPPP",
+                                multiplier=1000)
+
