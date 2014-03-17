@@ -67,6 +67,60 @@ Disability.employee.protection.ratio.contributors <- get.UNESCO.format(source.fi
                                                                        format="ILOpdf")
 
 
+## ILO pdf converted data has same format as UNESCO and used that function
+################################# Employment Injury demographic protection ratio (contributors)
+employment.injury.demographic.protection.ratio.contributors <- get.UNESCO.format(source.file="[R] [ILO] Employment Injury demographic protection ratio (contributors).xlsx",
+                                                                                 source.sheet="Sheet1", 
+                                                                                 source.data.region="A2:N43",
+                                                                                 source.colnames="A1:N1", 
+                                                                                 result.colnames="employment.injury.demographic.protection.ratio.contributors",
+                                                                                 result.cut.year=2003,
+                                                                                 format="ILOpdf")
+
+
+## ILO pdf converted data has same format as UNESCO and used that function
+################################# Employment injury to economically active protection ratio (contributors)
+employment.injury.to.economically.active.protection.ratio <- get.UNESCO.format(source.file="[R] [ILO] Employment injury to economically active protection ratio (contributors).xlsx",
+                                                                               source.sheet="Sheet1", 
+                                                                               source.data.region="A2:N39",
+                                                                               source.colnames="A1:N1", 
+                                                                               result.colnames="employment.injury.to.economically.active.protection.ratio",
+                                                                               result.cut.year=2003,
+                                                                               format="ILOpdf")
+
+
+## ILO pdf converted data has same format as UNESCO and used that function
+################################# Sickness demographic protection ratio (contributors)
+sickness.demographic.protection.ratio.contributors <- get.UNESCO.format(source.file="[R] [ILO] Sickness demographic protection ratio (contributors).xlsx",
+                                                                               source.sheet="Sheet1", 
+                                                                               source.data.region="A2:N53",
+                                                                               source.colnames="A1:N1", 
+                                                                               result.colnames="sickness.demographic.protection.ratio.contributors",
+                                                                               result.cut.year=2003,
+                                                                               format="ILOpdf")
+
+
+## ILO pdf converted data has same format as UNESCO and used that function
+################################# Sickness employment protection ratio (contributors)
+sickness.employment.protection.ratio.contributors <- get.UNESCO.format(source.file="[R] [ILO] Sickness employment protection ratio (contributors).xlsx",
+                                                                        source.sheet="Sheet1", 
+                                                                        source.data.region="A2:N51",
+                                                                        source.colnames="A1:N1", 
+                                                                        result.colnames="sickness.employment.protection.ratio.contributors",
+                                                                        result.cut.year=2003,
+                                                                        format="ILOpdf")
+
+## ILO pdf converted data has same format as UNESCO and used that function
+################################# Sickness employee protection ratio (contributors)
+sickness.employee.protection.ratio.contributors <- get.UNESCO.format(source.file="[R] [ILO] Sickness employee protection ratio (contributors).xlsx",
+                                                                     source.sheet="Sheet1", 
+                                                                     source.data.region="A2:N41",
+                                                                     source.colnames="A1:N1", 
+                                                                     result.colnames="sickness.employee.protection.ratio.contributors",
+                                                                     result.cut.year=2003,
+                                                                     format="ILOpdf")
+
+
 ################# Extent and effect of taxation (on incentives to work)
 Extent.effect.taxation.on.incentives.to.work <- get.WEF(source.file="WEF.xlsx", 
                                                     source.sheet="Sheet1", 
