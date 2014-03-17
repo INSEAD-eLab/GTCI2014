@@ -7,7 +7,7 @@ library(seqinr)
 get.ISO3 <- function(){
   
   ISO3<-loadWorkbook(paste("data/", "Country List with ISO3.xlsx", sep=""))
-  ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C459", header=T)
+  ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C461", header=T)
   ISO3[,1] <- tolower(ISO3[,1])
   
   return(ISO3)
@@ -199,6 +199,9 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region, sou
       data <- apply(data, 1:2, function(x) ifelse(x == ".", NA, ifelse(x == "...", NA, ifelse(x == "-", 0, as.numeric(x)))))  
     }else if(format=="GEM"){
       data <- apply(data, 1:2, function(x) ifelse(x == "-", NA, as.numeric(x)))
+    }else if(format=="ILOpdf"){
+      data <- apply(data, 1:2, function(x) gsub("%", "", x))
+      data <- apply(data, 1:2, function(x) ifelse(x == "n.a.", NA, as.numeric(x)))
     }
 
     data <- data.frame(data, stringsAsFactors=F)

@@ -1,3 +1,15 @@
+
+
+## ILO pdf converted data has same format as UNESCO and used that function
+################################# Old age contributors ratio (% working age)
+old.age.contributors.ratio.percent.working.age <- get.UNESCO.format(source.file="[R] [ILO] Old age contributors ratio (% working age).xlsx",
+                                                  source.sheet="Sheet1", 
+                                                  source.data.region="A2:N98",
+                                                  source.colnames="A1:N1", 
+                                                  result.colnames="old.age.contributors.ratio.percent.working.age",
+                                                  result.cut.year=2003,
+                                                  format="ILOpdf")
+
 ################# Extent and effect of taxation (on incentives to work)
 Extent.effect.taxation.on.incentives.to.work <- get.WEF(source.file="WEF.xlsx", 
                                                     source.sheet="Sheet1", 
