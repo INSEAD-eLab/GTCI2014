@@ -310,3 +310,16 @@ Estimated.earned.rank <- get.WEF(source.file="[R] [WEF] Estimated earned income.
                                  source.colname="G1", 
                                  source.date="H2", 
                                  source.countries="A2:A135")
+
+## WDI data has same format as UNESCO and used that function
+################################# Female parliamentarians
+female.parliamentarians <- get.UNESCO.format(source.file="[R] [WDI] Female parliamentarians.xls",
+                                                    source.sheet="Data", 
+                                                    source.data.region="AU5:BE255",
+                                                    source.colnames="AT3:BE3", 
+                                                    result.colnames="female.parliamentarians.ratio",
+                                                    result.cut.year=2003,
+                                                    names.separated=TRUE, 
+                                                    country.names="A5:A255")
+
+female.parliamentarians[, "female.male.ratio"] <- female.parliamentarians[,3]/(100-female.parliamentarians[,3])
