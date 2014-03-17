@@ -121,6 +121,17 @@ sickness.employee.protection.ratio.contributors <- get.UNESCO.format(source.file
                                                                      format="ILOpdf")
 
 
+
+## ILO pdf converted data has same format as UNESCO and used that function
+################################# Unemployed receiving unemployment benefits
+unemployed.receiving.unemployment.benefits <- get.UNESCO.format(source.file="[R] [ILO] Unemployed receiving unemployment benefits.xlsx",
+                                                                     source.sheet="Sheet1", 
+                                                                     source.data.region="A2:O100",
+                                                                     source.colnames="A1:O1", 
+                                                                     result.colnames="unemployed.receiving.unemployment.benefits",
+                                                                     result.cut.year=2003,
+                                                                     format="ILOpdf")
+
 ################# Extent and effect of taxation (on incentives to work)
 Extent.effect.taxation.on.incentives.to.work <- get.WEF(source.file="WEF.xlsx", 
                                                     source.sheet="Sheet1", 
