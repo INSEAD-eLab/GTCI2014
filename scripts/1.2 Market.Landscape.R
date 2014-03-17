@@ -53,3 +53,10 @@ Venture.capital.deals.scaled <- scaling(numertor=Venture.capital.deals,
                                 result.colname="GDPPPP",
                                 multiplier=1000)
 
+################# ICT access
+ICT.access <- get.WEF(source.file="ICT access.xlsx", 
+                      source.sheet="Sheet1", 
+                      source.data.region="C3:C159",
+                      source.colname="C1", 
+                      source.date="C2", 
+                      source.countries="A3:A159")
