@@ -60,3 +60,12 @@ ICT.access <- get.WEF(source.file="ICT access.xlsx",
                       source.colname="C1", 
                       source.date="C2", 
                       source.countries="A3:A159")
+
+
+################# Ease of doing business index
+ease.of.doing.business.index <- get.WEF(source.file="[R] [WB EODB] Ease of doing business index.xls", 
+                                        source.sheet="file", 
+                                        source.data.region="C3:C191",
+                                        source.colname="C1", 
+                                        source.date="B3", 
+                                        source.countries="A3:A191")

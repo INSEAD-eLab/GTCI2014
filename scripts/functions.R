@@ -202,10 +202,15 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region, sou
     }else if(format=="ILOpdf"){
       data <- apply(data, 1:2, function(x) gsub("%", "", x))
       data <- apply(data, 1:2, function(x) ifelse(x == "n.a.", NA, as.numeric(x)))
+    }else if(format=="UNCTAD"){
+      data <- apply(data, 1:2, function(x) ifelse(x == "..", NA, ifelse(x == "_", NA, as.numeric(x))))
     }
 
     data <- data.frame(data, stringsAsFactors=F)
     UNESCO.data <- cbind(UNESCO.data[, 1], data)
+    
+    ## remove tailing spaces from countries
+    UNESCO.data[, 1] <- lapply(UNESCO.data[1], function(x) trimSpace(x))
   }
   
   ## Change the names into lower case for merging

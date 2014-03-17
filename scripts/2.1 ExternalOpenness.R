@@ -1,3 +1,14 @@
+## UNCTAD data has same format as UNESCO and used that function
+################### FDI inflow
+FDI.inflow <- get.UNESCO.format(source.file="[R] [UNCTAD] FDI inflow.xlsx",
+                                source.sheet="us_fdiflows_fdi_59731862178918", 
+                                source.data.region="A8:AR244",
+                                source.colnames="A6:AR6", 
+                                result.colnames="FDI.inflow",
+                                result.cut.year=2003,
+                                format="UNCTAD")
+
+
 ################# FDI and technology transfer
 FDI.technology.transfer <- get.WEF(source.file="WEF.xlsx", 
                                              source.sheet="Sheet1", 
