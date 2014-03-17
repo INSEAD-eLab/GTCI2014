@@ -143,3 +143,23 @@ International.migrant.stock.table7 <- get.WEF(source.file="[R] [UN] Internationa
                                               source.date="E10", 
                                               source.countries="B25:B265",
                                               multi.col=TRUE)
+
+## UNCTAD data has same format as UNESCO and used that function
+################### Remittance receipts
+remittance.receipts <- get.UNESCO.format(source.file="[R] [UNCTAD] Remittance receipts.xlsx",
+                                         source.sheet="us_remittances_59770250149134", 
+                                         source.data.region="A8:AH244",
+                                         source.colnames="A6:AH6", 
+                                         result.colnames="remittance.inflow",
+                                         result.cut.year=2003,
+                                         format="UNCTAD")
+
+## UNCTAD data has same format as UNESCO and used that function
+################### Remittance payments
+remittance.payments <- get.UNESCO.format(source.file="[R] [UNCTAD] Remittance payments.xlsx",
+                                         source.sheet="us_remittances_59777731429002", 
+                                         source.data.region="A8:AH244",
+                                         source.colnames="A6:AH6", 
+                                         result.colnames="remittance.outflow",
+                                         result.cut.year=2003,
+                                         format="UNCTAD")
