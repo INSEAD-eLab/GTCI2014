@@ -21,6 +21,41 @@ old.age.contributors.ratio.percent.labor.force <- get.UNESCO.format(source.file=
                                                                     result.cut.year=2003,
                                                                     format="ILOpdf")
 
+
+## ILO pdf converted data has same format as UNESCO and used that function
+################################# Old age employee protection ratio (contributors)
+Old.age.employee.protection.ratio.contributors <- get.UNESCO.format(source.file="[R] [ILO] Old age employee protection ratio (contributors).xlsx",
+                                                                    source.sheet="Sheet1", 
+                                                                    source.data.region="A2:N59",
+                                                                    source.colnames="A1:N1", 
+                                                                    result.colnames="Old.age.employee.protection.ratio.contributors",
+                                                                    result.cut.year=2003,
+                                                                    format="ILOpdf")
+
+
+## ILO pdf converted data has same format as UNESCO and used that function
+################################# Disability contributors ratio (% working age)
+Disability.contributors.ratio.percent.working.age <- get.UNESCO.format(source.file="[R] [ILO] Disability contributors ratio (% working age).xlsx",
+                                                                       source.sheet="Sheet1", 
+                                                                       source.data.region="A2:N75",
+                                                                       source.colnames="A1:N1", 
+                                                                       result.colnames="Disability.contributors.ratio.percent.working.age",
+                                                                       result.cut.year=2003,
+                                                                       format="ILOpdf")
+
+
+
+## ILO pdf converted data has same format as UNESCO and used that function
+################################# Disability contributors ratio (% labor force)
+Disability.contributors.ratio.percent.labor.force <- get.UNESCO.format(source.file="[R] [ILO] Disability contributors ratio (% labor force).xlsx",
+                                                                       source.sheet="Sheet1", 
+                                                                       source.data.region="A2:N71",
+                                                                       source.colnames="A1:N1", 
+                                                                       result.colnames="Disability.contributors.ratio.percent.labor.force",
+                                                                       result.cut.year=2003,
+                                                                       format="ILOpdf")
+
+
 ################# Extent and effect of taxation (on incentives to work)
 Extent.effect.taxation.on.incentives.to.work <- get.WEF(source.file="WEF.xlsx", 
                                                     source.sheet="Sheet1", 
