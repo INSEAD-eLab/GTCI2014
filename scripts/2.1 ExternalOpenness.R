@@ -57,6 +57,21 @@ net.migration.scaled <- scaling(numertor=net.migration,
 ## remove the country group and income group 
 net.migration.scaled <- net.migration.scaled[complete.cases(net.migration.scaled),]
 
+## calculation for growth
+## WDI data has same format as UNESCO and used that function
+net.migration.2007 <- get.UNESCO.format(source.file="[R] [WDI] Net migration (stock) five-year estimates.xls",
+                                   source.sheet="Data", 
+                                   source.data.region="AY4:AY255",
+                                   source.colnames="AX3:AY3", 
+                                   result.colnames="net.migration",
+                                   result.cut.year=2003,
+                                   names.separated=TRUE, 
+                                   country.names="A4:A255")
+
+net.migration.growth <- merge(net.migration.2007, net.migration, by=c("ISO3", "Country.Name"))
+net.migration.growth[, "growth"] <- (net.migration.growth[, 6] - net.migration.growth[, 4]) / net.migration.growth[, 4]
+
+
 ################# end of net migration
 
 # UN data format can be used with WEF function

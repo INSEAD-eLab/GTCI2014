@@ -32,8 +32,8 @@ Part.time.employment.rate.15.female <- get.ILO.latest( source.file="[R] [ILO] Pa
                                                        source.sheet="KILM 6",
                                                        source.region="A3:AC9936", 
                                                        source.gender="F",
-                                                       source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Part.time.employment.rate...."),
-                                                       result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Part.time.employment.rate.precent"),
+                                                       source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Female.share.of.part.time.employment...."),
+                                                       result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Female.share.of.part.time.employment.percent"),
                                                        source.age="15+",
                                                        result.cut.year=2003)
 
@@ -41,22 +41,16 @@ Part.time.employment.rate.25.female <- get.ILO.latest( source.file="[R] [ILO] Pa
                                                        source.sheet="KILM 6",
                                                        source.region="A3:AC9936", 
                                                        source.gender="F",
-                                                       source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Part.time.employment.rate...."),
-                                                       result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Part.time.employment.rate.precent"),
+                                                       source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Female.share.of.part.time.employment...."),
+                                                       result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Female.share.of.part.time.employment.percent"),
                                                        source.age="25+",
                                                        result.cut.year=2003)
 
-part.time.employment.rate.15.female.ratio <- merge(Part.time.employment.rate.15.female, Part.time.employment.rate.15, by=c("Country.Name", "ISO3", "Year", "Age.group"))
-part.time.employment.rate.15.female.ratio[, "ratio"] <- part.time.employment.rate.15.female.ratio[, 6]/part.time.employment.rate.15.female.ratio[, 8]
-
-part.time.employment.rate.25.female.ratio <- merge(Part.time.employment.rate.25.female, Part.time.employment.rate.25, by=c("Country.Name", "ISO3", "Year", "Age.group"))
-part.time.employment.rate.25.female.ratio[, "ratio"] <- part.time.employment.rate.25.female.ratio[, 6]/part.time.employment.rate.25.female.ratio[, 8]
-
 ## countries in 15 but not in 25
-setdiff(part.time.employment.rate.15.female.ratio$Country.Name, part.time.employment.rate.25.female.ratio$Country.Name)
+setdiff(Part.time.employment.rate.15.female$Country.Name, Part.time.employment.rate.25.female$Country.Name)
 
 ## countries in 25 but not in 15
-setdiff(part.time.employment.rate.25.female.ratio$Country.Name, part.time.employment.rate.15.female.ratio$Country.Name)
+setdiff(Part.time.employment.rate.25.female$Country.Name, Part.time.employment.rate.15.female$Country.Name)
 
 
 ################# Use of virtual social networks
