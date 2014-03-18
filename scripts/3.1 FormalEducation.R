@@ -112,10 +112,96 @@ combined4[combined4$Year>2015,]
 combined4[,"raios"] <- (combined4[,"graduates.science"] + combined4[,"graduates.engineering"]) / combined4[,"graduates.total"]
 
 
+################# PISA scores
+
+### 2012
+PISA.maths.2012  <- get.WEF(source.file="[R] [OECD] PISA mathematics score (2012).xls", 
+                            source.sheet="Table I.2.3a", 
+                            source.data.region="B16:B83",
+                            source.colname="A7", 
+                            source.date="A1", 
+                            source.countries="A16:A83")
+
+PISA.reading.2012  <- get.WEF(source.file="[R] [OECD] PISA reading score (2012).xls", 
+                              source.sheet="Table I.4.3a", 
+                              source.data.region="B16:B83",
+                              source.colname="A7", 
+                              source.date="A1", 
+                              source.countries="A16:A83")
+
+PISA.science.2012  <- get.WEF(source.file="[R] [OECD] PISA science score (2012).xls", 
+                              source.sheet="Table I.5.3a", 
+                              source.data.region="B16:B83",
+                              source.colname="A7", 
+                              source.date="A1", 
+                              source.countries="A16:A83")
+
+PISA.2012 <- merge(PISA.maths.2012, PISA.reading.2012, by=c("ISO3", "Country.Name", "Year"))
+PISA.2012 <- merge(PISA.2012, PISA.science.2012, by=c("ISO3", "Country.Name", "Year"))
+PISA.2012[, "average"] <- (PISA.2012[, 4] + PISA.2012[, 5] + PISA.2012[, 6])/3
+
+### 2009
+PISA.reading.2009  <- get.WEF(source.file="[R] [OECD] PISA reading, math and science score (2009).xls", 
+                              source.sheet="Table I.A", 
+                              source.data.region="B7:B71",
+                              source.colname="B5", 
+                              source.date="A1", 
+                              source.countries="A7:A71")
+
+PISA.maths.2009  <- get.WEF(source.file="[R] [OECD] PISA reading, math and science score (2009).xls", 
+                              source.sheet="Table I.A", 
+                              source.data.region="H7:H71",
+                              source.colname="H5", 
+                              source.date="A1", 
+                              source.countries="A7:A71")
+
+PISA.science.2009  <- get.WEF(source.file="[R] [OECD] PISA reading, math and science score (2009).xls", 
+                              source.sheet="Table I.A", 
+                              source.data.region="I7:I71",
+                              source.colname="I5", 
+                              source.date="A1", 
+                              source.countries="A7:A71")
+
+PISA.2009 <- merge(PISA.reading.2009, PISA.maths.2009, by=c("ISO3", "Country.Name", "Year"))
+PISA.2009 <- merge(PISA.2009, PISA.science.2009, by=c("ISO3", "Country.Name", "Year"))
+PISA.2009[, "average"] <- (PISA.2009[, 4] + PISA.2009[, 5] + PISA.2009[, 6])/3
+
+#########countries which are in 2012 but not in 2009
+setdiff(PISA.2012$Country.Name, PISA.2009$Country.Name)
+
+#########countries which are in 2009 but not in 2012
+setdiff(PISA.2009$Country.Name, PISA.2012$Country.Name)
+
+
+PISA.maths.2009.plus  <- get.WEF(source.file="[R] [ACER] PISA maths score (2009+).xlsx", 
+                                 source.sheet="Sheet2", 
+                                 source.data.region="B2:B7",
+                                 source.colname="B1", 
+                                 source.date="C1", 
+                                 source.countries="A2:A7")
+
+PISA.reading.2009.plus  <- get.WEF(source.file="[R] [ACER] PISA reading score (2009+).xlsx", 
+                                   source.sheet="Sheet2", 
+                                   source.data.region="B2:B7",
+                                   source.colname="B1", 
+                                   source.date="C1", 
+                                   source.countries="A2:A7")
+
+PISA.science.2009.plus  <- get.WEF(source.file="[R] [ACER] PISA science score (2009+).xlsx", 
+                                   source.sheet="Sheet2", 
+                                   source.data.region="B2:B7",
+                                   source.colname="B1", 
+                                   source.date="C1", 
+                                   source.countries="A2:A7")
+
+PISA.2009.plus <- merge(PISA.reading.2009.plus, PISA.maths.2009.plus, by=c("ISO3", "Country.Name", "Year"))
+PISA.2009.plus <- merge(PISA.2009.plus, PISA.science.2009.plus, by=c("ISO3", "Country.Name", "Year"))
+PISA.2009.plus[, "average"] <- (PISA.2009.plus[, 4] + PISA.2009.plus[, 5] + PISA.2009.plus[, 6])/3
+
 ################# QS University Ranking
 QS.university.ranking  <- get.WEF(source.file="[R] [QS] QS University ranking.xlsx", 
-                                      source.sheet="Sheet1", 
-                                      source.data.region="M2:M72",
-                                      source.colname="M1", 
-                                      source.date="O2", 
-                                      source.countries="B2:B72")
+                                  source.sheet="Sheet1", 
+                                  source.data.region="M2:M72",
+                                  source.colname="M1", 
+                                  source.date="O2", 
+                                  source.countries="B2:B72")
