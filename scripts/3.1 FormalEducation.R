@@ -110,3 +110,12 @@ combined4[combined4$Year>2015,]
 
 ## get the ratio
 combined4[,"raios"] <- (combined4[,"graduates.science"] + combined4[,"graduates.engineering"]) / combined4[,"graduates.total"]
+
+
+################# QS University Ranking
+QS.university.ranking  <- get.WEF(source.file="[R] [QS] QS University ranking.xlsx", 
+                                      source.sheet="Sheet1", 
+                                      source.data.region="M2:M72",
+                                      source.colname="M1", 
+                                      source.date="O2", 
+                                      source.countries="B2:B72")
