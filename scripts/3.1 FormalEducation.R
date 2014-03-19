@@ -110,7 +110,9 @@ combined4[combined4$Year>2015,]
 
 ## get the ratio
 combined4[,"raios"] <- (combined4[,"graduates.science"] + combined4[,"graduates.engineering"]) / combined4[,"graduates.total"]
-
+combined4[,"ISO3"] <- rownames(combined4)
+combined4 <- merge(combined4, graduates.total[, c(1,4)], by="ISO3")
+combined4 <- combined4[, c(7, 1:6)]
 
 ################# PISA scores
 
