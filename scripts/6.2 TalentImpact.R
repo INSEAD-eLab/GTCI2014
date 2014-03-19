@@ -20,6 +20,16 @@ Total.patent.resident.applications  <- get.UNESCO.format(source.file="[R] [WIPO]
                                                          format="WIPO",
                                                          result.row="Resident")
 
+## scaling
+scaled.total.patent.resident.applications <- scaling(numertor=Total.patent.resident.applications, 
+                                                     numerator.colname="Total.patent.resident.applications",
+                                                     denominator.file="[R] [WIPO] Total patent resident applications (denominator).xlsx", 
+                                                     denominator.sheet="weoreptc.aspx",
+                                                     denominator.countries="A2:A189", 
+                                                     denominator.data.region="F2:P189", 
+                                                     denominator.years="F1:P1", 
+                                                     result.colname="GDP.PPP")
+
 ## WIPO data format can be used
 ################# Total patent resident granted (direct and PCT national phase entries)
 patent.resident.granted <- get.UNESCO.format(source.file="[R] [WIPO] Total patent resident grants (numerator).xlsx",
@@ -32,17 +42,6 @@ patent.resident.granted <- get.UNESCO.format(source.file="[R] [WIPO] Total paten
                                              country.names="A7:B342",
                                              format="WIPO",
                                              result.row="Resident")
-
-
-## scaling
-scaled.total.patent.resident.applications <- scaling(numertor=Total.patent.resident.applications, 
-                                                     numerator.colname="Total.patent.resident.applications",
-                                                     denominator.file="[R] [WIPO] Total patent resident applications (denominator).xlsx", 
-                                                     denominator.sheet="weoreptc.aspx",
-                                                     denominator.countries="A2:A189", 
-                                                     denominator.data.region="F2:P189", 
-                                                     denominator.years="F1:P1", 
-                                                     result.colname="GDP.PPP")
 
 ## scaling
 scaled.patent.resident.granted <- scaling(numertor=patent.resident.granted, 
