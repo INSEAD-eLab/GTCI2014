@@ -40,3 +40,18 @@ merged6.2 <- merge(merged6.2, new.business.ownership[, c(3,4)], by="ISO3", all=T
 merged6.2 <- merge(merged6.2, innovation.output[, c(1,4)], by="ISO3", all=TRUE)
 merged6.2 <- merged6.2[, c(1,11,2:10)]
 
+
+
+generate.pdf(PISA.latest[, c(2,1,3:7)], "Average", "PISA Latest Score")
+oo <- combined4[, c(1:3,7:9)]
+generate.pdf(oo, "science and engineering ratio", "Science and Engineering Graduates")
+
+
+
+if(ncol(variable.to.be.printed.sorted) == 4){
+  align.option <- "lp{4cm}llp{5cm}"
+} else if(ncol(variable.to.be.printed.sorted) == 5){
+  align.option <- "lp{4cm}llp{3cm}p{3cm}"
+} else if(ncol(variable.to.be.printed.sorted) == 6){
+  align.option <- "lp{4cm}llp{2.5cm}p{2.5cm}p{2.5cm}"
+}

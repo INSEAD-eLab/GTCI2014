@@ -7,7 +7,7 @@ library(seqinr)
 get.ISO3 <- function(){
   
   ISO3<-loadWorkbook(paste("data/", "Country List with ISO3.xlsx", sep=""))
-  ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C465", header=T)
+  ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C468", header=T)
   ISO3[,1] <- tolower(ISO3[,1])
   
   return(ISO3)
@@ -537,4 +537,22 @@ scaling <- function(numertor, numerator.colname, denominator.file, denominator.s
   merged.with.numerator[, "ratio"] <- multiplier*(merged.with.numerator[, numerator.colname]/merged.with.numerator[, result.colname])
   
   return(merged.with.numerator)
+}
+
+generate.pdf <- function(variable.object, variable.to.sort, name){
+  ## variable.object should follow Country.Name, ISO3, Year, Variable1 - Variable3
+  ## total 6 columns maximum from minimum 4 columns
+  name.to.be.printed <- name
+  variable.to.be.printed <- variable.object
+  sorting.name <- variable.to.sort
+  
+  variable.to.be.printed.sorted <- variable.to.be.printed[order(variable.to.be.printed[, sorting.name], decreasing=T),]
+  rownames(variable.to.be.printed.sorted) <- c(1:nrow(variable.to.be.printed.sorted))
+  
+  knit2pdf("scripts/Export.Rnw")
+  file.copy("Export.pdf", "export/", overwrite=TRUE)
+  file.rename("export/Export.pdf", paste("export/", name,".pdf", sep=""))
+  file.remove("Export.log", "Export.tex", "Export.aux", "Export.pdf")
+  
+  rm(name.to.be.printed, variable.to.be.printed, variable.to.be.printed.sorted, sorting.name)
 }
