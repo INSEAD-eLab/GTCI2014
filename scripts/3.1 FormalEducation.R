@@ -116,7 +116,9 @@ combined4[,"ISO3"] <- rownames(combined4)
 combined4 <- merge(combined4, graduates.total[, c(1,4)], by="ISO3")
 combined4 <- combined4[, c(9, 1:8)]
 
-################# PISA scores
+rm(combined1, combined2, combined3)
+
+####################################################################### PISA scores
 
 ### 2012
 PISA.maths.2012  <- get.WEF(source.file="[R] [OECD] PISA mathematics score (2012).xls", 
@@ -144,6 +146,8 @@ PISA.2012 <- merge(PISA.maths.2012, PISA.reading.2012, by=c("ISO3", "Country.Nam
 PISA.2012 <- merge(PISA.2012, PISA.science.2012, by=c("ISO3", "Country.Name", "Year"))
 PISA.2012[, "average"] <- (PISA.2012[, 4] + PISA.2012[, 5] + PISA.2012[, 6])/3
 
+rm(PISA.maths.2012, PISA.reading.2012, PISA.science.2012)
+
 ### 2009
 PISA.reading.2009  <- get.WEF(source.file="[R] [OECD] PISA reading, math and science score (2009).xls", 
                               source.sheet="Table I.A", 
@@ -170,13 +174,15 @@ PISA.2009 <- merge(PISA.reading.2009, PISA.maths.2009, by=c("ISO3", "Country.Nam
 PISA.2009 <- merge(PISA.2009, PISA.science.2009, by=c("ISO3", "Country.Name", "Year"))
 PISA.2009[, "average"] <- (PISA.2009[, 4] + PISA.2009[, 5] + PISA.2009[, 6])/3
 
+rm(PISA.maths.2009, PISA.reading.2009, PISA.science.2009)
+
 #########countries which are in 2012 but not in 2009
 setdiff(PISA.2012$Country.Name, PISA.2009$Country.Name)
 
 #########countries which are in 2009 but not in 2012
 setdiff(PISA.2009$Country.Name, PISA.2012$Country.Name)
 
-
+## 2009+
 PISA.maths.2009.plus  <- get.WEF(source.file="[R] [ACER] PISA maths score (2009+).xlsx", 
                                  source.sheet="Sheet2", 
                                  source.data.region="B2:B7",
@@ -201,6 +207,31 @@ PISA.science.2009.plus  <- get.WEF(source.file="[R] [ACER] PISA science score (2
 PISA.2009.plus <- merge(PISA.reading.2009.plus, PISA.maths.2009.plus, by=c("ISO3", "Country.Name", "Year"))
 PISA.2009.plus <- merge(PISA.2009.plus, PISA.science.2009.plus, by=c("ISO3", "Country.Name", "Year"))
 PISA.2009.plus[, "average"] <- (PISA.2009.plus[, 4] + PISA.2009.plus[, 5] + PISA.2009.plus[, 6])/3
+
+rm(PISA.maths.2009.plus, PISA.reading.2009.plus, PISA.science.2009.plus)
+
+## merging
+PISA.2009.plus[, "Year"] <- 2010
+PISA.2009[, "Year"] <- 2009
+PISA.2012[, "Year"] <- 2012
+
+## changing the colnames to be merged
+colnames(PISA.2012) <- c("ISO3", "Country.Name", "Year", "Maths", "Reading", "Science", "Average")
+PISA.2012 <- PISA.2012[, c(1:3,5,4,6:7)]
+colnames(PISA.2009) <- c("ISO3", "Country.Name", "Year", "Reading", "Maths", "Science", "Average")
+colnames(PISA.2009.plus) <- c("ISO3", "Country.Name", "Year", "Reading", "Maths", "Science", "Average")
+
+## merged
+PISA <- rbind(PISA.2009, PISA.2009.plus, PISA.2012)
+
+## sort by ISO3, year decreasing to get the latest year available
+PISA.sorted <- PISA[order(PISA$ISO3, PISA$Year, decreasing=T),]
+PISA.latest <- PISA.sorted[!duplicated(PISA.sorted$ISO3),]
+
+## revert back 2009+ data
+PISA.latest[PISA.latest$Year == 2010, "Year"] <- "2009+"
+
+####################################################################### end of PISA
 
 ################# QS University Ranking
 QS.university.ranking  <- get.WEF(source.file="[R] [QS] QS University ranking.xlsx", 

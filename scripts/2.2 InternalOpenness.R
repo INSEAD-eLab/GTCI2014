@@ -311,6 +311,16 @@ Estimated.earned.rank <- get.WEF(source.file="[R] [WEF] Estimated earned income.
                                  source.date="H2", 
                                  source.countries="A2:A135")
 
+## merging all earned income variables
+Estimated.earned.income.1 <- merge(Estimated.earned.income.female, Estimated.earned.income.male, by=c("ISO3", "Country.Name", "Year"))
+Estimated.earned.income.2 <- merge(Estimated.earned.income.female.40000, Estimated.earned.income.male.40000, by=c("ISO3", "Country.Name", "Year"))
+Estimated.earned.income.3 <- merge(Estimated.earned.female.male.ratio, Estimated.earned.rank, by=c("ISO3", "Country.Name", "Year"))
+
+Estimated.earned.income <- merge(Estimated.earned.income.1, Estimated.earned.income.2, by=c("ISO3", "Country.Name", "Year"))
+Estimated.earned.income <- merge(Estimated.earned.income, Estimated.earned.income.3, by=c("ISO3", "Country.Name", "Year"))
+
+rm(Estimated.earned.income.1, Estimated.earned.income.2, Estimated.earned.income.3)
+
 ## WDI data has same format as UNESCO and used that function
 ################################# Female parliamentarians
 female.parliamentarians <- get.UNESCO.format(source.file="[R] [WDI] Female parliamentarians.xls",
