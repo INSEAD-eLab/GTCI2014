@@ -109,4 +109,4 @@ labor.force <- get.ILO.latest( source.file="labour force.csv",
 linkedIn.users.ratio <- merge(linkedIn.users, labor.force, by="ISO3", all.x=T, sort=F)
 linkedIn.users.ratio[, 9] <- lapply(linkedIn.users.ratio[9], function(x) ifelse(is.na(x), NA, as.numeric(gsub(" ", "", as.character(x)))))
 
-linkedIn.users.ratio[, "ratio"] <- linkedIn.users.ratio[, 3]/linkedIn.users.ratio[, 9]
+linkedIn.users.ratio[, "ratio"] <- linkedIn.users.ratio[, 3]/(linkedIn.users.ratio[, 9]*1000)
