@@ -85,7 +85,7 @@ established.business.ownership <- get.UNESCO.format(source.file="[R] [GEM] Estab
                                                     source.sheet="Established business ownership", 
                                                     source.data.region="A6:M102",
                                                     source.colnames="A5:M5", 
-                                                    result.colnames="established.business.ownership",
+                                                    result.colnames="Established business ownership",
                                                     result.cut.year=2003,
                                                     format="GEM")
 
@@ -95,6 +95,6 @@ new.business.ownership <- get.UNESCO.format(source.file="[R] [GEM] New business 
                                      source.sheet="GEM_Dataset_20140123090048", 
                                      source.data.region="A6:M102",
                                      source.colnames="A5:M5", 
-                                     result.colnames="new.business.ownership",
+                                     result.colnames="New business ownership",
                                      result.cut.year=2003,
                                      format="GEM")
