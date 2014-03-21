@@ -40,5 +40,29 @@ generate.pdf(tertiary.educated.population.above15.ILO.total[,-4] , "Tertiary (pe
 generate.pdf(tertiary.educated.population.above25.ILO.female[,-4] , "Tertiary (percent)", "Tertiary educated workforce (ILO - above 25 female)")
 generate.pdf(tertiary.educated.population.above15.ILO.female[,-4] , "Tertiary (percent)", "Tertiary educated workforce (ILO - above 15 female)")
 
+## subpillar 5.1
+generate.pdf(secondary.educated.population.above25.ILO.total[, -4] , "Secondary (percent)", "Secondary educated workforce (ILO - above 25 total)")
+generate.pdf(secondary.educated.population.above15.ILO.total[, -4] , "Secondary (percent)", "Secondary educated workforce (ILO - above 15 total)")
+generate.pdf(secondary.educated.population.above25.ILO.female[, -4] , "Secondary (percent)", "Secondary educated workforce (ILO - above 25 female)")
+generate.pdf(secondary.educated.population.above15.ILO.female[, -4] , "Secondary (percent)", "Secondary educated workforce (ILO - above 15 female)")
+generate.pdf(lower.skilled.88.MF.latest[, c(1,2,3,5,15)] , "lower skilled 88 MF ratio", "Lower skilled workers (other than ISCO 1-3)")
+generate.pdf(tech.asso.88.F.latest , "3 (percent)", "Female technicians and associate professional (ISCO 88)")
+generate.pdf(tech.asso.08.F.latest , "3 (percent)", "Female technicians and associate professional (ISCO 08)")
+generate.pdf(youth.employment[, -4] , "Employment to population ratio of youth", "Youth employment (percent of youth population)")
+generate.pdf(youth.unemployment.all[, c(1,2,3,5)] , "Youth unemployment rate (percent)", "Youth unemployment rate (youth unemployment as a percentage of the youth labour force)")
+generate.pdf(youth.unemployment.all[, c(1,2,3,6)] , "Ratio of youth unemployment rate to adult unemployment rate", "Youth unemployment rate (ratio of the youth unemployment rate to the adult unemployment rate)")
+generate.pdf(youth.unemployment.all[, c(1,2,3,7)] , "Share of youth unemployed in total unemployed (percent)", "Youth unemployment rate (youth unemployment as a proportion of total unemployment)")
+generate.pdf(youth.unemployment.all[, c(1,2,3,8)] , "Share of youth unemployed in youth population (percent)", "Youth unemployment rate (youth unemployment as a proportion of the youth population)")
+generate.pdf(NEET[, -4] , "NEET rate percent", "NEET (The number of young people who are not in employment, education or training (NEET) as a percentage of the youth population)")
+
+
+## subpillar 5.1
+generate.pdf(labour.productivity.per.person.employed , "labour productivity per person employed", "Labour productivity per person employed")
+generate.pdf(labour.productivity.per.hour.employed , "labour productivity per hour employed", "Labour productivity per hour employed")
+generate.pdf(total.factor.productivity.growth , "total factor productivity growth", "Total factor productivity growth")
+generate.pdf(labour.productivity.per.person.employed.growth[, -6] , "growth (2013-2012)/2012", "Labour productivity per person employed (growth)")
+generate.pdf(pay.and.productivity , "Pay and productivity", "Relationship of pay to productivity")
+
+
 generate.pdf( , "", "")
 

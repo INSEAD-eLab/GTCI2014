@@ -29,7 +29,7 @@ youth.employment <- get.ILO.latest( source.file="[R] [ILO] Youth employment.xls"
                                     source.region="A3:L35247", 
                                     source.gender="MF",
                                     source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Employment..to.population.ratio"),
-                                    result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Employment.to.population.ratio"),
+                                    result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Employment to population ratio of youth"),
                                     source.age="15-24",
                                     result.cut.year=2003)
 
@@ -42,9 +42,9 @@ youth.unemployment.all <- get.ILO.latest( source.file="[R] [ILO] Youth unemploym
                                     source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Youth.unemployment.rate....", 
                                                       "Ratio.of.youth.unemployment.rate.to.adult.unemployment.rate", "Share.of.youth.unemployed.in.total.unemployed....",
                                                       "Share.of.youth.unemployed.in.youth.population...."),
-                                    result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Youth.unemployment.rate.percent",
-                                                      "Ratio.of.youth.unemployment.rate.to.adult.unemployment.rate", "Share.of.youth.unemployed.in.total.unemployed.percent",
-                                                      "Share.of.youth.unemployed.in.youth.population.percent"),
+                                    result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Youth unemployment rate (percent)",
+                                                      "Ratio of youth unemployment rate to adult unemployment rate", "Share of youth unemployed in total unemployed (percent)",
+                                                      "Share of youth unemployed in youth population (percent)"),
                                     result.cut.year=2003)
 
 ################################# NEET 15-24
@@ -54,7 +54,7 @@ NEET <- get.ILO.latest( source.file="[R] [ILO] NEET.xls",
                         source.region="A3:H2197", 
                         source.gender="MF",
                         source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age", "NEET.rate...."),
-                        result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age", "NEET.rate.percent"),
+                        result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age", "NEET rate percent"),
                         result.cut.year=2003)
 
 
@@ -146,10 +146,10 @@ lower.skilled.88.MF.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-88] Te
                                          source.gender="MF",
                                          source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.", "X1...000.", "X2...000.", "X3...000.", "X4...000.",
                                                            "X5...000.", "X6...000.", "X7...000.", "X8...000.", "X9...000."),
-                                         result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment.000.88", "1.000.88", "2.000.88", "3.000.88", "4.000.88",
+                                         result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)", "1.000.88", "2.000.88", "3.000.88", "4.000.88",
                                                            "5.000.88", "6.000.88", "7.000.88", "8.000.88", "9.000.88"),
                                          result.cut.year=2003)
-lower.skilled.88.MF.latest[, "lower.skilled.88.MF.ratio"] <- rowSums(lower.skilled.88.MF.latest[,9:14], na.rm=TRUE)/lower.skilled.88.MF.latest[, 5]
+lower.skilled.88.MF.latest[, "lower skilled 88 MF ratio"] <- rowSums(lower.skilled.88.MF.latest[,9:14], na.rm=TRUE)/lower.skilled.88.MF.latest[, 5]
 
 
 
@@ -208,8 +208,8 @@ tech.asso.88.F.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-88] Technic
                                          source.gender="F",
                                          source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
                                                            "X3...000.", "X3...."),
-                                         result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment.000.88",
-                                                           "3.000.88", "3.percent.88"),
+                                         result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
+                                                           "3 (000)", "3 (percent)"),
                                          result.cut.year=2003)
 
 
@@ -219,6 +219,6 @@ tech.asso.08.F.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-08] Technic
                                          source.gender="F",
                                          source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
                                                            "X3...000.", "X3...."),
-                                         result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment.000.08",
-                                                           "3.000.08", "3.percent.08"), 
+                                         result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
+                                                           "3 (000)", "3 (percent)"), 
                                          result.cut.year=2003)
