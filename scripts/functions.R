@@ -2,6 +2,8 @@
 #install.packages("seqinr")
 library(XLConnect)
 library(seqinr)
+library(knitr)
+library(xtable)
 
 ################# Master ISO3 and country names sheet
 get.ISO3 <- function(){
@@ -9,8 +11,14 @@ get.ISO3 <- function(){
   ISO3<-loadWorkbook(paste("data/", "Country List with ISO3.xlsx", sep=""))
   ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C468", header=T)
   ISO3[,1] <- tolower(ISO3[,1])
-  
+
   return(ISO3)
+}
+
+get.single.country.name.list <- function(){
+  countries <- read.csv("data/Country.csv")
+  
+  return(countries)
 }
 
 ################# Political stability
@@ -545,6 +553,20 @@ generate.pdf <- function(variable.object, variable.to.sort, name){
   name.to.be.printed <- name
   variable.to.be.printed <- variable.object
   sorting.name <- variable.to.sort
+  
+  #variable.to.be.printed <- innovation.output
+  #sorting.name <- "GII innovation output"
+  #name.to.be.printed <- "GII Innovation Output"
+  
+  Country.Names <- get.single.country.name.list()
+  
+  variable.to.be.printed <- variable.to.be.printed[, !names(variable.to.be.printed) %in% c("Country.Name")]
+  variable.to.be.printed <- merge(Country.Names, variable.to.be.printed, by="ISO3", all.y=TRUE)
+  
+  variable.data.only <- variable.to.be.printed[, !names(variable.to.be.printed) %in% c("Country.Name", "ISO3", "Year"), drop=FALSE]
+  variable.ID.only   <- variable.to.be.printed[, c("ISO3", "Country.Name", "Year")]
+  
+  variable.to.be.printed <- cbind(variable.ID.only, variable.data.only)
   
   variable.to.be.printed.sorted <- variable.to.be.printed[order(variable.to.be.printed[, sorting.name], decreasing=T),]
   rownames(variable.to.be.printed.sorted) <- c(1:nrow(variable.to.be.printed.sorted))

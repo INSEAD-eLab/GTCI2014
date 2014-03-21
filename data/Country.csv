@@ -1,0 +1,275 @@
+Country.Name,ISO3
+Zimbabwe,ZWE
+Zambia,ZMB
+South Africa,ZAF
+Yemen,YEM
+Samoa,WSM
+Wallis and Futuna,WLF
+World,WLD
+Palestinian West Bank and Gaza,WBG
+Vanuatu,VUT
+Viet Nam,VNM
+United States Virgin Islands,VIR
+Br. Virgin I.,VGB
+Venezuela,VEN
+ST. VINCENT & GRENADINES,VCT
+Holy See,VAT
+Uzbekistan,UZB
+United States,USA
+Uruguay,URY
+Upper middle income,UMC
+Ukraine,UKR
+Uganda,UGA
+Tanzania,TZA
+"China, Taiwan",TWN
+Tuvalu,TUV
+Turkey,TUR
+Tunisia,TUN
+Trinidad & Tobago,TTO
+Tonga,TON
+East Timor,TMP
+Turkmenistan,TKM
+Tokelau,TKL
+Tajikistan,TJK
+Thailand,THA
+Togo,TGO
+Chad,TCD
+TURKS & CAICOS ISLANDS,TCA
+Syria,SYR
+Seychelles,SYC
+St. Maarten,SXM
+Swaziland,SWZ
+Sweden,SWE
+Slovenia,SVN
+Slovakia,SVK
+Suriname,SUR
+São Tomé e Príncipe,STP
+Small states,SST
+Sub-Saharan Africa (all income levels),SSF
+South Sudan,SSD
+Sub-Saharan Africa (developing only),SSA
+Serbia & Montenegro,SRB
+Saint Pierre and Miquelon,SPM
+Somalia,SOM
+San Marino,SMR
+El Salvador,SLV
+Sierra Leone,SLE
+Solomon Islands,SLB
+Ascension,SHN
+Singapore,SGP
+Senegal,SEN
+Sudan,SDN
+Saudi Arabia,SAU
+South Asia,SAS
+Rwanda,RWA
+Russia,RUS
+Romania,ROM
+RÉUNION,REU
+Qatar,QAT
+French Polynesia,PYF
+Pacific island small states,PSS
+Palestine,PSE
+Paraguay,PRY
+Portugal,PRT
+D.P.R. Korea,PRK
+Puerto Rico (U.S.),PRI
+Poland,POL
+Papua New Guinea,PNG
+Palau,PLW
+Philippines,PHL
+Peru,PER
+"Panama, excluding Canal Zone",PAN
+Pakistan,PAK
+Other small states,OSS
+Oman,OMN
+OECD members,OED
+High income: OECD,OEC
+New Zealand,NZL
+Nauru,NRU
+Nepal,NPL
+Norway,NOR
+High income: nonOECD,NOC
+Netherlands,NLD
+Niue,NIU
+Nicaragua,NIC
+Nigeria,NGA
+Norfolk Islands,NFK
+Niger,NER
+New Caledonia,NCL
+Namibia,NAM
+North America,NAC
+Mayotte,MYT
+Malaysia,MYS
+Malawi,MWI
+Mauritius,MUS
+MARTINIQUE,MTQ
+Montserrat,MSR
+Mauritania,MRT
+Mozambique,MOZ
+Northern Marianas,MNP
+Mongolia,MNG
+Montenegro,MNE
+Middle East & North Africa (developing only),MNA
+Myanmar,MMR
+Malta,MLT
+Mali,MLI
+Macedonia,MKD
+Middle income,MIC
+Marshall Islands,MHL
+Mexico,MEX
+Middle East & North Africa (all income levels),MEA
+Maldives,MDV
+Madagascar,MDG
+Republic of Moldova,MDA
+Monaco,MCO
+Morocco,MAR
+St. Martin (French part),MAF
+macao-china,MAC
+Latvia,LVA
+Luxembourg,LUX
+Lithuania,LTU
+Lesotho,LSO
+Low & middle income,LMY
+Lower middle income,LMC
+Sri Lanka,LKA
+Liechtenstein,LIE
+Low income,LIC
+Least developed countries: UN classification,LDC
+Latin America & Caribbean (all income levels),LCN
+Saint Lucia,LCA
+"Libya, State of",LBY
+Liberia,LBR
+Lebanon,LBN
+Laos,LAO
+Latin America & Caribbean (developing only),LAC
+Kuwait,KWT
+Kosovo,KSV
+Korea,KOR
+Saint Kitts and Nevis,KNA
+Kiribati,KIR
+Cambodia,KHM
+Kyrgyzstan,KGZ
+Kenya,KEN
+Kazakhstan,KAZ
+Japan,JPN
+Jordan,JOR
+Jersey,JEY
+Jamaica,JAM
+Italy,ITA
+Israel,ISR
+Iceland,ISL
+Iraq,IRQ
+Islamic Republic of Iran,IRN
+Ireland,IRL
+Not classified,INX
+India ,IND
+Isle of Man,IMY
+Indonesia,IDN
+Hungary,HUN
+Haiti,HTI
+Croatia,HRV
+Heavily indebted poor countries (HIPC),HPC
+Honduras,HND
+Hong Kong,HKG
+High income,HIC
+Guyana,GUY
+Guam,GUM
+FRENCH GUIANA,GUF
+Guatemala,GTM
+Greenland,GRL
+Grenada,GRD
+Greece,GRC
+Equatorial Guinea,GNQ
+Guinea-Bissau,GNB
+Gambia,GMB
+Guadeloupe,GLP
+Guinea,GIN
+Gibraltar,GIB
+Ghana,GHA
+Guernsey,GGY
+Georgia,GEO
+United Kingdom,GBR
+Gabon,GAB
+Micronesia,FSM
+Faeroe Islands,FRO
+France,FRA
+Falkland Islands,FLK
+Fiji,FJI
+Finland,FIN
+European Union,EUU
+Former Ethiopia,ETH
+Estonia,EST
+Spain,ESP
+Western Sahara,ESH
+Eritrea,ERI
+Euro area,EMU
+Egypt,EGY
+Ecuador,ECU
+Europe & Central Asia (all income levels),ECS
+Europe & Central Asia (developing only),ECA
+Zanzibar,EAZ
+East Asia & Pacific (all income levels),EAS
+East Asia & Pacific (developing only),EAP
+Algeria,DZA
+Dominican Rep.,DOM
+Denmark,DNK
+Dominica,DMA
+Djibouti,DJI
+Germany,DEU
+Czech Republic,CZE
+Cyprus,CYP
+Cayman Islands,CYM
+Curaçao,CUW
+Cuba,CUB
+Caribbean small states,CSS
+Costa Rica,CRI
+Cape Verde Islands,CPV
+Comoros,COM
+Colombia,COL
+Cook Islands,COK
+Congo,COG
+Dem. Rep. Congo,COD
+Cameroon,CMR
+Cote d'Ivoire,CIV
+China,CHN
+Chile,CHL
+Channel Islands,CHI
+Switzerland,CHE
+Cocos Keeling Islands,CCK
+Canada,CAN
+Central African Rep.,CAF
+Botswana,BWA
+Bhutan,BTN
+Brunei,BRN
+Barbados,BRB
+Brazil,BRA
+Bolivia (Plurinational State of),BOL
+Bermuda,BMU
+Belize,BLZ
+Belarus,BLR
+Bosnia & Herzegovina,BIH
+Bahamas,BHS
+Bahrain,BHR
+Bulgaria,BGR
+Bangladesh,BGD
+Burkina Faso,BFA
+Benin,BEN
+Belgium,BEL
+Burundi,BDI
+BCEAO,BCEAO
+Azerbaijan,AZE
+Austria,AUT
+Australia,AUS
+Antigua & Barbuda,ATG
+American Samoa,ASM
+Armenia,ARM
+Argentina,ARG
+United Arab Emirates,ARE
+Arab World,ARB
+Neth. Antilles,ANT
+Albania,ALB
+Anguilla,AIA
+Angola,AGO
+Afghanistan,AFG
+Andorra,ADO
+Aruba,ABW

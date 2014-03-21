@@ -24,7 +24,7 @@ print(years, tabular.environment='longtable', floating=FALSE, include.rownames=T
 <<results='asis', echo=FALSE>>=
 
 nvar <- ncol(variable.to.be.printed.sorted)-3
-align.option <- c('lp{4cm}ll', rep('p{2cm}', nvar))
+align.option <- c('llp{4cm}l', rep('p{2cm}', nvar))
 align.option <- paste(align.option, sep="", collapse="")
 
 variable.to.be.printed.sorted[, "Year"] <- as.character(variable.to.be.printed.sorted[, "Year"])

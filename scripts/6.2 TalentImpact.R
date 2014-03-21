@@ -30,6 +30,9 @@ scaled.total.patent.resident.applications <- scaling(numertor=Total.patent.resid
                                                      denominator.years="F1:P1", 
                                                      result.colname="GDP.PPP")
 
+scaled.total.patent.resident.applications <- scaled.total.patent.resident.applications[, c(1,3,2,4,6,7)]
+colnames(scaled.total.patent.resident.applications) <- c("ISO3", "Country.Name", "Year", "Total patent resident applications", "GDP PPP", "Scaled total patent resident applications")
+
 ## WIPO data format can be used
 ################# Total patent resident granted (direct and PCT national phase entries)
 patent.resident.granted <- get.UNESCO.format(source.file="[R] [WIPO] Total patent resident grants (numerator).xlsx",
@@ -52,6 +55,10 @@ scaled.patent.resident.granted <- scaling(numertor=patent.resident.granted,
                                           denominator.data.region="F2:P189", 
                                           denominator.years="F1:P1", 
                                           result.colname="GDP.PPP")
+
+scaled.patent.resident.granted <- scaled.patent.resident.granted[, c(1,3,2,4,6,7)]
+colnames(scaled.patent.resident.granted) <- c("ISO3", "Country.Name", "Year", "Total patent resident granted", "GDP PPP", "Scaled total patent resident granted")
+
 
 ################################ New business density 
 New.business.density  <- get.WB.format(source.file="[R] [WB ES] New business density.xlsx",
