@@ -244,3 +244,11 @@ tech.asso.08.F.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-08] Technic
                                          result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
                                                            "3 (000)", "3 (percent)"), 
                                          result.cut.year=2003)
+
+
+###################### addition calculation of ratio
+
+tech.asso.88.F <- merge(tech.asso.88.F.latest, tech.asso.88.MF.latest, by=c("ISO3", "Country.Name", "Year"), all.x=T)
+tech.asso.88.F[, "ratio"] <- tech.asso.88.F[, "3 (000)"]/tech.asso.88.F[, "3.000.88"]
+
+#### Take note that 4 countries has different years and they are now "NA" for total employment in tech category.
