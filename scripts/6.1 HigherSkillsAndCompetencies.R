@@ -203,6 +203,14 @@ female.professional.08 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-08] Femal
                                                             "2 (000)", "2 (percent)"),
                                           result.cut.year=2003)
 
+#### addition calculation of ratio
+
+professional.88.f <- merge(female.professional.88, Professional.88, by=c("ISO3", "Country.Name", "Year"), all.x=T)
+professional.88.f[, "ratio"] <- professional.88.f[, "2 (000).x"]/professional.88.f[, "2 (000).y"]
+
+#### Take note that 5 countries has different years and they are now "NA" for total employment in tech category. 
+#### (morocco, occupied palestinian territory, philippines, saudi arabia, uganda)
+
 ################# Researchers per million inhabitants (HC)
 researchers.HC <- get.UNESCO.format(source.file="[R] [UNESCO] Researchers per million inhabitants (HC).xlsx",
                                     source.sheet="download-28", 
