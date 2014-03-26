@@ -154,6 +154,291 @@ International.migrant.stock.table7 <- get.WEF(source.file="[R] [UN] Internationa
 
 
 
+
+################# International migrant stock (15 - 64)
+
+total.migrants.15.64 <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                                source.sheet="Table 4", 
+                                source.data.region="I25:R281",
+                                source.colname="I16:R16", 
+                                source.date="E10", 
+                                source.countries="B25:B281",
+                                multi.col=TRUE)
+
+total.migrants.15.64.name <- total.migrants.15.64[, c(1,12,13)]
+total.migrants.15.64.data <- total.migrants.15.64[, c(2:11)]
+total.migrants.15.64.data[, "total.15.64"] <- apply(total.migrants.15.64.data, 1, function(row) sum(row, na.rm=T))
+total.migrants.15.64 <- cbind(total.migrants.15.64.name, total.migrants.15.64.data[, 11, drop=F])
+total.migrants.15.64[, "Year"] <- as.numeric(substr(total.migrants.15.64[, "Year"], nchar(total.migrants.15.64[, "Year"])-3, nchar(total.migrants.15.64[, "Year"])))
+
+rm(total.migrants.15.64.name, total.migrants.15.64.data)
+
+population.15.64 <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                                source.sheet="Table 8", 
+                                source.data.region="I25:R281",
+                                source.colname="I16:R16", 
+                                source.date="E10", 
+                                source.countries="B25:B281",
+                                multi.col=TRUE)
+
+population.15.64.name <- population.15.64[, c(1,12,13)]
+population.15.64.data <- population.15.64[, c(2:11)]
+population.15.64.data[, "pop.15.64"] <- apply(population.15.64.data, 1, function(row) sum(row, na.rm=T))
+population.15.64 <- cbind(population.15.64.name, population.15.64.data[, 11, drop=F])
+population.15.64[, "Year"] <- as.numeric(substr(population.15.64[, "Year"], nchar(population.15.64[, "Year"])-15, nchar(population.15.64[, "Year"])-12))
+population.15.64[, "pop.15.64"] <- population.15.64[, "pop.15.64"]*1000
+
+rm(population.15.64.name, population.15.64.data)
+
+total.migrants.15.64 <- merge(total.migrants.15.64, population.15.64, by=c("Country.Name", "ISO3", "Year"), sort=F, all.x=T)
+total.migrants.15.64[, "ratio"] <- total.migrants.15.64[, "total.15.64"]/total.migrants.15.64[, "pop.15.64"]
+
+############################################################################# end of International migrant stock (below 25)
+
+################# International migrant stock (below 25)
+
+total.migrants.below.25 <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                                source.sheet="Table 4", 
+                                source.data.region="F25:J281",
+                                source.colname="F16:J16", 
+                                source.date="E10", 
+                                source.countries="B25:B281",
+                                multi.col=TRUE)
+
+total.migrants.below.25.name <- total.migrants.below.25[, c(1,7,8)]
+total.migrants.below.25.data <- total.migrants.below.25[, c(2:6)]
+total.migrants.below.25.data[, "below.25"] <- apply(total.migrants.below.25.data, 1, function(row) sum(row, na.rm=T))
+total.migrants.below.25 <- cbind(total.migrants.below.25.name, total.migrants.below.25.data[, 6, drop=F])
+total.migrants.below.25[, "Year"] <- as.numeric(substr(total.migrants.below.25[, "Year"], nchar(total.migrants.below.25[, "Year"])-3, nchar(total.migrants.below.25[, "Year"])))
+
+rm(total.migrants.below.25.name, total.migrants.below.25.data)
+
+population.below.25 <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                            source.sheet="Table 8", 
+                            source.data.region="F25:J281",
+                            source.colname="F16:J16",
+                            source.date="E10", 
+                            source.countries="B25:B281",
+                            multi.col=TRUE)
+
+population.below.25.name <- population.below.25[, c(1,7,8)]
+population.below.25.data <- population.below.25[, c(2:6)]
+population.below.25.data[, "pop.below.25"] <- apply(population.below.25.data, 1, function(row) sum(row, na.rm=T))
+population.below.25 <- cbind(population.below.25.name, population.below.25.data[, 6, drop=F])
+population.below.25[, "Year"] <- as.numeric(substr(population.below.25[, "Year"], nchar(population.below.25[, "Year"])-15, nchar(population.below.25[, "Year"])-12))
+population.below.25[, "pop.below.25"] <- population.below.25[, "pop.below.25"]*1000
+
+rm(population.below.25.name, population.below.25.data)
+
+total.migrants.below.25 <- merge(total.migrants.below.25, population.below.25, by=c("Country.Name", "ISO3", "Year"), sort=F, all.x=T)
+total.migrants.below.25[, "ratio"] <- total.migrants.below.25[, "below.25"]/total.migrants.below.25[, "pop.below.25"]
+
+############################################################################# end of International migrant stock (below 25)
+
+################# International migrant stock (above 25)
+
+total.migrants.above.25 <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                                   source.sheet="Table 4", 
+                                   source.data.region="K25:S281",
+                                   source.colname="K16:S16", 
+                                   source.date="E10", 
+                                   source.countries="B25:B281",
+                                   multi.col=TRUE)
+
+total.migrants.above.25.name <- total.migrants.above.25[, c(1,11,12)]
+total.migrants.above.25.data <- total.migrants.above.25[, c(2:10)]
+total.migrants.above.25.data[, "above.25"] <- apply(total.migrants.above.25.data, 1, function(row) sum(row, na.rm=T))
+total.migrants.above.25 <- cbind(total.migrants.above.25.name, total.migrants.above.25.data[, 10, drop=F])
+total.migrants.above.25[, "Year"] <- as.numeric(substr(total.migrants.above.25[, "Year"], nchar(total.migrants.above.25[, "Year"])-3, nchar(total.migrants.above.25[, "Year"])))
+
+rm(total.migrants.above.25.name, total.migrants.above.25.data)
+
+population.above.25 <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                               source.sheet="Table 8", 
+                               source.data.region="K25:S281",
+                               source.colname="K16:S16",
+                               source.date="E10", 
+                               source.countries="B25:B281",
+                               multi.col=TRUE)
+
+population.above.25.name <- population.above.25[, c(1,11,12)]
+population.above.25.data <- population.above.25[, c(2:10)]
+population.above.25.data[, "pop.above.25"] <- apply(population.above.25.data, 1, function(row) sum(row, na.rm=T))
+population.above.25 <- cbind(population.above.25.name, population.above.25.data[, 10, drop=F])
+population.above.25[, "Year"] <- as.numeric(substr(population.above.25[, "Year"], nchar(population.above.25[, "Year"])-15, nchar(population.above.25[, "Year"])-12))
+population.above.25[, "pop.above.25"] <- population.above.25[, "pop.above.25"]*1000
+
+rm(population.above.25.name, population.above.25.data)
+
+total.migrants.above.25 <- merge(total.migrants.above.25, population.above.25, by=c("Country.Name", "ISO3", "Year"), sort=F, all.x=T)
+total.migrants.above.25[, "ratio"] <- total.migrants.above.25[, "above.25"]/total.migrants.above.25[, "pop.above.25"]
+
+############################################################################# end of International migrant stock (above 25)
+
+
+################# International migrant stock (below 25 male)
+
+total.migrants.below.25.male <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                                   source.sheet="Table 4", 
+                                   source.data.region="U25:Y281",
+                                   source.colname="U16:Y16", 
+                                   source.date="E10", 
+                                   source.countries="B25:B281",
+                                   multi.col=TRUE)
+
+total.migrants.below.25.male.name <- total.migrants.below.25.male[, c(1,7,8)]
+total.migrants.below.25.male.data <- total.migrants.below.25.male[, c(2:6)]
+total.migrants.below.25.male.data[, "below.25.male"] <- apply(total.migrants.below.25.male.data, 1, function(row) sum(row, na.rm=T))
+total.migrants.below.25.male <- cbind(total.migrants.below.25.male.name, total.migrants.below.25.male.data[, 6, drop=F])
+total.migrants.below.25.male[, "Year"] <- as.numeric(substr(total.migrants.below.25.male[, "Year"], nchar(total.migrants.below.25.male[, "Year"])-3, nchar(total.migrants.below.25.male[, "Year"])))
+
+rm(total.migrants.below.25.male.name, total.migrants.below.25.male.data)
+
+population.below.25.male <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                               source.sheet="Table 8", 
+                               source.data.region="U25:Y281",
+                               source.colname="U16:Y16",
+                               source.date="E10", 
+                               source.countries="B25:B281",
+                               multi.col=TRUE)
+
+population.below.25.male.name <- population.below.25.male[, c(1,7,8)]
+population.below.25.male.data <- population.below.25.male[, c(2:6)]
+population.below.25.male.data[, "pop.below.25.male"] <- apply(population.below.25.male.data, 1, function(row) sum(row, na.rm=T))
+population.below.25.male <- cbind(population.below.25.male.name, population.below.25.male.data[, 6, drop=F])
+population.below.25.male[, "Year"] <- as.numeric(substr(population.below.25.male[, "Year"], nchar(population.below.25.male[, "Year"])-15, nchar(population.below.25.male[, "Year"])-12))
+population.below.25.male[, "pop.below.25.male"] <- population.below.25.male[, "pop.below.25.male"]*1000
+
+rm(population.below.25.male.name, population.below.25.male.data)
+
+total.migrants.below.25.male <- merge(total.migrants.below.25.male, population.below.25.male, by=c("Country.Name", "ISO3", "Year"), sort=F, all.x=T)
+total.migrants.below.25.male[, "ratio"] <- total.migrants.below.25.male[, "below.25.male"]/total.migrants.below.25.male[, "pop.below.25.male"]
+
+############################################################################# end of International migrant stock (below 25 male)
+
+
+################# International migrant stock (below 25 female)
+
+total.migrants.below.25.female <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                                        source.sheet="Table 4", 
+                                        source.data.region="AJ25:AN281",
+                                        source.colname="AJ16:AN16", 
+                                        source.date="E10", 
+                                        source.countries="B25:B281",
+                                        multi.col=TRUE)
+
+total.migrants.below.25.female.name <- total.migrants.below.25.female[, c(1,7,8)]
+total.migrants.below.25.female.data <- total.migrants.below.25.female[, c(2:6)]
+total.migrants.below.25.female.data[, "below.25.female"] <- apply(total.migrants.below.25.female.data, 1, function(row) sum(row, na.rm=T))
+total.migrants.below.25.female <- cbind(total.migrants.below.25.female.name, total.migrants.below.25.female.data[, 6, drop=F])
+total.migrants.below.25.female[, "Year"] <- as.numeric(substr(total.migrants.below.25.female[, "Year"], nchar(total.migrants.below.25.female[, "Year"])-3, nchar(total.migrants.below.25.female[, "Year"])))
+
+rm(total.migrants.below.25.female.name, total.migrants.below.25.female.data)
+
+population.below.25.female <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                                    source.sheet="Table 8", 
+                                    source.data.region="AJ25:AN281",
+                                    source.colname="AJ16:AN16",
+                                    source.date="E10", 
+                                    source.countries="B25:B281",
+                                    multi.col=TRUE)
+
+population.below.25.female.name <- population.below.25.female[, c(1,7,8)]
+population.below.25.female.data <- population.below.25.female[, c(2:6)]
+population.below.25.female.data[, "pop.below.25.female"] <- apply(population.below.25.female.data, 1, function(row) sum(row, na.rm=T))
+population.below.25.female <- cbind(population.below.25.female.name, population.below.25.female.data[, 6, drop=F])
+population.below.25.female[, "Year"] <- as.numeric(substr(population.below.25.female[, "Year"], nchar(population.below.25.female[, "Year"])-15, nchar(population.below.25.female[, "Year"])-12))
+population.below.25.female[, "pop.below.25.female"] <- population.below.25.female[, "pop.below.25.female"]*1000
+
+rm(population.below.25.female.name, population.below.25.female.data)
+
+total.migrants.below.25.female <- merge(total.migrants.below.25.female, population.below.25.female, by=c("Country.Name", "ISO3", "Year"), sort=F, all.x=T)
+total.migrants.below.25.female[, "ratio"] <- total.migrants.below.25.female[, "below.25.female"]/total.migrants.below.25.female[, "pop.below.25.female"]
+
+############################################################################# end of International migrant stock (below 25 female)
+
+################# International migrant stock (above 25 male)
+
+total.migrants.above.25.male <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                                   source.sheet="Table 4", 
+                                   source.data.region="Z25:AH281",
+                                   source.colname="Z16:AH16", 
+                                   source.date="E10", 
+                                   source.countries="B25:B281",
+                                   multi.col=TRUE)
+
+total.migrants.above.25.male.name <- total.migrants.above.25.male[, c(1,11,12)]
+total.migrants.above.25.male.data <- total.migrants.above.25.male[, c(2:10)]
+total.migrants.above.25.male.data[, "above.25.male"] <- apply(total.migrants.above.25.male.data, 1, function(row) sum(row, na.rm=T))
+total.migrants.above.25.male <- cbind(total.migrants.above.25.male.name, total.migrants.above.25.male.data[, 10, drop=F])
+total.migrants.above.25.male[, "Year"] <- as.numeric(substr(total.migrants.above.25.male[, "Year"], nchar(total.migrants.above.25.male[, "Year"])-3, nchar(total.migrants.above.25.male[, "Year"])))
+
+rm(total.migrants.above.25.male.name, total.migrants.above.25.male.data)
+
+population.above.25.male <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                               source.sheet="Table 8", 
+                               source.data.region="Z25:AH281",
+                               source.colname="Z16:AH16",
+                               source.date="E10", 
+                               source.countries="B25:B281",
+                               multi.col=TRUE)
+
+population.above.25.male.name <- population.above.25.male[, c(1,11,12)]
+population.above.25.male.data <- population.above.25.male[, c(2:10)]
+population.above.25.male.data[, "pop.above.25.male"] <- apply(population.above.25.male.data, 1, function(row) sum(row, na.rm=T))
+population.above.25.male <- cbind(population.above.25.male.name, population.above.25.male.data[, 10, drop=F])
+population.above.25.male[, "Year"] <- as.numeric(substr(population.above.25.male[, "Year"], nchar(population.above.25.male[, "Year"])-15, nchar(population.above.25.male[, "Year"])-12))
+population.above.25.male[, "pop.above.25.male"] <- population.above.25.male[, "pop.above.25.male"]*1000
+
+rm(population.above.25.male.name, population.above.25.male.data)
+
+total.migrants.above.25.male <- merge(total.migrants.above.25.male, population.above.25.male, by=c("Country.Name", "ISO3", "Year"), sort=F, all.x=T)
+total.migrants.above.25.male[, "ratio"] <- total.migrants.above.25.male[, "above.25.male"]/total.migrants.above.25.male[, "pop.above.25.male"]
+
+############################################################################# end of International migrant stock (above 25 male)
+
+
+################# International migrant stock (above 25 female)
+
+total.migrants.above.25.female <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                                        source.sheet="Table 4", 
+                                        source.data.region="AO25:AW281",
+                                        source.colname="AO16:AW16", 
+                                        source.date="E10", 
+                                        source.countries="B25:B281",
+                                        multi.col=TRUE)
+
+total.migrants.above.25.female.name <- total.migrants.above.25.female[, c(1,11,12)]
+total.migrants.above.25.female.data <- total.migrants.above.25.female[, c(2:10)]
+total.migrants.above.25.female.data[, "above.25.female"] <- apply(total.migrants.above.25.female.data, 1, function(row) sum(row, na.rm=T))
+total.migrants.above.25.female <- cbind(total.migrants.above.25.female.name, total.migrants.above.25.female.data[, 10, drop=F])
+total.migrants.above.25.female[, "Year"] <- as.numeric(substr(total.migrants.above.25.female[, "Year"], nchar(total.migrants.above.25.female[, "Year"])-3, nchar(total.migrants.above.25.female[, "Year"])))
+
+rm(total.migrants.above.25.female.name, total.migrants.above.25.female.data)
+
+population.above.25.female <- get.WEF(source.file="[R] [UN] International migrant stock.xls", 
+                                    source.sheet="Table 8", 
+                                    source.data.region="AO25:AW281",
+                                    source.colname="AO16:AW16",
+                                    source.date="E10", 
+                                    source.countries="B25:B281",
+                                    multi.col=TRUE)
+
+population.above.25.female.name <- population.above.25.female[, c(1,11,12)]
+population.above.25.female.data <- population.above.25.female[, c(2:10)]
+population.above.25.female.data[, "pop.above.25.female"] <- apply(population.above.25.female.data, 1, function(row) sum(row, na.rm=T))
+population.above.25.female <- cbind(population.above.25.female.name, population.above.25.female.data[, 10, drop=F])
+population.above.25.female[, "Year"] <- as.numeric(substr(population.above.25.female[, "Year"], nchar(population.above.25.female[, "Year"])-15, nchar(population.above.25.female[, "Year"])-12))
+population.above.25.female[, "pop.above.25.female"] <- population.above.25.female[, "pop.above.25.female"]*1000
+
+rm(population.above.25.female.name, population.above.25.female.data)
+
+total.migrants.above.25.female <- merge(total.migrants.above.25.female, population.above.25.female, by=c("Country.Name", "ISO3", "Year"), sort=F, all.x=T)
+total.migrants.above.25.female[, "ratio"] <- total.migrants.above.25.female[, "above.25.female"]/total.migrants.above.25.female[, "pop.above.25.female"]
+
+############################################################################# end of International migrant stock (above 25 female)
+
+
 ####### WDI data has same format as UNESCO and used that function
 ################### Personal remittances
 Personal.remittances.received <- get.UNESCO.format(source.file="[R] [WDI] Personal remittances.xls",

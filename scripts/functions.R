@@ -408,7 +408,7 @@ get.WEF <- function(source.file, source.sheet, source.data.region,
       data <- apply(data, 1:2, function(x) ifelse(x == ".", NA, ifelse(x == "...", NA, ifelse(x == "-", 0, as.numeric(x)))))  
     }    
   }else{
-    data <- apply(data, 1:2, function(x) ifelse(x == "n.c.", NA, ifelse(x == "...", NA, ifelse(x == "n.a.", NA, as.numeric(x)))))  
+    data <- apply(data, 1:2, function(x) ifelse(x =="..", NA, ifelse(x == "n.c.", NA, ifelse(x == "...", NA, ifelse(x == "n.a.", NA, as.numeric(x))))))
   }
   
   ## merge with country and data
