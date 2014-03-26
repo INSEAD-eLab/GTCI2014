@@ -255,12 +255,87 @@ Entrepreneurial.intention <- get.UNESCO.format(source.file="[R] [GEM] Entreprene
 
 ################# Language diversity index
 Language.diversity.index  <- get.WEF(source.file="[R] [Ethnologue] Language diversity index.xlsx", 
-                                    source.sheet="Sheet1", 
-                                    source.data.region="B2:B226",
-                                    source.colname="B1", 
-                                    source.date="L1", 
-                                    source.countries="A2:A226")
+                                     source.sheet="Sheet1", 
+                                     source.data.region="B2:B226",
+                                     source.colname="B1", 
+                                     source.date="L1", 
+                                     source.countries="A2:A226")
 
+Language.diversity.index.cover.age  <- get.WEF(source.file="[R] [Ethnologue] Language diversity index.xlsx", 
+                                               source.sheet="Sheet1", 
+                                               source.data.region="C2:C226",
+                                               source.colname="C1", 
+                                               source.date="L1", 
+                                               source.countries="A2:A226")
+
+Language.diversity.index.total.living.language  <- get.WEF(source.file="[R] [Ethnologue] Language diversity index.xlsx", 
+                                                           source.sheet="Sheet1", 
+                                                           source.data.region="D2:D226",
+                                                           source.colname="D1", 
+                                                           source.date="L1", 
+                                                           source.countries="A2:A226")
+
+Language.diversity.index.percent.living.language  <- get.WEF(source.file="[R] [Ethnologue] Language diversity index.xlsx", 
+                                                           source.sheet="Sheet1", 
+                                                           source.data.region="E2:E226",
+                                                           source.colname="E1", 
+                                                           source.date="L1", 
+                                                           source.countries="A2:A226")
+
+Language.diversity.index.inde.living.language  <- get.WEF(source.file="[R] [Ethnologue] Language diversity index.xlsx", 
+                                                             source.sheet="Sheet1", 
+                                                             source.data.region="F2:F226",
+                                                             source.colname="F1", 
+                                                             source.date="L1", 
+                                                             source.countries="A2:A226")
+
+Language.diversity.index.immi.living.language  <- get.WEF(source.file="[R] [Ethnologue] Language diversity index.xlsx", 
+                                                          source.sheet="Sheet1", 
+                                                          source.data.region="G2:G226",
+                                                          source.colname="G1", 
+                                                          source.date="L1", 
+                                                          source.countries="A2:A226")
+
+Language.diversity.index.count  <- get.WEF(source.file="[R] [Ethnologue] Language diversity index.xlsx", 
+                                                          source.sheet="Sheet1", 
+                                                          source.data.region="H2:H226",
+                                                          source.colname="H1", 
+                                                          source.date="L1", 
+                                                          source.countries="A2:A226")
+
+Language.diversity.index.mean  <- get.WEF(source.file="[R] [Ethnologue] Language diversity index.xlsx", 
+                                           source.sheet="Sheet1", 
+                                           source.data.region="I2:I226",
+                                           source.colname="I1", 
+                                           source.date="L1", 
+                                           source.countries="A2:A226")
+
+Language.diversity.index.median  <- get.WEF(source.file="[R] [Ethnologue] Language diversity index.xlsx", 
+                                           source.sheet="Sheet1", 
+                                           source.data.region="J2:J226",
+                                           source.colname="J1", 
+                                           source.date="L1", 
+                                           source.countries="A2:A226")
+## merging all variables
+language.diversity.1 <- merge(Language.diversity.index, Language.diversity.index.cover.age, by=c("Country.Name", "ISO3", "Year"), sort=F)
+language.diversity.2 <- merge(Language.diversity.index.total.living.language, Language.diversity.index.percent.living.language, by=c("Country.Name", "ISO3", "Year"), sort=F)
+language.diversity.3 <- merge(Language.diversity.index.inde.living.language, Language.diversity.index.immi.living.language, by=c("Country.Name", "ISO3", "Year"), sort=F)
+language.diversity.4 <- merge(Language.diversity.index.count, Language.diversity.index.mean, by=c("Country.Name", "ISO3", "Year"), sort=F)
+language.diversity.4 <- merge(language.diversity.4, Language.diversity.index.median, by=c("Country.Name", "ISO3", "Year"), sort=F)
+
+language.diversity.5 <- merge(language.diversity.1, language.diversity.2, by=c("Country.Name", "ISO3", "Year"), sort=F)
+language.diversity.6 <- merge(language.diversity.3, language.diversity.4, by=c("Country.Name", "ISO3", "Year"), sort=F)
+
+## this is the final one
+language.diversity <- merge(language.diversity.5, language.diversity.6, by=c("Country.Name", "ISO3", "Year"), sort=F)
+
+#clearing the data objects
+rm(language.diversity.1, language.diversity.2, language.diversity.3, language.diversity.4, language.diversity.5, language.diversity.6,
+   Language.diversity.index, Language.diversity.index.cover.age, Language.diversity.index.total.living.language, Language.diversity.index.percent.living.language,
+   Language.diversity.index.inde.living.language, Language.diversity.index.immi.living.language, Language.diversity.index.count, Language.diversity.index.mean,
+   Language.diversity.index.median)
+
+################################ end of language diversity index
 
 ################# Estimated earned income : female
 Estimated.earned.income.female  <- get.WEF(source.file="[R] [WEF] Estimated earned income.xlsx", 
