@@ -28,12 +28,20 @@ Country.capacity.attract.talent <- get.WEF(source.file="WEF.xlsx",
 
 
 ################# Country capacity to retain talent
-Country.capacity.retain.talent <- get.WEF(source.file="WEF.xlsx", 
+Country.capacity.retain.talent <- get.WEF(source.file="WEF.xlsx",
                                            source.sheet="Sheet1", 
                                            source.data.region="DF8:DF155",
                                            source.colname="DF6", 
                                            source.date="C7", 
                                            source.countries="C8:C155")
+
+################# Employing Skilled Expatriates
+Employing.Skilled.Expatriates <- get.WEF(source.file="[R] [WB] Employing skilled expatriates index.xlsx", 
+                                   source.sheet="Sheet1", 
+                                   source.data.region="M4:M96",
+                                   source.colname="M3", 
+                                   source.date="O4", 
+                                   source.countries="B4:B96")
 
 ################# Prevalence of foreign ownership
 Prevalence.foreign.ownership <- get.WEF(source.file="WEF.xlsx", 
