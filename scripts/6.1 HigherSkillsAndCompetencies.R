@@ -265,3 +265,21 @@ Unemployment.rate.tertiary.educated <- get.ILO.latest( source.file="[R] [ILO] Un
                                                       source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Unemployment.rate.of.persons.with.tertiary.level.education...."),
                                                       result.colnames=c("Country.Name", "ISO3", "Year", "Gender", "Unemployment rate of tertiary educated (percent)"),
                                                       result.cut.year=2003)
+
+################# Unemployment rate of tertiary-educated (male)
+Unemployment.rate.tertiary.educated.male <- get.ILO.latest( source.file="[R] [ILO] Unemployment rate of persons with tertiary level education.xls",
+                                                       source.sheet="KILM 14c",
+                                                       source.region="A3:L8226", 
+                                                       source.gender="M",
+                                                       source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Unemployment.rate.of.persons.with.tertiary.level.education...."),
+                                                       result.colnames=c("Country.Name", "ISO3", "Year", "Gender", "Unemployment rate of tertiary educated (percent)"),
+                                                       result.cut.year=2003)
+
+################# Unemployment rate of tertiary-educated (female)
+Unemployment.rate.tertiary.educated.female <- get.ILO.latest( source.file="[R] [ILO] Unemployment rate of persons with tertiary level education.xls",
+                                                       source.sheet="KILM 14c",
+                                                       source.region="A3:L8226", 
+                                                       source.gender="F",
+                                                       source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Unemployment.rate.of.persons.with.tertiary.level.education...."),
+                                                       result.colnames=c("Country.Name", "ISO3", "Year", "Gender", "Unemployment rate of tertiary educated (percent)"),
+                                                       result.cut.year=2003)
