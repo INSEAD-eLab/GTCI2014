@@ -33,6 +33,28 @@ youth.employment <- get.ILO.latest( source.file="[R] [ILO] Youth employment.xls"
                                     source.age="15-24",
                                     result.cut.year=2003)
 
+################################# youth employment 15-24 (male)
+gc()
+youth.employment.male <- get.ILO.latest( source.file="[R] [ILO] Youth employment.xls",
+                                    source.sheet="KILM 2a",
+                                    source.region="A3:L35247", 
+                                    source.gender="M",
+                                    source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Employment..to.population.ratio"),
+                                    result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Employment to population ratio of youth"),
+                                    source.age="15-24",
+                                    result.cut.year=2003)
+
+################################# youth employment 15-24 (female)
+gc()
+youth.employment.female <- get.ILO.latest( source.file="[R] [ILO] Youth employment.xls",
+                                         source.sheet="KILM 2a",
+                                         source.region="A3:L35247", 
+                                         source.gender="F",
+                                         source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Employment..to.population.ratio"),
+                                         result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Employment to population ratio of youth"),
+                                         source.age="15-24",
+                                         result.cut.year=2003)
+
 ################################# youth unemployment 15-24
 gc()
 youth.unemployment.all <- get.ILO.latest( source.file="[R] [ILO] Youth unemployment (ALL indicators).xls",
