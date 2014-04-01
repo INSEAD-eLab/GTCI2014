@@ -76,7 +76,7 @@ Labour.market.flexibility <- get.WEF(source.file="[R] [FI EFW] Labour market fle
 Difficulty.of.hiring.index.score <- get.WEF(source.file="[R] [WB EODB] Employing workers.xlsx", 
                                      source.sheet="Rigidity of employment index", 
                                      source.data.region="C3:C191",
-                                     source.colname="C1", 
+                                     source.colname="C2", 
                                      source.date="H2",
                                      source.countries="B3:B191")
 
@@ -85,16 +85,16 @@ Difficulty.of.hiring.index.score <- get.WEF(source.file="[R] [WB EODB] Employing
 Rigidity.of.hours.index.score <- get.WEF(source.file="[R] [WB EODB] Employing workers.xlsx", 
                                             source.sheet="Rigidity of employment index", 
                                             source.data.region="D3:D191",
-                                            source.colname="D1", 
+                                            source.colname="D2", 
                                             source.date="H2",
                                             source.countries="B3:B191")
 
 
-################# Rigidity of hours index score
-Rigidity.of.hours.index.score <- get.WEF(source.file="[R] [WB EODB] Employing workers.xlsx", 
+################# Difficulty of redundancy index score
+Difficulty.of.redundancy.index.score <- get.WEF(source.file="[R] [WB EODB] Employing workers.xlsx", 
                                          source.sheet="Rigidity of employment index", 
                                          source.data.region="E3:E191",
-                                         source.colname="E1", 
+                                         source.colname="E2", 
                                          source.date="H2",
                                          source.countries="B3:B191")
 
@@ -103,6 +103,6 @@ Rigidity.of.hours.index.score <- get.WEF(source.file="[R] [WB EODB] Employing wo
 Rigidity.of.employment.index.score <- get.WEF(source.file="[R] [WB EODB] Employing workers.xlsx", 
                                          source.sheet="Rigidity of employment index", 
                                          source.data.region="F3:F191",
-                                         source.colname="F1", 
+                                         source.colname="F2", 
                                          source.date="H2",
                                          source.countries="B3:B191")

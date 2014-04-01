@@ -192,6 +192,7 @@ rm(population.15.64.name, population.15.64.data)
 
 total.migrants.15.64 <- merge(total.migrants.15.64, population.15.64, by=c("Country.Name", "ISO3", "Year"), sort=F, all.x=T)
 total.migrants.15.64[, "ratio"] <- total.migrants.15.64[, "total.15.64"]/total.migrants.15.64[, "pop.15.64"]
+colnames(total.migrants.15.64) <- c("Country.Name", "ISO3", "Year", "Total migrants (age 15-64)", "Population (age 15-64)", "Ratio")
 
 ############################################################################# end of International migrant stock (below 25)
 
@@ -232,7 +233,7 @@ rm(population.below.25.name, population.below.25.data)
 
 total.migrants.below.25 <- merge(total.migrants.below.25, population.below.25, by=c("Country.Name", "ISO3", "Year"), sort=F, all.x=T)
 total.migrants.below.25[, "ratio"] <- total.migrants.below.25[, "below.25"]/total.migrants.below.25[, "pop.below.25"]
-
+colnames(total.migrants.below.25) <- c("Country.Name", "ISO3", "Year", "Total migrants (age below 25)", "Population (age below 25)", "Ratio")
 ############################################################################# end of International migrant stock (below 25)
 
 ################# International migrant stock (above 25)
@@ -272,6 +273,7 @@ rm(population.above.25.name, population.above.25.data)
 
 total.migrants.above.25 <- merge(total.migrants.above.25, population.above.25, by=c("Country.Name", "ISO3", "Year"), sort=F, all.x=T)
 total.migrants.above.25[, "ratio"] <- total.migrants.above.25[, "above.25"]/total.migrants.above.25[, "pop.above.25"]
+colnames(total.migrants.above.25) <- c("Country.Name", "ISO3", "Year", "Total migrants (age above 25)", "Population (age above 25)", "Ratio")
 
 ############################################################################# end of International migrant stock (above 25)
 
@@ -313,6 +315,7 @@ rm(population.below.25.male.name, population.below.25.male.data)
 
 total.migrants.below.25.male <- merge(total.migrants.below.25.male, population.below.25.male, by=c("Country.Name", "ISO3", "Year"), sort=F, all.x=T)
 total.migrants.below.25.male[, "ratio"] <- total.migrants.below.25.male[, "below.25.male"]/total.migrants.below.25.male[, "pop.below.25.male"]
+colnames(total.migrants.below.25.male) <- c("Country.Name", "ISO3", "Year", "Male below 25", "Population below 25", "Ratio")
 
 ############################################################################# end of International migrant stock (below 25 male)
 
@@ -354,6 +357,7 @@ rm(population.below.25.female.name, population.below.25.female.data)
 
 total.migrants.below.25.female <- merge(total.migrants.below.25.female, population.below.25.female, by=c("Country.Name", "ISO3", "Year"), sort=F, all.x=T)
 total.migrants.below.25.female[, "ratio"] <- total.migrants.below.25.female[, "below.25.female"]/total.migrants.below.25.female[, "pop.below.25.female"]
+colnames(total.migrants.below.25.female) <- c("Country.Name", "ISO3", "Year", "Female below 25", "Population below 25", "Ratio")
 
 ############################################################################# end of International migrant stock (below 25 female)
 
@@ -394,6 +398,8 @@ rm(population.above.25.male.name, population.above.25.male.data)
 
 total.migrants.above.25.male <- merge(total.migrants.above.25.male, population.above.25.male, by=c("Country.Name", "ISO3", "Year"), sort=F, all.x=T)
 total.migrants.above.25.male[, "ratio"] <- total.migrants.above.25.male[, "above.25.male"]/total.migrants.above.25.male[, "pop.above.25.male"]
+colnames(total.migrants.above.25.male) <- c("Country.Name", "ISO3", "Year", "Male above 25", "Population above 25", "Ratio")
+
 
 ############################################################################# end of International migrant stock (above 25 male)
 
@@ -435,6 +441,7 @@ rm(population.above.25.female.name, population.above.25.female.data)
 
 total.migrants.above.25.female <- merge(total.migrants.above.25.female, population.above.25.female, by=c("Country.Name", "ISO3", "Year"), sort=F, all.x=T)
 total.migrants.above.25.female[, "ratio"] <- total.migrants.above.25.female[, "above.25.female"]/total.migrants.above.25.female[, "pop.above.25.female"]
+colnames(total.migrants.above.25.female) <- c("Country.Name", "ISO3", "Year", "Female above 25", "Population above 25", "Ratio")
 
 ############################################################################# end of International migrant stock (above 25 female)
 

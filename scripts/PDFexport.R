@@ -63,6 +63,31 @@ generate.pdf(total.factor.productivity.growth , "total factor productivity growt
 generate.pdf(labour.productivity.per.person.employed.growth[, -6] , "growth (2013-2012)/2012", "Labour productivity per person employed (growth)")
 generate.pdf(pay.and.productivity , "Pay and productivity", "Relationship of pay to productivity")
 
+## subpillar 2.1
+generate.pdf(Employing.Skilled.Expatriates[, c(4,1,3,2)] , "Employing Skilled Expatriates Index", "Employing Skilled Expatriates Index")
+generate.pdf(total.migrants.15.64[, c(2,1,3:6)] , "Ratio", "Total migrants (age 15 - 64)", "Note : ratio = migrants (age 15-64)/population (age 15-64)")
+generate.pdf(total.migrants.below.25[, c(2,1,3:6)] , "Ratio", "Total migrants (age below 25)", "Note : ratio = migrants (age below 25)/population (age below 25)")
+generate.pdf(total.migrants.above.25[, c(2,1,3:6)] , "Ratio", "Total migrants (age above 25)", "Note : ratio = migrants (age above 25)/population (age above 25)")
+generate.pdf(total.migrants.below.25.male[, c(2,1,3:6)] , "Ratio", "Total migrants (below 25 male)", "Note : ratio = migrants below 25 male/population below 25 male")
+generate.pdf(total.migrants.below.25.female[, c(2,1,3:6)] , "Ratio", "Total migrants (below 25 female)", "Note : ratio = migrants below 25 female/population below 25 female")
+generate.pdf(total.migrants.above.25.male[, c(2,1,3:6)] , "Ratio", "Total migrants (above 25 male)", "Note : ratio = migrants above 25 male/population above 25 male")
+generate.pdf(total.migrants.above.25.female[, c(2,1,3:6)] , "Ratio", "Total migrants (above 25 female)", "Note : ratio = migrants above 25 female/population above 25 female")
+
+## subpillar 2.2
+generate.pdf(female.tertiary.graduates[, c(4,1:3)] , "female.tertiary.graduates", "Female tertiary graduates")
+generate.pdf(Estimated.earned.income[, c(1:3,8)] , "Female-to- male ratio", "Estimated female income")
+
+## subpillar 1.3
+generate.pdf(Difficulty.of.hiring.index.score[, c(4,1,3,2)] , "Difficulty of hiring index score", "Difficulty of hiring index score")
+generate.pdf(Rigidity.of.hours.index.score[, c(4,1,3,2)] , "Rigidity of hours index score", "Rigidity of hours index score")
+generate.pdf(Difficulty.of.redundancy.index.score[, c(4,1,3,2)] , "Difficulty of redundancy index score", "Difficulty of redundancy index score")
+generate.pdf(Rigidity.of.employment.index.score[, c(4,1,3,2)] , "Rigidity of employment index score", "Rigidity of employment index score")
+
+## subpillar 3.1
+generate.pdf(Tertiary.inbound.mobility.ratio[, c(4,1:3)] , "Tertiary inbound mobility ratio", "International students inflow - Tertiary inbound mobility ratio")
+
+## subpillar 4.1
+generate.pdf(personal.income.tax.rate[, c(4,1:3)] , "personal income tax rate in percent", "Personal Income Tax Rate (in percent)")
 
 generate.pdf( , "", "")
 

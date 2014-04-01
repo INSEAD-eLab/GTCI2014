@@ -547,12 +547,13 @@ scaling <- function(numertor, numerator.colname, denominator.file, denominator.s
   return(merged.with.numerator)
 }
 
-generate.pdf <- function(variable.object, variable.to.sort, name){
+generate.pdf <- function(variable.object, variable.to.sort, name, note=""){
   ## variable.object should follow Country.Name, ISO3, Year, Variable1 - Variable3
   ## total 6 columns maximum from minimum 4 columns
   name.to.be.printed <- name
   variable.to.be.printed <- variable.object
   sorting.name <- variable.to.sort
+  note.to.be.printed <- note
   
   #variable.to.be.printed <- innovation.output
   #sorting.name <- "GII innovation output"

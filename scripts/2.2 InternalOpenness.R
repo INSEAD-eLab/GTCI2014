@@ -180,11 +180,11 @@ gender.parity.index.gross.graduation.ratio <- get.UNESCO.format(source.file="[R]
 
 
 ################# female tertiary graduates
-famale.tertiary.graduates <- get.UNESCO.format(source.file="[R] [UNESCO] Female tertiary graduates.xlsx",
+female.tertiary.graduates <- get.UNESCO.format(source.file="[R] [UNESCO] Female tertiary graduates.xlsx",
                                                source.sheet="download-9", 
                                                source.data.region="A6:P222",
                                                source.colnames="A4:P4", 
-                                               result.colnames="famale.tertiary.graduates",
+                                               result.colnames="female.tertiary.graduates",
                                                result.cut.year=2003)
 
 ################# Female gross enrolment ratio in tertiary level
