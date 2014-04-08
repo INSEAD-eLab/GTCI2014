@@ -23,3 +23,10 @@ busienss.gov.relations <- get.WEF(source.file="WEF.xlsx",
                                   source.date="C7", 
                                   source.countries="C8:C155")
 
+################# corruption perception index 
+corruption.perception.index  <- get.WEF(source.file="[TI] Corruption perception index.xlsx", 
+                                  source.sheet="CPI 2013", 
+                                  source.data.region="G5:G181",
+                                  source.colname="G3", 
+                                  source.date="A1", 
+                                  source.countries="B5:B181")

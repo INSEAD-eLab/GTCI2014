@@ -120,27 +120,6 @@ Legislators.senior.officials.managers.88 <- get.ILO.denominator( source.file="[R
 legislators.senior.officials.managers.88.f <- merge(Female.legislators.senior.officials.managers.88, Legislators.senior.officials.managers.88, by=c("ISO3", "Country.Name", "Year"), all.x=T)
 legislators.senior.officials.managers.88.f[, "ratio"] <- legislators.senior.officials.managers.88.f[, "1 (000).x"]/legislators.senior.officials.managers.88.f[, "1 (000).y"]
 
-################# Professionals 88
-Professional.88 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-88] Professional.xls",
-                                   source.sheet="KILM 5b",
-                                   source.region="A3:AN3888", 
-                                   source.gender="MF",
-                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
-                                                     "X2...000.", "X2...."),
-                                   result.colnames=c("Country.Name", "ISO3", "Year", "Gender", "Total employment (000)",
-                                                     "2 (000)", "2 (percent)"),
-                                   result.cut.year=2003)
-
-################# Professionals 08
-Professional.08 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-08] Professional.xls",
-                                   source.sheet="KILM 5a",
-                                   source.region="A3:AN217", 
-                                   source.gender="MF",
-                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
-                                                     "X2...000.", "X2...."),
-                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
-                                                     "2 (000)", "2 (percent)"),
-                                   result.cut.year=2003)
 
 ################# Female professionals 88
 female.professional.88 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-88] Female professional.xls",
@@ -153,25 +132,21 @@ female.professional.88 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-88] Femal
                                                             "2 (000)", "2 (percent)"),
                                           result.cut.year=2003)
 
-
-################# Female professionals 08
-female.professional.08 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-08] Female professional.xls",
-                                          source.sheet="KILM 5a",
-                                          source.region="A3:AN217", 
-                                          source.gender="F",
-                                          source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
-                                                            "X2...000.", "X2...."),
-                                          result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
-                                                            "2 (000)", "2 (percent)"),
-                                          result.cut.year=2003)
+################# Professionals 88
+Professional.88 <- get.ILO.denominator( source.file="[R] [ILO] [ISCO-88] Professional.xls",
+                                   source.sheet="KILM 5b",
+                                   source.region="A3:AN3888", 
+                                   source.gender="MF",
+                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
+                                                     "X2...000.", "X2...."),
+                                   result.colnames=c("Country.Name", "ISO3", "Year", "Gender", "Total employment (000)",
+                                                     "2 (000)", "2 (percent)"),
+                                   numerator.list=female.professional.88)
 
 #### addition calculation of ratio
 
 professional.88.f <- merge(female.professional.88, Professional.88, by=c("ISO3", "Country.Name", "Year"), all.x=T)
 professional.88.f[, "ratio"] <- professional.88.f[, "2 (000).x"]/professional.88.f[, "2 (000).y"]
-
-#### Take note that 5 countries has different years and they are now "NA" for total employment in professional category. 
-#### (morocco, occupied palestinian territory, philippines, saudi arabia, uganda)
 
 ################# Researchers per million inhabitants (HC)
 researchers.HC <- get.UNESCO.format(source.file="[R] [UNESCO] Researchers per million inhabitants (HC).xlsx",
@@ -315,3 +290,26 @@ Legislators.senior.officials.managers.68 <- get.ILO.latest( source.file="[R] [IL
                                                             result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
                                                                               "0/1 (000)", "0/1 (percent)", "2 (000)", "2 (percent)"),
                                                             result.cut.year=2003)
+
+
+################# Female professionals 08
+female.professional.08 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-08] Female professional.xls",
+                                          source.sheet="KILM 5a",
+                                          source.region="A3:AN217", 
+                                          source.gender="F",
+                                          source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
+                                                            "X2...000.", "X2...."),
+                                          result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
+                                                            "2 (000)", "2 (percent)"),
+                                          result.cut.year=2003)
+
+################# Professionals 08
+Professional.08 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-08] Professional.xls",
+                                   source.sheet="KILM 5a",
+                                   source.region="A3:AN217", 
+                                   source.gender="MF",
+                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
+                                                     "X2...000.", "X2...."),
+                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
+                                                     "2 (000)", "2 (percent)"),
+                                   result.cut.year=2003)
