@@ -92,38 +92,6 @@ setdiff(tertiary.educated.population.above15.ILO.female$Country.Name, tertiary.e
 ##[36] "Coverage..employment...code." "Coverage..employment."        "Age"                          "Reference.period"             "Geographic.limitation"       
 ##[41] "Coverage.limitation"          "Survey.limitation"            "Classification.remark"        "Notes"   
 
-################# Legislators, senior officials and managers 88
-Legislators.senior.officials.managers.88 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-88] Legislators, senior officials and managers.xls",
-                                                            source.sheet="KILM 5b",
-                                                            source.region="A3:AN3888", 
-                                                            source.gender="MF",
-                                                            source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
-                                                                              "X1...000.", "X1...."),
-                                                            result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
-                                                                              "1 (000)", "1 (percent)"),
-                                                            result.cut.year=2003)
-
-################# Legislators, senior officials and managers 08
-Legislators.senior.officials.managers.08 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-08] Legislators, senior officials and managers.xls",
-                                                            source.sheet="KILM 5a",
-                                                            source.region="A3:AN217", 
-                                                            source.gender="MF",
-                                                            source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
-                                                                              "X1...000.", "X1...."),
-                                                            result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
-                                                                              "1 (000)", "1 (percent)"),
-                                                            result.cut.year=2003)
-
-################# Legislators, senior officials and managers 68
-Legislators.senior.officials.managers.68 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-68] Legislators, senior officials and managers.xls",
-                                                            source.sheet="KILM 5c",
-                                                            source.region="A3:AN1976", 
-                                                            source.gender="MF",
-                                                            source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
-                                                                              "X0.1...000.", "X0.1....","X2...000.","X2...."),
-                                                            result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
-                                                                              "0/1 (000)", "0/1 (percent)", "2 (000)", "2 (percent)"),
-                                                            result.cut.year=2003)
 
 ################# Female legislators, senior officials and managers 88
 Female.legislators.senior.officials.managers.88 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-88] Female legislators, senior officials and managers.xls",
@@ -136,27 +104,21 @@ Female.legislators.senior.officials.managers.88 <- get.ILO.latest( source.file="
                                                                               "1 (000)", "1 (percent)"),
                                                             result.cut.year=2003)
 
-################# Female legislators, senior officials and managers 08
-Female.legislators.senior.officials.managers.08 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-08] Female legislators, senior officials and managers.xls",
-                                                            source.sheet="KILM 5a",
-                                                            source.region="A3:AN217", 
-                                                            source.gender="F",
-                                                            source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
-                                                                              "X1...000.", "X1...."),
-                                                            result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
-                                                                              "1 (000)", "1 (percent)"),
-                                                            result.cut.year=2003)
 
-################# Female legislators, senior officials and managers 68
-Female.legislators.senior.officials.managers.68 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-68] Female legislators, senior officials and managers.xls",
-                                                            source.sheet="KILM 5c",
-                                                            source.region="A3:AN1976", 
-                                                            source.gender="F",
-                                                            source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
-                                                                              "X0.1...000.", "X0.1....","X2...000.","X2...."),
-                                                            result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
-                                                                              "0/1 (000)", "0/1 (percent)", "2 (000)", "2 (percent)"),
-                                                            result.cut.year=2003)
+################# Legislators, senior officials and managers 88
+Legislators.senior.officials.managers.88 <- get.ILO.denominator( source.file="[R] [ILO] [ISCO-88] Legislators, senior officials and managers.xls",
+                                                                 source.sheet="KILM 5b",
+                                                                 source.region="A3:AN3888", 
+                                                                 source.gender="MF",
+                                                                 source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
+                                                                                   "X1...000.", "X1...."),
+                                                                 result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
+                                                                                   "1 (000)", "1 (percent)"),
+                                                                 numerator.list=Female.legislators.senior.officials.managers.88)
+
+#### addition calculation of ratio
+legislators.senior.officials.managers.88.f <- merge(Female.legislators.senior.officials.managers.88, Legislators.senior.officials.managers.88, by=c("ISO3", "Country.Name", "Year"), all.x=T)
+legislators.senior.officials.managers.88.f[, "ratio"] <- legislators.senior.officials.managers.88.f[, "1 (000).x"]/legislators.senior.officials.managers.88.f[, "1 (000).y"]
 
 ################# Professionals 88
 Professional.88 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-88] Professional.xls",
@@ -291,3 +253,65 @@ Unemployment.rate.tertiary.educated.female <- get.ILO.latest( source.file="[R] [
                                                        source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Unemployment.rate.of.persons.with.tertiary.level.education...."),
                                                        result.colnames=c("Country.Name", "ISO3", "Year", "Gender", "Unemployment rate of tertiary educated (percent)"),
                                                        result.cut.year=2003)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+################# Archive
+#################
+################# Female legislators, senior officials and managers 08
+Female.legislators.senior.officials.managers.08 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-08] Female legislators, senior officials and managers.xls",
+                                                                   source.sheet="KILM 5a",
+                                                                   source.region="A3:AN217", 
+                                                                   source.gender="F",
+                                                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
+                                                                                     "X1...000.", "X1...."),
+                                                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
+                                                                                     "1 (000)", "1 (percent)"),
+                                                                   result.cut.year=2003)
+
+################# Female legislators, senior officials and managers 68
+Female.legislators.senior.officials.managers.68 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-68] Female legislators, senior officials and managers.xls",
+                                                                   source.sheet="KILM 5c",
+                                                                   source.region="A3:AN1976", 
+                                                                   source.gender="F",
+                                                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
+                                                                                     "X0.1...000.", "X0.1....","X2...000.","X2...."),
+                                                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
+                                                                                     "0/1 (000)", "0/1 (percent)", "2 (000)", "2 (percent)"),
+                                                                   result.cut.year=2003)
+
+
+################# Legislators, senior officials and managers 08
+Legislators.senior.officials.managers.08 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-08] Legislators, senior officials and managers.xls",
+                                                            source.sheet="KILM 5a",
+                                                            source.region="A3:AN217", 
+                                                            source.gender="MF",
+                                                            source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
+                                                                              "X1...000.", "X1...."),
+                                                            result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
+                                                                              "1 (000)", "1 (percent)"),
+                                                            result.cut.year=2003)
+
+################# Legislators, senior officials and managers 68
+Legislators.senior.officials.managers.68 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-68] Legislators, senior officials and managers.xls",
+                                                            source.sheet="KILM 5c",
+                                                            source.region="A3:AN1976", 
+                                                            source.gender="MF",
+                                                            source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment...000.",
+                                                                              "X0.1...000.", "X0.1....","X2...000.","X2...."),
+                                                            result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
+                                                                              "0/1 (000)", "0/1 (percent)", "2 (000)", "2 (percent)"),
+                                                            result.cut.year=2003)

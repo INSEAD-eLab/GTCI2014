@@ -154,6 +154,94 @@ get.ILO.latest <- function(source.file, source.sheet, source.region, source.gend
   return(Technicians.Associates.ISO3.MF.latest.cut)
 }
 
+
+################# original data : long format
+################# Technicians and associate professionals from 88
+## the source data structure must be the same as [R] [ILO] [ISCO-68] Technicians and associate professionals.xls
+## Data format : ILO
+## This function will take country name and year from numerator.list variable and will return the data with the same year for calculation of ratios
+get.ILO.denominator <- function(source.file, source.sheet, source.region, source.gender, 
+                           source.colnames, result.colnames, numerator.list, source.age="", data.format=""){
+  
+  print("########")
+  print(paste("Running ILO latest function to get the data from ", source.file, sep=""))
+  
+  ISO3 <- get.ISO3()
+  
+  if(data.format=="csv"){
+    Technicians.Associates <- read.csv(paste("data/", source.file, sep=""), header=TRUE, sep=",")
+  }else{
+    Technicians.Associates.WS <- loadWorkbook(paste("data/", source.file, sep=""))
+    
+    ## Get the data 
+    ## This is in Panel data
+    Technicians.Associates <- readWorksheet(Technicians.Associates.WS, sheet=source.sheet, region=source.region, header=T)
+  }
+  
+  
+  ## Remove the CountryCode and get the country lowercase
+  Technicians.Associates <- Technicians.Associates[,-1]
+  Technicians.Associates[,1] <- tolower(Technicians.Associates[,1])
+  
+  original.countries <- unique(Technicians.Associates[,1])
+  print(paste("Total number of rows in original datasheet : ", nrow(Technicians.Associates), sep=""))
+  print(paste("Total number of unique countries before cleaning : ", length(original.countries), sep=""))
+  
+  ## Get the ISO3 for country names
+  Technicians.Associates <- merge(ISO3, Technicians.Associates, by.x="Country.Name", by.y="Country", all.y=T)
+  
+  ## Since the country without ISO3 is Germany, federal republic of western and year is from 1982 to 1989, we can just remove them.
+  Technicians.Associates.ISO3 <- subset(Technicians.Associates, !is.na(Technicians.Associates[,2]))
+  
+  ## Get the name of unique Countries
+  cleaned.countries <- unique(Technicians.Associates.ISO3[,1])
+  print(paste("Total number of unique countries after cleaning : ",length(cleaned.countries), sep=""))
+  
+  if(length(cleaned.countries) != length(original.countries)){
+    print("Countries removed are :")
+    print(setdiff(original.countries, cleaned.countries))
+  }
+  
+  ## Get the correct gender
+  Technicians.Associates.ISO3.MF <- Technicians.Associates.ISO3[Technicians.Associates.ISO3$Sex..code. == source.gender,]
+  
+  ## Get the correct age
+  if(nchar(source.age) > 0){
+    Technicians.Associates.ISO3.MF <- Technicians.Associates.ISO3.MF[Technicians.Associates.ISO3.MF$Age.group == source.age,]  
+  }
+  
+  ## Get the columns
+  Technicians.Associates.ISO3.MF <- Technicians.Associates.ISO3.MF[, source.colnames]
+  
+  ## Change the column names
+  colnames(Technicians.Associates.ISO3.MF) <- result.colnames
+  
+  Technicians.Associates.ISO3.MF <- Technicians.Associates.ISO3.MF[complete.cases(Technicians.Associates.ISO3.MF),]
+  
+  ## Order by the ISO3
+  Technicians.Associates.ISO3.MF.latest <- Technicians.Associates.ISO3.MF[order(Technicians.Associates.ISO3.MF$ISO3, decreasing=F),]
+  
+  ## get the numerator list
+  numerator.list.country.year <- numerator.list[, c("ISO3", "Country.Name", "Year")]
+  
+  Technicians.Associates.ISO3.MF.latest.cut <- merge(numerator.list.country.year, Technicians.Associates.ISO3.MF.latest, by=c("ISO3", "Country.Name", "Year"), all.x=TRUE)
+  
+  ## Get the name of unique Countries
+  final.countries <- unique(Technicians.Associates.ISO3.MF.latest.cut[,1])
+  print(paste("Total number of unique countries after cutting with numerator years : ", length(final.countries), sep=""))
+  
+  if(length(final.countries) != length(cleaned.countries)){
+    print("Countries removed are :")
+    print(setdiff(cleaned.countries, final.countries))
+  }
+  
+  print("###### end #######")
+  
+  ## return the final result
+  return(Technicians.Associates.ISO3.MF.latest.cut)
+}
+
+
 ################# Original data : wide format
 ## Data format : UNESCO & WDI
 get.UNESCO.format <- function(source.file, source.sheet, source.data.region, source.colnames, result.colnames, 
