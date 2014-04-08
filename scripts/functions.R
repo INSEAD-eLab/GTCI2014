@@ -363,6 +363,112 @@ get.UNESCO.format <- function(source.file, source.sheet, source.data.region, sou
 }
 
 
+
+################# Special function for science and engineering graduates from 3.1
+################# Original data : wide format
+## Data format : UNESCO
+get.UNESCO.science.engineering.graduates <- function(source.file, source.sheet, data.regions, 
+                                                     source.colnames, result.colnames, result.cut.year, names.separated=FALSE, 
+                                                     country.names="", format="UNESCO", result.row=""){
+  print("########")
+  print(paste("Running get.UNESCO.science.engineering.graduates function to get the data from ", source.file, sep=""))
+  
+  ISO3 <- get.ISO3()
+  
+  data.ws <- loadWorkbook(paste("data/", source.file, sep=""))
+  
+  ## get the column names without the country names
+  data.Header <- readWorksheet(data.ws, sheet=source.sheet, region=source.colnames, header=F)
+  
+  if(format == "WIPO"){
+    data.Header <- cbind("Country.Name", data.Header)
+  }else{
+    data.Header[1, 1] <- "Country.Name"  
+  }
+  
+  for(i in 1:3){
+    source.data.region <- data.regions[i]
+    
+    ## get the data only without the column names but with the country names
+    if(names.separated){
+      countries <- readWorksheet(data.ws, sheet=source.sheet, region=country.names, header=F)
+      data <- readWorksheet(data.ws, sheet=source.sheet, region=source.data.region, header=F)
+      
+      data <- apply(data, 1:2, function(x) ifelse(x == ".", NA, ifelse(x == "...", NA, ifelse(x == "-", 0, as.numeric(x)))))
+      
+      data <- data.frame(data, stringsAsFactors=F)
+      UNESCO.data <- cbind(countries, data)
+      
+    }else{
+      UNESCO.data <- readWorksheet(data.ws, sheet=source.sheet, region=source.data.region, header=F)
+      data <- UNESCO.data[, -1]
+      
+      data <- apply(data, 1:2, function(x) ifelse(x == ".", NA, ifelse(x == "...", NA, ifelse(x == "-", 0, as.numeric(x)))))
+      
+      data <- data.frame(data, stringsAsFactors=F)
+      UNESCO.data <- cbind(UNESCO.data[, 1], data)
+      
+      ## remove tailing spaces from countries
+      UNESCO.data[, 1] <- lapply(UNESCO.data[1], function(x) trimSpace(x))
+    }
+    
+    ## Change the names into lower case for merging
+    UNESCO.data[, 1] <- tolower(UNESCO.data[, 1])
+    
+    original.countries <- unique(UNESCO.data[,1])
+    print(paste("Total number of rows in original datasheet : ", nrow(UNESCO.data), sep=""))
+    print(paste("Total number of unique countries before cleaning : ", length(original.countries), sep=""))
+    
+    ## assign the column names into Data object
+    colnames(UNESCO.data) <- data.Header
+    
+    ## remove the data rows without country names
+    UNESCO.data <- subset(UNESCO.data, !is.na(UNESCO.data[, 1]))
+    
+    ## reshaping to long data
+    individual <- reshape(UNESCO.data, idvar="Country.Name", varying=list(2:ncol(data.Header)), v.names=result.colnames[i], 
+                                direction="long", times=c(min(as.numeric(data.Header[,-1])):max(as.numeric(data.Header[,-1]))), timevar="Year")
+    
+    if(i == 1){
+      UNESCO.long.data <- individual
+    }else{
+      UNESCO.long.data <- merge(UNESCO.long.data, individual, by=c("Country.Name", "Year"), all=TRUE, sort=FALSE)  
+    }
+  }
+  
+  
+  UNESCO.long.c.data <- UNESCO.long.data[complete.cases(UNESCO.long.data),]
+  
+  ## Sort by the name and year. Then get the maximum
+  UNESCO.long.c.data <- UNESCO.long.c.data[order(UNESCO.long.c.data$Country.Name, UNESCO.long.c.data$Year, decreasing=T), ]
+  UNESCO.long.c.data <- UNESCO.long.c.data[!duplicated(UNESCO.long.c.data$Country.Name), ]
+  
+  ## Order the data by Name, then time
+  UNESCO.long.c.data <- UNESCO.long.c.data[order(UNESCO.long.c.data$Country.Name, UNESCO.long.c.data$Year, decreasing=F),]
+  
+  ## Remove the data which is lower than 2003
+  UNESCO.long.c.data <- UNESCO.long.c.data[UNESCO.long.c.data$Year >= result.cut.year, ]  
+  
+  ## Get the ISO3 for country names
+  UNESCO.long.c.data <- merge(UNESCO.long.c.data, ISO3, by="Country.Name", all.x=T, sort=FALSE)
+  
+  ## get complete cases only
+  UNESCO.long.c.data <- subset(UNESCO.long.c.data, !is.na(UNESCO.long.c.data[, ncol(UNESCO.long.c.data)]))
+  
+  final.countries <- unique(UNESCO.long.c.data[,1])
+  print(paste("Total number of unique countries after cutting and cleaning at ", result.cut.year, " : ",length(final.countries), sep=""))
+  
+  if(length(final.countries) != length(original.countries)){
+    print("Countries removed are :")
+    print(setdiff(original.countries, final.countries))
+  }
+  
+  print("###### end #######")
+  
+  return(UNESCO.long.c.data)
+}
+
+
 ########################## original data : long format (can be used with cleaned data as well. check 6.2 new business density)
 ########################## Number of firms offering formal training
 ## WB data format
