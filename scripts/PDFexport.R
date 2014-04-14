@@ -16,6 +16,21 @@ generate.pdf(New.product.entrepreneurial.act, "New.product.entrepreneurial.act",
 generate.pdf(established.business.ownership, "Established business ownership", "Established business ownership")
 generate.pdf(new.business.ownership, "New business ownership", "New business ownership")
 
+generate.pdf(TradeDataWITS[, c(36, 1, 2, 24)] , "netHighTechbyTotal", "Net High Tech export by net total export", "Note : netHighTechbyTotal = Net High Tech Export / Net Total Export. Net = Export - Re-Export. Source : WITS")
+generate.pdf(TradeDataWITS[, c(36, 1, 2, 25)] , "netMedTechbyTotal", "Net Medium Tech export by net total export", "Note : netMedTechbyTotal = Net Medium Tech Export / Net Total Export. Net = Export - Re-Export. Source : WITS")
+generate.pdf(TradeDataWITS[, c(36, 1, 2, 26)] , "netLowTechbyTotal", "Net Low Tech export by net total export", "Note : netLowTechbyTotal = Net Low Tech Export / Net Total Export. Net = Export - Re-Export. Source : WITS")
+generate.pdf(TradeDataWITS[, c(36, 1, 2, 27)] , "netPrimaryProdbyTotal", "Net Primary Products export by net total export", "Note : netPrimaryProdbyTotal = Net Primary Products Export / Net Total Export. Net = Export - Re-Export. Source : WITS")
+generate.pdf(TradeDataWITS[, c(36, 1, 2, 28)] , "netResourceBasedbyTotal", "Net Resource Based export by net total export", "Note : netResourceBasedbyTotal = Net Resource Based Export / Net Total Export. Net = Export - Re-Export. Source : WITS")
+generate.pdf(TradeDataWITS[, c(36, 1, 2, 29)] , "netHighMedTechbyTotal", "Net High and Medium Tech export by net total export", "Note : netHighMedTechbyTotal = Net High + Medium Tech Export / Net Total Export. Net = Export - Re-Export. Source : WITS")
+
+generate.pdf(TradeDataWITS[, c(36, 1, 2, 30)] , "netHighTechbyTotalManu", "Net High Tech export by net total manufacturing export", "Note : netHighTechbyTotalManu = Net High Tech Export / Net Total Manufacturing Export. Net = Export - Re-Export. Source : WITS")
+generate.pdf(TradeDataWITS[, c(36, 1, 2, 31)] , "netMedTechbyTotalManu", "Net Medium Tech export by net total manufacturing export", "Note : netMedTechbyTotalManu = Net Medium Tech Export / Net Total Manufacturing Export. Net = Export - Re-Export. Source : WITS")
+generate.pdf(TradeDataWITS[, c(36, 1, 2, 32)] , "netLowTechbyTotalManu", "Net Low Tech export by net totalmanufacturing  export", "Note : netLowTechbyTotalManu = Net Low Tech Export / Net Total Manufacturing Export. Net = Export - Re-Export. Source : WITS")
+generate.pdf(TradeDataWITS[, c(36, 1, 2, 33)] , "netPrimaryProdbyTotalManu", "Net Primary Products export by net total manufacturing export", "Note : netPrimaryProdbyTotalManu = Net Primary Products Export / Net Total Manufacturing Export. Net = Export - Re-Export. Source : WITS")
+generate.pdf(TradeDataWITS[, c(36, 1, 2, 34)] , "netResourceBasedbyTotalManu", "Net Resource Based export by net total manufacturing export", "Note : netResourceBasedbyTotalManu = Net Resource Based Export / Net Total Manufacturing Export. Net = Export - Re-Export. Source : WITS")
+generate.pdf(TradeDataWITS[, c(36, 1, 2, 35)] , "netHighMedTechbyTotalManu", "Net High and Medium Tech export by net total manufacturing export", "Note : netHighMedTechbyTotalManu = Net High + Medium Tech Export / Net Total Manufacturing Export. Net = Export - Re-Export. Source : WITS")
+
+
 ## subpillar 6.1
 generate.pdf(Unemployment.rate.tertiary.educated[,-4], "Unemployment rate of tertiary educated (percent)", "Unemployment rate of tertiary educated")
 generate.pdf(percent.dist.tertiary.unemployment[,-4], "Distribution of tertiary educated unemployment (percent)", "Percentage distribution of total unemployed with tertiary education")
@@ -85,6 +100,12 @@ generate.pdf(Rigidity.of.employment.index.score[, c(4,1,3,2)] , "Rigidity of emp
 
 ## subpillar 3.1
 generate.pdf(Tertiary.inbound.mobility.ratio[, c(4,1:3)] , "Tertiary inbound mobility ratio", "International students inflow - Tertiary inbound mobility ratio")
+
+## subpillar 3.3
+colnames(Part.time.employment.rate.15.female)[4] <- "Gender"
+colnames(Part.time.employment.rate.15.female)[5] <- "Age group"
+colnames(Part.time.employment.rate.15.female)[6] <- "Female share of part time employment (percent)"
+generate.pdf(Part.time.employment.rate.15.female[, c(2,1,3:6)] , "Female share of part time employment (percent)", "Part time employment rate - Female (percent)")
 
 ## subpillar 4.1
 generate.pdf(personal.income.tax.rate[, c(4,1:3)] , "personal income tax rate in percent", "Personal Income Tax Rate (in percent)")

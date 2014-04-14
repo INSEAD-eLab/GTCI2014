@@ -98,3 +98,8 @@ new.business.ownership <- get.UNESCO.format(source.file="[R] [GEM] New business 
                                      result.colnames="New business ownership",
                                      result.cut.year=2003,
                                      format="GEM")
+
+## for trade Data WITS
+## result variable name is : TradeDataWITS
+## to check column names : colnames(TradeDataWITS)
+source("scripts/trade data WITS.R")

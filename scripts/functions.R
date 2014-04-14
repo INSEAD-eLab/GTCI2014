@@ -9,7 +9,7 @@ library(xtable)
 get.ISO3 <- function(){
   
   ISO3<-loadWorkbook(paste("data/", "Country List with ISO3.xlsx", sep=""))
-  ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C475", header=T)
+  ISO3<-readWorksheet(ISO3, sheet="Country Code", region="B3:C481", header=T)
   ISO3[,1] <- tolower(ISO3[,1])
 
   return(ISO3)
@@ -772,4 +772,15 @@ generate.pdf <- function(variable.object, variable.to.sort, name, note=""){
   file.remove("Export.log", "Export.tex", "Export.aux", "Export.pdf")
   
   rm(name.to.be.printed, variable.to.be.printed, variable.to.be.printed.sorted, sorting.name)
+}
+
+
+getHighMedTech <- function(netHigh, netMed, netDeno){
+  if(is.na(netHigh) & is.na(netMed)){
+    return(NA)
+  }else if(is.na(netHigh) & !is.na(netMed)){
+    return(netMed/netDeno)
+  }else{
+    return((netHigh+netMed)/netDeno)
+  }
 }
