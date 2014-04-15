@@ -30,3 +30,14 @@ corruption.perception.index  <- get.WEF(source.file="[TI] Corruption perception 
                                   source.colname="G3", 
                                   source.date="A1", 
                                   source.countries="B5:B181")
+
+
+############### Ease of Establishment Data
+Ease.of.Establishment.Data  <- get.WEF(source.file="[R] [WB] Ease of Establishment Data.xlsx", 
+                                       source.sheet="Calculation", 
+                                       source.data.region="AY5:AY104",
+                                       source.colname="AY4", 
+                                       source.date="AZ4", 
+                                       source.countries="B5:B104", 
+                                       different.source=TRUE,
+                                       source.name="WB")

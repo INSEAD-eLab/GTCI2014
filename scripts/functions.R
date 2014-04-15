@@ -596,7 +596,7 @@ get.WEF <- function(source.file, source.sheet, source.data.region,
   if(different.source == TRUE){
     if(source.name == "WB"){
       data <- apply(data, 1:2, function(x) gsub("%", "", x))
-      data <- apply(data, 1:2, function(x) ifelse(x == "..", NA, ifelse(x == "-", NA, as.numeric(x))))
+      data <- apply(data, 1:2, function(x) ifelse(x == "..", NA, ifelse(x == "-", NA, ifelse(x == "NA", NA, as.numeric(x)))))
     }else{
       data <- apply(data, 1:2, function(x) gsub(",", "", x))
       data <- apply(data, 1:2, function(x) ifelse(x == ".", NA, ifelse(x == "...", NA, ifelse(x == "-", 0, as.numeric(x)))))  
