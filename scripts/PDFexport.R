@@ -30,6 +30,21 @@ generate.pdf(TradeDataWITS[, c(36, 1, 2, 33)] , "netPrimaryProdbyTotalManu", "Ne
 generate.pdf(TradeDataWITS[, c(36, 1, 2, 34)] , "netResourceBasedbyTotalManu", "Net Resource Based export by net total manufacturing export", "Note : netResourceBasedbyTotalManu = Net Resource Based Export / Net Total Manufacturing Export. Net = Export - Re-Export. Source : WITS")
 generate.pdf(TradeDataWITS[, c(36, 1, 2, 35)] , "netHighMedTechbyTotalManu", "Net High and Medium Tech export by net total manufacturing export", "Note : netHighMedTechbyTotalManu = Net High + Medium Tech Export / Net Total Manufacturing Export. Net = Export - Re-Export. Source : WITS")
 
+generate.pdf(tradeUNCTADdata[, c(1:3, 7, 4, 11)] , "Labour-intensiveByTotal", "UNCTAD labor-intensive by total", "Note : Labour-intensiveByTotal = Labour-intensive and resource-intensive manufactures / Total all products. Source : UNCTAD")
+generate.pdf(tradeUNCTADdata[, c(1:3, 8, 4, 12)] , "Low-skillByTotal", "UNCTAD low-skilled by total", "Note : Low-skillByTotal = Low-skill and technology-intensive manufactures / Total all products. Source : UNCTAD")
+generate.pdf(tradeUNCTADdata[, c(1:3, 9, 4, 13)] , "Med-skillByTotal", "UNCTAD med-skilled by total", "Note : Med-skillByTotal = Med-skill and technology-intensive manufactures / Total all products. Source : UNCTAD")
+generate.pdf(tradeUNCTADdata[, c(1:3, 10, 4, 14)] , "High-skillByTotal", "UNCTAD high-skilled by total", "Note : High-skillByTotal = High-skill and technology-intensive manufactures / Total all products. Source : UNCTAD")
+
+generate.pdf(tradeUNCTADdata[, c(1:3, 7, 5, 15)] , "Labour-intensiveByManuGoods", "UNCTAD labor-intensive by Manu Goods", "Note : Labour-intensiveByManuGoods = Labour-intensive and resource-intensive manufactures / Manufactured goods (SITC 5 to 8 less 667 and 68). Source : UNCTAD")
+generate.pdf(tradeUNCTADdata[, c(1:3, 8, 5, 16)] , "Low-skillByManuGoods", "UNCTAD low-skilled by Manu Goods", "Note : Low-skillByManuGoods = Low-skill and technology-intensive manufactures / Manufactured goods (SITC 5 to 8 less 667 and 68). Source : UNCTAD")
+generate.pdf(tradeUNCTADdata[, c(1:3, 9, 5, 17)] , "Med-skillByManuGoods", "UNCTAD med-skilled by Manu Goods", "Note : Med-skillByManuGoods = Med-skill and technology-intensive manufactures / Manufactured goods (SITC 5 to 8 less 667 and 68). Source : UNCTAD")
+generate.pdf(tradeUNCTADdata[, c(1:3, 10, 5, 18)] , "High-skillByManuGoods", "UNCTAD high-skilled by Manu Goods", "Note : High-skillByManuGoods = High-skill and technology-intensive manufactures / Manufactured goods (SITC 5 to 8 less 667 and 68). Source : UNCTAD")
+
+generate.pdf(tradeUNCTADdata[, c(1:3, 7, 6, 19)] , "Labour-intensiveByManuGoodsByDegree", "UNCTAD labor-intensive by Manu Goods By Degree", "Note : Labour-intensiveByManuGoodsByDegree = Labour-intensive and resource-intensive manufactures / Manufactured goods by degree of manufacturing. Source : UNCTAD")
+generate.pdf(tradeUNCTADdata[, c(1:3, 8, 6, 20)] , "Low-skillByManuGoodsByDegree", "UNCTAD low-skilled by Manu Goods By Degree", "Note : Low-skillByManuGoodsByDegree = Low-skill and technology-intensive manufactures / Manufactured goods by degree of manufacturing. Source : UNCTAD")
+generate.pdf(tradeUNCTADdata[, c(1:3, 9, 6, 21)] , "Med-skillByManuGoodsByDegree", "UNCTAD med-skilled by Manu Goods By Degree", "Note : Med-skillByManuGoodsByDegree = Med-skill and technology-intensive manufactures / Manufactured goods by degree of manufacturing. Source : UNCTAD")
+generate.pdf(tradeUNCTADdata[, c(1:3, 10, 6, 22)] , "High-skillByManuGoodsByDegree", "UNCTAD high-skilled by Manu Goods By Degree", "Note : High-skillByManuGoodsByDegree = High-skill and technology-intensive manufactures / Manufactured goods by degree of manufacturing. Source : UNCTAD")
+
 
 ## subpillar 6.1
 generate.pdf(Unemployment.rate.tertiary.educated[,-4], "Unemployment rate of tertiary educated (percent)", "Unemployment rate of tertiary educated")

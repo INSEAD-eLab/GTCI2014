@@ -103,3 +103,10 @@ new.business.ownership <- get.UNESCO.format(source.file="[R] [GEM] New business 
 ## result variable name is : TradeDataWITS
 ## to check column names : colnames(TradeDataWITS)
 source("scripts/trade data WITS.R")
+
+## for trade Data UNCTAD
+## result variable name is : tradeUNCTADdata
+## to check column names : colnames(tradeUNCTADdata)
+source("scripts/trade data UNCTAD.R")
+
+

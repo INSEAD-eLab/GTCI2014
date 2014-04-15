@@ -1,4 +1,3 @@
-rm(list=ls())
 gc()
 
 ## to load the functions
