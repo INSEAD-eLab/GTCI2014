@@ -120,6 +120,9 @@ setdiff(secondary.educated.population.above15.ILO.total$Country.Name, secondary.
 ## countries in above 25 but not in 15
 setdiff(secondary.educated.population.above25.ILO.total$Country.Name, secondary.educated.population.above15.ILO.total$Country.Name)
 
+## adding US data
+secondary.educated.population.above15.ILO.total <- rbind(secondary.educated.population.above15.ILO.total, secondary.educated.population.above25.ILO.total[secondary.educated.population.above25.ILO.total$Country.Name == "united states",])
+
 ################################# secondary educated workforce 25+ (female)
 gc()
 secondary.educated.population.above25.ILO.female <- get.ILO.latest( source.file="[R] [ILO] Secondary educated workforce.xls",
@@ -147,6 +150,9 @@ setdiff(secondary.educated.population.above15.ILO.female$Country.Name, secondary
 
 ## countries in above 25 but not in 15
 setdiff(secondary.educated.population.above25.ILO.female$Country.Name, secondary.educated.population.above15.ILO.female$Country.Name)
+
+## adding US data
+secondary.educated.population.above15.ILO.female <- rbind(secondary.educated.population.above15.ILO.female, secondary.educated.population.above25.ILO.female[secondary.educated.population.above25.ILO.female$Country.Name == "united states",])
 
 ################# Technicians and associate professionals
 ##

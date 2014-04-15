@@ -51,6 +51,9 @@ setdiff(tertiary.educated.population.above25.ILO.total$Country.Name, tertiary.ed
 ## countries in 15 but not in 25
 setdiff(tertiary.educated.population.above15.ILO.total$Country.Name, tertiary.educated.population.above25.ILO.total$Country.Name)
 
+## adding US data
+tertiary.educated.population.above15.ILO.total <- rbind(tertiary.educated.population.above15.ILO.total, tertiary.educated.population.above25.ILO.total[tertiary.educated.population.above25.ILO.total$Country.Name == "united states",])
+
 
 ################################# Tertiary educated workforce 25+ (female)
 gc()
@@ -79,6 +82,9 @@ setdiff(tertiary.educated.population.above25.ILO.female$Country.Name, tertiary.e
 
 ## countries in 15 but not in 25
 setdiff(tertiary.educated.population.above15.ILO.female$Country.Name, tertiary.educated.population.above25.ILO.female$Country.Name)
+
+## adding US data
+tertiary.educated.population.above15.ILO.female <- rbind(tertiary.educated.population.above15.ILO.female, tertiary.educated.population.above25.ILO.female[tertiary.educated.population.above25.ILO.female$Country.Name == "united states",])
 
 
 ## Possible colnames ILO data
