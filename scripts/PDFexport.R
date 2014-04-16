@@ -106,6 +106,7 @@ generate.pdf(total.migrants.above.25.female[, c(2,1,3:6)] , "Ratio", "Total migr
 ## subpillar 2.2
 generate.pdf(female.tertiary.graduates[, c(4,1:3)] , "female.tertiary.graduates", "Female tertiary graduates")
 generate.pdf(Estimated.earned.income[, c(1:3,8)] , "Female-to- male ratio", "Estimated female income")
+generate.pdf(Entrepreneurial.intention[, c(4, 1:3)] , "Entrepreneurial intention", "Entrepreneurial intention", "Source : Global Entrepreneurship Research Association, Global Entrepreneurship Monitor database.")
 
 ## subpillar 1.3
 generate.pdf(Difficulty.of.hiring.index.score[, c(4,1,3,2)] , "Difficulty of hiring index score", "Difficulty of hiring index score")

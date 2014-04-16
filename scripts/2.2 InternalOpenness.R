@@ -248,7 +248,7 @@ Entrepreneurial.intention <- get.UNESCO.format(source.file="[R] [GEM] Entreprene
                                                source.sheet="Entrepreneurial intention", 
                                                source.data.region="A5:L101",
                                                source.colnames="A4:L4", 
-                                               result.colnames="Entrepreneurial.intention",
+                                               result.colnames="Entrepreneurial intention",
                                                result.cut.year=2003,
                                                format="GEM")
 

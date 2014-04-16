@@ -61,7 +61,10 @@ Part.time.employment.rate.15.F.ratios[, "Female.part.time.workers.out.of.total"]
 Part.time.employment.rate.15.F.ratios[, "Female.part.time.workers.out.of.female.employ"] <- Part.time.employment.rate.15.F.ratios[, "Part.time.workers.000.F"] / Part.time.employment.rate.15.F.ratios[, "Total.employment.000.F"]
 Part.time.employment.rate.15.F.ratios[, "Female.part.time.workers.by.full.time.female"] <- Part.time.employment.rate.15.F.ratios[, "Part.time.workers.000.F"] / (Part.time.employment.rate.15.F.ratios[, "Total.employment.000.F"] - Part.time.employment.rate.15.F.ratios[, "Part.time.workers.000.F"])
 Part.time.employment.rate.15.F.ratios[, "Male.part.time.workers.by.full.time.male"] <- Part.time.employment.rate.15.F.ratios[, "Part.time.workers.000.M"] / (Part.time.employment.rate.15.F.ratios[, "Total.employment.000.M"] - Part.time.employment.rate.15.F.ratios[, "Part.time.workers.000.M"])
-
+colnames(Part.time.employment.rate.15.F.ratios) <- c("Country.Name", "ISO3", "Year", "Age Group", "Female part time workers (000)", "Female total employment (000)", 
+                                                     "Male part time workers (000)", "Male total employment (000)", "Total employment (000)",
+                                                     "Female part time workers out of total employment", "Female part time workers out of female total employment",
+                                                     "Female part time workers by female full time workers", "Male part time workers by male full time workers")
 
 ################# Use of virtual social networks
 Use.virtual.social.networks  <- get.WEF(source.file="WEF.xlsx", 
@@ -120,6 +123,19 @@ linkedIn.users.ratio <- merge(linkedIn.users, labor.force, by="ISO3", all.x=T, s
 linkedIn.users.ratio[, 9] <- lapply(linkedIn.users.ratio[9], function(x) ifelse(is.na(x), NA, as.numeric(gsub(" ", "", as.character(x)))))
 
 linkedIn.users.ratio[, "ratio"] <- linkedIn.users.ratio[, 3]/(linkedIn.users.ratio[, 9]*1000)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ################# ARCHIVE
