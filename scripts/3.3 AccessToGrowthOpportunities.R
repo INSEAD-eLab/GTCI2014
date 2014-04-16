@@ -23,16 +23,6 @@ Part.time.employment.rate.15.female <- get.ILO.latest( source.file="[R] [ILO] Pa
                                                        result.cut.year=2003)
 
 
-Part.time.employment.rate.15.MF <- get.ILO.latest( source.file="[R] [ILO] Part-time employment rate.xls",
-                                                source.sheet="KILM 6",
-                                                source.region="A3:AC9936", 
-                                                source.gender="MF",
-                                                source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Total.employment...000."),
-                                                result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Total.employment.000.MF"),
-                                                source.age="15+",
-                                                result.cut.year=2003)
-
-
 Part.time.employment.rate.15.F <- get.ILO.latest( source.file="[R] [ILO] Part-time employment rate.xls",
                                                 source.sheet="KILM 6",
                                                 source.region="A3:AC9936", 
@@ -51,6 +41,14 @@ Part.time.employment.rate.15.M <- get.ILO.latest( source.file="[R] [ILO] Part-ti
                                                   source.age="15+",
                                                   result.cut.year=2003)
 
+Part.time.employment.rate.15.MF <- get.ILO.denominator( source.file="[R] [ILO] Part-time employment rate.xls",
+                                                   source.sheet="KILM 6",
+                                                   source.region="A3:AC9936", 
+                                                   source.gender="MF",
+                                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Total.employment...000."),
+                                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Total.employment.000.MF"),
+                                                   source.age="15+",
+                                                   numerator.list=Part.time.employment.rate.15.F)
 
 merge1 <- merge(Part.time.employment.rate.15.F[, -4], Part.time.employment.rate.15.M[, -4], by=c("Country.Name", "ISO3", "Year", "Age.group"), sort=FALSE)
 Part.time.employment.rate.15.F.ratios <- merge(merge1, Part.time.employment.rate.15.MF[, -4], by=c("Country.Name", "ISO3", "Year", "Age.group"), sort=FALSE, all.x=TRUE)

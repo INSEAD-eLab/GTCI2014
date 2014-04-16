@@ -126,5 +126,13 @@ generate.pdf(Part.time.employment.rate.15.female[, c(2,1,3:6)] , "Female share o
 ## subpillar 4.1
 generate.pdf(personal.income.tax.rate[, c(4,1:3)] , "personal income tax rate in percent", "Personal Income Tax Rate (in percent)")
 
+
+## subpillar 4.2
+generate.pdf(Part.time.employment.rate.15.F.ratios[, c(2, 1, 3:4, 5, 9, 10)] , "Female part time workers out of total employment", "Female part time workers out of total employment", "Note : Female part time workers out of total employment = Female part time workers (000) / Total employment (000). Source : ILO")
+generate.pdf(Part.time.employment.rate.15.F.ratios[, c(2, 1, 3:4, 5, 6, 11)] , "Female part time workers out of female total employment", "Female part time workers out of female total employment", "Note : Female part time workers out of female total employment = Female part time workers (000) / Female total employment (000). SOurce : ILO")
+generate.pdf(Part.time.employment.rate.15.F.ratios[, c(2, 1, 3:4, 5, 6, 12)] , "Female part time workers by female full time workers", "Female part time workers by female full time workers", "Note : Female part time workers by female full time workers = Female part time workers (000) / Female full time workers. Full time workers = total employment - part time workers. Source : ILO")
+generate.pdf(Part.time.employment.rate.15.F.ratios[, c(2, 1, 3:4, 7, 8, 13)] , "Male part time workers by male full time workers", "Male part time workers by male full time workers", "Note : Male part time workers out of total employment = Male part time workers (000) / Male full time workers. Full time workers = total employment - part time workers. Source : ILO")
+
+
 generate.pdf( , "", "")
 
