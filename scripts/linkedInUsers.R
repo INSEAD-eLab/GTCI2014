@@ -121,4 +121,6 @@ linkedIn.users[, "linkedin.ratio"] <- linkedIn.users[, "Number of Linkedin users
 
 linkedIn.users[, "Year"] <- 2014
 
+rm(population.ages, population.ages.up.to.74, population.ages.up.to.100, population.ages.up.to.14, countriesn, notes, internet.users, countries)
+
 

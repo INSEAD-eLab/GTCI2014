@@ -22,3 +22,13 @@ colnames(flow)[2] <- "Record.count.Flow.2013"
 journals <- merge(stock, flow, by="Country.Name", all=T)
 
 journals <- merge(journals, ISO3, by="Country.Name", all.x=TRUE)
+
+journals <- journals[!is.na(journals$ISO3),]
+
+journals <- merge(journals, GDP.PPP.2013, by="ISO3", all.x=T)
+
+journals <- journals[, c(1,7,3:6,8:9)]
+
+colnames(journals)[2] <- "Country.Name"
+
+rm(stock, flow, GDP.PPP.2013, ISO3, data.ws)

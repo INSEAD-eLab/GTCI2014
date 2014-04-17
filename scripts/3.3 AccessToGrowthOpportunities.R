@@ -107,7 +107,9 @@ source("scripts/linkedInUsers.R")
   
 
 
-
+## scripts to run codes for scientific and tech journal
+## object name : journals
+source("scripts/Scientific and technical journal.R")
 
 
 
