@@ -115,7 +115,7 @@ linkedIn.users[, "population.for.internet"] <- apply(linkedIn.users, 1, function
 linkedIn.users[, "population.for.internet"] <- apply(linkedIn.users, 1, function(row) as.numeric(row["population.for.internet"])*1000)
 linkedIn.users[, "population.for.internet.note"] <- apply(linkedIn.users, 1, function(row) get.linkedin.deno.note(row))
 
-linkedIn.users[, "internet.users.population"] <- linkedIn.users[, "population.for.internet"] * (linkedIn.users[, "internet.users"]/100)
+linkedIn.users[, "internet.users.population"] <- linkedIn.users[, "population.for.internet"] * (linkedIn.users[, "internet.users.percent"]/100)
 
 linkedIn.users[, "linkedin.ratio"] <- linkedIn.users[, "Number of Linkedin users"] / linkedIn.users[, "internet.users.population"]
 

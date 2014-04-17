@@ -123,8 +123,8 @@ colnames(Part.time.employment.rate.15.female)[5] <- "Age group"
 colnames(Part.time.employment.rate.15.female)[6] <- "Female share of part time employment (percent)"
 generate.pdf(Part.time.employment.rate.15.female[, c(2,1,3:6)] , "Female share of part time employment (percent)", "Part time employment rate - Female (percent)")
 
-colnames(linkedIn.users)[18] <- "Internet users population"
-colnames(linkedIn.users)[19] <- "LinkedIn users Ratio"
+colnames(linkedIn.users)[15] <- "Internet users population"
+colnames(linkedIn.users)[16] <- "LinkedIn users Ratio"
 generate.pdf(linkedIn.users[, c("ISO3", "Country.Name", "Year", "Number of Linkedin users", "Internet users population", "LinkedIn users Ratio")] , "LinkedIn users Ratio", "LinkedIn users Ratio", "Note : Years for internet users is based on 2012 data. Years for linkedin data is based on March 2014. LinkedIn Users Ratio = Number of Linkedin users / Internet users population. Source : UN, ITU, LinkedIn")
 
 ## subpillar 4.1
