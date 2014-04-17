@@ -20,7 +20,9 @@ linkedIn.users.ratio <- merge(linkedIn.users, labor.force, by="ISO3", all.x=T, s
 linkedIn.users.ratio[, 9] <- lapply(linkedIn.users.ratio[9], function(x) ifelse(is.na(x), NA, as.numeric(gsub(" ", "", as.character(x)))))
 
 linkedIn.users.ratio[, "ratio"] <- linkedIn.users.ratio[, 3]/(linkedIn.users.ratio[, 9]*1000)
-
+colnames(linkedIn.users.ratio)[9] <- "Labour force (000)"
+colnames(linkedIn.users.ratio)[2] <- "Country.Name"
+colnames(linkedIn.users.ratio)[6] <- "Year"
 
 ################ New LinkedIn
 
