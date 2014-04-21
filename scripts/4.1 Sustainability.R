@@ -180,3 +180,22 @@ pension.system <- get.WEF(source.file="[R] [WB] Pension system.xlsx",
                           cut.off.year=2003,
                           different.source=TRUE,
                           source.name="WB")
+
+
+##### Top Management (Mercer)
+top.management <- get.WEF(source.file="[R] [Mercer] Top Management.xlsx",
+                          source.sheet="Data",
+                          source.data.region="C2:C70",
+                          source.colname="C1",
+                          source.date="D2:D70",
+                          source.countries="A2:A70",
+                          cut.off.year=2003)
+
+## run the codes for RPI 
+
+top.management <- merge(top.management, RPI1, by="ISO3", sort=FALSE, all.x=TRUE)
+
+top.management <- top.management[, c(1:4,8)]
+colnames(top.management)[2] <- "Country.Name"
+colnames(top.management)[4] <- "Year"
+top.management[, "Pay level deflator (Top Management)"] <- (top.management[, "Mid annual total cash ranges for Top Management"] / top.management[, "Price indices - Exchange rates used for retail price indices (RPI) for UN officials"])*100

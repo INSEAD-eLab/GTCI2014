@@ -131,7 +131,7 @@ generate.pdf(linkedIn.users[, c("ISO3", "Country.Name", "Year", "Number of Linke
 
 ## subpillar 4.1
 generate.pdf(personal.income.tax.rate[, c(4,1:3)] , "personal income tax rate in percent", "Personal Income Tax Rate (in percent)")
-
+generate.pdf(top.management[, c(1:2, 4, 3, 5, 6)] , "Pay level deflator (Top Management)", "Pay level deflator (Top Management)", "Note : Pay level deflator (Top Management) = (Mid annual total cash ranges for Top Management/Price indices - Exchange rates used for retail price indices (RPI) for UN officials)*100. Top Management are 2012 data. RPI are 2013 Dec data.")
 
 ## subpillar 4.2
 generate.pdf(Part.time.employment.rate.15.F.ratios[, c(2, 1, 3:4, 5, 9, 10)] , "Female part time workers out of total employment", "Female part time workers out of total employment", "Note : Female part time workers out of total employment = Female part time workers (000) / Total employment (000). Source : ILO")
