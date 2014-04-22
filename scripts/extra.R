@@ -31,3 +31,14 @@ labor.force <- get.ILO.latest( source.file="labour force.csv",
                                source.age="15-64",
                                result.cut.year=2003,
                                data.format="csv")
+
+
+################################# Gini Coefficients index
+GINI <- get.UNESCO.format(source.file="[R] [WB WDI] Gini coefficient.xls",
+                                                  source.sheet="Data", 
+                                                  source.data.region="AV4:BE254",
+                                                  source.colnames="AU3:BE3", 
+                                                  result.colnames="GINI index",
+                                                  result.cut.year=2003,
+                                                  names.separated=TRUE, 
+                                                  country.names="A4:A254")
