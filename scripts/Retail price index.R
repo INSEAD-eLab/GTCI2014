@@ -21,6 +21,8 @@ RPI <- RPI[!is.na(RPI$ISO3),]
 
 RPI <- merge(RPI, RPI.2012[, c(1,7:9)], by="ISO3", all.x=T)
 
+RPI[RPI$Country.Name == "ukraine", "UNofficeandCapitalcitysame"] <- 1
+
 RPI1 <- RPI[RPI$series == "Price indices - Total retail price indices (RPI) living expenditures for UN officials",]
 colnames(RPI1)[6] <- RPI1[1, 3]
 RPI1 <- RPI1[, -3]
