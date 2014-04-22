@@ -162,13 +162,12 @@ Labour.tax.and.contributions <- get.UNESCO.format(source.file="[R] [WDI] Labour 
                                            country.names="A4:A255")
 
 ################# Personal Income Tax Rate
-personal.income.tax.rate <- get.WEF(source.file="[R] [KPMG] Personal income tax rates.xlsx", 
+personal.income.tax.rate <- get.UNESCO.format(source.file="[R] [KPMG] individual income tax rates 2009-2014.xlsx", 
                                     source.sheet="Sheet1", 
-                                    source.data.region="J2:J115",
-                                    source.colname="A1", 
-                                    source.date="J1", 
-                                    source.countries="A2:A115",
-                                    result.colname="personal income tax rate in percent")
+                                    source.data.region="A2:J136",
+                                    source.colname="A1:J1",
+                                    result.colname="individual income tax rate",
+                                    result.cut.year=2003)
 
 ################# pension system
 pension.system <- get.WEF(source.file="[R] [WB] Pension system.xlsx", 
