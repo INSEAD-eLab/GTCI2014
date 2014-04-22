@@ -408,3 +408,12 @@ female.parliamentarians <- get.UNESCO.format(source.file="[R] [WDI] Female parli
                                                     country.names="A5:A255")
 
 female.parliamentarians[, "female.male.ratio"] <- female.parliamentarians[,3]/(100-female.parliamentarians[,3])
+
+
+################# attitude towards entrepreneurial failure
+attitude.entrepreneurial.failure  <- get.WEF(source.file="WEF.xlsx", 
+                            source.sheet="Sheet1", 
+                            source.data.region="AB8:AB155",
+                            source.colname="AB6", 
+                            source.date="C7", 
+                            source.countries="C8:C155")
