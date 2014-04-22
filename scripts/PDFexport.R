@@ -134,6 +134,10 @@ colnames(linkedIn.users)[15] <- "Internet users population"
 colnames(linkedIn.users)[16] <- "LinkedIn users Ratio"
 generate.pdf(linkedIn.users[, c("ISO3", "Country.Name", "Year", "Number of Linkedin users", "Internet users population", "LinkedIn users Ratio")] , "LinkedIn users Ratio", "LinkedIn users Ratio", "Note : Years for internet users is based on 2012 data. Years for linkedin data is based on March 2014. LinkedIn Users Ratio = Number of Linkedin users / Internet users population. Source : UN, ITU, LinkedIn")
 
+colnames(journals) <- c("ISO3", "Country.Name", "Record count 2003-2013 (Stock)", "percent.of.918464", "Record count 2013 (Flow)", "percent.of.137643", "GDP (billion)", "Year", "Stock per GDP (million)", "Flow per GDP (million)")
+generate.pdf(journals[, c(1:2,8,3,7,9)] , "Stock per GDP (million)", "Journals stock per GDP (million)", "Note : Stock per GDP (million) = 1000*Record count 2003-2013 (Stock)/GDP (billion). Year is for GDP data. Source : Web of science.")
+generate.pdf(journals[, c(1:2,8,5,7,10)] , "Flow per GDP (million)", "Journals flow per GDP (million)", "Note : Flow per GDP (million) = 1000*Record count 2013 (Flow)/GDP (billion). Year is for GDP data. Source : Web of science.")
+
 ## subpillar 4.1
 generate.pdf(personal.income.tax.rate[, c(4,1:3)] , "personal income tax rate in percent", "Personal Income Tax Rate (in percent)")
 generate.pdf(top.management[, c(1:2, 4, 3, 5, 6)] , "Pay level deflator (Top Management)", "Pay level deflator (Top Management)", "Note : Pay level deflator (Top Management) = (Mid annual total cash ranges for Top Management/Price indices - Total retail price indices (RPI) living expenditures for UN officials)*100. Top Management are 2012 data. RPI are 2013 Dec data.")
