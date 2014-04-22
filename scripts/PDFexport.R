@@ -12,7 +12,7 @@ generate.pdf(innovation.output, "GII innovation output", "GII Innovation Output"
 generate.pdf(scaled.total.patent.resident.applications, "Scaled total patent resident applications", "Total patent resident applications")
 generate.pdf(scaled.patent.resident.granted, "Scaled total patent resident granted", "Total patent resident granted")
 generate.pdf(New.business.density, "New business density", "New business density")
-generate.pdf(New.product.entrepreneurial.act, "New.product.entrepreneurial.act", "New product entrepreneurial activity")
+generate.pdf(New.product.entrepreneurial.act, "New.product.entrepreneurial.act", "New product entrepreneurial activity", "Note: Source = GEM.")
 generate.pdf(established.business.ownership, "Established business ownership", "Established business ownership")
 generate.pdf(new.business.ownership, "New business ownership", "New business ownership")
 
