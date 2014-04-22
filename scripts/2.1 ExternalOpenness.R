@@ -35,6 +35,10 @@ Country.capacity.retain.talent <- get.WEF(source.file="WEF.xlsx",
                                            source.date="C7", 
                                            source.countries="C8:C155")
 
+################ Average of country capacity to attract and retain talent
+Average.country.capacity.retain.attract <- merge(Country.capacity.attract.talent, Country.capacity.retain.talent, by=c("Country.Name", "Year", "ISO3"), sort=FALSE)
+Average.country.capacity.retain.attract[, "Average of retain and attract"] <- (Average.country.capacity.retain.attract[, "Country capacity to retain talent"] + Average.country.capacity.retain.attract[, "Country capacity to attract talent"])/2
+
 ################# Employing Skilled Expatriates
 Employing.Skilled.Expatriates <- get.WEF(source.file="[R] [WB] Employing skilled expatriates index.xlsx", 
                                    source.sheet="Sheet1", 
