@@ -123,6 +123,11 @@ colnames(Part.time.employment.rate.15.female)[5] <- "Age group"
 colnames(Part.time.employment.rate.15.female)[6] <- "Female share of part time employment (percent)"
 generate.pdf(Part.time.employment.rate.15.female[, c(2,1,3:6)] , "Female share of part time employment (percent)", "Part time employment rate - Female (percent)")
 
+generate.pdf(Part.time.employment.rate.15.F.ratios[, c(2, 1, 3:4, 5, 9, 10)] , "Female part time workers out of total employment", "Female part time workers out of total employment", "Note : Female part time workers out of total employment = Female part time workers (000) / Total employment (000). Source : ILO")
+generate.pdf(Part.time.employment.rate.15.F.ratios[, c(2, 1, 3:4, 5, 6, 11)] , "Female part time workers out of female total employment", "Female part time workers out of female total employment", "Note : Female part time workers out of female total employment = Female part time workers (000) / Female total employment (000). SOurce : ILO")
+generate.pdf(Part.time.employment.rate.15.F.ratios[, c(2, 1, 3:4, 5, 6, 12)] , "Female part time workers by female full time workers", "Female part time workers by female full time workers", "Note : Female part time workers by female full time workers = Female part time workers (000) / Female full time workers. Full time workers = total employment - part time workers. Source : ILO")
+generate.pdf(Part.time.employment.rate.15.F.ratios[, c(2, 1, 3:4, 7, 8, 13)] , "Male part time workers by male full time workers", "Male part time workers by male full time workers", "Note : Male part time workers out of total employment = Male part time workers (000) / Male full time workers. Full time workers = total employment - part time workers. Source : ILO")
+
 generate.pdf(linkedIn.users.ratio[, c(1:2, 6,3,9:10)] , "ratio", "LinkedIn users ratio (Labour force)", "Note : Years for internet users is based on 2012 data. Years for linkedin data is based on March 2014. ratio = Number of Linkedin users / Labour force (000) Age 15-64.")
 
 colnames(linkedIn.users)[15] <- "Internet users population"
@@ -131,13 +136,10 @@ generate.pdf(linkedIn.users[, c("ISO3", "Country.Name", "Year", "Number of Linke
 
 ## subpillar 4.1
 generate.pdf(personal.income.tax.rate[, c(4,1:3)] , "personal income tax rate in percent", "Personal Income Tax Rate (in percent)")
-generate.pdf(top.management[, c(1:2, 4, 3, 5, 6)] , "Pay level deflator (Top Management)", "Pay level deflator (Top Management)", "Note : Pay level deflator (Top Management) = (Mid annual total cash ranges for Top Management/Price indices - Exchange rates used for retail price indices (RPI) for UN officials)*100. Top Management are 2012 data. RPI are 2013 Dec data.")
+generate.pdf(top.management[, c(1:2, 4, 3, 5, 6)] , "Pay level deflator (Top Management)", "Pay level deflator (Top Management)", "Note : Pay level deflator (Top Management) = (Mid annual total cash ranges for Top Management/Price indices - Total retail price indices (RPI) living expenditures for UN officials)*100. Top Management are 2012 data. RPI are 2013 Dec data.")
+generate.pdf(top.management[, c(1:2, 4, 3, 5, 6)] , "Mid annual total cash ranges for Top Management", "Pay level deflator (Top Management) sorted before deflator", "Note : Pay level deflator (Top Management) = (Mid annual total cash ranges for Top Management/Price indices - Total retail price indices (RPI) living expenditures for UN officials)*100. Top Management are 2012 data. RPI are 2013 Dec data. Sorted by annual total cash values.")
 
 ## subpillar 4.2
-generate.pdf(Part.time.employment.rate.15.F.ratios[, c(2, 1, 3:4, 5, 9, 10)] , "Female part time workers out of total employment", "Female part time workers out of total employment", "Note : Female part time workers out of total employment = Female part time workers (000) / Total employment (000). Source : ILO")
-generate.pdf(Part.time.employment.rate.15.F.ratios[, c(2, 1, 3:4, 5, 6, 11)] , "Female part time workers out of female total employment", "Female part time workers out of female total employment", "Note : Female part time workers out of female total employment = Female part time workers (000) / Female total employment (000). SOurce : ILO")
-generate.pdf(Part.time.employment.rate.15.F.ratios[, c(2, 1, 3:4, 5, 6, 12)] , "Female part time workers by female full time workers", "Female part time workers by female full time workers", "Note : Female part time workers by female full time workers = Female part time workers (000) / Female full time workers. Full time workers = total employment - part time workers. Source : ILO")
-generate.pdf(Part.time.employment.rate.15.F.ratios[, c(2, 1, 3:4, 7, 8, 13)] , "Male part time workers by male full time workers", "Male part time workers by male full time workers", "Note : Male part time workers out of total employment = Male part time workers (000) / Male full time workers. Full time workers = total employment - part time workers. Source : ILO")
 
 
 generate.pdf( , "", "")

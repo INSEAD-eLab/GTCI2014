@@ -198,4 +198,4 @@ top.management <- merge(top.management, RPI1, by="ISO3", sort=FALSE, all.x=TRUE)
 top.management <- top.management[, c(1:4,8)]
 colnames(top.management)[2] <- "Country.Name"
 colnames(top.management)[4] <- "Year"
-top.management[, "Pay level deflator (Top Management)"] <- (top.management[, "Mid annual total cash ranges for Top Management"] / top.management[, "Price indices - Exchange rates used for retail price indices (RPI) for UN officials"])*100
+top.management[, "Pay level deflator (Top Management)"] <- (top.management[, "Mid annual total cash ranges for Top Management"] / top.management[, "Price indices - Total retail price indices (RPI) living expenditures for UN officials"])*100
