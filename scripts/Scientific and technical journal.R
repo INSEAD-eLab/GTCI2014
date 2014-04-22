@@ -27,8 +27,10 @@ journals <- journals[!is.na(journals$ISO3),]
 
 journals <- merge(journals, GDP.PPP.2013, by="ISO3", all.x=T)
 
-journals <- journals[, c(1,7,3:6,8:9)]
+journals <- journals[, c(1:6,8:9)]
 
 colnames(journals)[2] <- "Country.Name"
+journals[, "Stock per million GDP"] <- 1000*journals[, 3]/journals[, 7]
+journals[, "Flow per million GDP"] <- 1000*journals[, 5]/journals[, 7]
 
 rm(stock, flow, GDP.PPP.2013, ISO3, data.ws)
