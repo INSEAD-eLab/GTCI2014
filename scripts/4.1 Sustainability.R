@@ -150,6 +150,10 @@ Extent.effect.taxation.on.incentives.to.invest <- get.WEF(source.file="WEF.xlsx"
                                                         source.countries="C8:C155")
 
 
+## average.extent.effect.taxation.on.incentives.to.invest.work
+Extent.effect.taxation.on.incentives.to.work.and.invest <- merge(Extent.effect.taxation.on.incentives.to.work, Extent.effect.taxation.on.incentives.to.invest, by=c("Country.Name", "Year", "ISO3"), sort=FALSE)
+Extent.effect.taxation.on.incentives.to.work.and.invest[, "average of invest and work"] <- (Extent.effect.taxation.on.incentives.to.work.and.invest[, 4] + Extent.effect.taxation.on.incentives.to.work.and.invest[, 5])/2
+
 ## WDI data has same format as UNESCO and used that function
 ################################# Labour tax and contributions
 Labour.tax.and.contributions <- get.UNESCO.format(source.file="[R] [WDI] Labour tax and contributions.xls",
