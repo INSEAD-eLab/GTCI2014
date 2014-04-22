@@ -176,6 +176,12 @@ setdiff(researchers.HC$Country.Name, researchers.FTE$Country.Name)
 ## countries in FTE but not in HC
 setdiff(researchers.FTE$Country.Name, researchers.HC$Country.Name)
 
+## patching Australia, Canada, india, USA
+researchers.FTE.TBP <- researchers.FTE[researchers.FTE$Country.Name %in% c("australia", "canada", "india", "united states of america"), ]
+colnames(researchers.FTE.TBP)[3] <- "Researchers per million inhabitants (HC)" 
+researchers.HC.patched <- rbind(researchers.HC, researchers.FTE.TBP)
+rm(researchers.FTE.TBP)
+
 ################# Female researchers (FTE)
 female.researchers.FTE <- get.UNESCO.format(source.file="[R] [UNESCO] Female researchers (FTE).xlsx",
                                             source.sheet="download-30", 
