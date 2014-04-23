@@ -152,6 +152,10 @@ generate.pdf(head.of.systems.engineering[, c(1:2, 4, 3, 5, 6)] , "Mid annual tot
 generate.pdf(plant.manager[, c(1:2, 4, 3, 5, 6)] , "Pay level deflator (Plant Manager)", "Pay level deflator (Plant Manager)", "Note : Pay level deflator (Plant Manager) = (Mid annual total cash ranges for Operations Plant Manager/Price indices - Total retail price indices (RPI) living expenditures for UN officials)*100. Plant Manager are 2012 data. RPI are 2013 Dec data.")
 generate.pdf(plant.manager[, c(1:2, 4, 3, 5, 6)] , "Mid annual total cash ranges for Operations Plant Manager", "Pay level deflator (Plant Manager) sorted before deflator", "Note : Pay level deflator (Plant Manager) = (Mid annual total cash ranges for Operations Plant Manager/Price indices - Total retail price indices (RPI) living expenditures for UN officials)*100. Plant Manager are 2012 data. RPI are 2013 Dec data. Sorted by annual total cash values.")
 
+generate.pdf(sales.n.marketing[, c(1:2, 4, 3, 5, 6)] , "Pay level deflator (Head of sales and marketing)", "Pay level deflator (Head of sales and marketing)", "Note : Pay level deflator (Head of sales and marketing) = (Mid annual total cash ranges for Head of sales and marketing/Price indices - Total retail price indices (RPI) living expenditures for UN officials)*100. Head of sales and marketing are 2012 data. RPI are 2013 Dec data.")
+generate.pdf(sales.n.marketing[, c(1:2, 4, 3, 5, 6)] , "Mid annual total cash ranges for Head of Sales and Marketing", "Pay level deflator (Head of sales and marketing) sorted before deflator", "Note : Pay level deflator (Head of sales and marketing) = (Mid annual total cash ranges for Head of sales and marketing/Price indices - Total retail price indices (RPI) living expenditures for UN officials)*100. Head of sales and marketing are 2012 data. RPI are 2013 Dec data. Sorted by annual total cash values.")
+
+
 ## subpillar 4.2
 
 

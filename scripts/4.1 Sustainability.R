@@ -264,3 +264,24 @@ plant.manager <- plant.manager[, c(1:4,8)]
 colnames(plant.manager)[2] <- "Country.Name"
 colnames(plant.manager)[4] <- "Year"
 plant.manager[, "Pay level deflator (Plant Manager)"] <- (plant.manager[, "Mid annual total cash ranges for Operations Plant Manager"] / plant.manager[, "Price indices - Total retail price indices (RPI) living expenditures for UN officials"])*100
+
+
+##### Head of Sales and Marketing (Mercer)
+sales.n.marketing <- get.WEF(source.file="[R] [Mercer] Head of Sales and Marketing.xlsx",
+                         source.sheet="Data",
+                         source.data.region="C2:C60",
+                         source.colname="C1",
+                         source.date="D2:D60",
+                         source.countries="A2:A60",
+                         cut.off.year=2003)
+
+
+## run the codes for RPI
+## source("scripts/Retail price index.R")
+
+sales.n.marketing <- merge(sales.n.marketing, RPI1, by="ISO3", sort=FALSE, all.x=TRUE)
+
+sales.n.marketing <- sales.n.marketing[, c(1:4,8)]
+colnames(sales.n.marketing)[2] <- "Country.Name"
+colnames(sales.n.marketing)[4] <- "Year"
+sales.n.marketing[, "Pay level deflator (Head of sales and marketing)"] <- (sales.n.marketing[, "Mid annual total cash ranges for Head of Sales and Marketing"] / sales.n.marketing[, "Price indices - Total retail price indices (RPI) living expenditures for UN officials"])*100
