@@ -206,12 +206,12 @@ top.management[, "Pay level deflator (Top Management)"] <- (top.management[, "Mi
 
 ##### Head of IT (Mercer)
 head.of.IT <- get.WEF(source.file="[R] [Mercer] Head of IT.xlsx",
-                          source.sheet="Data",
-                          source.data.region="C2:C57",
-                          source.colname="C1",
-                          source.date="D2:D57",
-                          source.countries="A2:A57",
-                          cut.off.year=2003)
+                      source.sheet="Data",
+                      source.data.region="C2:C57",
+                      source.colname="C1",
+                      source.date="D2:D57",
+                      source.countries="A2:A57",
+                      cut.off.year=2003)
 
 
 ## run the codes for RPI
@@ -223,3 +223,44 @@ head.of.IT <- head.of.IT[, c(1:4,8)]
 colnames(head.of.IT)[2] <- "Country.Name"
 colnames(head.of.IT)[4] <- "Year"
 head.of.IT[, "Pay level deflator (Head of IT)"] <- (head.of.IT[, "Mid annual total cash ranges for Head of IT"] / head.of.IT[, "Price indices - Total retail price indices (RPI) living expenditures for UN officials"])*100
+
+##### Head of Systems Engineering (Mercer)
+head.of.systems.engineering <- get.WEF(source.file="[R] [Mercer] Head of Systems Engineering.xlsx",
+                      source.sheet="Data",
+                      source.data.region="C2:C12",
+                      source.colname="C1",
+                      source.date="D2:D12",
+                      source.countries="A2:A12",
+                      cut.off.year=2003)
+
+
+## run the codes for RPI
+## source("scripts/Retail price index.R")
+
+head.of.systems.engineering <- merge(head.of.systems.engineering, RPI1, by="ISO3", sort=FALSE, all.x=TRUE)
+
+head.of.systems.engineering <- head.of.systems.engineering[, c(1:4,8)]
+colnames(head.of.systems.engineering)[2] <- "Country.Name"
+colnames(head.of.systems.engineering)[4] <- "Year"
+head.of.systems.engineering[, "Pay level deflator (Head of Systems Engineering)"] <- (head.of.systems.engineering[, "Mid annual total cash ranges for Head of systems engineering"] / head.of.systems.engineering[, "Price indices - Total retail price indices (RPI) living expenditures for UN officials"])*100
+
+
+##### Head of Plant Manager (Mercer)
+plant.manager <- get.WEF(source.file="[R] [Mercer] Plant Manager.xlsx",
+                                       source.sheet="Data",
+                                       source.data.region="C2:C41",
+                                       source.colname="C1",
+                                       source.date="D2:D41",
+                                       source.countries="A2:A41",
+                                       cut.off.year=2003)
+
+
+## run the codes for RPI
+## source("scripts/Retail price index.R")
+
+plant.manager <- merge(plant.manager, RPI1, by="ISO3", sort=FALSE, all.x=TRUE)
+
+plant.manager <- plant.manager[, c(1:4,8)]
+colnames(plant.manager)[2] <- "Country.Name"
+colnames(plant.manager)[4] <- "Year"
+plant.manager[, "Pay level deflator (Plant Manager)"] <- (plant.manager[, "Mid annual total cash ranges for Operations Plant Manager"] / plant.manager[, "Price indices - Total retail price indices (RPI) living expenditures for UN officials"])*100
