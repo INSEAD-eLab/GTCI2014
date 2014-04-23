@@ -143,6 +143,9 @@ generate.pdf(personal.income.tax.rate[, c(4,1:3)] , "personal income tax rate in
 generate.pdf(top.management[, c(1:2, 4, 3, 5, 6)] , "Pay level deflator (Top Management)", "Pay level deflator (Top Management)", "Note : Pay level deflator (Top Management) = (Mid annual total cash ranges for Top Management/Price indices - Total retail price indices (RPI) living expenditures for UN officials)*100. Top Management are 2012 data. RPI are 2013 Dec data.")
 generate.pdf(top.management[, c(1:2, 4, 3, 5, 6)] , "Mid annual total cash ranges for Top Management", "Pay level deflator (Top Management) sorted before deflator", "Note : Pay level deflator (Top Management) = (Mid annual total cash ranges for Top Management/Price indices - Total retail price indices (RPI) living expenditures for UN officials)*100. Top Management are 2012 data. RPI are 2013 Dec data. Sorted by annual total cash values.")
 
+generate.pdf(head.of.IT[, c(1:2, 4, 3, 5, 6)] , "Pay level deflator (Head of IT)", "Pay level deflator (Head of IT)", "Note : Pay level deflator (Head of IT) = (Mid annual total cash ranges for Head of IT/Price indices - Total retail price indices (RPI) living expenditures for UN officials)*100. Head of IT are 2012 data. RPI are 2013 Dec data.")
+generate.pdf(head.of.IT[, c(1:2, 4, 3, 5, 6)] , "Mid annual total cash ranges for Head of IT", "Pay level deflator (Head of IT) sorted before deflator", "Note : Pay level deflator (Head of IT) = (Mid annual total cash ranges for Head of IT/Price indices - Total retail price indices (RPI) living expenditures for UN officials)*100. Head of IT are 2012 data. RPI are 2013 Dec data. Sorted by annual total cash values.")
+
 ## subpillar 4.2
 
 

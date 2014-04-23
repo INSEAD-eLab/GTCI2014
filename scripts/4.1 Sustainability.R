@@ -202,3 +202,24 @@ top.management <- top.management[, c(1:4,8)]
 colnames(top.management)[2] <- "Country.Name"
 colnames(top.management)[4] <- "Year"
 top.management[, "Pay level deflator (Top Management)"] <- (top.management[, "Mid annual total cash ranges for Top Management"] / top.management[, "Price indices - Total retail price indices (RPI) living expenditures for UN officials"])*100
+
+
+##### Head of IT (Mercer)
+head.of.IT <- get.WEF(source.file="[R] [Mercer] Head of IT.xlsx",
+                          source.sheet="Data",
+                          source.data.region="C2:C57",
+                          source.colname="C1",
+                          source.date="D2:D57",
+                          source.countries="A2:A57",
+                          cut.off.year=2003)
+
+
+## run the codes for RPI
+## source("scripts/Retail price index.R")
+
+head.of.IT <- merge(head.of.IT, RPI1, by="ISO3", sort=FALSE, all.x=TRUE)
+
+head.of.IT <- head.of.IT[, c(1:4,8)]
+colnames(head.of.IT)[2] <- "Country.Name"
+colnames(head.of.IT)[4] <- "Year"
+head.of.IT[, "Pay level deflator (Head of IT)"] <- (head.of.IT[, "Mid annual total cash ranges for Head of IT"] / head.of.IT[, "Price indices - Total retail price indices (RPI) living expenditures for UN officials"])*100
