@@ -53,6 +53,8 @@ Venture.capital.deals.scaled <- scaling(numertor=Venture.capital.deals,
                                 result.colname="GDPPPP",
                                 multiplier=1000)
 
+colnames(Venture.capital.deals.scaled)[3] <- "Country.Name"
+
 ################# ICT access
 ICT.access <- get.WEF(source.file="ICT access.xlsx", 
                       source.sheet="Sheet1", 
@@ -69,3 +71,15 @@ ease.of.doing.business.index <- get.WEF(source.file="[R] [WB EODB] Ease of doing
                                         source.colname="C1", 
                                         source.date="B3", 
                                         source.countries="A3:A191")
+
+
+## WDI data has same format as UNESCO and used that function
+################################# Labour tax and contributions
+Labour.tax.and.contributions <- get.UNESCO.format(source.file="[R] [WDI] Labour tax and contributions.xls",
+                                                  source.sheet="Data", 
+                                                  source.data.region="BD4:BE255",
+                                                  source.colnames="BC3:BE3", 
+                                                  result.colnames="Labour.tax.and.contributions",
+                                                  result.cut.year=2003,
+                                                  names.separated=TRUE, 
+                                                  country.names="A4:A255")

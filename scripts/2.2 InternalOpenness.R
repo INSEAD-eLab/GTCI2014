@@ -394,7 +394,8 @@ Estimated.earned.income.3 <- merge(Estimated.earned.female.male.ratio, Estimated
 Estimated.earned.income <- merge(Estimated.earned.income.1, Estimated.earned.income.2, by=c("ISO3", "Country.Name", "Year"))
 Estimated.earned.income <- merge(Estimated.earned.income, Estimated.earned.income.3, by=c("ISO3", "Country.Name", "Year"))
 
-rm(Estimated.earned.income.1, Estimated.earned.income.2, Estimated.earned.income.3)
+rm(Estimated.earned.income.1, Estimated.earned.income.2, Estimated.earned.income.3, Estimated.earned.rank, Estimated.earned.female.male.ratio,
+   Estimated.earned.income.male.40000, Estimated.earned.income.female.40000, Estimated.earned.income.male, Estimated.earned.income.female)
 
 ## WDI data has same format as UNESCO and used that function
 ################################# Female parliamentarians

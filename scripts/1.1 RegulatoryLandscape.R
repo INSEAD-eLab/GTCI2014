@@ -31,6 +31,8 @@ corruption.perception.index  <- get.WEF(source.file="[TI] Corruption perception 
                                   source.date="A1", 
                                   source.countries="B5:B181")
 
+corruption.perception.index[, "Year"] <- 2013
+
 
 ############### Ease of Establishment Data
 Ease.of.Establishment.Data  <- get.WEF(source.file="[R] [WB] Ease of Establishment Data.xlsx", 

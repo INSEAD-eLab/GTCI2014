@@ -94,6 +94,7 @@ generate.pdf(labour.productivity.per.person.employed.growth[, -6] , "growth (201
 generate.pdf(pay.and.productivity , "Pay and productivity", "Relationship of pay to productivity")
 
 ## subpillar 2.1
+generate.pdf(FDI.technology.transfer[, c(4, 1, 3, 2)] , "FDI and technology transfer", "FDI and technology transfer", "Source : WEF")
 generate.pdf(Employing.Skilled.Expatriates[, c(4,1,3,2)] , "Employing Skilled Expatriates Index", "Employing Skilled Expatriates Index")
 generate.pdf(total.migrants.15.64[, c(2,1,3:6)] , "Ratio", "Total migrants (age 15 - 64)", "Note : ratio = migrants (age 15-64)/population (age 15-64)")
 generate.pdf(total.migrants.below.25[, c(2,1,3:6)] , "Ratio", "Total migrants (age below 25)", "Note : ratio = migrants (age below 25)/population (age below 25)")
@@ -102,13 +103,28 @@ generate.pdf(total.migrants.below.25.male[, c(2,1,3:6)] , "Ratio", "Total migran
 generate.pdf(total.migrants.below.25.female[, c(2,1,3:6)] , "Ratio", "Total migrants (below 25 female)", "Note : ratio = migrants below 25 female/population below 25 female")
 generate.pdf(total.migrants.above.25.male[, c(2,1,3:6)] , "Ratio", "Total migrants (above 25 male)", "Note : ratio = migrants above 25 male/population above 25 male")
 generate.pdf(total.migrants.above.25.female[, c(2,1,3:6)] , "Ratio", "Total migrants (above 25 female)", "Note : ratio = migrants above 25 female/population above 25 female")
+generate.pdf(Country.capacity.attract.talent[, c(4, 1, 3, 2)] , "Country capacity to attract talent", "Brain gain - Country capacity to attract talent", "Source : WEF")
+generate.pdf(Country.capacity.retain.talent[, c(4, 1, 3, 2)] , "Country capacity to retain talent", "Brain drain - Country capacity to retain talent", "Source : WEF")
 
 ## subpillar 2.2
 generate.pdf(female.tertiary.graduates[, c(4,1:3)] , "female.tertiary.graduates", "Female tertiary graduates")
 generate.pdf(Estimated.earned.income[, c(1:3,8)] , "Female-to- male ratio", "Estimated female income")
 generate.pdf(Entrepreneurial.intention[, c(4, 1:3)] , "Entrepreneurial intention", "Entrepreneurial intention", "Source : Global Entrepreneurship Research Association, Global Entrepreneurship Monitor database.")
+generate.pdf(attitude.entrepreneurial.failure[, c(4, 1, 3, 2)] , "Attitudes towards entrepreneurial failure", "Attitudes towards entrepreneurial failure", "Source : WEF")
+generate.pdf(Estimated.earned.income[, c(1:3, 8)] , "Female-to- male ratio", "Female-male earning ratio", "Source : WEF")
+
+
+## subpillar 1.1
+generate.pdf(busienss.gov.relations[, c(4, 1, 3, 2)] , "Business-government relations", "Business-government relations", "Source : WEF")
+generate.pdf(corruption.perception.index[, c(4, 1, 3, 2)] , "CPI 2013 Score", "Corruption perception index", "Source : TI")
+
+## subpillar 1.2
+generate.pdf(Venture.capital.deals.scaled[, c(1,3,2,4,6,7)] , "ratio", "Venture capital deals", "Note : ratio = (No. of Deals / GDPPPP)*1000. Source : Thomson")
+colnames(Labour.tax.and.contributions)[3] <- "Labour tax contribution"
+generate.pdf(Labour.tax.and.contributions[, c(4,1,2,3)] , "Labour tax contribution", "Labour tax contribution", "Source : WDI")
 
 ## subpillar 1.3
+generate.pdf(Cooperation.labor.employer.relations[, c(4,1,3,2)] , "Cooperation in labour-employer relations", "Cooperation in labour-employer relations", "Source : WEF.")
 generate.pdf(Difficulty.of.hiring.index.score[, c(4,1,3,2)] , "Difficulty of hiring index score", "Difficulty of hiring index score")
 generate.pdf(Rigidity.of.hours.index.score[, c(4,1,3,2)] , "Rigidity of hours index score", "Rigidity of hours index score")
 generate.pdf(Difficulty.of.redundancy.index.score[, c(4,1,3,2)] , "Difficulty of redundancy index score", "Difficulty of redundancy index score")
@@ -116,6 +132,11 @@ generate.pdf(Rigidity.of.employment.index.score[, c(4,1,3,2)] , "Rigidity of emp
 
 ## subpillar 3.1
 generate.pdf(Tertiary.inbound.mobility.ratio[, c(4,1:3)] , "Tertiary inbound mobility ratio", "International students inflow - Tertiary inbound mobility ratio")
+generate.pdf(science.engineering.ratios[, c(6,1:2, 7)] , "science.and.engineering.ratio", "Science and engineering graduates ratio", "Note : science.and.engineering.ratio = (graduates in science + graduates in engineering)/graduates in total. Source : UNESCO")
+generate.pdf(Tertiary.outbound.mobility.rate[, c(4,1:3)] , "Tertiary outbound mobility rate", "International students outflow", "Source : UNESCO")
+
+## subpillar 3.2
+generate.pdf(firms.offering.training[, c(4,1:3)] , "Percent of firms offering formal training", "Firms offering formal training", "Source : WB Executive Survey")
 
 ## subpillar 3.3
 colnames(Part.time.employment.rate.15.female)[4] <- "Gender"
@@ -138,6 +159,8 @@ colnames(journals) <- c("ISO3", "Country.Name", "Record count 2003-2013 (Stock)"
 generate.pdf(journals[, c(1:2,8,3,7,9)] , "Stock per GDP (million)", "Journals stock per GDP (million)", "Note : Stock per GDP (million) = 1000*Record count 2003-2013 (Stock)/GDP (billion). Year is for GDP data. Source : Web of science.")
 generate.pdf(journals[, c(1:2,8,5,7,10)] , "Flow per GDP (million)", "Journals flow per GDP (million)", "Note : Flow per GDP (million) = 1000*Record count 2013 (Flow)/GDP (billion). Year is for GDP data. Source : Web of science.")
 
+generate.pdf(Willingness.to.delegate.authority[, c(4,1,3,2)] , "Willingness to delegate authority", "Willingness to delegate authority", "Source : WEF")
+
 ## subpillar 4.1
 generate.pdf(personal.income.tax.rate[, c(4,1:3)] , "personal income tax rate in percent", "Personal Income Tax Rate (in percent)")
 generate.pdf(top.management[, c(1:2, 4, 3, 5, 6)] , "Pay level deflator (Top Management)", "Pay level deflator (Top Management)", "Note : Pay level deflator (Top Management) = (Mid annual total cash ranges for Top Management/Price indices - Total retail price indices (RPI) living expenditures for UN officials)*100. Top Management are 2012 data. RPI are 2013 Dec data.")
@@ -157,7 +180,8 @@ generate.pdf(sales.n.marketing[, c(1:2, 4, 3, 5, 6)] , "Mid annual total cash ra
 
 
 ## subpillar 4.2
-
+generate.pdf(Intentional.homicide[, c(4,1:3)] , "Intentional.homicide", "Homicides", "Source : UNODC Homicide Statistics")
+generate.pdf(improved.sanitation.facilities[, c(4,1:3)] , "improved.sanitation.facilities", "Improved sanitation facilities", "Source : WDI")
 
 generate.pdf( , "", "")
 

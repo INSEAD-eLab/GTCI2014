@@ -41,16 +41,6 @@ Efficacy.corporate.boards <- get.WEF(source.file="WEF.xlsx",
                                             source.date="C7", 
                                             source.countries="C8:C155")
 
-
-################# Willingness to delegate authority
-Willingness.to.delegate.authority <- get.WEF(source.file="WEF.xlsx", 
-                                     source.sheet="Sheet1", 
-                                     source.data.region="CB8:CB155",
-                                     source.colname="CB6", 
-                                     source.date="C7", 
-                                     source.countries="C8:C155")
-
-
 ################################ Top manager's experience
 top.manager.experience <- get.WB.format(source.file="[R] [WB ES] Top manager's experience.xlsx",
                                          source.sheet="Workforce", 
