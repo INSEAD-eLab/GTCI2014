@@ -274,3 +274,13 @@ sales.n.marketing <- sales.n.marketing[, c(1:4,8)]
 colnames(sales.n.marketing)[2] <- "Country.Name"
 colnames(sales.n.marketing)[4] <- "Year"
 sales.n.marketing[, "Pay level deflator (Head of sales and marketing)"] <- (sales.n.marketing[, "Mid annual total cash ranges for Head of Sales and Marketing"] / sales.n.marketing[, "Price indices - Total retail price indices (RPI) living expenditures for UN officials"])*100
+
+
+### maternity and parental leave provision 
+maternity.parental.leave <- get.WEF(source.file="Maternal leave.xlsx",
+                                       source.sheet="Data",
+                                       source.data.region="C3:C145",
+                                       source.colname="C1",
+                                       source.date="D3:D145",
+                                       source.countries="B3:B145",
+                                       cut.off.year=2003)

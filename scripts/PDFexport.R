@@ -182,6 +182,7 @@ generate.pdf(plant.manager[, c(1:2, 4, 3, 5, 6)] , "Mid annual total cash ranges
 generate.pdf(sales.n.marketing[, c(1:2, 4, 3, 5, 6)] , "Pay level deflator (Head of sales and marketing)", "Pay level deflator (Head of sales and marketing)", "Note : Pay level deflator (Head of sales and marketing) = (Mid annual total cash ranges for Head of sales and marketing/Price indices - Total retail price indices (RPI) living expenditures for UN officials)*100. Head of sales and marketing are 2012 data. RPI are 2013 Dec data.")
 generate.pdf(sales.n.marketing[, c(1:2, 4, 3, 5, 6)] , "Mid annual total cash ranges for Head of Sales and Marketing", "Pay level deflator (Head of sales and marketing) sorted before deflator", "Note : Pay level deflator (Head of sales and marketing) = (Mid annual total cash ranges for Head of sales and marketing/Price indices - Total retail price indices (RPI) living expenditures for UN officials)*100. Head of sales and marketing are 2012 data. RPI are 2013 Dec data. Sorted by annual total cash values.")
 
+generate.pdf(maternity.parental.leave[, c(4,1,3,2)] , "Option 4", "Maternity and parental leave", "Note : Option 4 = (a) If there is no parental value, rely on maternity value; (b) If there is no maternity value, rely on parental value; (c) If parental value is higher than maternity value, use the parental value.")
 
 ## subpillar 4.2
 generate.pdf(Intentional.homicide[, c(4,1:3)] , "Intentional.homicide", "Homicides", "Source : UNODC Homicide Statistics")
