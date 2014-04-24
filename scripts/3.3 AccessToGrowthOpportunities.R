@@ -64,6 +64,13 @@ colnames(Part.time.employment.rate.15.F.ratios) <- c("Country.Name", "ISO3", "Ye
                                                      "Female part time workers out of total employment", "Female part time workers out of female total employment",
                                                      "Female part time workers by female full time workers", "Male part time workers by male full time workers")
 
+
+## testing for share / another ratio 
+## "FEMALE PART TIME WORKERS TO TOTAL PART TIME WORKERS” and deflate this by another ratio, namely 'female employment out of total employment'
+merged24 <- merge(Part.time.employment.rate.15.female[, c(2,3,6)], Part.time.employment.rate.15.F.ratios[, c(1,2,3,6,9)], by="ISO3", sort=FALSE)
+merged24[, "ratio"] <- merged24[, "Female.share.of.part.time.employment.percent"]/(merged24[, "Female total employment (000)"]/merged24[, "Total employment (000)"])
+
+
 ################# Use of virtual social networks
 Use.virtual.social.networks  <- get.WEF(source.file="WEF.xlsx", 
                                         source.sheet="Sheet1", 
@@ -104,13 +111,16 @@ citable.documents.H.index  <- get.WEF(source.file="[R] [SCImago] Citable documen
 ## object name : linkedIn.users
 ## colnames : linkedin.ratio
 source("scripts/linkedInUsers.R")
-  
-
 
 ## scripts to run codes for scientific and tech journal
 ## object name : journals
 source("scripts/Scientific and technical journal.R")
 
+## run the codes for researchers.FTE from 6.1
+journals.per.researchers.FTE <- merge(journals, researchers.FTE[, -1], by="ISO3", all.x=TRUE)
+colnames(journals.per.researchers.FTE)[8] <- "Year"
+journals.per.researchers.FTE[, "Stock per researchers FTE"] <- journals.per.researchers.FTE[, "Record.count.Stock.2003.2013"]/journals.per.researchers.FTE[, "Researchers per million inhabitants (FTE)"]
+colnames(journals.per.researchers.FTE)[3] <- "Record count 2003-2013(stock)"
 
 ################# Willingness to delegate authority
 Willingness.to.delegate.authority <- get.WEF(source.file="WEF.xlsx", 
