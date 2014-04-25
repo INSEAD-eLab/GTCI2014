@@ -33,6 +33,8 @@ merge21 <- merge (merge21,total.migrants.below.25.female[, c(2,6)], by="ISO3", a
 merge21 <- merge (merge21,Country.capacity.attract.talent[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge21 <- merge (merge21,Country.capacity.retain.talent[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 
+save(merge21, file="scripts/merging/21.Rdata")
+
 ## Sub-pillar: Internal Openness
 source("scripts/2.2 InternalOpenness.R")
 
@@ -53,3 +55,25 @@ colnames(Estimated.earned.income)[8] <- "Estimated earned income"
 merge22 <- merge(attitude.entrepreneurial.failure[, c(2,4)], Social.mobility[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge22 <- merge (merge22,Female.tertiary.students[, c(3,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge22 <- merge (merge22,Estimated.earned.income[, c(1,8)], by="ISO3", all=TRUE, sort=FALSE)
+
+save(merge22, file="scripts/merging/22.Rdata")
+
+
+## clean the memory
+rm(list=ls())
+gc()
+
+load("scripts/merging/21.Rdata")
+load("scripts/merging/22.Rdata")
+
+merge2 <- merge(merge21, merge22, by="ISO3", all=TRUE)
+
+save(merge2, file="scripts/merging/P2.Rdata")
+unlink("scripts/merging/21.Rdata")
+unlink("scripts/merging/22.Rdata")
+
+## clean the memory
+rm(list=ls())
+gc()
+source("scripts/functions.R")
+

@@ -27,10 +27,16 @@ merge61 <- merge(tertiary.educated.population.above15.ILO.total[, c(2,6)], terti
 merge61 <- merge (merge61,Legislators.senior.officials.managers.88[, c(1,7)], by="ISO3", all=TRUE, sort=FALSE)
 merge61 <- merge (merge61,Female.legislators.senior.officials.managers.88[, c(2,7)], by="ISO3", all=TRUE, sort=FALSE)
 merge61 <- merge (merge61,legislators.senior.officials.managers.88.f[, c(1,12)], by="ISO3", all=TRUE, sort=FALSE)
-merge61 <- merge (merge61,professionals[, c(1,7)], by="ISO3", all=TRUE, sort=FALSE)
+merge61 <- merge (merge61,Professional.88[, c(1,7)], by="ISO3", all=TRUE, sort=FALSE)
 merge61 <- merge (merge61,female.professional.88[, c(2,7)], by="ISO3", all=TRUE, sort=FALSE)
-merge61 <- merge (merge61,professional.88.F[, c(1,12)], by="ISO3", all=TRUE, sort=FALSE)
+merge61 <- merge (merge61,professional.88.f[, c(1,12)], by="ISO3", all=TRUE, sort=FALSE)
 merge61 <- merge (merge61,researchers.FTE[, c(3,4)], by="ISO3", all=TRUE, sort=FALSE)
+
+save(merge61, file="scripts/merging/61.Rdata")
+## clean the memory
+rm(list=ls())
+gc()
+source("scripts/functions.R")
 
 ## Sub-pillar: Talent impact
 source("scripts/6.2 TalentImpact.R")
@@ -45,3 +51,23 @@ colnames(New.business.density)[3] <- "New business density"
 
 merge62 <- merge (innovation.output[, c(3,4)], New.product.entrepreneurial.act[, c(3,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge62 <- merge (merge62, New.business.density[, c(3,4)], by="ISO3", all=TRUE, sort=FALSE)
+
+save(merge62, file="scripts/merging/62.Rdata")
+
+## clean the memory
+rm(list=ls())
+gc()
+
+load("scripts/merging/61.Rdata")
+load("scripts/merging/62.Rdata")
+
+merge6 <- merge(merge61, merge62, by="ISO3", all=TRUE)
+
+save(merge6, file="scripts/merging/P6.Rdata")
+unlink("scripts/merging/61.Rdata")
+unlink("scripts/merging/62.Rdata")
+
+## clean the memory
+rm(list=ls())
+gc()
+source("scripts/functions.R")

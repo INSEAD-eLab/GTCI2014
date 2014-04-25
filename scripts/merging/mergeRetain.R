@@ -16,6 +16,8 @@ merge41 <- merge(pension.system[, c(2,4)], maternity.parental.leave[, c(2,4)], b
 merge41 <- merge (merge41,Extent.effect.taxation.on.incentives.to.work[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge41 <- merge (merge41,personal.income.tax.rate[, c(3,4)], by="ISO3", all=TRUE, sort=FALSE)
 
+save(merge41, file="scripts/merging/41.Rdata")
+
 ## Sub-pillar: Lifestyle
 source("scripts/4.2 Lifestyle.R")
 source("scripts/3.3 AccessToGrowthOpportunities.R")
@@ -42,3 +44,22 @@ merge42 <- merge (merge42,Part.time.employment.rate.15.F.ratios[, c(2,10)], by="
 merge42 <- merge (merge42,Physicians.density[, c(3,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge42 <- merge (merge42,improved.sanitation.facilities[, c(3,4)], by="ISO3", all=TRUE, sort=FALSE)
 
+save(merge42, file="scripts/merging/42.Rdata")
+
+## clean the memory
+rm(list=ls())
+gc()
+
+load("scripts/merging/41.Rdata")
+load("scripts/merging/42.Rdata")
+
+merge4 <- merge(merge41, merge42, by="ISO3", all=TRUE)
+
+save(merge4, file="scripts/merging/P4.Rdata")
+unlink("scripts/merging/41.Rdata")
+unlink("scripts/merging/42.Rdata")
+
+## clean the memory
+rm(list=ls())
+gc()
+source("scripts/functions.R")

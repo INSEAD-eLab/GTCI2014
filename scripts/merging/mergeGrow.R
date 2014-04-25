@@ -28,6 +28,11 @@ merge31 <- merge (merge31,QS.university.ranking[, c(2,4)], by="ISO3", all=TRUE, 
 merge31 <- merge (merge31,Tertiary.inbound.mobility.ratio[, c(3,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge31 <- merge (merge31,Tertiary.outbound.mobility.rate[, c(3,4)], by="ISO3", all=TRUE, sort=FALSE)
 
+save(merge31, file="scripts/merging/31.Rdata")
+rm(list=ls())
+gc()
+source("scripts/functions.R")
+
 ## Sub-pillar: Lifelong learning
 source("scripts/3.2 LifelongLearning.R")
 source("scripts/3.3 AccessToGrowthOpportunities.R")
@@ -46,6 +51,11 @@ colnames(Part.time.employment.rate.15)[6] <- "Part-time employment rate"
 merge32 <- merge(Quality.management.schools[, c(2,4)], Extent.staff.training[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge32 <- merge (merge32,firms.offering.training[, c(3,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge32 <- merge (merge32,Part.time.employment.rate.15[, c(2,6)], by="ISO3", all=TRUE, sort=FALSE)
+
+save(merge32, file="scripts/merging/32.Rdata")
+rm(list=ls())
+gc()
+source("scripts/functions.R")
 
 ## Sub-pillar: Access to growth opportunities
 source("scripts/3.3 AccessToGrowthOpportunities.R")
@@ -69,3 +79,30 @@ merge33 <- merge(Use.virtual.social.networks[, c(2,4)], linkedIn.users[, c(1,16)
 merge33 <- merge (merge33,State.cluster.development[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge33 <- merge (merge33,Quality.scientific.research.institutions[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge33 <- merge (merge33,Willingness.to.delegate.authority[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
+
+save(merge33, file="scripts/merging/33.Rdata")
+rm(list=ls())
+gc()
+source("scripts/functions.R")
+
+## clean the memory
+rm(list=ls())
+gc()
+
+load("scripts/merging/31.Rdata")
+load("scripts/merging/32.Rdata")
+load("scripts/merging/33.Rdata")
+
+merge3 <- merge(merge31, merge32, by="ISO3", all=TRUE)
+merge3 <- merge(merge3, merge33, by="ISO3", all=TRUE)
+
+save(merge3, file="scripts/merging/P3.Rdata")
+unlink("scripts/merging/31.Rdata")
+unlink("scripts/merging/32.Rdata")
+unlink("scripts/merging/33.Rdata")
+
+## clean the memory
+rm(list=ls())
+gc()
+source("scripts/functions.R")
+

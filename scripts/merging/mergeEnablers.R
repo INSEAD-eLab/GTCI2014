@@ -19,11 +19,8 @@ merge11 <- merge (merge11,Political.Stability[, c(2:3)], by="ISO3", all=TRUE, so
 merge11 <- merge (merge11,corruption.perception.index[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge11 <- merge (merge11,Ease.of.Establishment.Data[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 
+## save the object into Rdata file
 save(merge11, file="scripts/merging/11.Rdata")
-rm(list=ls())
-gc()
-## to load the functions
-source("scripts/functions.R")
 
 ## Sub-pillar: Market Landscape
 source("scripts/1.2 Market.Landscape.R")
@@ -48,6 +45,9 @@ merge12 <- merge (merge12,firm.level.tech.absorption[, c(2,4)], by="ISO3", all=T
 merge12 <- merge (merge12,R.D.expenditure[, c(3,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge12 <- merge (merge12,ICT.access[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge12 <- merge (merge12,ease.of.doing.business.index[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
+
+## save the object into Rdata file
+save(merge12, file="scripts/merging/12.Rdata")
 
 ## Sub-pillar: Business Landscape
 source("scripts/1.3 Business.Landscape.R")
@@ -74,3 +74,26 @@ merge13 <- merge (merge13,Cooperation.labor.employer.relations[, c(2,4)], by="IS
 merge13 <- merge (merge13,Labour.tax.and.contributions[, c(3,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge13 <- merge (merge13,Reliance.professional.management[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 
+## save the object into Rdata file
+save(merge13, file="scripts/merging/13.Rdata")
+
+## clean the memory
+rm(list=ls())
+gc()
+
+load("scripts/merging/11.Rdata")
+load("scripts/merging/12.Rdata")
+load("scripts/merging/13.Rdata")
+
+merge1 <- merge(merge11, merge12, by="ISO3", all=TRUE)
+merge1 <- merge(merge1, merge13, by="ISO3", all=TRUE)
+
+save(merge1, file="scripts/merging/P1.Rdata")
+unlink("scripts/merging/11.Rdata")
+unlink("scripts/merging/12.Rdata")
+unlink("scripts/merging/13.Rdata")
+
+## clean the memory
+rm(list=ls())
+gc()
+source("scripts/functions.R")

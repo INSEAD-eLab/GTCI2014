@@ -117,6 +117,15 @@ source("scripts/linkedInUsers.R")
 source("scripts/Scientific and technical journal.R")
 
 ## run the codes for researchers.FTE from 6.1
+################# Researchers per million inhabitants (FTE)
+researchers.FTE <- get.UNESCO.format(source.file="[R] [UNESCO] Researchers per million inhabitants (FTE).xlsx",
+                                     source.sheet="download-27", 
+                                     source.data.region="A6:R220",
+                                     source.colnames="A4:R4", 
+                                     result.colnames="Researchers per million inhabitants (FTE)",
+                                     result.cut.year=2003)
+
+
 journals.per.researchers.FTE <- merge(journals, researchers.FTE[, -1], by="ISO3", all.x=TRUE)
 colnames(journals.per.researchers.FTE)[8] <- "Year"
 journals.per.researchers.FTE[, "Stock per researchers FTE"] <- journals.per.researchers.FTE[, "Record.count.Stock.2003.2013"]/journals.per.researchers.FTE[, "Researchers per million inhabitants (FTE)"]

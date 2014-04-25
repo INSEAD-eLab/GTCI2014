@@ -23,8 +23,10 @@ merge51 <- merge (merge51,tech.asso.88.F.latest[, c(2,7)], by="ISO3", all=TRUE, 
 merge51 <- merge (merge51,tech.asso.88.F[, c(1,12)], by="ISO3", all=TRUE, sort=FALSE)
 merge51 <- merge (merge51,youth.employment[, c(2,6)], by="ISO3", all=TRUE, sort=FALSE)
 
+save(merge51, file="scripts/merging/51.Rdata")
+
 ## Sub-pillar: Employable Skills
-source("scripts/5.1 EmployableSkills.R")
+source("scripts/5.2 LabourProductivity.R")
 ## rename the column accordingly
 head (labour.productivity.per.person.employed)
 head (pay.and.productivity)
@@ -32,3 +34,23 @@ colnames(labour.productivity.per.person.employed)[2] <- "Labour productivity per
 colnames(pay.and.productivity)[2] <- "Relationship of pay to productivity"
 
 merge52 <- merge (labour.productivity.per.person.employed[, c(2,4)], pay.and.productivity[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
+
+save(merge52, file="scripts/merging/52.Rdata")
+
+## clean the memory
+rm(list=ls())
+gc()
+
+load("scripts/merging/51.Rdata")
+load("scripts/merging/52.Rdata")
+
+merge5 <- merge(merge51, merge52, by="ISO3", all=TRUE)
+
+save(merge5, file="scripts/merging/P5.Rdata")
+unlink("scripts/merging/51.Rdata")
+unlink("scripts/merging/52.Rdata")
+
+## clean the memory
+rm(list=ls())
+gc()
+source("scripts/functions.R")

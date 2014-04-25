@@ -184,6 +184,7 @@ top.management <- get.WEF(source.file="[R] [Mercer] Top Management.xlsx",
                           cut.off.year=2003)
 
 ## run the codes for RPI 
+source("scripts/Retail price index.R")
 
 top.management <- merge(top.management, RPI1, by="ISO3", sort=FALSE, all.x=TRUE)
 
