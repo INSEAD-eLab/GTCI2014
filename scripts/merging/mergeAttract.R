@@ -23,15 +23,15 @@ colnames(Country.capacity.attract.talent)[2] <- "Country capacity to attract tal
 colnames(Country.capacity.retain.talent)[2] <- "Country capacity to retain talent/Brain drain"
 
 ## merge
-merge21 <- merge(FDI.inflow[, c(3,4)], FDI.technology.transfer[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
-merge21 <- merge (merge21,Employing.Skilled.Expatriates[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
-merge21 <- merge (merge21,Prevalence.foreign.ownership[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
-merge21 <- merge (merge21,total.migrants.above.25.male[, c(2,6)], by="ISO3", all=TRUE, sort=FALSE)
-merge21 <- merge (merge21,total.migrants.above.25.female[, c(2,6)], by="ISO3", all=TRUE, sort=FALSE)
-merge21 <- merge (merge21,total.migrants.below.25.male[, c(2,6)], by="ISO3", all=TRUE, sort=FALSE)
-merge21 <- merge (merge21,total.migrants.below.25.female[, c(2,6)], by="ISO3", all=TRUE, sort=FALSE)
-merge21 <- merge (merge21,Country.capacity.attract.talent[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
-merge21 <- merge (merge21,Country.capacity.retain.talent[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
+merge21 <- merge(FDI.inflow[, c(3,4)], FDI.technology.transfer[, c(2,4)], by="ISO3", all=TRUE, sort=T)
+merge21 <- merge (merge21,Employing.Skilled.Expatriates[, c(2,4)], by="ISO3", all=TRUE, sort=T)
+merge21 <- merge (merge21,Prevalence.foreign.ownership[, c(2,4)], by="ISO3", all=TRUE, sort=T)
+merge21 <- merge (merge21,total.migrants.above.25.male[, c(2,6)], by="ISO3", all=TRUE, sort=T)
+merge21 <- merge (merge21,total.migrants.above.25.female[, c(2,6)], by="ISO3", all=TRUE, sort=T)
+merge21 <- merge (merge21,total.migrants.below.25.male[, c(2,6)], by="ISO3", all=TRUE, sort=T)
+merge21 <- merge (merge21,total.migrants.below.25.female[, c(2,6)], by="ISO3", all=TRUE, sort=T)
+merge21 <- merge (merge21,Country.capacity.attract.talent[, c(2,4)], by="ISO3", all=TRUE, sort=T)
+merge21 <- merge (merge21,Country.capacity.retain.talent[, c(2,4)], by="ISO3", all=TRUE, sort=T)
 
 save(merge21, file="scripts/merging/21.Rdata")
 
