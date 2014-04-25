@@ -20,7 +20,7 @@ load("scripts/merging/P5.Rdata")
 load("scripts/merging/P6.Rdata")
 
 mergedall3 <- merge(merge5, merge6, by="ISO3", all=TRUE)
-mergedall <- merge(mergedall, mergedall3, by="ISO3", all=TRUE)
+mergedall <- merge(mergedall, mergedall3, by="ISO3", all=TRUE) 
 
 save(mergedall, file="scripts/merging/all.Rdata")
 

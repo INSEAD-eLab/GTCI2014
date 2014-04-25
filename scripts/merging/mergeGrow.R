@@ -35,7 +35,7 @@ source("scripts/functions.R")
 
 ## Sub-pillar: Lifelong learning
 source("scripts/3.2 LifelongLearning.R")
-source("scripts/3.3 AccessToGrowthOpportunities.R")
+#source("scripts/3.3 AccessToGrowthOpportunities.R")
 
 ## rename the column accordingly
 head (Quality.management.schools)
@@ -73,12 +73,14 @@ colnames(linkedIn.users)[16] <- "Linkedin users"
 colnames(State.cluster.development)[2] <- "State of cluster development"
 colnames(Quality.scientific.research.institutions)[2] <- "Quality of scientific research institutions"
 colnames(Willingness.to.delegate.authority)[2] <- "Willingness to delegate authority"
+colnames(journals.WB.scaled)[7] <- "Scientific and tech articles per GDPPPP"
 
 ## merge
 merge33 <- merge(Use.virtual.social.networks[, c(2,4)], linkedIn.users[, c(1,16)], by="ISO3", all=TRUE, sort=FALSE)
 merge33 <- merge (merge33,State.cluster.development[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge33 <- merge (merge33,Quality.scientific.research.institutions[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge33 <- merge (merge33,Willingness.to.delegate.authority[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
+merge33 <- merge(merge33, journals.WB.scaled[, c(1,7)], by="ISO3", all=TRUE, sort=FALSE)
 
 save(merge33, file="scripts/merging/33.Rdata")
 rm(list=ls())
