@@ -19,6 +19,12 @@ merge11 <- merge (merge11,Political.Stability[, c(2:3)], by="ISO3", all=TRUE, so
 merge11 <- merge (merge11,corruption.perception.index[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge11 <- merge (merge11,Ease.of.Establishment.Data[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 
+save(merge11, file="scripts/merging/11.Rdata")
+rm(list=ls())
+gc()
+## to load the functions
+source("scripts/functions.R")
+
 ## Sub-pillar: Market Landscape
 source("scripts/1.2 Market.Landscape.R")
 

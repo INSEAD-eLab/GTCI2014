@@ -34,3 +34,30 @@ journals[, "Stock per million GDP"] <- 1000*journals[, 3]/journals[, 7]
 journals[, "Flow per million GDP"] <- 1000*journals[, 5]/journals[, 7]
 
 rm(stock, flow, GDP.PPP.2013, ISO3, data.ws)
+
+## WDI data has same format as UNESCO and used that function
+################################# Labour tax and contributions
+journals.WB <- get.UNESCO.format(source.file="[R] [WB WDI] Scientific and technical journal articles.xls",
+                                 source.sheet="Data", 
+                                 source.data.region="AW5:BE255",
+                                 source.colnames="AV3:BE3", 
+                                 result.colnames="Scientific and technical journal articles",
+                                 result.cut.year=2003,
+                                 names.separated=TRUE, 
+                                 country.names="B5:B255")
+
+
+journals.WB.scaled <- scaling(numertor=journals.WB, 
+                                        numerator.colname="Scientific and technical journal articles",
+                                        denominator.file="[R] [IMF] WEO GDP PPP$ (denominator).xls", 
+                                        denominator.sheet="weoreptc.aspx",
+                                        denominator.countries="A2:A189", 
+                                        denominator.data.region="F2:J189", 
+                                        denominator.years="F1:J1", 
+                                        result.colname="GDPPPP",
+                                        multiplier=1000)
+
+journals.WB.scaled <- journals.WB.scaled[!is.na(journals.WB.scaled$ratio),]
+colnames(journals.WB.scaled)[3] <- "Country.Name"
+
+rm(journals.WB)

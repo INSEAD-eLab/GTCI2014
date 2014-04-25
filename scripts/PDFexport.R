@@ -160,6 +160,9 @@ generate.pdf(journals[, c(1:2,8,3,7,9)] , "Stock per GDP (million)", "Journals s
 generate.pdf(journals[, c(1:2,8,5,7,10)] , "Flow per GDP (million)", "Journals flow per GDP (million)", "Note : Flow per GDP (million) = 1000*Record count 2013 (Flow)/GDP (billion). Year is for GDP data. Source : Web of science.")
 generate.pdf(journals.per.researchers.FTE[, c(1:2,8,3,11,12,13)] , "Stock per researchers FTE", "Stock per researchers FTE", "Note : Stock per researchers FTE = Record count 2003-2013(stock)/Researchers per million inhabitants (FTE). Year is for Journals data. Year.y is for Researchers data. Source : Web of science.")
 
+generate.pdf(journals.WB.scaled[, c(1,3,2,4,6,7)] , "ratio", "Scientific and technical journal articles (WB)", "Note : ratio = (Scientific and technical journal articles/GDPPPP)*1000. Source : WB WDI")
+
+
 generate.pdf(Willingness.to.delegate.authority[, c(4,1,3,2)] , "Willingness to delegate authority", "Willingness to delegate authority", "Source : WEF")
 colnames(merged24)[2] <- "Year"
 colnames(merged24)[3] <- "Female share of part time employment (percent)"
