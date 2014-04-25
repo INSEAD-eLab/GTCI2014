@@ -785,3 +785,16 @@ getHighMedTech <- function(netHigh, netMed, netDeno){
     return((netHigh+netMed)/netDeno)
   }
 }
+
+get.excel.download <- function(data.to.write, filename.str){
+  ## to download to excel, give the relevant names and run 4 lines
+  filename <- filename.str
+  sheetname <- "data"
+  
+  wb <- loadWorkbook(filename, create = TRUE)
+  createSheet(wb, name = sheetname)
+  writeWorksheet(wb, data.to.write, sheet = sheetname)
+  saveWorkbook(wb)
+  
+  return(1)
+}

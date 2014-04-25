@@ -28,3 +28,10 @@ save(mergedall, file="scripts/merging/all.Rdata")
 rm(list=ls())
 gc()
 source("scripts/functions.R")
+
+Country.Names <- get.single.country.name.list()
+load("scripts/merging/all.Rdata")
+mergedall <- merge(Country.Names, mergedall, by="ISO3", all.y=TRUE)
+
+get.excel.download(mergedall, "Merged_20140425_1.xlsx")
+
