@@ -115,6 +115,8 @@ generate.pdf(Entrepreneurial.intention[, c(4, 1:3)] , "Entrepreneurial intention
 generate.pdf(attitude.entrepreneurial.failure[, c(4, 1, 3, 2)] , "Attitudes towards entrepreneurial failure", "Attitudes towards entrepreneurial failure", "Source : WEF")
 generate.pdf(Estimated.earned.income[, c(1:3, 8)] , "Female-to- male ratio", "Female-male earning ratio", "Source : WEF")
 
+generate.pdf(language.diversity[, c(1:3, 9, 13, 14)] , "ratio", "Immigrant living language out of total population ", "Note : ratio = 1000000*(immigrant living language / total population). Source : Ethnologue")
+generate.pdf(language.diversity[, c(1:3, 6)] , "Total Living Language", "Total Living Language", "Source : Ethnologue")
 
 ## subpillar 1.1
 generate.pdf(busienss.gov.relations[, c(4, 1, 3, 2)] , "Business-government relations", "Business-government relations", "Source : WEF")

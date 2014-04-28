@@ -335,6 +335,9 @@ rm(language.diversity.1, language.diversity.2, language.diversity.3, language.di
    Language.diversity.index.inde.living.language, Language.diversity.index.immi.living.language, Language.diversity.index.count, Language.diversity.index.mean,
    Language.diversity.index.median)
 
+#language.diversity <- merge(language.diversity, population[, c(4:5)], by="ISO3", all.x=T,sort=F)
+#language.diversity[, "ratio"] <- 1000000*(language.diversity[, "Immigrant living language"]/language.diversity[, "total population"])
+
 ################################ end of language diversity index
 
 ################# Estimated earned income : female

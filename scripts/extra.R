@@ -35,10 +35,18 @@ labor.force <- get.ILO.latest( source.file="labour force.csv",
 
 ################################# Gini Coefficients index
 GINI <- get.UNESCO.format(source.file="[R] [WB WDI] Gini coefficient.xls",
-                                                  source.sheet="Data", 
-                                                  source.data.region="AV4:BE254",
-                                                  source.colnames="AU3:BE3", 
-                                                  result.colnames="GINI index",
-                                                  result.cut.year=2003,
-                                                  names.separated=TRUE, 
-                                                  country.names="A4:A254")
+                          source.sheet="Data", 
+                          source.data.region="AV4:BE254",
+                          source.colnames="AU3:BE3", 
+                          result.colnames="GINI index",
+                          result.cut.year=2003,
+                          names.separated=TRUE, 
+                          country.names="A4:A254")
+
+############# GDP PPP 2013
+GDP.PPP.2013 <- get.WEF(source.file="[R] [IMF] WEO GDP PPP$ (denominator).xls", 
+                      source.sheet="weoreptc.aspx", 
+                      source.data.region="J2:J189",
+                      source.colname="B2", 
+                      source.date="J1", 
+                      source.countries="A2:A189")
