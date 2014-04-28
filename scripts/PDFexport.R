@@ -70,6 +70,8 @@ generate.pdf(tertiary.educated.population.above15.ILO.total[,-4] , "Tertiary (pe
 generate.pdf(tertiary.educated.population.above25.ILO.female[,-4] , "Tertiary (percent)", "Tertiary educated workforce (ILO - above 25 female)")
 generate.pdf(tertiary.educated.population.above15.ILO.female[,-4] , "Tertiary (percent)", "Tertiary educated workforce (ILO - above 15 female)")
 
+generate.pdf(professional.88.f[,c(1:3,6,10,12)] , "ratio", "Female professional out of total (male and female) professional", "Note : ratio = female professional (2 (000).x) / total professional (2 (000).y). Source : ILO ISCO 88")
+
 ## subpillar 5.1
 generate.pdf(secondary.educated.population.above25.ILO.total[, -4] , "Secondary (percent)", "Secondary educated workforce (ILO - above 25 total)")
 generate.pdf(secondary.educated.population.above15.ILO.total[, -4] , "Secondary (percent)", "Secondary educated workforce (ILO - above 15 total)")
