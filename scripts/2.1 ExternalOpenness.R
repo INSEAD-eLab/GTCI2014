@@ -8,6 +8,9 @@ FDI.inflow <- get.UNESCO.format(source.file="[R] [UNCTAD] FDI inflow.xlsx",
                                 result.cut.year=2003,
                                 format="UNCTAD")
 
+FDI.inflow <- FDI.inflow[!(FDI.inflow$ISO3 == "SDN" & FDI.inflow$Year == 2011), ]
+FDI.inflow <- FDI.inflow[!(FDI.inflow$ISO3 == "SRB" & FDI.inflow$Year == 2007), ]
+
 
 ################# FDI and technology transfer
 FDI.technology.transfer <- get.WEF(source.file="WEF.xlsx", 

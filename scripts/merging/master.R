@@ -1,3 +1,4 @@
+## generating each pillar
 source("scripts/merging/mergeEnablers.R")
 source("scripts/merging/mergeAttract.R")
 source("scripts/merging/mergeGrow.R")
@@ -5,6 +6,8 @@ source("scripts/merging/mergeRetain.R")
 source("scripts/merging/mergeLV.R")
 source("scripts/merging/mergeGK.R")
 
+
+## merging all pillars
 load("scripts/merging/P1.Rdata")
 load("scripts/merging/P2.Rdata")
 
@@ -32,6 +35,7 @@ source("scripts/functions.R")
 Country.Names <- get.single.country.name.list()
 load("scripts/merging/all.Rdata")
 mergedall <- merge(Country.Names, mergedall, by="ISO3", all.y=TRUE)
+mergedall <- mergedall[!is.na(mergedall$Country.Name), ]
 
-get.excel.download(mergedall, "Merged_20140425_1.xlsx")
+get.excel.download(mergedall, "Merged_20140428_1.xlsx")
 

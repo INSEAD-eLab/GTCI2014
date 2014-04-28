@@ -19,6 +19,7 @@ colnames(Prevalence.foreign.ownership)[2] <- "Prevalence of foreign ownership"
 colnames(total.migrants.above.25.male)[6] <- "Adult male migrant stock"
 colnames(total.migrants.above.25.female)[6] <- "Adult female migrant stock"
 colnames(total.migrants.below.25.male)[6] <- "Young male migrant stock"
+colnames(total.migrants.below.25.female)[6] <- "Young female migrant stock"
 colnames(Country.capacity.attract.talent)[2] <- "Country capacity to attract talent/Brain gain"
 colnames(Country.capacity.retain.talent)[2] <- "Country capacity to retain talent/Brain drain"
 

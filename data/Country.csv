@@ -5,7 +5,6 @@ South Africa,ZAF
 Yemen,YEM
 Samoa,WSM
 Wallis and Futuna,WLF
-World,WLD
 Palestinian West Bank and Gaza,WBG
 Vanuatu,VUT
 Viet Nam,VNM
@@ -17,7 +16,6 @@ Holy See,VAT
 Uzbekistan,UZB
 United States,USA
 Uruguay,URY
-Upper middle income,UMC
 Ukraine,UKR
 Uganda,UGA
 Tanzania,TZA
@@ -44,10 +42,7 @@ Slovenia,SVN
 Slovakia,SVK
 Suriname,SUR
 São Tomé e Príncipe,STP
-Small states,SST
-Sub-Saharan Africa (all income levels),SSF
 South Sudan,SSD
-Sub-Saharan Africa (developing only),SSA
 Serbia,SRB
 Saint Pierre and Miquelon,SPM
 Somalia,SOM
@@ -60,14 +55,12 @@ Singapore,SGP
 Senegal,SEN
 Sudan,SDN
 Saudi Arabia,SAU
-South Asia,SAS
 Rwanda,RWA
 Russia,RUS
 Romania,ROM
-RÉUNION,REU
+Reunion,REU
 Qatar,QAT
 French Polynesia,PYF
-Pacific island small states,PSS
 Palestine,PSE
 Paraguay,PRY
 Portugal,PRT
@@ -80,15 +73,11 @@ Philippines,PHL
 Peru,PER
 "Panama, excluding Canal Zone",PAN
 Pakistan,PAK
-Other small states,OSS
 Oman,OMN
-OECD members,OED
-High income: OECD,OEC
 New Zealand,NZL
 Nauru,NRU
 Nepal,NPL
 Norway,NOR
-High income: nonOECD,NOC
 Netherlands,NLD
 Niue,NIU
 Nicaragua,NIC
@@ -102,22 +91,19 @@ Mayotte,MYT
 Malaysia,MYS
 Malawi,MWI
 Mauritius,MUS
-MARTINIQUE,MTQ
+Martinique,MTQ
 Montserrat,MSR
 Mauritania,MRT
 Mozambique,MOZ
 Northern Marianas,MNP
 Mongolia,MNG
 Montenegro,MNE
-Middle East & North Africa (developing only),MNA
 Myanmar,MMR
 Malta,MLT
 Mali,MLI
 Macedonia,MKD
-Middle income,MIC
 Marshall Islands,MHL
 Mexico,MEX
-Middle East & North Africa (all income levels),MEA
 Maldives,MDV
 Madagascar,MDG
 Republic of Moldova,MDA
@@ -129,19 +115,13 @@ Latvia,LVA
 Luxembourg,LUX
 Lithuania,LTU
 Lesotho,LSO
-Low & middle income,LMY
-Lower middle income,LMC
 Sri Lanka,LKA
 Liechtenstein,LIE
-Low income,LIC
-Least developed countries: UN classification,LDC
-Latin America & Caribbean (all income levels),LCN
 Saint Lucia,LCA
 "Libya, State of",LBY
 Liberia,LBR
 Lebanon,LBN
 Laos,LAO
-Latin America & Caribbean (developing only),LAC
 Kuwait,KWT
 Kosovo,KSV
 Korea,KOR
@@ -168,13 +148,11 @@ Indonesia,IDN
 Hungary,HUN
 Haiti,HTI
 Croatia,HRV
-Heavily indebted poor countries (HIPC),HPC
 Honduras,HND
 Hong Kong,HKG
-High income,HIC
 Guyana,GUY
 Guam,GUM
-FRENCH GUIANA,GUF
+French Guiana,GUF
 Guatemala,GTM
 Greenland,GRL
 Grenada,GRD
@@ -196,20 +174,14 @@ France,FRA
 Falkland Islands,FLK
 Fiji,FJI
 Finland,FIN
-European Union,EUU
 Former Ethiopia,ETH
 Estonia,EST
 Spain,ESP
 Western Sahara,ESH
 Eritrea,ERI
-Euro area,EMU
 Egypt,EGY
 Ecuador,ECU
-Europe & Central Asia (all income levels),ECS
-Europe & Central Asia (developing only),ECA
 Zanzibar,EAZ
-East Asia & Pacific (all income levels),EAS
-East Asia & Pacific (developing only),EAP
 Algeria,DZA
 Dominican Rep.,DOM
 Denmark,DNK
@@ -221,7 +193,6 @@ Cyprus,CYP
 Cayman Islands,CYM
 Curaçao,CUW
 Cuba,CUB
-Caribbean small states,CSS
 Costa Rica,CRI
 Cape Verde Islands,CPV
 Comoros,COM
@@ -265,7 +236,6 @@ American Samoa,ASM
 Armenia,ARM
 Argentina,ARG
 United Arab Emirates,ARE
-Arab World,ARB
 Neth. Antilles,ANT
 Albania,ALB
 Anguilla,AIA
