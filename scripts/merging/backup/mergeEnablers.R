@@ -32,16 +32,12 @@ head (firm.level.tech.absorption)
 head (R.D.expenditure)
 head (ICT.access)
 head (ease.of.doing.business.index)
-head (Venture.capital.availability)
 colnames(intensity.local.competition)[2] <- "Intensity of local competition"
-colnames(Venture.capital.deals.scaled)[4] <- "(A) No of deals"
-colnames(Venture.capital.deals.scaled)[6] <- "(A) GDP Venture capital"
 colnames(Venture.capital.deals.scaled)[7] <- "Venture capital deals"
 colnames(firm.level.tech.absorption)[2] <- "Firm-level technology absorption"
 colnames(R.D.expenditure)[3] <- "R&D expenditure"
 colnames(ICT.access)[2] <- "ICT access"
 colnames(ease.of.doing.business.index)[2] <- "Ease of doing business"
-colnames(Venture.capital.availability)[2] <- "Venture capital availability (GTCI2013)"
 
 ## merge
 merge12 <- merge(intensity.local.competition[, c(2,4)], Venture.capital.deals.scaled[, c(1,4,6,7)], by="ISO3", all=TRUE, sort=FALSE)
@@ -49,7 +45,6 @@ merge12 <- merge (merge12,firm.level.tech.absorption[, c(2,4)], by="ISO3", all=T
 merge12 <- merge (merge12,R.D.expenditure[, c(3,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge12 <- merge (merge12,ICT.access[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge12 <- merge (merge12,ease.of.doing.business.index[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
-merge12 <- merge (merge12,Venture.capital.availability[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 
 ## save the object into Rdata file
 save(merge12, file="scripts/merging/12.Rdata")
@@ -65,14 +60,12 @@ head (Difficulty.of.redundancy.index.score)
 head (Cooperation.labor.employer.relations)
 head (Labour.tax.and.contributions)
 head (Reliance.professional.management)
-head (Labour.market.flexibility)
 colnames(Difficulty.of.hiring.index.score)[2] <- "Difficulty of hiring"
 colnames(Rigidity.of.hours.index.score)[2] <- "Rigidity of hours"
 colnames(Difficulty.of.redundancy.index.score)[2] <- "Difficulty of redundancy"
 colnames(Cooperation.labor.employer.relations)[2] <- "Cooperation in labour-employer relations"
 colnames(Labour.tax.and.contributions)[3] <- "Labour tax and contributions "
 colnames(Reliance.professional.management)[2] <- "Reliance on professional management"
-colnames(Labour.market.flexibility)[2] <- "Labour market flexibility (GTCI2013)"
 
 ## merge
 merge13 <- merge(Difficulty.of.hiring.index.score[, c(2,4)], Rigidity.of.hours.index.score[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
@@ -80,7 +73,6 @@ merge13 <- merge (merge13,Difficulty.of.redundancy.index.score[, c(2,4)], by="IS
 merge13 <- merge (merge13,Cooperation.labor.employer.relations[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge13 <- merge (merge13,Labour.tax.and.contributions[, c(3,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge13 <- merge (merge13,Reliance.professional.management[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
-merge13 <- merge (merge13,Labour.market.flexibility[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 
 ## save the object into Rdata file
 save(merge13, file="scripts/merging/13.Rdata")

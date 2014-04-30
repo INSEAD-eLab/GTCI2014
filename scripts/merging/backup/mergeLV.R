@@ -8,14 +8,13 @@ head (tech.asso.88.MF.latest)
 head (tech.asso.88.F.latest)
 head (tech.asso.88.F)
 head (youth.employment)
-head (secondary.educated.population.upperSec.UNESCO)
-colnames(secondary.educated.population.above15.ILO.total)[6] <- "Secondary-educated workforce wo usa"
-colnames(secondary.educated.population.above15.ILO.total.usa)[6] <- "Secondary-educated workforce w usa"
+
+colnames(secondary.educated.population.above15.ILO.total)[6] <- "Secondary-educated workforce"
+colnames(secondary.educated.population.above15.ILO.total.usa)[6] <- "Secondary-educated workforce"
 colnames(tech.asso.88.MF.latest)[7] <- "Technicians and associate professionals"
 colnames(tech.asso.88.F.latest)[7] <- "Female technicians and associate professionals"
 colnames(tech.asso.88.F)[12] <- "Female technicians and associate professionals"
 colnames(youth.employment)[6] <- "Youth employment"
-colnames(secondary.educated.population.upperSec.UNESCO)[2] <- "Secondary-educated workforce (GTCI2013)"
 
 ## merge
 merge51 <- merge(secondary.educated.population.above15.ILO.total[, c(2,6)], secondary.educated.population.above15.ILO.total.usa[, c(2,6)], by="ISO3", all=TRUE, sort=FALSE)
@@ -23,29 +22,19 @@ merge51 <- merge (merge51,tech.asso.88.MF.latest[, c(2,7)], by="ISO3", all=TRUE,
 merge51 <- merge (merge51,tech.asso.88.F.latest[, c(2,7)], by="ISO3", all=TRUE, sort=FALSE)
 merge51 <- merge (merge51,tech.asso.88.F[, c(1,12)], by="ISO3", all=TRUE, sort=FALSE)
 merge51 <- merge (merge51,youth.employment[, c(2,6)], by="ISO3", all=TRUE, sort=FALSE)
-merge51 <- merge (merge51,secondary.educated.population.upperSec.UNESCO[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 
 save(merge51, file="scripts/merging/51.Rdata")
-
-## clean the memory
-rm(list=ls())
-gc()
-source("scripts/functions.R")
 
 ## Sub-pillar: Employable Skills
 source("scripts/5.2 LabourProductivity.R")
 ## rename the column accordingly
 head (labour.productivity.per.person.employed)
 head (pay.and.productivity)
-head (TradeDataWITS)
-head (tradeUNCTADdata)
 colnames(labour.productivity.per.person.employed)[2] <- "Labour productivity per employee"
 colnames(pay.and.productivity)[2] <- "Relationship of pay to productivity"
-colnames(TradeDataWITS)[29] <- "Low and medium technology manufactures WITS"
-colnames(tradeUNCTADdata)[23] <- "Low and medium-skill output"
+
 merge52 <- merge (labour.productivity.per.person.employed[, c(2,4)], pay.and.productivity[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
-merge52 <- merge (merge52, TradeDataWITS[, c(29,36)], by="ISO3", all=TRUE, sort=FALSE)
-merge52 <- merge (merge52, tradeUNCTADdata[, c(1,23)], by="ISO3", all=TRUE, sort=FALSE)
+
 save(merge52, file="scripts/merging/52.Rdata")
 
 ## clean the memory

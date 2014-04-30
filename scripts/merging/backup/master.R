@@ -23,23 +23,19 @@ load("scripts/merging/P5.Rdata")
 load("scripts/merging/P6.Rdata")
 
 mergedall3 <- merge(merge5, merge6, by="ISO3", all=TRUE)
-mergedall <- merge(mergedall, mergedall3, by="ISO3", all=TRUE)
+mergedall <- merge(mergedall, mergedall3, by="ISO3", all=TRUE) 
 
 save(mergedall, file="scripts/merging/all.Rdata")
 
-
 ## clean the memory
 rm(list=ls())
+gc()
 source("scripts/functions.R")
 
 Country.Names <- get.single.country.name.list()
 load("scripts/merging/all.Rdata")
-
-mergedall[is.na(mergedall[, "Venture capital deals"]), "Venture capital deals"] <- 0
-mergedall[is.na(mergedall[, "QS university ranking"]), "QS university ranking"] <- 0
-
 mergedall <- merge(Country.Names, mergedall, by="ISO3", all.y=TRUE)
 mergedall <- mergedall[!is.na(mergedall$Country.Name), ]
 
-get.excel.download(mergedall, "Merged_20140430_1.xlsx")
+get.excel.download(mergedall, "Merged_20140428_1.xlsx")
 
