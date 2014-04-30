@@ -47,6 +47,10 @@ tradeUNCTADdata[, "Low-skillByManuGoodsByDegree"] <- tradeUNCTADdata[, 8] / trad
 tradeUNCTADdata[, "Med-skillByManuGoodsByDegree"] <- tradeUNCTADdata[, 9] / tradeUNCTADdata[, 6]
 tradeUNCTADdata[, "High-skillByManuGoodsByDegree"] <- tradeUNCTADdata[, 10] / tradeUNCTADdata[, 6]
 
+tradeUNCTADdata[, "Low-MedByTotal"] <- (tradeUNCTADdata[, 8] + tradeUNCTADdata[, 9]) / tradeUNCTADdata[, 4]
+tradeUNCTADdata[, "Low-MedByManuGoods"] <- (tradeUNCTADdata[, 8] + tradeUNCTADdata[, 9]) / tradeUNCTADdata[, 5]
+tradeUNCTADdata[, "Low-MedByManuGoodsByDegree"] <- (tradeUNCTADdata[, 8] + tradeUNCTADdata[, 9]) / tradeUNCTADdata[, 6]
+
 tradeUNCTADdata <- tradeUNCTADdata[!tradeUNCTADdata$ISO3 %in% c("ESH", "SRB", "ANT"),]
 
 rm(ISO3, tradeUNCTADColn, tradeUNCTADdataTBC, tradeUNCTAD)

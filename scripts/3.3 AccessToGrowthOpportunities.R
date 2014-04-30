@@ -65,6 +65,8 @@ colnames(Part.time.employment.rate.15.F.ratios) <- c("Country.Name", "ISO3", "Ye
                                                      "Female part time workers by female full time workers", "Male part time workers by male full time workers")
 
 
+#save(Part.time.employment.rate.15.F.ratios, file="scripts/merging/Part.time.employment.rate.15.F.ratios.Rdata")
+
 ## testing for share / another ratio 
 ## "FEMALE PART TIME WORKERS TO TOTAL PART TIME WORKERS” and deflate this by another ratio, namely 'female employment out of total employment'
 merged24 <- merge(Part.time.employment.rate.15.female[, c(2,3,6)], Part.time.employment.rate.15.F.ratios[, c(1,2,3,6,9)], by="ISO3", sort=FALSE)

@@ -45,6 +45,9 @@ generate.pdf(tradeUNCTADdata[, c(1:3, 8, 6, 20)] , "Low-skillByManuGoodsByDegree
 generate.pdf(tradeUNCTADdata[, c(1:3, 9, 6, 21)] , "Med-skillByManuGoodsByDegree", "UNCTAD med-skilled by Manu Goods By Degree", "Note : Med-skillByManuGoodsByDegree = Med-skill and technology-intensive manufactures / Manufactured goods by degree of manufacturing. Source : UNCTAD")
 generate.pdf(tradeUNCTADdata[, c(1:3, 10, 6, 22)] , "High-skillByManuGoodsByDegree", "UNCTAD high-skilled by Manu Goods By Degree", "Note : High-skillByManuGoodsByDegree = High-skill and technology-intensive manufactures / Manufactured goods by degree of manufacturing. Source : UNCTAD")
 
+generate.pdf(tradeUNCTADdata[, c(1:3, 8, 9, 4, 23)] , "Low-MedByTotal", "UNCTAD low and med skills by total", "Note : Low-MedByTotal = Med-skill + Low-skill / Total all products. Source : UNCTAD")
+generate.pdf(tradeUNCTADdata[, c(1:3, 8, 9, 5, 24)] , "Low-MedByManuGoods", "UNCTAD low and med skills by Manu Goods", "Note : Low-MedByManuGoods = Med-skill + Low-skill / Manufactured goods (SITC 5 to 8 less 667 and 68). Source : UNCTAD")
+generate.pdf(tradeUNCTADdata[, c(1:3, 8, 9, 6, 25)] , "Low-MedByManuGoodsByDegree", "UNCTAD low and med skills by Manu Goods By Degree", "Note : Low-MedByManuGoodsByDegree = Med-skill + Low-skill / Manufactured goods by degree of manufacturing. Source : UNCTAD")
 
 ## subpillar 6.1
 generate.pdf(Unemployment.rate.tertiary.educated[,-4], "Unemployment rate of tertiary educated (percent)", "Unemployment rate of tertiary educated")
@@ -144,6 +147,7 @@ generate.pdf(Tertiary.outbound.mobility.rate[, c(4,1:3)] , "Tertiary outbound mo
 
 ## subpillar 3.2
 generate.pdf(firms.offering.training[, c(4,1:3)] , "Percent of firms offering formal training", "Firms offering formal training", "Source : WB Executive Survey")
+generate.pdf(Part.time.employment.rate.15[, c(2,1,3,6)] , "Part.time.employment.rate.precent", "Part time employment rate (precent)", "Note : Gender is for both male and female. Age group is 15+. Source : ILO")
 
 ## subpillar 3.3
 colnames(Part.time.employment.rate.15.female)[4] <- "Gender"
