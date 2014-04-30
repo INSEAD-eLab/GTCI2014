@@ -138,4 +138,7 @@ TradeDataWITS[, "netHighMedTechbyTotalManu"] <- apply(TradeDataWITS, 1, function
 TradeDataWITS[, "Country.Name"] <- tolower(TradeDataWITS[, "Country.Name"])
 TradeDataWITS <- merge(TradeDataWITS, ISO3, by="Country.Name", sort=FALSE, all.x=TRUE)
 
+TradeDataWITS <- TradeDataWITS[!(TradeDataWITS$ISO3 == "MKD" & TradeDataWITS$Year==2012),]
+
 rm(ISO3, tradeWITS, tradeWITSlatestyear, tradeWITSwithLatestYear)
+

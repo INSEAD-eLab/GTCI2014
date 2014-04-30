@@ -40,6 +40,9 @@ mergedall[is.na(mergedall[, "QS university ranking"]), "QS university ranking"] 
 
 mergedall <- merge(Country.Names, mergedall, by="ISO3", all.y=TRUE)
 mergedall <- mergedall[!is.na(mergedall$Country.Name), ]
+mergedall <- mergedall[!mergedall$ISO3=="NFK",]
+mergedall <- mergedall[!mergedall$ISO3=="SHN",]
+mergedall <- mergedall[!mergedall$ISO3=="WLF",]
 
 get.excel.download(mergedall, "Merged_20140430_1.xlsx")
 
