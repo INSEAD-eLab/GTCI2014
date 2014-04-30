@@ -12,8 +12,8 @@ head (secondary.educated.population.upperSec.UNESCO)
 colnames(secondary.educated.population.above15.ILO.total)[6] <- "Secondary-educated workforce wo usa"
 colnames(secondary.educated.population.above15.ILO.total.usa)[6] <- "Secondary-educated workforce w usa"
 colnames(tech.asso.88.MF.latest)[7] <- "Technicians and associate professionals"
-colnames(tech.asso.88.F.latest)[7] <- "Female technicians and associate professionals"
-colnames(tech.asso.88.F)[12] <- "Female technicians and associate professionals"
+colnames(tech.asso.88.F.latest)[7] <- "Female technicians and associate professionals (ALT1)"
+colnames(tech.asso.88.F)[12]       <- "Female technicians and associate professionals (ALT2)"
 colnames(youth.employment)[6] <- "Youth employment"
 colnames(secondary.educated.population.upperSec.UNESCO)[2] <- "Secondary-educated workforce (GTCI2013)"
 
@@ -42,7 +42,7 @@ head (tradeUNCTADdata)
 colnames(labour.productivity.per.person.employed)[2] <- "Labour productivity per employee"
 colnames(pay.and.productivity)[2] <- "Relationship of pay to productivity"
 colnames(TradeDataWITS)[29] <- "Low and medium technology manufactures WITS"
-colnames(tradeUNCTADdata)[23] <- "Low and medium-skill output"
+colnames(tradeUNCTADdata)[23] <- "Low and medium-skill output UNCTAD"
 merge52 <- merge (labour.productivity.per.person.employed[, c(2,4)], pay.and.productivity[, c(2,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge52 <- merge (merge52, TradeDataWITS[, c(29,36)], by="ISO3", all=TRUE, sort=FALSE)
 merge52 <- merge (merge52, tradeUNCTADdata[, c(1,23)], by="ISO3", all=TRUE, sort=FALSE)

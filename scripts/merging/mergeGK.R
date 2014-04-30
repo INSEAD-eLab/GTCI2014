@@ -16,14 +16,14 @@ head (tertiary.educated.population.tertiary.UNESCO)
 colnames(tertiary.educated.population.above15.ILO.total)[6] <- "Tertiary-educated workforce wo usa"
 colnames(tertiary.educated.population.above15.ILO.total.usa)[6] <- "Tertiary-educated workforce w usa"
 colnames(Legislators.senior.officials.managers.88)[7] <- "Legislators, senior officials and managers"
-colnames(Female.legislators.senior.officials.managers.88)[7] <- "Female legislators, senior officials and managers"
-colnames(legislators.senior.officials.managers.88.f)[12] <- "Female legislators, senior officials and managers"
+colnames(Female.legislators.senior.officials.managers.88)[7] <- "Female legislators, senior officials and managers (ALT1)"
+colnames(legislators.senior.officials.managers.88.f)[12]     <- "Female legislators, senior officials and managers (ALT2)"
 colnames(Professional.88)[7] <- "Professionals"
 colnames(female.professional.88)[7] <- "Female professionals"
 colnames(professional.88.f)[12] <- "Female professionals"
 colnames(researchers.FTE)[3] <- "Researchers"
 colnames(researchers.HC.patched)[3] <- "Researchers (GTCI2013)"
-colnames(tertiary.educated.population.tertiary.UNESCO)[3] <- "Tertiary-educated workforce (GTCI2013)"
+colnames(tertiary.educated.population.tertiary.UNESCO)[2] <- "Tertiary-educated workforce (GTCI2013)"
 
 ## merge
 merge61 <- merge(tertiary.educated.population.above15.ILO.total[, c(2,6)], tertiary.educated.population.above15.ILO.total.usa[, c(2,6)], by="ISO3", all=TRUE, sort=FALSE)
