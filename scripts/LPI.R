@@ -23,7 +23,7 @@ colnames(tolerance.to.minorities)[3] <- "Tolerance to minorities"
 colnames(tolerance.to.minorities)[4] <- "Year"
 
 tolerance.to.immigrants <- LPI[, c(188, 1, 166, 167)]
-colnames(tolerance.to.immigrants)[3] <- "Tolernace to immigrants"
+colnames(tolerance.to.immigrants)[3] <- "Tolerance to immigrants"
 colnames(tolerance.to.immigrants)[4] <- "Year"
 
 voice.to.officials <- LPI[, c(188, 1, 82, 83)]

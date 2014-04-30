@@ -118,6 +118,9 @@ generate.pdf(Estimated.earned.income[, c(1:3, 8)] , "Female-to- male ratio", "Fe
 generate.pdf(language.diversity[, c(1:3, 9, 13, 14)] , "ratio", "Immigrant living language out of total population ", "Note : ratio = 1000000*(immigrant living language / total population). Source : Ethnologue")
 generate.pdf(language.diversity[, c(1:3, 6)] , "Total Living Language", "Total Living Language", "Source : Ethnologue")
 
+generate.pdf(tolerance.to.minorities[, c(1:2,4,3)] , "Tolerance to minorities", "Tolerance to minorities", "Note : Percentage of respondents who answered yes for the question: Is the area where you live a good place or not a good place to live for racial and ethnic minorities? Source : LPI (Legatum Prosperity Index)")
+generate.pdf(tolerance.to.immigrants[, c(1:2,4,3)] , "Tolerance to immigrants", "Tolerance to immigrants", "Note : Percentage of respondents who answered yes for the question: Is the area where you live a good place or not a good place to live for immigrants? Source : LPI (Legatum Prosperity Index)")
+
 ## subpillar 1.1
 generate.pdf(busienss.gov.relations[, c(4, 1, 3, 2)] , "Business-government relations", "Business-government relations", "Source : WEF")
 generate.pdf(corruption.perception.index[, c(4, 1, 3, 2)] , "CPI 2013 Score", "Corruption perception index", "Source : TI")
@@ -172,6 +175,8 @@ colnames(merged24)[2] <- "Year"
 colnames(merged24)[3] <- "Female share of part time employment (percent)"
 generate.pdf(merged24[, c(1,4,2,3,6:8)] , "ratio", "Female part time double ratio", "Note : This is a ratio divided by another ratio. Ratio = Female share of part time employment (percent)/ (Female total employment (000)/Total employment (000)). Source : ILO")
 
+generate.pdf(voice.to.officials[, c(1:2, 4, 3)], "Voicing concerns to officials", "Voicing concerns to officials", "Note : Percentage of respondents who answered yes for the question: Have you voiced your opinion to a public official in the past month? Source : LPI (Legatum Prosperity Index)")
+
 ## subpillar 4.1
 generate.pdf(personal.income.tax.rate[, c(4,1:3)] , "personal income tax rate in percent", "Personal Income Tax Rate (in percent)")
 generate.pdf(top.management[, c(1:2, 4, 3, 5, 6)] , "Pay level deflator (Top Management)", "Pay level deflator (Top Management)", "Note : Pay level deflator (Top Management) = (Mid annual total cash ranges for Top Management/Price indices - Total retail price indices (RPI) living expenditures for UN officials)*100. Top Management are 2012 data. RPI are 2013 Dec data.")
@@ -194,6 +199,9 @@ generate.pdf(maternity.parental.leave[, c(4,1,3,2)] , "Option 4", "Maternity and
 ## subpillar 4.2
 generate.pdf(Intentional.homicide[, c(4,1:3)] , "Intentional.homicide", "Homicides", "Source : UNODC Homicide Statistics")
 generate.pdf(improved.sanitation.facilities[, c(4,1:3)] , "improved.sanitation.facilities", "Improved sanitation facilities", "Source : WDI")
+
+generate.pdf(property.stolen[, c(1:2, 4, 3)], "Property stolen", "Property stolen", "Note : Percentage of respondents who answered yes for the question: Within the past 12 months, have you had money or property stolen from you or another household member? Source : LPI (Legatum Prosperity Index)")
+generate.pdf(safe.walking.alone[, c(1:2, 4, 3)], "Safe walking alone", "Safe walking alone", "Note : Percentage of respondents who answered yes for the question: Do you feel safe walking alone at night in the area where you live? Source : LPI (Legatum Prosperity Index)")
 
 generate.pdf( , "", "")
 
