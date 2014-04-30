@@ -116,6 +116,8 @@ source("scripts/linkedInUsers.R")
 ## object name : journals
 source("scripts/Scientific and technical journal.R")
 
+source("scripts/LPI.R")
+
 ## run the codes for researchers.FTE from 6.1
 ################# Researchers per million inhabitants (FTE)
 researchers.FTE <- get.UNESCO.format(source.file="[R] [UNESCO] Researchers per million inhabitants (FTE).xlsx",

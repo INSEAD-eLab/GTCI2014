@@ -2,6 +2,8 @@
 ## Variable names : RPI1 and RPI2
 source("scripts/Retail price index.R")
 
+source("scripts/LPI.R")
+
 ################# Environmental performance
 environmental.performance <- get.WEF(source.file="[R] [Yale] Environmental performance.xls", 
                                   source.sheet="Indicator Scores", 

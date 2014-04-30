@@ -1,3 +1,5 @@
+source("scripts/LPI.R")
+
 ################# Technicians and associate professionals
 ##
 ## Possible colnames for tech and associates (68, 88, 08)
