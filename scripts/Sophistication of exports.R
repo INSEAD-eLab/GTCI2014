@@ -1,4 +1,3 @@
-rm(list=ls())
 gc()
 
 ## to load the functions
@@ -27,3 +26,8 @@ Exports <- Exports.sorted[!duplicated(Exports.sorted$Country.Name),]
 
 Exports <- Exports[!is.na(Exports$ISO3),]
 
+Exports <- Exports[order(Exports$Log.of.Product.Sophistication..EXPY., decreasing=F),]
+
+Exports[, "Sophistication of exports"] <- as.numeric(Exports[,4])
+
+rm(Exports.new, Exports.sorted, ISO3, filenames, Exports.file, j)

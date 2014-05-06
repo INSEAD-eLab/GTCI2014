@@ -110,3 +110,7 @@ source("scripts/trade data WITS.R")
 source("scripts/trade data UNCTAD.R")
 
 
+## Sophistication of exports
+## result variable name is : Exports
+## to check column names : colnames(Exports)
+source("scripts/Sophistication of exports.R")

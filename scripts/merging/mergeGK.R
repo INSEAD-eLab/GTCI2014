@@ -61,6 +61,7 @@ merge62 <- merge (innovation.output[, c(3,4)], New.product.entrepreneurial.act[,
 merge62 <- merge (merge62, New.business.density[, c(3,4)], by="ISO3", all=TRUE, sort=FALSE)
 merge62 <- merge (merge62, TradeDataWITS[, c(24,36)], by="ISO3", all=TRUE, sort=FALSE)
 merge62 <- merge (merge62, tradeUNCTADdata[, c(1,14)], by="ISO3", all=TRUE, sort=FALSE)
+merge62 <- merge (merge62, Exports[, c(2,6)], by="ISO3", all=TRUE, sort=FALSE)
 save(merge62, file="scripts/merging/62.Rdata")
 
 ## clean the memory

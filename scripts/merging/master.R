@@ -36,6 +36,7 @@ Country.Names <- get.single.country.name.list()
 load("scripts/merging/all.Rdata")
 
 mergedall[is.na(mergedall[, "Venture capital deals"]), "Venture capital deals"] <- 0
+mergedall[, "Venture capital deals"] <- mergedall[, "Venture capital deals"]/1000
 mergedall[is.na(mergedall[, "QS university ranking"]), "QS university ranking"] <- 0
 
 mergedall <- merge(Country.Names, mergedall, by="ISO3", all.y=TRUE)
@@ -44,5 +45,5 @@ mergedall <- mergedall[!mergedall$ISO3=="NFK",]
 mergedall <- mergedall[!mergedall$ISO3=="SHN",]
 mergedall <- mergedall[!mergedall$ISO3=="WLF",]
 
-get.excel.download(mergedall, "Merged_20140430_1.xlsx")
+get.excel.download(mergedall, "Merged_20140506_1.xlsx")
 
