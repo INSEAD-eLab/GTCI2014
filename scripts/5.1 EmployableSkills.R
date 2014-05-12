@@ -6,7 +6,7 @@ secondary.educated.population.above25.UNESCO <- get.WEF(source.file="[R] [UNESCO
                                                         source.colname="C2", 
                                                         source.date="B7:B230", 
                                                         source.countries="A7:A230",
-                                                        cut.off.year=2003,
+                                                        cut.off.year=cut.off.year,
                                                         different.source=TRUE)
 
 
@@ -19,7 +19,7 @@ secondary.educated.population.upperSec.UNESCO <- get.WEF(source.file="[R] [UNESC
                                                         source.colname="R2", 
                                                         source.date="B7:B230", 
                                                         source.countries="A7:A230",
-                                                        cut.off.year=2003,
+                                                        cut.off.year=cut.off.year,
                                                         different.source=TRUE)
 
 ################################# youth employment 15-24
@@ -31,7 +31,7 @@ youth.employment <- get.ILO.latest( source.file="[R] [ILO] Youth employment.xls"
                                     source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Employment..to.population.ratio"),
                                     result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Employment to population ratio of youth"),
                                     source.age="15-24",
-                                    result.cut.year=2003)
+                                    result.cut.year=cut.off.year)
 
 ################################# NEET 15-24
 gc()
@@ -41,7 +41,7 @@ NEET <- get.ILO.latest( source.file="[R] [ILO] NEET.xls",
                         source.gender="MF",
                         source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age", "NEET.rate...."),
                         result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age", "NEET rate percent"),
-                        result.cut.year=2003)
+                        result.cut.year=cut.off.year)
 
 
 ################################# youth inactivity rate 15-24
@@ -53,7 +53,7 @@ youth.inactivity.rate <- get.ILO.latest( source.file="inactivity rate.csv",
                                          source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Inactivity.rate...."),
                                          result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "inactivity.rate.percent"),
                                          source.age="15-24",
-                                         result.cut.year=2003,
+                                         result.cut.year=cut.off.year,
                                          data.format="csv")
 
 ################################# secondary educated workforce 25+
@@ -65,7 +65,7 @@ secondary.educated.population.above25.ILO.total <- get.ILO.latest( source.file="
                                                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Secondary...."),
                                                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Secondary (percent)"),
                                                                   source.age="25+",
-                                                                  result.cut.year=2003)
+                                                                  result.cut.year=cut.off.year)
 
 ################################# secondary educated workforce 15+
 gc()
@@ -76,7 +76,7 @@ secondary.educated.population.above15.ILO.total <- get.ILO.latest( source.file="
                                                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Secondary...."),
                                                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Secondary (percent)"),
                                                                   source.age="15+",
-                                                                  result.cut.year=2003)
+                                                                  result.cut.year=cut.off.year)
 
 ## countries in above 15 but not in 25
 setdiff(secondary.educated.population.above15.ILO.total$Country.Name, secondary.educated.population.above25.ILO.total$Country.Name)
@@ -109,7 +109,7 @@ lower.skilled.88.MF.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-88] Te
                                                            "X5...000.", "X6...000.", "X7...000.", "X8...000.", "X9...000."),
                                          result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)", "1.000.88", "2.000.88", "3.000.88", "4.000.88",
                                                            "5.000.88", "6.000.88", "7.000.88", "8.000.88", "9.000.88"),
-                                         result.cut.year=2003)
+                                         result.cut.year=cut.off.year)
 lower.skilled.88.MF.latest[, "lower skilled 88 MF ratio"] <- rowSums(lower.skilled.88.MF.latest[,9:14], na.rm=TRUE)/lower.skilled.88.MF.latest[, 5]
 
 
@@ -125,7 +125,7 @@ tech.asso.88.MF.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-88] Techni
                                                            "X3...000.", "X3...."),
                                          result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment.000.88",
                                                            "3.000.88", "3.percent.88"),
-                                         result.cut.year=2003)
+                                         result.cut.year=cut.off.year)
 
 
 tech.asso.08.MF.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-08] Technicians and associate professionals.xls",
@@ -136,7 +136,7 @@ tech.asso.08.MF.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-08] Techni
                                                            "X3...000.", "X3...."),
                                          result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment.000.08",
                                                            "3.000.08", "3.percent.08"), 
-                                         result.cut.year=2003)
+                                         result.cut.year=cut.off.year)
 
 
 ## to find out which country is only available in 68 but not in 88 and 08
@@ -155,7 +155,7 @@ tech.asso.88.F.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-88] Technic
                                                            "X3...000.", "X3...."),
                                          result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
                                                            "3 (000)", "3 (percent)"),
-                                         result.cut.year=2003)
+                                         result.cut.year=cut.off.year)
 
 
 tech.asso.08.F.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-08] Technicians and associate professionals.xls",
@@ -166,7 +166,7 @@ tech.asso.08.F.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-08] Technic
                                                            "X3...000.", "X3...."),
                                          result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
                                                            "3 (000)", "3 (percent)"), 
-                                         result.cut.year=2003)
+                                         result.cut.year=cut.off.year)
 
 
 ###################### addition calculation of ratio

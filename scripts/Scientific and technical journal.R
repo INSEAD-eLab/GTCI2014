@@ -42,7 +42,7 @@ journals.WB <- get.UNESCO.format(source.file="[R] [WB WDI] Scientific and techni
                                  source.data.region="AW5:BE255",
                                  source.colnames="AV3:BE3", 
                                  result.colnames="Scientific and technical journal articles",
-                                 result.cut.year=2003,
+                                 result.cut.year=cut.off.year,
                                  names.separated=TRUE, 
                                  country.names="B5:B255")
 

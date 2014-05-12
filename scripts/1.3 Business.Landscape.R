@@ -48,7 +48,7 @@ top.manager.experience <- get.WB.format(source.file="[R] [WB ES] Top manager's e
                                          source.colnames="A1:J1", 
                                          source.result.col="Years of the top manager's experience working in the firm's sector",
                                          result.row="Average",
-                                         result.cut.year=2003)
+                                         result.cut.year=cut.off.year)
 
 
 ################# Labour market flexibility

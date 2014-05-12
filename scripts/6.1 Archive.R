@@ -5,7 +5,7 @@ percent.dist.tertiary.unemployment <- get.ILO.latest( source.file="[R] [ILO] Per
                                                       source.gender="MF",
                                                       source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Tertiary...."),
                                                       result.colnames=c("Country.Name", "ISO3", "Year", "Gender", "Distribution of tertiary educated unemployment (percent)"),
-                                                      result.cut.year=2003)
+                                                      result.cut.year=cut.off.year)
 
 ################# Unemployment rate of tertiary-educated
 Unemployment.rate.tertiary.educated <- get.ILO.latest( source.file="[R] [ILO] Unemployment rate of persons with tertiary level education.xls",
@@ -14,7 +14,7 @@ Unemployment.rate.tertiary.educated <- get.ILO.latest( source.file="[R] [ILO] Un
                                                        source.gender="MF",
                                                        source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Unemployment.rate.of.persons.with.tertiary.level.education...."),
                                                        result.colnames=c("Country.Name", "ISO3", "Year", "Gender", "Unemployment rate of tertiary educated (percent)"),
-                                                       result.cut.year=2003)
+                                                       result.cut.year=cut.off.year)
 
 ################# Unemployment rate of tertiary-educated (male)
 Unemployment.rate.tertiary.educated.male <- get.ILO.latest( source.file="[R] [ILO] Unemployment rate of persons with tertiary level education.xls",
@@ -23,7 +23,7 @@ Unemployment.rate.tertiary.educated.male <- get.ILO.latest( source.file="[R] [IL
                                                             source.gender="M",
                                                             source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Unemployment.rate.of.persons.with.tertiary.level.education...."),
                                                             result.colnames=c("Country.Name", "ISO3", "Year", "Gender", "Unemployment rate of tertiary educated (percent)"),
-                                                            result.cut.year=2003)
+                                                            result.cut.year=cut.off.year)
 
 ################# Unemployment rate of tertiary-educated (female)
 Unemployment.rate.tertiary.educated.female <- get.ILO.latest( source.file="[R] [ILO] Unemployment rate of persons with tertiary level education.xls",
@@ -32,7 +32,7 @@ Unemployment.rate.tertiary.educated.female <- get.ILO.latest( source.file="[R] [
                                                               source.gender="F",
                                                               source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Unemployment.rate.of.persons.with.tertiary.level.education...."),
                                                               result.colnames=c("Country.Name", "ISO3", "Year", "Gender", "Unemployment rate of tertiary educated (percent)"),
-                                                              result.cut.year=2003)
+                                                              result.cut.year=cut.off.year)
 
 
 
@@ -47,7 +47,7 @@ Female.legislators.senior.officials.managers.08 <- get.ILO.latest( source.file="
                                                                                      "X1...000.", "X1...."),
                                                                    result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
                                                                                      "1 (000)", "1 (percent)"),
-                                                                   result.cut.year=2003)
+                                                                   result.cut.year=cut.off.year)
 
 ################# Female legislators, senior officials and managers 68
 Female.legislators.senior.officials.managers.68 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-68] Female legislators, senior officials and managers.xls",
@@ -58,7 +58,7 @@ Female.legislators.senior.officials.managers.68 <- get.ILO.latest( source.file="
                                                                                      "X0.1...000.", "X0.1....","X2...000.","X2...."),
                                                                    result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
                                                                                      "0/1 (000)", "0/1 (percent)", "2 (000)", "2 (percent)"),
-                                                                   result.cut.year=2003)
+                                                                   result.cut.year=cut.off.year)
 
 
 ################# Legislators, senior officials and managers 08
@@ -70,7 +70,7 @@ Legislators.senior.officials.managers.08 <- get.ILO.latest( source.file="[R] [IL
                                                                               "X1...000.", "X1...."),
                                                             result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
                                                                               "1 (000)", "1 (percent)"),
-                                                            result.cut.year=2003)
+                                                            result.cut.year=cut.off.year)
 
 ################# Legislators, senior officials and managers 68
 Legislators.senior.officials.managers.68 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-68] Legislators, senior officials and managers.xls",
@@ -81,7 +81,7 @@ Legislators.senior.officials.managers.68 <- get.ILO.latest( source.file="[R] [IL
                                                                               "X0.1...000.", "X0.1....","X2...000.","X2...."),
                                                             result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
                                                                               "0/1 (000)", "0/1 (percent)", "2 (000)", "2 (percent)"),
-                                                            result.cut.year=2003)
+                                                            result.cut.year=cut.off.year)
 
 
 ################# Female professionals 08
@@ -93,7 +93,7 @@ female.professional.08 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-08] Femal
                                                             "X2...000.", "X2...."),
                                           result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
                                                             "2 (000)", "2 (percent)"),
-                                          result.cut.year=2003)
+                                          result.cut.year=cut.off.year)
 
 ################# Professionals 08
 Professional.08 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-08] Professional.xls",
@@ -104,4 +104,4 @@ Professional.08 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-08] Professional
                                                      "X2...000.", "X2...."),
                                    result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
                                                      "2 (000)", "2 (percent)"),
-                                   result.cut.year=2003)
+                                   result.cut.year=cut.off.year)

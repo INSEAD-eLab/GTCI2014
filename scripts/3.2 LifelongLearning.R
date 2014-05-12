@@ -5,7 +5,7 @@ firms.offering.training <- get.WB.format(source.file="[R] [WB ES] Firms offering
                                          source.colnames="A1:J1", 
                                          source.result.col="Percent of firms offering formal training",
                                          result.row="Average",
-                                         result.cut.year=2003)
+                                         result.cut.year=cut.off.year)
 
 
 ################# Quality of management schools
@@ -32,4 +32,4 @@ Part.time.employment.rate.15 <- get.ILO.latest( source.file="[R] [ILO] Part-time
                                                 source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Part.time.employment.rate...."),
                                                 result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Part.time.employment.rate.precent"),
                                                 source.age="15+",
-                                                result.cut.year=2003)
+                                                result.cut.year=cut.off.year)

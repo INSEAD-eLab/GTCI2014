@@ -13,7 +13,7 @@ labor.force <- get.ILO.latest( source.file="labour force.csv",
                                source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Labour.force...000."),
                                result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Labour.force.000"),
                                source.age="15-64",
-                               result.cut.year=2003,
+                               result.cut.year=cut.off.year,
                                data.format="csv")
 
 linkedIn.users.ratio <- merge(linkedIn.users, labor.force, by="ISO3", all.x=T, sort=F)
@@ -33,7 +33,7 @@ internet.users <- get.UNESCO.format(source.file="[R] [ITU] Percentage of individ
                                     source.data.region="A3:N230",
                                     source.colnames="A2:N2", 
                                     result.colnames="internet.users",
-                                    result.cut.year=2003)
+                                    result.cut.year=cut.off.year)
 
 internet.users <- internet.users[, c(1:3, 5)]
 colnames(internet.users)[2] <- "internet.users.percent"

@@ -22,7 +22,7 @@ tech.asso.68.MF.latest <- get.ILO.latest( source.file="[R] [ILO] [ISCO-68] Techn
                                                             "X0.1...000.", "X0.1....", "X2...000.", "X2...."),
                                           result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment.000.68",
                                                             "01.000.68", "01.percent.68", "2.000.68", "2.percent.68"),
-                                          result.cut.year=2003)
+                                          result.cut.year=cut.off.year)
 
 
 tech.asso.88.MF.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-88] Technicians and associate professionals.xls",
@@ -33,7 +33,7 @@ tech.asso.88.MF.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-88] Techni
                                                            "X3...000.", "X3...."),
                                          result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment.000.88",
                                                            "3.000.88", "3.percent.88"),
-                                         result.cut.year=2003)
+                                         result.cut.year=cut.off.year)
 
 
 tech.asso.08.MF.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-08] Technicians and associate professionals.xls",
@@ -44,7 +44,7 @@ tech.asso.08.MF.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-08] Techni
                                                            "X3...000.", "X3...."),
                                          result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total.employment.000.08",
                                                            "3.000.08", "3.percent.08"), 
-                                         result.cut.year=2003)
+                                         result.cut.year=cut.off.year)
 
 ## to find out which country is only available in 68 but not in 88 and 08
 setdiff(tech.asso.68.MF.latest$Country.Name, union(tech.asso.88.MF.latest$Country.Name, tech.asso.08.MF.latest$Country.Name))
@@ -58,7 +58,7 @@ Female.pro.tech.88.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-88] Tec
                                             source.gender="F",
                                             source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "X2...000.", "X3...000."),
                                             result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "2.000.88","3.000.88"), 
-                                            result.cut.year=2003)
+                                            result.cut.year=cut.off.year)
 ## add variable 2 and 3
 Female.pro.tech.88.latest[,"total.2.3"] <- apply(Female.pro.tech.88.latest, 1, function(row) sum(as.numeric(row[5]), as.numeric(row[6]), na.rm=T) )
 
@@ -85,7 +85,7 @@ Male.pro.tech.88.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-88] Techn
                                           source.gender="M",
                                           source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "X2...000.", "X3...000."),
                                           result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "2.000.88","3.000.88"), 
-                                          result.cut.year=2003)
+                                          result.cut.year=cut.off.year)
 
 ## add variable 2 and 3
 Male.pro.tech.88.latest[,"total.2.3"] <- apply(Male.pro.tech.88.latest, 1, function(row) sum(as.numeric(row[5]), as.numeric(row[6]), na.rm=T) )
@@ -128,7 +128,7 @@ total.pro.tech.88.latest <- get.ILO.latest(source.file="[R] [ILO] [ISCO-88] Tech
                                            source.gender="MF",
                                            source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "X2...000.", "X3...000."),
                                            result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "2.000.88","3.000.88"), 
-                                           result.cut.year=2003)
+                                           result.cut.year=cut.off.year)
 
 ## add variable 2 and 3
 total.pro.tech.88.latest[,"total.2.3"] <- apply(total.pro.tech.88.latest, 1, function(row) sum(as.numeric(row[5]), as.numeric(row[6]), na.rm=T) )
@@ -170,7 +170,7 @@ Female.tertiary.students <- get.UNESCO.format(source.file="[R] [UNESCO] Female t
                                               source.data.region="A6:P222",
                                               source.colnames="A4:P4", 
                                               result.colnames="female.tertiary.students",
-                                              result.cut.year=2003)
+                                              result.cut.year=cut.off.year)
 
 ################# Gender parity index of gross graduation ratio (ISCED 5A)
 gender.parity.index.gross.graduation.ratio <- get.UNESCO.format(source.file="[R] [UNESCO] Gender parity index of gross graduation ratio (ISCED 5A).xlsx",
@@ -178,7 +178,7 @@ gender.parity.index.gross.graduation.ratio <- get.UNESCO.format(source.file="[R]
                                                                 source.data.region="A6:P222",
                                                                 source.colnames="A4:P4", 
                                                                 result.colnames="gender.parity.index",
-                                                                result.cut.year=2003)
+                                                                result.cut.year=cut.off.year)
 
 
 ################# female tertiary graduates
@@ -187,7 +187,7 @@ female.tertiary.graduates <- get.UNESCO.format(source.file="[R] [UNESCO] Female 
                                                source.data.region="A6:P222",
                                                source.colnames="A4:P4", 
                                                result.colnames="female.tertiary.graduates",
-                                               result.cut.year=2003)
+                                               result.cut.year=cut.off.year)
 
 ################# Female gross enrolment ratio in tertiary level
 female.gross.enrolment.ratio.tertiary <- get.UNESCO.format(source.file="[R] [UNESCO] Female gross enrolment ratio in tertiary level.xlsx",
@@ -195,7 +195,7 @@ female.gross.enrolment.ratio.tertiary <- get.UNESCO.format(source.file="[R] [UNE
                                                source.data.region="A6:P222",
                                                source.colnames="A4:P4", 
                                                result.colnames="Female gross enrolment ratio in tertiary level",
-                                               result.cut.year=2003)
+                                               result.cut.year=cut.off.year)
 
 ################# Social mobility 
 Social.mobility  <- get.WEF(source.file="WEF.xlsx", 
@@ -221,7 +221,7 @@ High.status.successful.entrepreneurship <- get.UNESCO.format(source.file="[R] [G
                                                              source.data.region="A6:K100",
                                                              source.colnames="A5:K5", 
                                                              result.colnames="High.status.successful.entrepreneurship",
-                                                             result.cut.year=2003,
+                                                             result.cut.year=cut.off.year,
                                                              format="GEM")
 
 ## GEM data and can be used UNESCO function
@@ -231,7 +231,7 @@ Fear.of.failure.rate <- get.UNESCO.format(source.file="[R] [GEM] Fear of failure
                                           source.data.region="A6:M102",
                                           source.colnames="A5:M5", 
                                           result.colnames="Fear.of.failure.rate",
-                                          result.cut.year=2003,
+                                          result.cut.year=cut.off.year,
                                           format="GEM")
 
 ## GEM data and can be used UNESCO function
@@ -241,7 +241,7 @@ Entrepreneurship.as.desirable.career.choice <- get.UNESCO.format(source.file="[R
                                                              source.data.region="A6:K100",
                                                              source.colnames="A5:K5", 
                                                              result.colnames="Entrepreneurship.as.desirable.career.choice",
-                                                             result.cut.year=2003,
+                                                             result.cut.year=cut.off.year,
                                                              format="GEM")
 
 ## GEM data and can be used UNESCO function
@@ -251,7 +251,7 @@ Entrepreneurial.intention <- get.UNESCO.format(source.file="[R] [GEM] Entreprene
                                                source.data.region="A5:L101",
                                                source.colnames="A4:L4", 
                                                result.colnames="Entrepreneurial intention",
-                                               result.cut.year=2003,
+                                               result.cut.year=cut.off.year,
                                                format="GEM")
 
 
@@ -409,7 +409,7 @@ female.parliamentarians <- get.UNESCO.format(source.file="[R] [WDI] Female parli
                                                     source.data.region="AU5:BE255",
                                                     source.colnames="AT3:BE3", 
                                                     result.colnames="female.parliamentarians.ratio",
-                                                    result.cut.year=2003,
+                                                    result.cut.year=cut.off.year,
                                                     names.separated=TRUE, 
                                                     country.names="A5:A255")
 

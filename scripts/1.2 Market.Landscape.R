@@ -5,7 +5,7 @@ R.D.expenditure <- get.UNESCO.format(source.file="[R] [UNESCO] Gross expenditure
                                      source.data.region="A6:R220",
                                      source.colnames="A4:R4", 
                                      result.colnames="RnD.expenditure",
-                                     result.cut.year=2003)
+                                     result.cut.year=cut.off.year)
 
 
 ################# Business Government relation
@@ -80,6 +80,6 @@ Labour.tax.and.contributions <- get.UNESCO.format(source.file="[R] [WDI] Labour 
                                                   source.data.region="BD4:BE255",
                                                   source.colnames="BC3:BE3", 
                                                   result.colnames="Labour.tax.and.contributions",
-                                                  result.cut.year=2003,
+                                                  result.cut.year=cut.off.year,
                                                   names.separated=TRUE, 
                                                   country.names="A4:A255")

@@ -6,6 +6,8 @@ library(knitr)
 library(xtable)
 library(foreign)
 
+cut.off.year <- 2002
+
 ################# Master ISO3 and country names sheet
 get.ISO3 <- function(){
   

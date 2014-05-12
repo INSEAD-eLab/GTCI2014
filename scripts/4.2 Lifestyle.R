@@ -22,7 +22,7 @@ improved.sanitation.facilities <- get.UNESCO.format(source.file="[R] [WDI] Impro
                                                     source.data.region="AH4:BC255",
                                                     source.colnames="AG3:BC3", 
                                                     result.colnames="improved.sanitation.facilities",
-                                                    result.cut.year=2003,
+                                                    result.cut.year=cut.off.year,
                                                     names.separated=TRUE, 
                                                     country.names="A4:A255")
 
@@ -34,7 +34,7 @@ improved.water.source <- get.UNESCO.format(source.file="[R] [WDI] Improved water
                                            source.data.region="AH4:BC255",
                                            source.colnames="AG3:BC3", 
                                            result.colnames="improved.water.source",
-                                           result.cut.year=2003,
+                                           result.cut.year=cut.off.year,
                                            names.separated=TRUE, 
                                            country.names="A4:A255")
 
@@ -46,7 +46,7 @@ Physicians.density <- get.UNESCO.format(source.file="[R] [WDI] Physicians densit
                                            source.data.region="AU4:BD255",
                                            source.colnames="AT3:BD3", 
                                            result.colnames="Physicians.density",
-                                           result.cut.year=2003,
+                                           result.cut.year=cut.off.year,
                                            names.separated=TRUE, 
                                            country.names="A4:A255")
 
@@ -58,7 +58,7 @@ Intentional.homicide <- get.UNESCO.format(source.file="[R] [UNODC] Intentional h
                                           source.data.region="O8:W424",
                                           source.colnames="N7:W7", 
                                           result.colnames="Intentional.homicide",
-                                          result.cut.year=2003,
+                                          result.cut.year=cut.off.year,
                                           names.separated=TRUE, 
                                           country.names="C8:C424")
 
@@ -68,7 +68,7 @@ Percentage.trained.teachers.primary <- get.UNESCO.format(source.file="[R] [UNESC
                                                          source.data.region="A6:P222",
                                                          source.colnames="A4:P4", 
                                                          result.colnames="Percentage.trained.teachers.primary",
-                                                         result.cut.year=2003)
+                                                         result.cut.year=cut.off.year)
 
 
 ################################# female part-time workers
@@ -79,4 +79,4 @@ Part.time.employment.rate.15.female <- get.ILO.latest( source.file="[R] [ILO] Pa
                                                        source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Female.share.of.part.time.employment...."),
                                                        result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Female.share.of.part.time.employment.percent"),
                                                        source.age="15+",
-                                                       result.cut.year=2003)
+                                                       result.cut.year=cut.off.year)

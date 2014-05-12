@@ -5,7 +5,7 @@ innovation.output <- get.WB.format(source.file="GII innovation output.xlsx",
                                        source.data.region="A2:C143",
                                        source.colnames="A1:C1", 
                                        source.result.col="GII innovation output",                                         
-                                       result.cut.year=2003)
+                                       result.cut.year=cut.off.year)
 
 ## WIPO data format can be used
 ################# Total patent resident applications
@@ -14,7 +14,7 @@ Total.patent.resident.applications  <- get.UNESCO.format(source.file="[R] [WIPO]
                                                          source.data.region="C7:AI358",
                                                          source.colnames="C5:AI5", 
                                                          result.colnames="Total.patent.resident.applications",
-                                                         result.cut.year=2003,
+                                                         result.cut.year=cut.off.year,
                                                          names.separated=TRUE, 
                                                          country.names="A7:B358",
                                                          format="WIPO",
@@ -40,7 +40,7 @@ patent.resident.granted <- get.UNESCO.format(source.file="[R] [WIPO] Total paten
                                              source.data.region="C7:AI342",
                                              source.colnames="C5:AI5", 
                                              result.colnames="patent.resident.granted",
-                                             result.cut.year=2003,
+                                             result.cut.year=cut.off.year,
                                              names.separated=TRUE, 
                                              country.names="A7:B342",
                                              format="WIPO",
@@ -66,7 +66,7 @@ New.business.density  <- get.WB.format(source.file="[R] [WB ES] New business den
                                          source.data.region="A2:E133",
                                          source.colnames="A1:E1", 
                                          source.result.col="New business density",                                         
-                                         result.cut.year=2003)
+                                         result.cut.year=cut.off.year)
 
 
 ## GEM data and can be used UNESCO function
@@ -76,7 +76,7 @@ New.product.entrepreneurial.act <- get.UNESCO.format(source.file="[R] [GEM] New 
                                                      source.data.region="A6:L105",
                                                      source.colnames="A5:L5", 
                                                      result.colnames="New.product.entrepreneurial.act",
-                                                     result.cut.year=2003,
+                                                     result.cut.year=cut.off.year,
                                                      format="GEM")
 
 ## GEM data and can be used UNESCO function
@@ -86,7 +86,7 @@ established.business.ownership <- get.UNESCO.format(source.file="[R] [GEM] Estab
                                                     source.data.region="A6:M102",
                                                     source.colnames="A5:M5", 
                                                     result.colnames="Established business ownership",
-                                                    result.cut.year=2003,
+                                                    result.cut.year=cut.off.year,
                                                     format="GEM")
 
 ## GEM data and can be used UNESCO function
@@ -96,7 +96,7 @@ new.business.ownership <- get.UNESCO.format(source.file="[R] [GEM] New business 
                                      source.data.region="A6:M102",
                                      source.colnames="A5:M5", 
                                      result.colnames="New business ownership",
-                                     result.cut.year=2003,
+                                     result.cut.year=cut.off.year,
                                      format="GEM")
 
 ## for trade Data WITS

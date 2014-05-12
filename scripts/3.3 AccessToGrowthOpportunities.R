@@ -7,7 +7,7 @@ Part.time.employment.rate.15 <- get.ILO.latest( source.file="[R] [ILO] Part-time
                                                 source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Part.time.employment.rate...."),
                                                 result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Part.time.employment.rate.precent"),
                                                 source.age="15+",
-                                                result.cut.year=2003)
+                                                result.cut.year=cut.off.year)
 
 
 
@@ -20,7 +20,7 @@ Part.time.employment.rate.15.female <- get.ILO.latest( source.file="[R] [ILO] Pa
                                                        source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Female.share.of.part.time.employment...."),
                                                        result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Female.share.of.part.time.employment.percent"),
                                                        source.age="15+",
-                                                       result.cut.year=2003)
+                                                       result.cut.year=cut.off.year)
 
 
 Part.time.employment.rate.15.F <- get.ILO.latest( source.file="[R] [ILO] Part-time employment rate.xls",
@@ -30,7 +30,7 @@ Part.time.employment.rate.15.F <- get.ILO.latest( source.file="[R] [ILO] Part-ti
                                                 source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Part.time.workers...000.", "Total.employment...000."),
                                                 result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Part.time.workers.000.F", "Total.employment.000.F"),
                                                 source.age="15+",
-                                                result.cut.year=2003)
+                                                result.cut.year=cut.off.year)
 
 Part.time.employment.rate.15.M <- get.ILO.latest( source.file="[R] [ILO] Part-time employment rate.xls",
                                                   source.sheet="KILM 6",
@@ -39,7 +39,7 @@ Part.time.employment.rate.15.M <- get.ILO.latest( source.file="[R] [ILO] Part-ti
                                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Part.time.workers...000.", "Total.employment...000."),
                                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Part.time.workers.000.M", "Total.employment.000.M"),
                                                   source.age="15+",
-                                                  result.cut.year=2003)
+                                                  result.cut.year=cut.off.year)
 
 Part.time.employment.rate.15.MF <- get.ILO.denominator( source.file="[R] [ILO] Part-time employment rate.xls",
                                                    source.sheet="KILM 6",
@@ -127,7 +127,7 @@ researchers.FTE <- get.UNESCO.format(source.file="[R] [UNESCO] Researchers per m
                                      source.data.region="A6:R220",
                                      source.colnames="A4:R4", 
                                      result.colnames="Researchers per million inhabitants (FTE)",
-                                     result.cut.year=2003)
+                                     result.cut.year=cut.off.year)
 
 
 journals.per.researchers.FTE <- merge(journals, researchers.FTE[, -1], by="ISO3", all.x=TRUE)

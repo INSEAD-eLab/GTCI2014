@@ -5,11 +5,12 @@ FDI.inflow <- get.UNESCO.format(source.file="[R] [UNCTAD] FDI inflow.xlsx",
                                 source.data.region="A8:AR244",
                                 source.colnames="A6:AR6", 
                                 result.colnames="FDI.inflow",
-                                result.cut.year=2003,
+                                result.cut.year=cut.off.year,
                                 format="UNCTAD")
 
 FDI.inflow <- FDI.inflow[!(FDI.inflow$ISO3 == "SDN" & FDI.inflow$Year == 2011), ]
 FDI.inflow <- FDI.inflow[!(FDI.inflow$ISO3 == "SRB" & FDI.inflow$Year == 2007), ]
+FDI.inflow <- FDI.inflow[!(FDI.inflow$ISO3 == "IDN" & FDI.inflow$Year == 2002), ]
 
 
 ################# FDI and technology transfer
@@ -66,7 +67,7 @@ net.migration <- get.UNESCO.format(source.file="[R] [WDI] Net migration (stock) 
                                            source.data.region="BD4:BD255",
                                            source.colnames="BC3:BD3", 
                                            result.colnames="net.migration",
-                                           result.cut.year=2003,
+                                           result.cut.year=cut.off.year,
                                            names.separated=TRUE, 
                                            country.names="A4:A255")
 ## scaled with population data
@@ -90,7 +91,7 @@ net.migration.2007 <- get.UNESCO.format(source.file="[R] [WDI] Net migration (st
                                    source.data.region="AY4:AY255",
                                    source.colnames="AX3:AY3", 
                                    result.colnames="net.migration",
-                                   result.cut.year=2003,
+                                   result.cut.year=cut.off.year,
                                    names.separated=TRUE, 
                                    country.names="A4:A255")
 
@@ -460,7 +461,7 @@ Personal.remittances.received <- get.UNESCO.format(source.file="[R] [WDI] Person
                                         source.data.region="AU4:BD254",
                                         source.colnames="AT3:BD3", 
                                         result.colnames="Personal.remittances.received",
-                                        result.cut.year=2003,
+                                        result.cut.year=cut.off.year,
                                         names.separated=TRUE, 
                                         country.names="A4:A254")
 
@@ -471,7 +472,7 @@ remittance.receipts <- get.UNESCO.format(source.file="[R] [UNCTAD] Remittance re
                                          source.data.region="A8:AH244",
                                          source.colnames="A6:AH6", 
                                          result.colnames="remittance.inflow",
-                                         result.cut.year=2003,
+                                         result.cut.year=cut.off.year,
                                          format="UNCTAD")
 
 ## UNCTAD data has same format as UNESCO and used that function
@@ -481,5 +482,5 @@ remittance.payments <- get.UNESCO.format(source.file="[R] [UNCTAD] Remittance pa
                                          source.data.region="A8:AH244",
                                          source.colnames="A6:AH6", 
                                          result.colnames="remittance.outflow",
-                                         result.cut.year=2003,
+                                         result.cut.year=cut.off.year,
                                          format="UNCTAD")

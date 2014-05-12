@@ -7,7 +7,7 @@ old.age.contributors.ratio.percent.working.age <- get.UNESCO.format(source.file=
                                                   source.data.region="A2:N98",
                                                   source.colnames="A1:N1", 
                                                   result.colnames="old.age.contributors.ratio.percent.working.age",
-                                                  result.cut.year=2003,
+                                                  result.cut.year=cut.off.year,
                                                   format="ILOpdf")
 
 
@@ -18,7 +18,7 @@ old.age.contributors.ratio.percent.labor.force <- get.UNESCO.format(source.file=
                                                                     source.data.region="A2:N95",
                                                                     source.colnames="A1:N1", 
                                                                     result.colnames="old.age.contributors.ratio.percent.labor.force",
-                                                                    result.cut.year=2003,
+                                                                    result.cut.year=cut.off.year,
                                                                     format="ILOpdf")
 
 
@@ -29,7 +29,7 @@ Old.age.employee.protection.ratio.contributors <- get.UNESCO.format(source.file=
                                                                     source.data.region="A2:N59",
                                                                     source.colnames="A1:N1", 
                                                                     result.colnames="Old.age.employee.protection.ratio.contributors",
-                                                                    result.cut.year=2003,
+                                                                    result.cut.year=cut.off.year,
                                                                     format="ILOpdf")
 
 
@@ -40,7 +40,7 @@ Disability.contributors.ratio.percent.working.age <- get.UNESCO.format(source.fi
                                                                        source.data.region="A2:N75",
                                                                        source.colnames="A1:N1", 
                                                                        result.colnames="Disability.contributors.ratio.percent.working.age",
-                                                                       result.cut.year=2003,
+                                                                       result.cut.year=cut.off.year,
                                                                        format="ILOpdf")
 
 
@@ -52,7 +52,7 @@ Disability.contributors.ratio.percent.labor.force <- get.UNESCO.format(source.fi
                                                                        source.data.region="A2:N71",
                                                                        source.colnames="A1:N1", 
                                                                        result.colnames="Disability.contributors.ratio.percent.labor.force",
-                                                                       result.cut.year=2003,
+                                                                       result.cut.year=cut.off.year,
                                                                        format="ILOpdf")
 
 
@@ -63,7 +63,7 @@ Disability.employee.protection.ratio.contributors <- get.UNESCO.format(source.fi
                                                                        source.data.region="A2:N56",
                                                                        source.colnames="A1:N1", 
                                                                        result.colnames="Disability.employee.protection.ratio.contributors",
-                                                                       result.cut.year=2003,
+                                                                       result.cut.year=cut.off.year,
                                                                        format="ILOpdf")
 
 
@@ -74,7 +74,7 @@ employment.injury.demographic.protection.ratio.contributors <- get.UNESCO.format
                                                                                  source.data.region="A2:N43",
                                                                                  source.colnames="A1:N1", 
                                                                                  result.colnames="employment.injury.demographic.protection.ratio.contributors",
-                                                                                 result.cut.year=2003,
+                                                                                 result.cut.year=cut.off.year,
                                                                                  format="ILOpdf")
 
 
@@ -85,7 +85,7 @@ employment.injury.to.economically.active.protection.ratio <- get.UNESCO.format(s
                                                                                source.data.region="A2:N39",
                                                                                source.colnames="A1:N1", 
                                                                                result.colnames="employment.injury.to.economically.active.protection.ratio",
-                                                                               result.cut.year=2003,
+                                                                               result.cut.year=cut.off.year,
                                                                                format="ILOpdf")
 
 
@@ -96,7 +96,7 @@ sickness.demographic.protection.ratio.contributors <- get.UNESCO.format(source.f
                                                                                source.data.region="A2:N53",
                                                                                source.colnames="A1:N1", 
                                                                                result.colnames="sickness.demographic.protection.ratio.contributors",
-                                                                               result.cut.year=2003,
+                                                                               result.cut.year=cut.off.year,
                                                                                format="ILOpdf")
 
 
@@ -107,7 +107,7 @@ sickness.employment.protection.ratio.contributors <- get.UNESCO.format(source.fi
                                                                         source.data.region="A2:N51",
                                                                         source.colnames="A1:N1", 
                                                                         result.colnames="sickness.employment.protection.ratio.contributors",
-                                                                        result.cut.year=2003,
+                                                                        result.cut.year=cut.off.year,
                                                                         format="ILOpdf")
 
 ## ILO pdf converted data has same format as UNESCO and used that function
@@ -117,7 +117,7 @@ sickness.employee.protection.ratio.contributors <- get.UNESCO.format(source.file
                                                                      source.data.region="A2:N41",
                                                                      source.colnames="A1:N1", 
                                                                      result.colnames="sickness.employee.protection.ratio.contributors",
-                                                                     result.cut.year=2003,
+                                                                     result.cut.year=cut.off.year,
                                                                      format="ILOpdf")
 
 
@@ -129,7 +129,7 @@ unemployed.receiving.unemployment.benefits <- get.UNESCO.format(source.file="[R]
                                                                      source.data.region="A2:O100",
                                                                      source.colnames="A1:O1", 
                                                                      result.colnames="unemployed.receiving.unemployment.benefits",
-                                                                     result.cut.year=2003,
+                                                                     result.cut.year=cut.off.year,
                                                                      format="ILOpdf")
 
 ################# Extent and effect of taxation (on incentives to work)
@@ -160,7 +160,7 @@ personal.income.tax.rate <- get.UNESCO.format(source.file="[R] [KPMG] individual
                                     source.data.region="A2:J136",
                                     source.colname="A1:J1",
                                     result.colname="individual income tax rate",
-                                    result.cut.year=2003)
+                                    result.cut.year=cut.off.year)
 
 ################# pension system
 pension.system <- get.WEF(source.file="[R] [WB] Pension system.xlsx", 
@@ -169,7 +169,7 @@ pension.system <- get.WEF(source.file="[R] [WB] Pension system.xlsx",
                           source.colname="K4", 
                           source.date="C6:C201", 
                           source.countries="B6:B201",
-                          cut.off.year=2003,
+                          cut.off.year=cut.off.year,
                           different.source=TRUE,
                           source.name="WB")
 
@@ -181,7 +181,7 @@ top.management <- get.WEF(source.file="[R] [Mercer] Top Management.xlsx",
                           source.colname="C1",
                           source.date="D2:D70",
                           source.countries="A2:A70",
-                          cut.off.year=2003)
+                          cut.off.year=cut.off.year)
 
 ## run the codes for RPI 
 source("scripts/Retail price index.R")
@@ -201,7 +201,7 @@ head.of.IT <- get.WEF(source.file="[R] [Mercer] Head of IT.xlsx",
                       source.colname="C1",
                       source.date="D2:D57",
                       source.countries="A2:A57",
-                      cut.off.year=2003)
+                      cut.off.year=cut.off.year)
 
 
 ## run the codes for RPI
@@ -221,7 +221,7 @@ head.of.systems.engineering <- get.WEF(source.file="[R] [Mercer] Head of Systems
                       source.colname="C1",
                       source.date="D2:D12",
                       source.countries="A2:A12",
-                      cut.off.year=2003)
+                      cut.off.year=cut.off.year)
 
 
 ## run the codes for RPI
@@ -242,7 +242,7 @@ plant.manager <- get.WEF(source.file="[R] [Mercer] Plant Manager.xlsx",
                                        source.colname="C1",
                                        source.date="D2:D41",
                                        source.countries="A2:A41",
-                                       cut.off.year=2003)
+                                       cut.off.year=cut.off.year)
 
 
 ## run the codes for RPI
@@ -263,7 +263,7 @@ sales.n.marketing <- get.WEF(source.file="[R] [Mercer] Head of Sales and Marketi
                          source.colname="C1",
                          source.date="D2:D60",
                          source.countries="A2:A60",
-                         cut.off.year=2003)
+                         cut.off.year=cut.off.year)
 
 
 ## run the codes for RPI
@@ -284,4 +284,4 @@ maternity.parental.leave <- get.WEF(source.file="Maternal leave.xlsx",
                                        source.colname="C1",
                                        source.date="D3:D145",
                                        source.countries="B3:B145",
-                                       cut.off.year=2003)
+                                       cut.off.year=cut.off.year)

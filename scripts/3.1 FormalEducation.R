@@ -5,7 +5,7 @@ pupil.teacher.ratio.secondary <- get.UNESCO.format(source.file="[R] [UNESCO] Pup
                                        source.data.region="A6:P222",
                                        source.colnames="A4:P4", 
                                        result.colnames="Pupil-teacher ratio (secondary)",
-                                       result.cut.year=2003)
+                                       result.cut.year=cut.off.year)
 
 
 ################# Technical vocational enrolment
@@ -14,7 +14,7 @@ Technical.vocational.enrolment <- get.UNESCO.format(source.file="[R] [UNESCO] Te
                                                     source.data.region="A6:P222",
                                                     source.colnames="A4:P4", 
                                                     result.colnames="Technical vocational enrolment",
-                                                    result.cut.year=2003)
+                                                    result.cut.year=cut.off.year)
 
 
 ################# Tertiary enrolment
@@ -23,7 +23,7 @@ Tertiary.enrolment <- get.UNESCO.format(source.file="[R] [UNESCO] Tertiary enrol
                                         source.data.region="A6:P222",
                                         source.colnames="A4:P4", 
                                         result.colnames="Tertiary enrolment",
-                                        result.cut.year=2003)
+                                        result.cut.year=cut.off.year)
 
 
 ################# Gross graduation ratio
@@ -32,7 +32,7 @@ gross.graduation.ratio <- get.UNESCO.format(source.file="[R] [UNESCO] Gross grad
                                             source.data.region="A6:P222",
                                             source.colnames="A4:P4", 
                                             result.colnames="Gross graduation ratio",
-                                            result.cut.year=2003)
+                                            result.cut.year=cut.off.year)
 
 ################# Lower secondary gross graduation ratio
 Lower.secondary.gross.graduation.ratio <- get.UNESCO.format(source.file="[R] [UNESCO] Lower secondary gross graduation ratio.xls",
@@ -40,7 +40,7 @@ Lower.secondary.gross.graduation.ratio <- get.UNESCO.format(source.file="[R] [UN
                                             source.data.region="A6:P222",
                                             source.colnames="A4:P4", 
                                             result.colnames="Lower secondary gross graduation ratio",
-                                            result.cut.year=2003)
+                                            result.cut.year=cut.off.year)
 
 ################# Tertiary inbound mobility ratio
 Tertiary.inbound.mobility.ratio <- get.UNESCO.format(source.file="[R] [UNESCO] Tertiary inbound mobility rate.xlsx",
@@ -48,7 +48,7 @@ Tertiary.inbound.mobility.ratio <- get.UNESCO.format(source.file="[R] [UNESCO] T
                                                     source.data.region="A6:P222",
                                                     source.colnames="A4:P4", 
                                                     result.colnames="Tertiary inbound mobility ratio",
-                                                    result.cut.year=2003)
+                                                    result.cut.year=cut.off.year)
 
 ################# Tertiary outbound mobility rate
 Tertiary.outbound.mobility.rate <- get.UNESCO.format(source.file="[R] [UNESCO] Tertiary outbound mobility rate.xlsx",
@@ -56,7 +56,7 @@ Tertiary.outbound.mobility.rate <- get.UNESCO.format(source.file="[R] [UNESCO] T
                                                     source.data.region="A6:P222",
                                                     source.colnames="A4:P4", 
                                                     result.colnames="Tertiary outbound mobility rate",
-                                                    result.cut.year=2003)
+                                                    result.cut.year=cut.off.year)
 
 
 ################# science and engineering graduates
@@ -65,7 +65,7 @@ science.engineering.ratios <- get.UNESCO.science.engineering.graduates(source.fi
                                                                        data.regions=c("B6:P222", "AF6:AT222" ,"Q6:AE222"),
                                                                        source.colnames="A4:P4", 
                                                                        result.colnames=c("graduates.total", "graduates.engineering", "graduates.science"),
-                                                                       result.cut.year=2003,
+                                                                       result.cut.year=cut.off.year,
                                                                        names.separated=TRUE,
                                                                        country.names="A6:A222")
 
@@ -222,7 +222,7 @@ graduates.science <- get.UNESCO.format(source.file="[R] [UNESCO] Graduates in sc
                                        source.data.region="Q6:AE222",
                                        source.colnames="A4:P4", 
                                        result.colnames="graduates.science",
-                                       result.cut.year=2003,
+                                       result.cut.year=cut.off.year,
                                        names.separated=TRUE, 
                                        country.names="A6:A222")
 
@@ -233,7 +233,7 @@ graduates.engineering <- get.UNESCO.format(source.file="[R] [UNESCO] Graduates i
                                            source.data.region="AF6:AT222",
                                            source.colnames="A4:P4", 
                                            result.colnames="graduates.engineering",
-                                           result.cut.year=2003,
+                                           result.cut.year=cut.off.year,
                                            names.separated=TRUE, 
                                            country.names="A6:A222")
 
@@ -244,7 +244,7 @@ graduates.total <- get.UNESCO.format(source.file="[R] [UNESCO] Graduates in scie
                                      source.data.region="A6:P222",
                                      source.colnames="A4:P4", 
                                      result.colnames="graduates.total",
-                                     result.cut.year=2003)
+                                     result.cut.year=cut.off.year)
 
 
 ## combine science and engineering graduates

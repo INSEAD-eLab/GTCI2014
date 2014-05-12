@@ -6,7 +6,7 @@ tertiary.educated.population.above25.UNESCO <- get.WEF(source.file="[R] [UNESCO]
                                                        source.colname="C2", 
                                                        source.date="B7:B230", 
                                                        source.countries="A7:A230",
-                                                       cut.off.year=2003,
+                                                       cut.off.year=cut.off.year,
                                                        different.source=TRUE)
 
 
@@ -19,7 +19,7 @@ tertiary.educated.population.tertiary.UNESCO <- get.WEF(source.file="[R] [UNESCO
                                                         source.colname="X2", 
                                                         source.date="B7:B230", 
                                                         source.countries="A7:A230",
-                                                        cut.off.year=2003,
+                                                        cut.off.year=cut.off.year,
                                                         different.source=TRUE)
 colnames(tertiary.educated.population.tertiary.UNESCO)[2] <- "Tertiary (ISCED 5-6) (percent)"
 
@@ -32,7 +32,7 @@ tertiary.educated.population.above25.ILO.total <- get.ILO.latest( source.file="[
                                                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Tertiary...."),
                                                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Tertiary (percent)"),
                                                                   source.age="25+",
-                                                                  result.cut.year=2003)
+                                                                  result.cut.year=cut.off.year)
 
 ################################# Tertiary educated workforce 15+
 gc()
@@ -43,7 +43,7 @@ tertiary.educated.population.above15.ILO.total <- get.ILO.latest( source.file="[
                                                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Tertiary...."),
                                                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Tertiary (percent)"),
                                                                   source.age="15+",
-                                                                  result.cut.year=2003)
+                                                                  result.cut.year=cut.off.year)
 
 ## countries in 25 but not in 15
 setdiff(tertiary.educated.population.above25.ILO.total$Country.Name, tertiary.educated.population.above15.ILO.total$Country.Name)
@@ -64,7 +64,7 @@ tertiary.educated.population.above25.ILO.female <- get.ILO.latest( source.file="
                                                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Tertiary...."),
                                                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Tertiary (percent)"),
                                                                   source.age="25+",
-                                                                  result.cut.year=2003)
+                                                                  result.cut.year=cut.off.year)
 
 ################################# Tertiary educated workforce 15+ (female)
 gc()
@@ -75,7 +75,7 @@ tertiary.educated.population.above15.ILO.female <- get.ILO.latest( source.file="
                                                                   source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Tertiary...."),
                                                                   result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Age.group", "Tertiary (percent)"),
                                                                   source.age="15+",
-                                                                  result.cut.year=2003)
+                                                                  result.cut.year=cut.off.year)
 
 ## countries in 25 but not in 15
 setdiff(tertiary.educated.population.above25.ILO.female$Country.Name, tertiary.educated.population.above15.ILO.female$Country.Name)
@@ -108,7 +108,7 @@ Female.legislators.senior.officials.managers.88 <- get.ILO.latest( source.file="
                                                                               "X1...000.", "X1...."),
                                                             result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
                                                                               "1 (000)", "1 (percent)"),
-                                                            result.cut.year=2003)
+                                                            result.cut.year=cut.off.year)
 
 
 ################# Legislators, senior officials and managers 88
@@ -136,7 +136,7 @@ female.professional.88 <- get.ILO.latest( source.file="[R] [ILO] [ISCO-88] Femal
                                                             "X2...000.", "X2...."),
                                           result.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Total employment (000)",
                                                             "2 (000)", "2 (percent)"),
-                                          result.cut.year=2003)
+                                          result.cut.year=cut.off.year)
 
 ################# Professionals 88
 Professional.88 <- get.ILO.denominator( source.file="[R] [ILO] [ISCO-88] Professional.xls",
@@ -160,7 +160,7 @@ researchers.HC <- get.UNESCO.format(source.file="[R] [UNESCO] Researchers per mi
                                     source.data.region="A6:R220",
                                     source.colnames="A4:R4", 
                                     result.colnames="Researchers per million inhabitants (HC)",
-                                    result.cut.year=2003)
+                                    result.cut.year=cut.off.year)
 
 ################# Researchers per million inhabitants (FTE)
 researchers.FTE <- get.UNESCO.format(source.file="[R] [UNESCO] Researchers per million inhabitants (FTE).xlsx",
@@ -168,7 +168,7 @@ researchers.FTE <- get.UNESCO.format(source.file="[R] [UNESCO] Researchers per m
                                     source.data.region="A6:R220",
                                     source.colnames="A4:R4", 
                                     result.colnames="Researchers per million inhabitants (FTE)",
-                                    result.cut.year=2003)
+                                    result.cut.year=cut.off.year)
 
 ## countries in HC but not in FTE
 setdiff(researchers.HC$Country.Name, researchers.FTE$Country.Name)
@@ -188,7 +188,7 @@ female.researchers.FTE <- get.UNESCO.format(source.file="[R] [UNESCO] Female res
                                             source.data.region="A6:R220",
                                             source.colnames="A4:R4", 
                                             result.colnames="percent of female researchers (FTE)",
-                                            result.cut.year=2003)
+                                            result.cut.year=cut.off.year)
 
 
 ################# Female researchers (HC)
@@ -197,7 +197,7 @@ female.researchers.HC <- get.UNESCO.format(source.file="[R] [UNESCO] Female rese
                                             source.data.region="A6:R220",
                                             source.colnames="A4:R4", 
                                             result.colnames="percent of female researchers (HC)",
-                                            result.cut.year=2003)
+                                            result.cut.year=cut.off.year)
 
 ## countries in HC but not in FTE
 setdiff(female.researchers.HC$Country.Name, female.researchers.FTE$Country.Name)

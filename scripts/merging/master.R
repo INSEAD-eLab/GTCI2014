@@ -45,5 +45,5 @@ mergedall <- mergedall[!mergedall$ISO3=="NFK",]
 mergedall <- mergedall[!mergedall$ISO3=="SHN",]
 mergedall <- mergedall[!mergedall$ISO3=="WLF",]
 
-get.excel.download(mergedall, "Merged_20140506_1.xlsx")
+get.excel.download(mergedall, "Merged_20140512_2002.xlsx")
 
