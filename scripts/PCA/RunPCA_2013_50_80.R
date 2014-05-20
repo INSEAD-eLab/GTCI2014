@@ -25,12 +25,12 @@ datafile_name="Boats" # do not add .csv at the end! make sure the data are numer
 report_file = "PCA"
 
 
-datafile <- loadWorkbook(paste(local_directory, "/data/2014 05 06 JRC submission based on GTCI 2013 framework_50 Sub-Pillar and 80 Overall.xlsx", sep=""))
+datafile <- loadWorkbook(paste(local_directory, "/data/2014 05 20 JRC submission based on GTCI 2013 model.xlsx", sep=""))
 
-Level <- 2 # or 2 or 3
+Level <- 3 # or 2 or 3
 
 if(Level == 1){
-  ProjectData <- readWorksheet(datafile, sheet="Normalized", region="B6:AY113", header=T)
+  ProjectData <- readWorksheet(datafile, sheet="Normalized", region="B6:AY108", header=T)
   
   number_of_variables=c(3,6,2,3,5,6,2,4,2,4,3,2,4,2)
   names_of_factors=c("Regulatory Landscape", "Market Landscape", "Business Landscape", "External Openness", "Internal Openness","Formal Education","Lifelong learning",
@@ -40,7 +40,7 @@ if(Level == 1){
   
   report_file = "PCA"
 }else if(Level==2){
-  ProjectData <- readWorksheet(datafile, sheet="Calculation", region="B6:Y113", header=T)
+  ProjectData <- readWorksheet(datafile, sheet="Calculation", region="B2:Y104", header=T)
   number_of_variables=c(3,2,3,2,2,2)
   names_of_factors=c("Enablers", "Attract", "Grow", "Retain", "Labour and vocational", "Global Knowledge")
   
@@ -48,7 +48,7 @@ if(Level == 1){
   
   report_file = "PCA"
 }else if(Level==3){
-  ProjectData <- readWorksheet(datafile, sheet="Calculation", region="B6:Y113", header=T)
+  ProjectData <- readWorksheet(datafile, sheet="Calculation", region="B2:Y104", header=T)
   
   factor_attributes_used=c(19:24)
   
