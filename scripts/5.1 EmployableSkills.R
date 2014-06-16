@@ -176,3 +176,13 @@ tech.asso.88.F[, "ratio"] <- tech.asso.88.F[, "3 (000)"]/tech.asso.88.F[, "3.000
 
 #### Take note that 4 countries has different years and they are now "NA" for total employment in tech category. 
 #### (morocco, philippines, saudi arabia, uganda)
+
+
+################# Unemployment rate of secondary-educated
+Unemployment.rate.secondary.educated <- get.ILO.latest( source.file="[R] [ILO] Unemployment rate of persons with tertiary level education.xls",
+                                                       source.sheet="KILM 14c",
+                                                       source.region="A3:L8226", 
+                                                       source.gender="MF",
+                                                       source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Unemployment.rate.of.persons.with.secondary.level.education...."),
+                                                       result.colnames=c("Country.Name", "ISO3", "Year", "Gender", "Unemployment rate of secondary educated (percent)"),
+                                                       result.cut.year=cut.off.year)

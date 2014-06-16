@@ -204,3 +204,13 @@ setdiff(female.researchers.HC$Country.Name, female.researchers.FTE$Country.Name)
 
 ## countries in FTE but not in HC
 setdiff(female.researchers.FTE$Country.Name, female.researchers.HC$Country.Name)
+
+
+################# Unemployment rate of tertiary-educated
+Unemployment.rate.tertiary.educated <- get.ILO.latest( source.file="[R] [ILO] Unemployment rate of persons with tertiary level education.xls",
+                                                       source.sheet="KILM 14c",
+                                                       source.region="A3:L8226", 
+                                                       source.gender="MF",
+                                                       source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Unemployment.rate.of.persons.with.tertiary.level.education...."),
+                                                       result.colnames=c("Country.Name", "ISO3", "Year", "Gender", "Unemployment rate of tertiary educated (percent)"),
+                                                       result.cut.year=cut.off.year)
