@@ -50,7 +50,7 @@ generate.pdf(tradeUNCTADdata[, c(1:3, 8, 9, 5, 24)] , "Low-MedByManuGoods", "UNC
 generate.pdf(tradeUNCTADdata[, c(1:3, 8, 9, 6, 25)] , "Low-MedByManuGoodsByDegree", "UNCTAD low and med skills by Manu Goods By Degree", "Note : Low-MedByManuGoodsByDegree = Med-skill + Low-skill / Manufactured goods by degree of manufacturing. Source : UNCTAD")
 
 ## subpillar 6.1
-generate.pdf(Unemployment.rate.tertiary.educated[,-4], "Unemployment rate of tertiary educated (percent)", "Unemployment rate of tertiary educated")
+generate.pdf(Unemployment.rate.tertiary.educated[,-4], "Unemployment rate of tertiary educated (percent)", "Unemployment rate of tertiary educated", "Source : ILO")
 generate.pdf(percent.dist.tertiary.unemployment[,-4], "Distribution of tertiary educated unemployment (percent)", "Percentage distribution of total unemployed with tertiary education")
 generate.pdf(female.researchers.HC, "percent of female researchers (HC)", "Female researchers (HC)")
 generate.pdf(female.researchers.FTE, "percent of female researchers (FTE)", "Female researchers (FTE)")
@@ -76,6 +76,7 @@ generate.pdf(tertiary.educated.population.above15.ILO.female[,-4] , "Tertiary (p
 generate.pdf(professional.88.f[,c(1:3,6,10,12)] , "ratio", "Female professional out of total (male and female) professional", "Note : ratio = female professional (2 (000).x) / total professional (2 (000).y). Source : ILO ISCO 88")
 
 ## subpillar 5.1
+generate.pdf(Unemployment.rate.secondary.educated[,-4], "Unemployment rate of secondary educated (percent)", "Unemployment rate of secondary educated", "Source : ILO")
 generate.pdf(secondary.educated.population.above25.ILO.total[, -4] , "Secondary (percent)", "Secondary educated workforce (ILO - above 25 total)")
 generate.pdf(secondary.educated.population.above15.ILO.total[, -4] , "Secondary (percent)", "Secondary educated workforce (ILO - above 15 total)")
 generate.pdf(secondary.educated.population.above25.ILO.female[, -4] , "Secondary (percent)", "Secondary educated workforce (ILO - above 25 female)")
