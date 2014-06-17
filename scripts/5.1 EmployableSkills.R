@@ -186,3 +186,15 @@ Unemployment.rate.secondary.educated <- get.ILO.latest( source.file="[R] [ILO] U
                                                        source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Unemployment.rate.of.persons.with.secondary.level.education...."),
                                                        result.colnames=c("Country.Name", "ISO3", "Year", "Gender", "Unemployment rate of secondary educated (percent)"),
                                                        result.cut.year=cut.off.year)
+
+
+
+################# Unemployment rate of secondary-educated
+employment.to.population.ratio <- get.ILO.latest( source.file="[R] [ILO] KILM 2 employment to population ratio.xlsx",
+                                                        source.sheet="Sheet1",
+                                                        source.region="A3:L35247", 
+                                                        source.gender="MF",
+                                                        source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Employment..to.population.ratio"),
+                                                        result.colnames=c("Country.Name", "ISO3", "Year", "Gender", "Employment to population ratio"),
+                                                  source.age="15+",
+                                                        result.cut.year=cut.off.year)

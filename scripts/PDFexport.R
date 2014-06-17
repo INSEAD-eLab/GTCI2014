@@ -91,6 +91,8 @@ generate.pdf(youth.unemployment.all[, c(1,2,3,7)] , "Share of youth unemployed i
 generate.pdf(youth.unemployment.all[, c(1,2,3,8)] , "Share of youth unemployed in youth population (percent)", "Youth unemployment rate (youth unemployment as a proportion of the youth population)")
 generate.pdf(NEET[, -4] , "NEET rate percent", "NEET (The number of young people who are not in employment, education or training (NEET) as a percentage of the youth population)")
 
+## temporary variables 
+generate.pdf(employment.to.population.ratio[,-4], "Employment to population ratio", "Employment to population ratio", "Source : ILO")
 
 ## subpillar 5.1
 generate.pdf(labour.productivity.per.person.employed , "labour productivity per person employed", "Labour productivity per person employed")
