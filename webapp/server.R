@@ -1,8 +1,27 @@
 library(shiny)
 library(XLConnect)
 
+
+
 # Define server logic required to draw a histogram
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
+  
+  read_data <- reactive({
+    input <- input$bins
+    ISO3 <- loadWorkbook("data.xlsx")
+    ISO3 <- readWorksheet(ISO3, sheet="Sheet1", region="B6:FO241", header=T)
+
+    updateSelectInput(session, "independent_variables", "Independent Variables",  choices = colnames(ISO3), selected=colnames(ISO3)[3])
+    updateSelectInput(session, "variables_for_hist", "Variables for Histogram",  choices = colnames(ISO3), selected=colnames(ISO3)[3])
+    
+    
+    ISO3
+  })
+  
+  output$Variables <- renderUI({
+    ISO3 <- read_data()
+    selectInput("xrow", "Facility" , choices=colnames(ISO3), selected=colnames(ISO3)[1], multiple=TRUE)
+  })
   
   # Expression that generates a histogram. The expression is
   # wrapped in a call to renderPlot to indicate that:
@@ -23,9 +42,9 @@ shinyServer(function(input, output) {
   ## reading from data excel sheet and ploting the graph.
   output$hist <- renderPlot({
     input <- input$bins
-    ISO3<-loadWorkbook("data.xlsx")
-    ISO3<-readWorksheet(ISO3, sheet="Sheet1", region="B6:FO241", header=T)
+    #variable_for_hists <- input$variables_for_hist
+    ISO3 <- read_data()
     
-    plot(ISO3$Political.stability, ISO3$Government.effectiveness, cex=input/10)
+    plot(ISO3$Political.stability, ISO3$Political.stability, cex=input/10)
   })
 })
