@@ -10,24 +10,27 @@ shinyUI(pageWithSidebar(
   # Sidebar with a slider input for the number of bins
   #sidebarLayout(
     sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 5,
-                  max = 50,
-                  value = 30),
-      sidebarPanel( uiOutput("Variables") ),
-      HTML("<hr>"),
+
+      #sidebarPanel( uiOutput("Variables") ),
+      #HTML("<hr>"),
       selectInput("independent_variables","Independent Variables",  choices = c("Independent Variables"), selected="Independent Variables", multiple=TRUE)
     ),
     
     # Show a plot of the generated distribution
     mainPanel(      
       tabsetPanel(
-        tabPanel("Dist Plot",                  
-                 plotOutput("distPlot")),
+        
         tabPanel("Hist Plot", 
-                 selectInput("variables_for_hist", "Variables for Histogram", choices = c("Independent Variables"), selected="Independent Variables", multiple=FALSE),
-                 plotOutput("hist"))
+                 selectInput("histX", "Variables for X axis on Histogram :", choices = c("Independent Variables"), selected="Independent Variables", multiple=FALSE),
+                 selectInput("histY", "Variables for Y axis on Histogram :", choices = c("Independent Variables"), selected="Independent Variables", multiple=FALSE),
+                 sliderInput("bins", "Size of points :", min = 1, max = 10, value = 3),
+                 radioButtons("colors", "Color the data points by Income groups :",
+                              c("Yes" = 1,
+                                "No" = 0
+                                )),
+                 plotOutput("hist")),
+        tabPanel("Dist Plot",                  
+                 plotOutput("distPlot"))
       )
       
       
