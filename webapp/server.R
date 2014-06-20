@@ -11,19 +11,6 @@ shinyServer(function(input, output, session) {
     ISO3 <- loadWorkbook("data.xlsx")
     ISO3 <- readWorksheet(ISO3, sheet="Sheet1", region="B6:EW110", header=T)
     
-    ISO3[, 'color'] <- apply(ISO3, 1, function(row) ifelse(is.na(row['Income.group']), colors()[179],
-                                                    ifelse(row['Income.group'] == "High income", colors()[563],
-                                                    ifelse(row['Income.group'] == "Upper middle income", colors()[224],
-                                                    ifelse(row['Income.group'] == "Lower middle income", colors()[26], colors()[179])))))
-    
-    ISO3[, 'shape'] <- apply(ISO3, 1, function(row) ifelse(is.na(row['Regional.group']), 1,
-                                                    ifelse(row['Regional.group'] == "Asia Pacific", 2,
-                                                    ifelse(row['Regional.group'] == "CIS and Balkans", 3,
-                                                    ifelse(row['Regional.group'] == "Europe", 4, 
-                                                    ifelse(row['Regional.group'] == "Latin America and Caribbean", 5,
-                                                    ifelse(row['Regional.group'] == "Middle East and North Africa", 6,
-                                                    ifelse(row['Regional.group'] == "North America", 7, 8))))))))
-    
     ISO3[, 'Income.gp'] <- apply(ISO3, 1, function(row) ifelse(is.na(row['Income.group']), "New Country", row['Income.group'])) 
     ISO3[, 'Region.gp'] <- apply(ISO3, 1, function(row) ifelse(is.na(row['Regional.group']), "New Country", row['Regional.group'])) 
     
@@ -33,14 +20,7 @@ shinyServer(function(input, output, session) {
     
     ISO3
   })
-  
-  # Expression that generates a histogram. The expression is
-  # wrapped in a call to renderPlot to indicate that:
-  #
-  #  1) It is "reactive" and therefore should
-  #     re-execute automatically when inputs change
-  #  2) Its output type is a plot
-  
+    
   output$distPlot <- renderPlot({
 
     x    <- faithful[, 2]  # Old Faithful Geyser data
@@ -52,17 +32,9 @@ shinyServer(function(input, output, session) {
   
   ## reading from data excel sheet and ploting the graph.
   output$hist <- renderPlot({
-    
     histX <- input$histX
     histY <- input$histY
     ProjectData <- read_data()
-    
-    
-    if(input$shapeByRegion == 1){
-      shapeByRegion = ProjectData$shape
-    }else{
-      shapeByRegion = 16
-    }
     
     eval(parse(text=paste("LVGK <- ggplot(data=ProjectData, aes(x=",histX,", y=",histY,", label=",input$showLabels,"))", sep = "")))
     
@@ -73,14 +45,28 @@ shinyServer(function(input, output, session) {
     }
     
     if(input$shapeByRegion == 1){
-      hist <- hist + geom_point(aes(shape = factor(Income.gp), alpha = .6, size=4)) 
+      hist <- hist + geom_point(aes(shape = factor(Income.gp), alpha = .6, size=4))
     }else{
       hist <- hist + geom_point(aes(alpha = .6, size=4))
     }
     
-    #geom_point(aes(size =n_in_stat>4)) + scale_size_manual(values=c(2,5))
-    
     print(hist)
     
+  })
+  
+  correlationHist <- reactive({
+    ProjectData <- read_data()
+    histX <- input$histX
+    histY <- input$histY
+    
+    cor(ProjectData[,histX], ProjectData[, histY])
+  })
+  
+  output$correlation <- renderText({
+    correlationResult = correlationHist()
+    histX <- input$histX
+    histY <- input$histY
+    
+    c(paste("The correlation between", gsub("[.]", " ",histX), "and", gsub("[.]", " ",histX), ":", round(correlationResult, 4), sep=" "))
   })
 })
