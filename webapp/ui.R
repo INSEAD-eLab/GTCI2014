@@ -28,6 +28,15 @@ shinyUI(pageWithSidebar(
                               c("Yes" = 1,
                                 "No" = 0
                                 )),
+                 radioButtons("shapeByRegion", "Shape by region :",
+                              c("Yes" = 1,
+                                "No" = 0
+                              )),
+                 radioButtons("showLabels", "Show the label on histogram :",
+                              c("none" = "\"\"",
+                                "ISO3" = "ISO3",
+                                "Country" = "Country"
+                              )),
                  plotOutput("hist")),
         tabPanel("Dist Plot",                  
                  plotOutput("distPlot"))

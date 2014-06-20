@@ -11,21 +11,18 @@ shinyServer(function(input, output, session) {
     ISO3 <- loadWorkbook("data.xlsx")
     ISO3 <- readWorksheet(ISO3, sheet="Sheet1", region="B6:EW110", header=T)
     
-    ISO3$color <- 'c'
+    ISO3[, 'color'] <- apply(ISO3, 1, function(row) ifelse(is.na(row['Income.group']), colors()[179],
+                                                    ifelse(row['Income.group'] == "High income", colors()[563],
+                                                    ifelse(row['Income.group'] == "Upper middle income", colors()[224],
+                                                    ifelse(row['Income.group'] == "Lower middle income", colors()[26], colors()[179])))))
     
-    for(i in 1:104){
-      if(is.na(ISO3[i,'Income.group'])){
-        ISO3[i,'color'] <- colors()[179]
-      }else if(ISO3[i,'Income.group'] == 'High income'){
-        ISO3[i,'color'] <- colors()[563]
-      }else if(ISO3[i,'Income.group'] == 'Upper middle income'){
-        ISO3[i,'color'] <- colors()[224]
-      }else if(ISO3[i,'Income.group'] == 'Lower middle income'){
-        ISO3[i,'color'] <- colors()[26]
-      }else if(ISO3[i,'Income.group'] == 'Low income'){
-        ISO3[i,'color'] <- colors()[179]
-      }
-    }
+    ISO3[, 'shape'] <- apply(ISO3, 1, function(row) ifelse(is.na(row['Regional.group']), 1,
+                                                    ifelse(row['Regional.group'] == "Asia Pacific", 2,
+                                                    ifelse(row['Regional.group'] == "CIS and Balkans", 3,
+                                                    ifelse(row['Regional.group'] == "Europe", 4, 
+                                                    ifelse(row['Regional.group'] == "Latin America and Caribbean", 5,
+                                                    ifelse(row['Regional.group'] == "Middle East and North Africa", 6,
+                                                    ifelse(row['Regional.group'] == "North America", 7, 8))))))))
 
     updateSelectInput(session, "independent_variables", "Independent Variables",  choices = colnames(ISO3), selected=colnames(ISO3)[5])
     updateSelectInput(session, "histX", "Variables for X axis on Histogram",  choices = colnames(ISO3), selected=colnames(ISO3)[5])
@@ -58,14 +55,23 @@ shinyServer(function(input, output, session) {
     histY <- input$histY
     ProjectData <- read_data()
     
-    eval(parse(text=paste("LVGK <- ggplot(data=ProjectData, aes(x=",histX,", y=",histY,", label=ISO3))", sep = "")))
-    
-    if(input$colors == 1){
-      LVGK + geom_point(color=ProjectData$color, shape = 16, size=inputbins ,alpha = .8) + geom_text(alpha=.75, size=3, hjust=-0.5, vjust=.2) + theme_bw() + labs(x = gsub("[.]", " ",histX)) + labs(y = gsub("[.]", " ",histY))
+    if(input$shapeByRegion == 1){
+      shapeByRegion = ProjectData$shape
     }else{
-      LVGK + geom_point(shape = 16, size=inputbins ,alpha = .8) + geom_text(alpha=.75, size=3, hjust=-0.5, vjust=.2) + theme_bw() + labs(x = gsub("[.]", " ",histX)) + labs(y = gsub("[.]", " ",histY))  
+      shapeByRegion = 16
     }
     
+    eval(parse(text=paste("LVGK <- ggplot(data=ProjectData, aes(x=",histX,", y=",histY,", label=",input$showLabels,"))", sep = "")))
+    
+    if(input$colors == 1){
+      LVGK + geom_point(color=ProjectData$color, shape = shapeByRegion, size=inputbins ,alpha = .8) + 
+        geom_text(alpha=.75, size=3, hjust=-0.5, vjust=.2) + theme_bw() + labs(x = gsub("[.]", " ",histX)) + labs(y = gsub("[.]", " ",histY))
+    }else{
+      LVGK + geom_point(shape = shapeByRegion, size=inputbins ,alpha = .6) + 
+        geom_text(alpha=.75, size=3, hjust=-0.5, vjust=.2) + theme_bw() + labs(x = gsub("[.]", " ",histX)) + labs(y = gsub("[.]", " ",histY))  
+    }
+    
+#    if(input$showLabels == "none")
     
   })
 })
