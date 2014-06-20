@@ -61,17 +61,60 @@ shinyServer(function(input, output, session) {
       shapeByRegion = 16
     }
     
-    eval(parse(text=paste("LVGK <- ggplot(data=ProjectData, aes(x=",histX,", y=",histY,", label=",input$showLabels,"))", sep = "")))
+    eval(parse(text=paste("LVGK <- ggplot(data=ProjectData, aes(x=",histX,", y=",histY,", color=Income.group, label=",input$showLabels,"))", sep = "")))
     
     if(input$colors == 1){
-      LVGK + geom_point(color=ProjectData$color, shape = shapeByRegion, size=inputbins ,alpha = .8) + 
-        geom_text(alpha=.75, size=3, hjust=-0.5, vjust=.2) + theme_bw() + labs(x = gsub("[.]", " ",histX)) + labs(y = gsub("[.]", " ",histY))
+      hist <- LVGK + geom_point(color=ProjectData$color, shape = shapeByRegion, size=inputbins ,alpha = .8) + 
+        geom_text(alpha=.75, size=3, hjust=-0.5, vjust=.2) + theme_bw() + labs(x = gsub("[.]", " ",histX)) + labs(y = gsub("[.]", " ",histY)) +
+        scale_colour_discrete(name  ="Payer",
+                              breaks=c("Female", "Male"),
+                              labels=c("Woman", "Man"))
     }else{
-      LVGK + geom_point(shape = shapeByRegion, size=inputbins ,alpha = .6) + 
+      hist <- LVGK + geom_point(shape = shapeByRegion, size=inputbins ,alpha = .6) + 
         geom_text(alpha=.75, size=3, hjust=-0.5, vjust=.2) + theme_bw() + labs(x = gsub("[.]", " ",histX)) + labs(y = gsub("[.]", " ",histY))  
     }
     
-#    if(input$showLabels == "none")
+    print(hist)
     
   })
+  
+  output$downloadData <- downloadHandler(  
+    filename = function() {
+      paste('myplot.png', sep='')
+    },
+    
+    content = function(file) {
+      
+      png(file, bg = "white", res = NA)
+      
+      inputbins <- input$bins
+      histX <- input$histX
+      histY <- input$histY
+      ProjectData <- read_data()
+      
+      if(input$shapeByRegion == 1){
+        shapeByRegion = ProjectData$shape
+      }else{
+        shapeByRegion = 16
+      }
+      
+      eval(parse(text=paste("LVGK <- ggplot(data=ProjectData, aes(x=",histX,", y=",histY,", label=",input$showLabels,"))", sep = "")))
+      
+      if(input$colors == 1){
+        hist <- LVGK + geom_point(color=ProjectData$color, shape = shapeByRegion, size=inputbins ,alpha = .8) + 
+          geom_text(alpha=.75, size=3, hjust=-0.5, vjust=.2) + theme_bw() + labs(x = gsub("[.]", " ",histX)) + labs(y = gsub("[.]", " ",histY)) +
+          scale_colour_discrete(name  ="Payer",
+                                breaks=c("Female", "Male"),
+                                labels=c("Woman", "Man"))
+      }else{
+        hist <- LVGK + geom_point(shape = shapeByRegion, size=inputbins ,alpha = .6) + 
+          geom_text(alpha=.75, size=3, hjust=-0.5, vjust=.2) + theme_bw() + labs(x = gsub("[.]", " ",histX)) + labs(y = gsub("[.]", " ",histY))  
+      }
+      
+      print(hist)
+      
+      dev.off()
+    },
+    contentType = 'image/png'
+  )
 })

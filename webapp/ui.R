@@ -37,7 +37,9 @@ shinyUI(pageWithSidebar(
                                 "ISO3" = "ISO3",
                                 "Country" = "Country"
                               )),
-                 plotOutput("hist")),
+                 plotOutput("hist"),
+                 downloadButton('downloadData', 'Download the chart')),
+        
         tabPanel("Dist Plot",                  
                  plotOutput("distPlot"))
       )
