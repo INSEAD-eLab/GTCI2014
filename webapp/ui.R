@@ -5,15 +5,14 @@ library(XLConnect)
 shinyUI(pageWithSidebar(
   
   # Application title
-  titlePanel("Hello World!"),
-  
-  # Sidebar with a slider input for the number of bins
-  #sidebarLayout(
+  titlePanel("GTCI 2014 Analytical tool"),
+    
+    ## dummpy variables
     sidebarPanel(
       selectInput("independent_variables","Independent Variables",  choices = c("Independent Variables"), selected="Independent Variables", multiple=TRUE)
     ),
     
-    # Show a plot of the generated distribution
+    # Show plots and results
     mainPanel(      
       tabsetPanel(
         
@@ -42,10 +41,5 @@ shinyUI(pageWithSidebar(
                  sliderInput("bins", "Size of points :", min = 1, max = 10, value = 3),
                  plotOutput("distPlot"))
       )
-      
-      
-      
-      
     )
- # )
 ))
