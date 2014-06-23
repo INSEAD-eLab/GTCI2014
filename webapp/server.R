@@ -10,8 +10,10 @@ shinyServer(function(input, output, session) {
   read_data <- reactive({
     
     ## read the excel file
-    ISO3 <- loadWorkbook("data.xlsx")
-    ISO3 <- readWorksheet(ISO3, sheet="Sheet1", region="B6:EW110", header=T)
+    #ISO3 <- loadWorkbook("data.xlsx")
+    #ISO3 <- readWorksheet(ISO3, sheet="Sheet1", region="B6:EW110", header=T)
+    
+    ISO3 <- read.csv("data - csv.csv")
     
     ## split the data into Text data (name, ISO3, regional and income group) 
     ## and numeric data (the rest)
