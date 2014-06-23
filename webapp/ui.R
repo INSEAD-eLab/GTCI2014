@@ -4,7 +4,7 @@ library(shiny)
 shinyUI(pageWithSidebar(
   
   # Application title
-  titlePanel("GTCI 2014 Analytical tool"),
+  headerPanel("GTCI 2014 Analytical tool"),
     
     ## dummpy variables
     sidebarPanel(
