@@ -1,5 +1,4 @@
 library(shiny)
-library(XLConnect)
 
 # Define UI for application that draws a histogram
 shinyUI(pageWithSidebar(
