@@ -15,9 +15,9 @@ shinyUI(pageWithSidebar(
     mainPanel(      
       tabsetPanel(
         
-        tabPanel("Hist Plot", 
-                 selectInput("histX", "Variables for X axis on Histogram :", choices = c("Independent Variables"), selected="Independent Variables", multiple=FALSE),
-                 selectInput("histY", "Variables for Y axis on Histogram :", choices = c("Independent Variables"), selected="Independent Variables", multiple=FALSE),
+        tabPanel("Scatter Plot", 
+                 selectInput("histX", "Variables for X axis :", choices = c("Independent Variables"), selected="Independent Variables", multiple=FALSE),
+                 selectInput("histY", "Variables for Y axis :", choices = c("Independent Variables"), selected="Independent Variables", multiple=FALSE),
                  radioButtons("colors", "Color the data points by Regional groups :",
                               c("Yes" = 1,
                                 "No" = 0
@@ -26,7 +26,7 @@ shinyUI(pageWithSidebar(
                               c("Yes" = 1,
                                 "No" = 0
                               )),
-                 radioButtons("showLabels", "Show the label on histogram :",
+                 radioButtons("showLabels", "Show the label on data :",
                               c("none" = "\"\"",
                                 "ISO3" = "ISO3",
                                 "Country" = "Country"

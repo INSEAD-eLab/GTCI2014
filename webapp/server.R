@@ -32,9 +32,9 @@ shinyServer(function(input, output, session) {
     ISO3[, 'Region.gp'] <- apply(ISO3, 1, function(row) ifelse(is.na(row['Regional.group']), "New Country", row['Regional.group'])) 
     
     ## updating the form fields with variable names
-    updateSelectInput(session, "independent_variables", "Independent Variables",  choices = colnames(ISO3), selected=colnames(ISO3)[5])
-    updateSelectInput(session, "histX", "Variables for X axis on Histogram",  choices = colnames(ISO3), selected=colnames(ISO3)[5])
-    updateSelectInput(session, "histY", "Variables for Y axis on Histogram",  choices = colnames(ISO3), selected=colnames(ISO3)[6])
+    updateSelectInput(session, "independent_variables", "Independent Variables",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[5])
+    updateSelectInput(session, "histX", "Variables for X axis :",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[5])
+    updateSelectInput(session, "histY", "Variables for Y axis :",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[6])
     
     ## return the ISO3 data object
     ISO3
