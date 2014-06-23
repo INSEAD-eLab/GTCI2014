@@ -11,6 +11,14 @@ shinyServer(function(input, output, session) {
     ISO3 <- loadWorkbook("data.xlsx")
     ISO3 <- readWorksheet(ISO3, sheet="Sheet1", region="B6:EW110", header=T)
     
+    textData <- ISO3[, 1:4]
+    numericData <- ISO3[, -c(1:4)]
+    
+    numericData <- apply(numericData, 1:2, function(x) as.numeric(x))
+    numericData <- data.frame(numericData, stringsAsFactors=F)
+    
+    ISO3 <- cbind(textData, numericData)
+    
     ISO3[, 'Income.gp'] <- apply(ISO3, 1, function(row) ifelse(is.na(row['Income.group']), "New Country", row['Income.group'])) 
     ISO3[, 'Region.gp'] <- apply(ISO3, 1, function(row) ifelse(is.na(row['Regional.group']), "New Country", row['Regional.group'])) 
     
