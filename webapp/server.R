@@ -102,13 +102,13 @@ shinyServer(function(input, output, session) {
     histX <- input$histX
     histY <- input$histY
     
-    c(paste("The correlation between", gsub("[.]", " ",histX), "and", gsub("[.]", " ",histX), ":", round(correlationResult, 4), sep=" "))
+    c(paste("The correlation between", gsub("[.]", " ",histX), "and", gsub("[.]", " ",histY), ":", round(correlationResult, 4), sep=" "))
   })
   
   ## function to download the scatter plot in PDF
   output$downloadScatter <- downloadHandler(  
     filename = function() {
-      paste('myplot.pdf', sep='')
+      paste(gsub("[.]", " ",input$histX), " Vs ", gsub("[.]", " ",input$histY), ' scatter plot.pdf', sep='')
     },
     
     content = function(file) {
