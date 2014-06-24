@@ -210,5 +210,9 @@ generate.pdf(improved.sanitation.facilities[, c(4,1:3)] , "improved.sanitation.f
 generate.pdf(property.stolen[, c(1:2, 4, 3)], "Property stolen", "Property stolen", "Note : Percentage of respondents who answered yes for the question: Within the past 12 months, have you had money or property stolen from you or another household member? Source : LPI (Legatum Prosperity Index)")
 generate.pdf(safe.walking.alone[, c(1:2, 4, 3)], "Safe walking alone", "Safe walking alone", "Note : Percentage of respondents who answered yes for the question: Do you feel safe walking alone at night in the area where you live? Source : LPI (Legatum Prosperity Index)")
 
+## new testing variables
+generate.pdf(secondary.educated.population.UNESCO[, c(4,1:3)] , "secondary educated population", "Secondary educated population UNESCO", "Source : UNESCO. Variable description : at least completed upper secondary (ISCED 3 or higher), population 25+ years, both sexes (percent)")
+generate.pdf(tertiary.educated.population.UNESCO[, c(4,1:3)] , "tertiary educated population", "Tertiary educated population UNESCO", "Source : UNESCO. Variable description :  completed tertiary (ISCED 5 or 6), population 25+ years, both sexes (percent)")
+
 generate.pdf( , "", "")
 
