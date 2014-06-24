@@ -50,12 +50,8 @@ shinyServer(function(input, output, session) {
     hist(x, breaks = bins, col = 'skyblue', border = 'white')
   })
   
-  ## reading from data excel sheet and ploting the graph.
-  output$hist <- renderPlot({
-    histX <- input$histX
-    histY <- input$histY
-    ProjectData <- read_data()
-    
+  ## function to gemerate scatter plot
+  getScatterPlot <- function(ProjectData, histX, histY){
     ## generate initial plot object
     eval(parse(text=paste("LVGK <- ggplot(data=ProjectData, aes(x=",histX,", y=",histY,", label=",input$showLabels,"))", sep = "")))
     
@@ -73,6 +69,18 @@ shinyServer(function(input, output, session) {
     }else{
       hist <- hist + geom_point(aes(alpha = .6, size=4))
     }
+    
+    hist
+  }
+  
+  ## reading from data excel sheet and ploting the graph.
+  output$hist <- renderPlot({
+    histX <- input$histX
+    histY <- input$histY
+    ProjectData <- read_data()
+    
+    ## call the function to plot
+    hist <- getScatterPlot(ProjectData, histX, histY)
     
     ## show the plot
     print(hist)
@@ -96,4 +104,24 @@ shinyServer(function(input, output, session) {
     
     c(paste("The correlation between", gsub("[.]", " ",histX), "and", gsub("[.]", " ",histX), ":", round(correlationResult, 4), sep=" "))
   })
+  
+  ## function to download the scatter plot in PDF
+  output$downloadScatter <- downloadHandler(  
+    filename = function() {
+      paste('myplot.pdf', sep='')
+    },
+    
+    content = function(file) {
+      histX <- input$histX
+      histY <- input$histY
+      ProjectData <- read_data()
+      
+      hist <- getScatterPlot(ProjectData, histX, histY)
+      
+      pdf(file, bg = "white", width=11, height=8, paper="a4r")
+      print(hist)  
+      dev.off()
+    },
+    contentType = 'application/pdf'
+  )
 })

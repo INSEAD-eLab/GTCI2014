@@ -34,7 +34,8 @@ shinyUI(pageWithSidebar(
                  plotOutput("hist"),
                  HTML("<br>"),
                  textOutput("correlation"),
-                 HTML("<br>")),
+                 HTML("<br>"),
+                 downloadButton('downloadScatter', 'Download scatter plot')),
         
         tabPanel("Dist Plot", 
                  sliderInput("bins", "Size of points :", min = 1, max = 10, value = 3),
