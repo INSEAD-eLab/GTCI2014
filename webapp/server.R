@@ -93,7 +93,7 @@ shinyServer(function(input, output, session) {
     histX <- input$histX
     histY <- input$histY
     
-    cor(ProjectData[,histX], ProjectData[, histY])
+    cor(ProjectData[,histX], ProjectData[, histY], use="pairwise.complete.obs")
   })
   
   ## output the correlation result
