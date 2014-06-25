@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Principal Component Analysis</title>
+
+
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<p><link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"></p>
+
+<style type="text/css"> body {padding: 10px 30px 10px 30px;} table,th, td {text-align: center;} </style>
+
+<h1>Principal Component Analysis</h1>
+
+<!-- Table generated in R 3.0.2 by googleVis 0.4.7 package -->
+
+<!-- Wed Jun 25 11:53:26 2014 -->
+
+<!-- jsHeader -->
+
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataTableIDcb44691a7a () {
+var data = new google.visualization.DataTable();
+var datajson =
+[
+ [
+ "Component No:1",
+4.849281912,
+80.8213652,
+80.8213652 
+],
+[
+ "Component No:2",
+0.370542583,
+6.175709717,
+86.99707492 
+],
+[
+ "Component No:3",
+0.2924277474,
+4.87379579,
+91.87087071 
+],
+[
+ "Component No:4",
+0.2036846764,
+3.394744606,
+95.26561532 
+],
+[
+ "Component No:5",
+0.1588851049,
+2.648085082,
+97.9137004 
+],
+[
+ "Component No:6",
+0.125177976,
+2.086299599,
+100 
+] 
+];
+data.addColumn('string','Components');
+data.addColumn('number','Eigenvalue');
+data.addColumn('number','Percentage_of_explained_variance');
+data.addColumn('number','Cumulative_percentage_of_explained_variance');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartTableIDcb44691a7a() {
+var data = gvisDataTableIDcb44691a7a();
+var options = {};
+options["allowHtml"] = true;
+options["width"] =    800;
+options["height"] =    189;
+options["allowHTML"] = true;
+options["page"] = "disable";
+
+  var dataFormat1 = new google.visualization.NumberFormat({pattern:"#.##"});
+  dataFormat1.format(data, 1);
+  var dataFormat2 = new google.visualization.NumberFormat({pattern:"#.##"});
+  dataFormat2.format(data, 2);
+  var dataFormat3 = new google.visualization.NumberFormat({pattern:"#.##"});
+  dataFormat3.format(data, 3);
+
+    var chart = new google.visualization.Table(
+    document.getElementById('TableIDcb44691a7a')
+    );
+    chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+var chartid = "table";
+  
+// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+var i, newPackage = true;
+for (i = 0; newPackage && i < pkgs.length; i++) {
+if (pkgs[i] === chartid)
+newPackage = false;
+}
+if (newPackage)
+  pkgs.push(chartid);
+  
+// Add the drawChart function to the global list of callbacks
+callbacks.push(drawChartTableIDcb44691a7a);
+})();
+function displayChartTableIDcb44691a7a() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+  var pkgCount = pkgs.length;
+  google.load("visualization", "1", { packages:pkgs, callback: function() {
+  if (pkgCount != pkgs.length) {
+  // Race condition where another setTimeout call snuck in after us; if
+  // that call added a package, we must not shift its callback
+  return;
+}
+while (callbacks.length > 0)
+callbacks.shift()();
+} });
+}, 100);
+}
+ 
+// jsFooter
+</script>
+ 
+
+<!-- jsChart -->  
+
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableIDcb44691a7a"></script>
+ 
+
+<!-- divChart -->
+
+<div id="TableIDcb44691a7a"
+  style="width: 800px; height: 189px;">
+</div>
+
+<!-- Table generated in R 3.0.2 by googleVis 0.4.7 package -->
+
+<!-- Wed Jun 25 11:53:26 2014 -->
+
+<!-- jsHeader -->
+
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataTableIDcb4244c4d18 () {
+var data = new google.visualization.DataTable();
+var datajson =
+[
+ [
+ "Enablers",
+0.93 
+],
+[
+ "Attract",
+0.86 
+],
+[
+ "Grow",
+0.93 
+],
+[
+ "Retain",
+0.87 
+],
+[
+ "Labour.and.Vocational",
+0.9 
+],
+[
+ "Global.Knowledge",
+0.91 
+] 
+];
+data.addColumn('string','Variables');
+data.addColumn('number','Component 1');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartTableIDcb4244c4d18() {
+var data = gvisDataTableIDcb4244c4d18();
+var options = {};
+options["allowHtml"] = true;
+options["showRowNumber"] = true;
+options["width"] =   1220;
+options["height"] =    189;
+options["allowHTML"] = true;
+options["page"] = "disable";
+
+    var chart = new google.visualization.Table(
+    document.getElementById('TableIDcb4244c4d18')
+    );
+    chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+var chartid = "table";
+  
+// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+var i, newPackage = true;
+for (i = 0; newPackage && i < pkgs.length; i++) {
+if (pkgs[i] === chartid)
+newPackage = false;
+}
+if (newPackage)
+  pkgs.push(chartid);
+  
+// Add the drawChart function to the global list of callbacks
+callbacks.push(drawChartTableIDcb4244c4d18);
+})();
+function displayChartTableIDcb4244c4d18() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+  var pkgCount = pkgs.length;
+  google.load("visualization", "1", { packages:pkgs, callback: function() {
+  if (pkgCount != pkgs.length) {
+  // Race condition where another setTimeout call snuck in after us; if
+  // that call added a package, we must not shift its callback
+  return;
+}
+while (callbacks.length > 0)
+callbacks.shift()();
+} });
+}, 100);
+}
+ 
+// jsFooter
+</script>
+ 
+
+<!-- jsChart -->  
+
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableIDcb4244c4d18"></script>
+ 
+
+<!-- divChart -->
+
+<div id="TableIDcb4244c4d18"
+  style="width: 1220px; height: 189px;">
+</div>
+
+<p>[1] &ldquo;To better visualize and interpret the factors we often supress loadings with small values, e.g. with absolute values smaller than 0.5. In this case our factors look as follows after suppressing the small numbers.&rdquo;</p>
+
+<!-- Table generated in R 3.0.2 by googleVis 0.4.7 package -->
+
+<!-- Wed Jun 25 11:53:26 2014 -->
+
+<!-- jsHeader -->
+
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataTableIDcb43dc84cc6 () {
+var data = new google.visualization.DataTable();
+var datajson =
+[
+ [
+ "Enablers",
+0.93 
+],
+[
+ "Attract",
+0.86 
+],
+[
+ "Grow",
+0.93 
+],
+[
+ "Retain",
+0.87 
+],
+[
+ "Labour.and.Vocational",
+0.9 
+],
+[
+ "Global.Knowledge",
+0.91 
+] 
+];
+data.addColumn('string','Variables');
+data.addColumn('number','Component 1');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartTableIDcb43dc84cc6() {
+var data = gvisDataTableIDcb43dc84cc6();
+var options = {};
+options["allowHtml"] = true;
+options["showRowNumber"] = true;
+options["width"] =   1220;
+options["height"] =    189;
+options["allowHTML"] = true;
+options["page"] = "disable";
+
+    var chart = new google.visualization.Table(
+    document.getElementById('TableIDcb43dc84cc6')
+    );
+    chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+var chartid = "table";
+  
+// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+var i, newPackage = true;
+for (i = 0; newPackage && i < pkgs.length; i++) {
+if (pkgs[i] === chartid)
+newPackage = false;
+}
+if (newPackage)
+  pkgs.push(chartid);
+  
+// Add the drawChart function to the global list of callbacks
+callbacks.push(drawChartTableIDcb43dc84cc6);
+})();
+function displayChartTableIDcb43dc84cc6() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+  var pkgCount = pkgs.length;
+  google.load("visualization", "1", { packages:pkgs, callback: function() {
+  if (pkgCount != pkgs.length) {
+  // Race condition where another setTimeout call snuck in after us; if
+  // that call added a package, we must not shift its callback
+  return;
+}
+while (callbacks.length > 0)
+callbacks.shift()();
+} });
+}, 100);
+}
+ 
+// jsFooter
+</script>
+ 
+
+<!-- jsChart -->  
+
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableIDcb43dc84cc6"></script>
+ 
+
+<!-- divChart -->
+
+<div id="TableIDcb43dc84cc6"
+  style="width: 1220px; height: 189px;">
+</div>
+
+<p><br>
+<br></p>
+
+</body>
+
+</html>
