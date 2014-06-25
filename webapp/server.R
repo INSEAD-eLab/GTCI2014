@@ -12,7 +12,7 @@ shinyServer(function(input, output, session) {
     #ISO3 <- loadWorkbook("data.xlsx")
     #ISO3 <- readWorksheet(ISO3, sheet="Sheet1", region="B6:EW110", header=T)
     
-    ISO3 <- read.csv("data - csv.csv")
+    ISO3 <- read.csv("2014 06 25 GTCI.csv")
     
     ## split the data into Text data (name, ISO3, regional and income group) 
     ## and numeric data (the rest)
