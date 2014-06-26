@@ -215,3 +215,6 @@ tertiary.educated.population.UNESCO  <- get.WB.format(source.file="[R] [UNESCO] 
                                                        source.colnames="A1:F1", 
                                                        source.result.col="tertiary educated population",                                         
                                                        result.cut.year=cut.off.year)
+
+secondary.educated.population.UNESCO <- merge(secondary.educated.population.UNESCO, tertiary.educated.population.UNESCO[,-1], by=c("ISO3", "Year"), all=TRUE)
+secondary.educated.population.UNESCO[, "only secondary educated population"] <- secondary.educated.population.UNESCO[, "secondary educated population"] - secondary.educated.population.UNESCO[, "tertiary educated population"]

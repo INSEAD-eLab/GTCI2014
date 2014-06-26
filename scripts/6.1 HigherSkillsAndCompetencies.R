@@ -214,3 +214,12 @@ Unemployment.rate.tertiary.educated <- get.ILO.latest( source.file="[R] [ILO] Un
                                                        source.colnames=c("Country.Name", "ISO3", "Year", "Sex", "Unemployment.rate.of.persons.with.tertiary.level.education...."),
                                                        result.colnames=c("Country.Name", "ISO3", "Year", "Gender", "Unemployment rate of tertiary educated (percent)"),
                                                        result.cut.year=cut.off.year)
+
+
+################################ tertiary educated population UNESCO
+tertiary.educated.population.UNESCO  <- get.WB.format(source.file="[R] [UNESCO] 2014 06 23 Data ES and GKS.xlsx",
+                                                      source.sheet="Education attained (long frmt)", 
+                                                      source.data.region="A2:F3421",
+                                                      source.colnames="A1:F1", 
+                                                      source.result.col="tertiary educated population",                                         
+                                                      result.cut.year=cut.off.year)
