@@ -7,12 +7,16 @@ shinyServer(function(input, output, session) {
   
   ## function to read the data from Excel
   read_data <- reactive({
+
+    inFile <- input$file1
     
-    ## read the excel file
-    #ISO3 <- loadWorkbook("data.xlsx")
-    #ISO3 <- readWorksheet(ISO3, sheet="Sheet1", region="B6:EW110", header=T)
+    if (is.null(inFile))
+      return(NULL)
     
-    ISO3 <- read.csv("2014 06 25 GTCI.csv")
+    ISO3 <- read.csv(inFile$datapath, header=TRUE)
+    
+    ## read the data
+    #ISO3 <- read.csv("2014 06 25 GTCI.csv")
     
     ## split the data into Text data (name, ISO3, regional and income group) 
     ## and numeric data (the rest)
@@ -32,7 +36,9 @@ shinyServer(function(input, output, session) {
     ISO3[, 'Region.gp'] <- apply(ISO3, 1, function(row) ifelse(is.na(row['Regional.group']), "New Country", row['Regional.group'])) 
     
     ## updating the form fields with variable names
-    updateSelectInput(session, "independent_variables", "Independent Variables",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[5])
+    updateSelectInput(session, "enablers_variables", "Variables for Enablers",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[5])
+    updateSelectInput(session, "attract_variables", "Variables for Attract",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[21])
+    updateSelectInput(session, "grow_variables", "Variables for Grow",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[36])
     updateSelectInput(session, "histX", "Variables for X axis :",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[5])
     updateSelectInput(session, "histY", "Variables for Y axis :",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[6])
     
@@ -103,6 +109,23 @@ shinyServer(function(input, output, session) {
     histY <- input$histY
     
     c(paste("The correlation between", gsub("[.]", " ",histX), "and", gsub("[.]", " ",histY), ":", round(correlationResult, 4), sep=" "))
+  })
+  
+  output$contents <- renderTable({
+    
+    # input$file1 will be NULL initially. After the user selects and uploads a 
+    # file, it will be a data frame with 'name', 'size', 'type', and 'datapath' 
+    # columns. The 'datapath' column will contain the local filenames where the 
+    # data can be found.
+    
+    inFile <- input$file1
+    
+    if (is.null(inFile))
+      return(NULL)
+    
+    datafrominput <- read.csv(inFile$datapath, header=TRUE)
+    
+    table(datafrominput$Income.group)
   })
   
   ## function to download the scatter plot in PDF

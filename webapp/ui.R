@@ -8,16 +8,25 @@ shinyUI(pageWithSidebar(
     
     ## dummpy variables
     sidebarPanel(
-      selectInput("independent_variables","Independent Variables",  choices = c("Independent Variables"), selected="Independent Variables", multiple=TRUE)
+      fileInput('file1', 'Choose CSV File',
+                accept=c('text/csv', 'text/comma-separated-values,text/plain', '.csv')),
+      tags$hr(),
+      selectInput("enablers_variables","Variables for Enablers",  choices = c("example"), selected="example", multiple=TRUE),
+      selectInput("attract_variables","Variables for Attract",  choices = c("example"), selected="example", multiple=TRUE),
+      selectInput("grow_variables","Variables for Grow",  choices = c("example"), selected="example", multiple=TRUE)
     ),
     
     # Show plots and results
     mainPanel(      
+      tags$style(type="text/css",
+                 ".shiny-output-error { visibility: hidden; }",
+                 ".shiny-output-error:before { visibility: hidden; }"
+      ),
       tabsetPanel(
         
         tabPanel("Scatter Plot", 
-                 selectInput("histX", "Variables for X axis :", choices = c("Independent Variables"), selected="Independent Variables", multiple=FALSE),
-                 selectInput("histY", "Variables for Y axis :", choices = c("Independent Variables"), selected="Independent Variables", multiple=FALSE),
+                 selectInput("histX", "Variables for X axis :", choices = c("example"), selected="example", multiple=FALSE),
+                 selectInput("histY", "Variables for Y axis :", choices = c("example"), selected="example", multiple=FALSE),
                  radioButtons("colors", "Color the data points by Regional groups :",
                               c("Yes" = 1,
                                 "No" = 0
@@ -40,7 +49,8 @@ shinyUI(pageWithSidebar(
         
         tabPanel("Dist Plot", 
                  sliderInput("bins", "Size of points :", min = 1, max = 10, value = 3),
-                 plotOutput("distPlot"))
+                 plotOutput("distPlot"),
+                 tableOutput("contents"))
       )
     )
 ))
