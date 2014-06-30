@@ -111,9 +111,9 @@ shinyServer(function(input, output, session) {
     dataforplot[, "Country"] <- countries
     
     #change the data format to plot
-    dataforplot1 <- melt(dataforplot)
-    dataforplot1$variable <- apply(dataforplot1, 1, function(row) gsub("[.]", " ",row['variable']))
-    colnames(dataforplot1) <- c("Country", "Variable", "Score")
+    dataforplot1 <- melt(dataforplot, variable.name="Variable", value.name="Score")
+    dataforplot1$Variable <- apply(dataforplot1, 1, function(row) gsub("[.]", " ",row['Variable']))
+    #colnames(dataforplot1) <- c("Country", "Variable", "Score")
     
     dataforplot1
   })
