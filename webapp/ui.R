@@ -13,7 +13,10 @@ shinyUI(pageWithSidebar(
       tags$hr(),
       selectInput("enablers_variables","Variables for Enablers",  choices = c("example"), selected="example", multiple=TRUE),
       selectInput("attract_variables","Variables for Attract",  choices = c("example"), selected="example", multiple=TRUE),
-      selectInput("grow_variables","Variables for Grow",  choices = c("example"), selected="example", multiple=TRUE)
+      selectInput("grow_variables","Variables for Grow",  choices = c("example"), selected="example", multiple=TRUE),
+      selectInput("retain_variables","Variables for Retain",  choices = c("example"), selected="example", multiple=TRUE),
+      selectInput("labour_and_vocational_variables","Variables for Labour and Vocational",  choices = c("example"), selected="example", multiple=TRUE),
+      selectInput("global_knowledge_variables","Variables for Global Knowledge",  choices = c("example"), selected="example", multiple=TRUE)
     ),
     
     # Show plots and results

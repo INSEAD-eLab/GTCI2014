@@ -45,6 +45,11 @@ shinyServer(function(input, output, session) {
     updateSelectInput(session, "enablers_variables", "Variables for Enablers",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[5])
     updateSelectInput(session, "attract_variables", "Variables for Attract",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[21])
     updateSelectInput(session, "grow_variables", "Variables for Grow",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[36])
+    updateSelectInput(session, "retain_variables", "Variables for Retain",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[36])
+    updateSelectInput(session, "labour_and_vocational_variables", "Variables for Labour and Vocational",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[36])
+    updateSelectInput(session, "global_knowledge_variables", "Variables for Global Knowledge",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[36])
+    
+    ## updating the form from Scatter plot with 2 variable names
     updateSelectInput(session, "histX", "Variables for X axis :",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[5])
     updateSelectInput(session, "histY", "Variables for Y axis :",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[6])
     
