@@ -50,7 +50,10 @@ shinyUI(pageWithSidebar(
         tabPanel("Dist Plot", 
                  sliderInput("bins", "Size of points :", min = 1, max = 10, value = 3),
                  plotOutput("distPlot"),
-                 tableOutput("contents"))
+                 tableOutput("contents"),
+                 selectInput("barPlotVariables","Variables for Bar Plot : ",  choices = c("example"), selected="example", multiple=TRUE),
+                 selectInput("barPlotCountries","Countries for bar Plot : ",  choices = c("example"), selected="example", multiple=TRUE),
+                 plotOutput("barPlot1"))
       )
     )
 ))

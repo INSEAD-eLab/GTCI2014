@@ -1,5 +1,6 @@
 library(shiny)
 library(ggplot2)
+library(reshape2)
 
 
 # Define server logic required to draw a histogram
@@ -10,13 +11,13 @@ shinyServer(function(input, output, session) {
 
     inFile <- input$file1
     
-    if (is.null(inFile))
-      return(NULL)
-    
-    ISO3 <- read.csv(inFile$datapath, header=TRUE)
-    
-    ## read the data
-    #ISO3 <- read.csv("2014 06 25 GTCI.csv")
+    if (is.null(inFile)){
+      #if inFile is not assigned, read the internal data
+      ISO3 <- read.csv("2014 06 25 GTCI.csv")
+    }else{
+      #if inFile is assigned, read from the uploaded csv file
+      ISO3 <- read.csv(inFile$datapath, header=TRUE)  
+    }
     
     ## split the data into Text data (name, ISO3, regional and income group) 
     ## and numeric data (the rest)
@@ -41,6 +42,10 @@ shinyServer(function(input, output, session) {
     updateSelectInput(session, "grow_variables", "Variables for Grow",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[36])
     updateSelectInput(session, "histX", "Variables for X axis :",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[5])
     updateSelectInput(session, "histY", "Variables for Y axis :",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[6])
+    
+    ## updating the form from Bar plot with variable names and country names
+    updateSelectInput(session, "barPlotVariables", "Variables for Bar Plot : ",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[6])
+    updateSelectInput(session, "barPlotCountries", "Countries for Bar Plot : ",  choices = ISO3$Country , selected=ISO3$Country[1])
     
     ## return the ISO3 data object
     ISO3
@@ -91,6 +96,31 @@ shinyServer(function(input, output, session) {
     ## show the plot
     print(hist)
     
+  })
+  
+  ## getting data for bar plot 1
+  getBarPlot1Data <- reactive({
+    countries <- input$barPlotCountries
+    variables <- input$barPlotVariables
+    
+    ProjectData <- read_data()
+    
+    dataforplot <- ProjectData[ProjectData$Country %in% countries, variables]
+    dataforplot[, "Country"] <- countries
+    
+    dataforplot1 <- melt(dataforplot)
+    
+    dataforplot1
+  })
+  
+  ## plotting bar plot 1
+  output$barPlot1 <- renderPlot({
+    
+    dataforplot1 <- getBarPlot1Data()
+    
+    barplot1 <- ggplot(dataforplot1, aes(Country, value,fill=variable)) + geom_bar(stat="identity",position="dodge") + theme_bw()
+    
+    print(barplot1)    
   })
   
   ## get the Correlation result of input variables
@@ -148,3 +178,17 @@ shinyServer(function(input, output, session) {
     contentType = 'application/pdf'
   )
 })
+
+
+
+#library(reshape2)
+
+#dataforplot <- ISO3[ISO3$Country %in% c("Albania", "Algeria", "Japan", "Singapore"), c("Corruption", "Political.stability", "Government.effectiveness")]
+#dataforplot[, "Country"] <- c("Albania", "Algeria", "Japan", "Singapore")
+
+#dataforplot1 <- melt(dataforplot)
+
+#ggplot(data=dataforplot, aes(x=Political.stability, y=Corruption, fill=Country)) + geom_bar(stat="identity", position=position_dodge())
+
+#ggplot(dataforplot1, aes(Country, value,fill=variable))+
+#  geom_bar(stat="identity",position="dodge")
