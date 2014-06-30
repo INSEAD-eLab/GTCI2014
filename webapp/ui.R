@@ -47,7 +47,7 @@ shinyUI(pageWithSidebar(
                  downloadButton('downloadScatter', 'Download PDF'),
                  HTML("<br>")),
         
-        tabPanel("Dist Plot",                 
+        tabPanel("Bar Plot",                 
                  selectInput("barPlotVariables","Variables for Bar Plot : ",  choices = c("example"), selected="example", multiple=TRUE),
                  selectInput("barPlotCountries","Countries for bar Plot : ",  choices = c("example"), selected="example", multiple=TRUE),
                  plotOutput("barPlot1"),
