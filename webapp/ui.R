@@ -53,7 +53,8 @@ shinyUI(pageWithSidebar(
                  tableOutput("contents"),
                  selectInput("barPlotVariables","Variables for Bar Plot : ",  choices = c("example"), selected="example", multiple=TRUE),
                  selectInput("barPlotCountries","Countries for bar Plot : ",  choices = c("example"), selected="example", multiple=TRUE),
-                 plotOutput("barPlot1"))
+                 plotOutput("barPlot1"),
+                 downloadButton('downloadBarPlot1', 'Download PDF'))
       )
     )
 ))

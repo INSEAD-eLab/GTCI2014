@@ -103,11 +103,14 @@ shinyServer(function(input, output, session) {
     countries <- input$barPlotCountries
     variables <- input$barPlotVariables
     
+    ## get the whole data
     ProjectData <- read_data()
     
+    ## get the subset of the data
     dataforplot <- ProjectData[ProjectData$Country %in% countries, variables]
     dataforplot[, "Country"] <- countries
     
+    #change the data format to plot
     dataforplot1 <- melt(dataforplot)
     
     dataforplot1
@@ -115,10 +118,9 @@ shinyServer(function(input, output, session) {
   
   ## plotting bar plot 1
   output$barPlot1 <- renderPlot({
-    
     dataforplot1 <- getBarPlot1Data()
     
-    barplot1 <- ggplot(dataforplot1, aes(Country, value,fill=variable)) + geom_bar(stat="identity",position="dodge") + theme_bw()
+    barplot1 <- ggplot(dataforplot1, aes(Country, value, fill=variable)) + geom_bar(stat="identity",position="dodge") + theme_bw()
     
     print(barplot1)    
   })
@@ -173,6 +175,25 @@ shinyServer(function(input, output, session) {
       
       pdf(file, bg = "white", width=11, height=8, paper="a4r")
       print(hist)  
+      dev.off()
+    },
+    contentType = 'application/pdf'
+  )
+  
+  ## function to download the bar plot 1 in PDF
+  output$downloadBarPlot1 <- downloadHandler(  
+    filename = function() {
+      paste('bar plot.pdf', sep='')
+    },
+    
+    content = function(file) {
+      
+      dataforplot1 <- getBarPlot1Data()
+      
+      barplot1 <- ggplot(dataforplot1, aes(Country, value, fill=variable)) + geom_bar(stat="identity",position="dodge") + theme_bw()
+      
+      pdf(file, bg = "white", width=11, height=8, paper="a4r")
+      print(barplot1)  
       dev.off()
     },
     contentType = 'application/pdf'
