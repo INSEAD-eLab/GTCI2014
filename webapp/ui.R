@@ -47,10 +47,7 @@ shinyUI(pageWithSidebar(
                  downloadButton('downloadScatter', 'Download PDF'),
                  HTML("<br>")),
         
-        tabPanel("Dist Plot", 
-                 sliderInput("bins", "Size of points :", min = 1, max = 10, value = 3),
-                 plotOutput("distPlot"),
-                 tableOutput("contents"),
+        tabPanel("Dist Plot",                 
                  selectInput("barPlotVariables","Variables for Bar Plot : ",  choices = c("example"), selected="example", multiple=TRUE),
                  selectInput("barPlotCountries","Countries for bar Plot : ",  choices = c("example"), selected="example", multiple=TRUE),
                  plotOutput("barPlot1"),

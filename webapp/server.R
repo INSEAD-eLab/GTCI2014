@@ -8,7 +8,12 @@ shinyServer(function(input, output, session) {
   
   ## function to read the data from Excel
   read_data <- reactive({
-
+    
+    # input$file1 will be NULL initially. After the user selects and uploads a 
+    # file, it will be a data frame with 'name', 'size', 'type', and 'datapath' 
+    # columns. The 'datapath' column will contain the local filenames where the 
+    # data can be found.
+    
     inFile <- input$file1
     
     if (is.null(inFile)){
@@ -49,16 +54,6 @@ shinyServer(function(input, output, session) {
     
     ## return the ISO3 data object
     ISO3
-  })
-  
-  ## function to plot the histogram
-  output$distPlot <- renderPlot({
-
-    x    <- faithful[, 2]  # Old Faithful Geyser data
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
-    
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'skyblue', border = 'white')
   })
   
   ## function to gemerate scatter plot
@@ -143,23 +138,6 @@ shinyServer(function(input, output, session) {
     c(paste("The correlation between", gsub("[.]", " ",histX), "and", gsub("[.]", " ",histY), ":", round(correlationResult, 4), sep=" "))
   })
   
-  output$contents <- renderTable({
-    
-    # input$file1 will be NULL initially. After the user selects and uploads a 
-    # file, it will be a data frame with 'name', 'size', 'type', and 'datapath' 
-    # columns. The 'datapath' column will contain the local filenames where the 
-    # data can be found.
-    
-    inFile <- input$file1
-    
-    if (is.null(inFile))
-      return(NULL)
-    
-    datafrominput <- read.csv(inFile$datapath, header=TRUE)
-    
-    table(datafrominput$Income.group)
-  })
-  
   ## function to download the scatter plot in PDF
   output$downloadScatter <- downloadHandler(  
     filename = function() {
@@ -199,17 +177,3 @@ shinyServer(function(input, output, session) {
     contentType = 'application/pdf'
   )
 })
-
-
-
-#library(reshape2)
-
-#dataforplot <- ISO3[ISO3$Country %in% c("Albania", "Algeria", "Japan", "Singapore"), c("Corruption", "Political.stability", "Government.effectiveness")]
-#dataforplot[, "Country"] <- c("Albania", "Algeria", "Japan", "Singapore")
-
-#dataforplot1 <- melt(dataforplot)
-
-#ggplot(data=dataforplot, aes(x=Political.stability, y=Corruption, fill=Country)) + geom_bar(stat="identity", position=position_dodge())
-
-#ggplot(dataforplot1, aes(Country, value,fill=variable))+
-#  geom_bar(stat="identity",position="dodge")
