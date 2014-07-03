@@ -57,6 +57,10 @@ shinyServer(function(input, output, session) {
     updateSelectInput(session, "barPlotVariables", "Variables for Bar Plot : ",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[6])
     updateSelectInput(session, "barPlotCountries", "Countries for Bar Plot : ",  choices = ISO3$Country , selected=ISO3$Country[1])
     
+    ## updating the form from chi squared test with variable names
+    updateSelectInput(session, "ChiX", "Variables for X axis :",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[6])
+    updateSelectInput(session, "ChiY", "Variables for Y axis :",  choices = colnames(ISO3)[-c(1:4)], selected=colnames(ISO3)[7])
+    
     ## return the ISO3 data object
     ISO3
   })
@@ -151,6 +155,74 @@ shinyServer(function(input, output, session) {
     histY <- input$histY
     
     c(paste("The correlation between", gsub("[.]", " ",histX), "and", gsub("[.]", " ",histY), ":", round(correlationResult, 4), sep=" "))
+  })
+  
+  ## generate the data for chi squared test
+  getDataForChi <- reactive({
+    ProjectData <- read_data()
+    chiX <- input$ChiX
+    chiY <- input$ChiY
+    
+    if(input$ChiXHigh < 100){
+      ProjectData[, "ChiX"] <- apply(ProjectData, 1, function(row) ifelse(is.na(row[chiX]), NA, 
+                                                                          ifelse(as.integer(row[chiX]) < input$ChiXLow, "Low", 
+                                                                                 ifelse(as.integer(row[chiX]) < input$ChiXMed, "Low-Mid",
+                                                                                        ifelse(as.integer(row[chiX]) < input$ChiXHigh, "Mid","High")))))
+    }else{
+      ProjectData[, "ChiX"] <- apply(ProjectData, 1, function(row) ifelse(is.na(row[chiX]), NA, 
+                                                                          ifelse(as.integer(row[chiX]) < input$ChiXLow, "Low", 
+                                                                                 ifelse(as.integer(row[chiX]) < input$ChiXMed, "Mid", "High"))))
+    }
+    
+    if(input$ChiYHigh < 100){
+      ProjectData[, "ChiY"] <- apply(ProjectData, 1, function(row) ifelse(is.na(row[chiY]), NA, 
+                                                                          ifelse(as.integer(row[chiY]) < input$ChiYLow, "Low", 
+                                                                                 ifelse(as.integer(row[chiY]) < input$ChiYMed, "Low-Mid",
+                                                                                        ifelse(as.integer(row[chiY]) < input$ChiYHigh, "Mid","High")))))
+    }else{
+      ProjectData[, "ChiY"] <- apply(ProjectData, 1, function(row) ifelse(is.na(row[chiY]), NA, 
+                                                                          ifelse(as.integer(row[chiY]) < input$ChiYLow, "Low", 
+                                                                                 ifelse(as.integer(row[chiX]) < input$ChiYMed, "Mid", "High"))))
+    }
+    
+    ProjectData
+  })
+  
+  ## output the cross tabs
+  output$ChisquaredTest <- renderTable({
+    ProjectData <- getDataForChi()
+    
+    table(ProjectData[, "ChiY"], ProjectData[, "ChiX"])
+  })
+  
+  ## output the correlation result
+  output$chiTest <- renderText({
+    ProjectData <- getDataForChi()
+    
+    tbl <- table(ProjectData[, "ChiY"], ProjectData[, "ChiX"])
+    
+    chi <- chisq.test(tbl) 
+    
+    Significance <- ifelse(0.05 < chi$p.value & chi$p.value < 0.1, ".",
+                    ifelse(0.01 < chi$p.value & chi$p.value < 0.05, "*", 
+                    ifelse(0.001 < chi$p.value &chi$p.value < 0.01, "**", 
+                    ifelse(chi$p.value < 0.001, "***", ""))))
+    
+    c(paste("Pearson's Chi-squared test result : X-squared =", round(as.double(chi$statistic), 5), ", df =", as.integer(chi$parameter), ", p-value =", chi$p.value, ", significance =", Significance, sep=" "))
+  })
+  
+  ## output the histogram of variable X from chi-squared test
+  output$chiXHist <- renderPlot({
+    ProjectData <- read_data()
+    
+    hist(ProjectData[, input$ChiX], xlab="", main=paste("Histogram of ", gsub("[.]", " ",input$ChiX), sep=""))
+  })
+  
+  ## output the histogram of variable Y from chi-squared test
+  output$chiYHist <- renderPlot({
+    ProjectData <- read_data()
+    
+    hist(ProjectData[, input$ChiY], xlab="", main=paste("Histogram of ", gsub("[.]", " ",input$ChiY), sep=""))
   })
   
   ## function to download the scatter plot in PDF

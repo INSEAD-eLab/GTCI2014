@@ -15,4 +15,4 @@ ProjectData <- ProjectData[complete.cases(ProjectData),]
 
 tbl <- table(ProjectData$Tertiary.Edu, ProjectData$Deletage.Authority)
 
-chisq.test(tbl) 
+chi <- chisq.test(tbl) 

@@ -31,18 +31,11 @@ shinyUI(pageWithSidebar(
                  selectInput("histX", "Variables for X axis :", choices = c("example"), selected="example", multiple=FALSE),
                  selectInput("histY", "Variables for Y axis :", choices = c("example"), selected="example", multiple=FALSE),
                  radioButtons("colors", "Color the data points by Regional groups :",
-                              c("Yes" = 1,
-                                "No" = 0
-                                )),
+                              c("Yes" = 1, "No" = 0)),
                  radioButtons("shapeByRegion", "Shape by Income groups :",
-                              c("Yes" = 1,
-                                "No" = 0
-                              )),
+                              c("Yes" = 1, "No" = 0)),
                  radioButtons("showLabels", "Show the label on data :",
-                              c("none" = "\"\"",
-                                "ISO3" = "ISO3",
-                                "Country" = "Country"
-                              )),
+                              c("none" = "\"\"", "ISO3" = "ISO3", "Country" = "Country")),
                  plotOutput("hist"),
                  HTML("<br>"),
                  textOutput("correlation"),
@@ -54,7 +47,27 @@ shinyUI(pageWithSidebar(
                  selectInput("barPlotVariables","Variables for Bar Plot : ",  choices = c("example"), selected="example", multiple=TRUE),
                  selectInput("barPlotCountries","Countries for bar Plot : ",  choices = c("example"), selected="example", multiple=TRUE),
                  plotOutput("barPlot1"),
-                 downloadButton('downloadBarPlot1', 'Download PDF'))
+                 downloadButton('downloadBarPlot1', 'Download PDF')),
+        
+        tabPanel("Chi squared test",                 
+                 selectInput("ChiX", "Variables for X axis :", choices = c("example"), selected="example", multiple=FALSE),
+                 sliderInput("ChiXLow", "Threshold for X variable low : ",  
+                             min = 1, max = 100, value = 35),
+                 sliderInput("ChiXMed", "Threshold for X variable Medium : ",  
+                             min = 1, max = 100, value = 66),
+                 sliderInput("ChiXHigh", "Threshold for X variable High : ",  
+                             min = 1, max = 100, value = 100),
+                 selectInput("ChiY", "Variables for Y axis :", choices = c("example"), selected="example", multiple=FALSE),
+                 sliderInput("ChiYLow", "Threshold for Y variable low : ",  
+                             min = 1, max = 100, value = 35),
+                 sliderInput("ChiYMed", "Threshold for Y variable Medium : ",  
+                             min = 1, max = 100, value = 66),
+                 sliderInput("ChiYHigh", "Threshold for Y variable High : ",  
+                             min = 1, max = 100, value = 100),
+                 tableOutput("ChisquaredTest"),
+                 textOutput("chiTest"),
+                 plotOutput("chiXHist"),
+                 plotOutput("chiYHist"))
       )
     )
 ))
