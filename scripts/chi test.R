@@ -8,7 +8,9 @@ ProjectData[, "Deletage.Authority"] <- apply(ProjectData, 1, function(row) ifels
 ProjectData[, "Tertiary.Edu"] <- apply(ProjectData, 1, function(row) ifelse(is.na(row['tertiary.educated.population..UNESCO.']), NA, 
                                                                             ifelse(as.integer(row['tertiary.educated.population..UNESCO.']) < 33, "Low", 
                                                                                    ifelse(as.integer(row['tertiary.educated.population..UNESCO.']) < 66, "Mid", "High"))))
-  
+
+
+
 #contingency table
 ProjectData <- ProjectData[, c("Deletage.Authority", "Tertiary.Edu")]
 ProjectData <- ProjectData[complete.cases(ProjectData),]
