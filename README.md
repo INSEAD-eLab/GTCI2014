@@ -48,10 +48,22 @@ To export PDF, create a data object for desired variable. Then use _generate.pdf
 * name = name to be given to the exported PDF.
 * note = note message to provide below the variable name inside the PDF.
 
-Example calls for this functions are at Scripts > PDFexport.R and PDF files are inside "export"" folder.
+Example calls for this functions are at Scripts > PDFexport.R and PDF files are inside "export" folder.
 
 #### PCA
 
+PCA files are inside scripts > PCA folder. Only after all normalization are done, PCA should be done. So, get the normalized data from playbook and use them. JRC submission files are recommended since they don't have space in between variables. The main file to run PCA is _scripts > PCA > RunPCA 2014 May 19.R_. 
+
+Variables to be updated before running PCA is as following :
+
+* datafile = it is the location of the file and name of the file. This has to be updated once the new data source is used.
+* Level = 1 is to run PCA from variables to sub-pillar level, 2 is PCA from sub-pillars to pillar level, and 3 is from pillar to INDEX level. Please change this accordingly.
+* ProjectData = Depending on Level, the _sheet_ and data _region_ should be changed accordingly.
+* number of variables = this is to let R know how many variables are in each sub-pillar. Check data file and input the counts. Sample is provided. (eg c(5,7, ...) means Regulatory Landscape will have 5 variables and Market Landscape will have 7 variables, .. etc)
+
+After updating all the variables, please press _source_ at the top right of the R Studio. For level 1 and 2, a HTML page with "PCA.html" will be generated inside scripts > PCA > doc folder. Rename it accordingly. For level 3, "PCA Highest.html" will be generated. 
+
+To change the contents at the master file, please use "PCA.Rmd" and "PCA Highest.Rmd".
 
 ## Webapp
 

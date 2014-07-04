@@ -24,7 +24,7 @@ datafile_name="Boats" # do not add .csv at the end! make sure the data are numer
 # Please ENTER the filename of the Report and Slides (in the doc directory) to generate 
 report_file = "PCA"
 
-
+## change the data file location and name if there is any changes.
 datafile <- loadWorkbook(paste(local_directory, "/data/2014 05 06 JRC submission based on GTCI 2013 framework_1 Sub-Pillar and 60 Overall.xlsx", sep=""))
 
 Level <- 3 # or 2 or 3
