@@ -71,4 +71,4 @@ Webapp folder has mainly 2 files : ui.R and server.R. They are written based on 
 
 Data can be uploaded using CSV file. Sample for CSV file can be found at _webapp > 2014 06 25 GTCI.csv_. Mainly the data should start from first row and its variable names will be used accordingly. However, **Income.group** and **Regional.group** variable names should follow as shown.
 
-#### Data upload file format
+Even if you don't have the csv file to upload, webapp will use the built in data. After doing other analysis such as PCA and variable changes, it is recommended to use csv file to upload the data since the built in data can be outdated.
