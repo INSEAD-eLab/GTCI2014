@@ -67,4 +67,8 @@ To change the contents at the master file, please use "PCA.Rmd" and "PCA Highest
 
 ## Webapp
 
+Webapp folder has mainly 2 files : ui.R and server.R. They are written based on Shiny Application and tutorials and guides can be found at : http://shiny.rstudio.com/ 
+
+Data can be uploaded using CSV file. Sample for CSV file can be found at _webapp > 2014 06 25 GTCI.csv_. Mainly the data should start from first row and its variable names will be used accordingly. However, **Income.group** and **Regional.group** variable names should follow as shown.
+
 #### Data upload file format
