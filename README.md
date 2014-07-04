@@ -40,6 +40,16 @@ Data cleaning consists of mainly matching the country names with ISO3 code and g
 Merging is done inside Scripts > merging folder. each file will merge a pillar and finally, "master.R" will merge all the pillars. Merging should be done on a powerful computer with a lot of extra RAM. 
 
 #### PDF report
+
+To export PDF, create a data object for desired variable. Then use _generate.pdf_ function to generate. Function variables are as following :
+
+* variable.object = data object to be exported as PDF
+* variable.to.sort = variable name to be sorted when exported to PDF. Need to provide as string.
+* name = name to be given to the exported PDF.
+* note = note message to provide below the variable name inside the PDF.
+
+Example calls for this functions are at Scripts > PDFexport.R and PDF files are inside "export"" folder.
+
 #### PCA
 
 
