@@ -22,13 +22,16 @@ This folder will have all the scripts to clean and merge the data. PCA and funct
 
 This folder will have the codes for web application. Details of this folder can be found in following sessions.
 
+*****************************
 
-### Scripts
+## Scripts
 
 #### Data Cleaning
 #### PDF report
 #### PCA
 
-### Webapp
+****************************
+
+## Webapp
 
 #### Data upload file format
